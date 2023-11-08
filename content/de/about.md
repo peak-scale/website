@@ -171,4 +171,21 @@ bieten zu können.
         </div>
       </div>
     </div>
+    <div class="article col col-4 col-d-6 col-t-12">
+      <div class="article__inner">
+        <div class="article__head">
+          <div class="sqr_border"><div class="sqr">
+            <img alt="Oliver Baehler" src="/images/team/oliverbaehler.png">
+          </div></div>
+        </div>
+        <div class="article__content">
+          <h2 class="article__title">Oliver Bähler &nbsp <a class="scl" href="https://www.linkedin.com/in/oliver-b%C3%A4hler-8b182b175/">
+            <i class="ion ion-logo-linkedin" style="color: #0580c4;"></i></a>
+          </h2>
+          <p class="article__excerpt">Solution architect und Cloud Native Maintainer</p>
+        </div>
+      </div>
+    </div>
+
+
 </div>
