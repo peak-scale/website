@@ -67,12 +67,26 @@ Implementierung moderner Technologien und Methoden.
             <div class="article__head">
                 <div class="sqr_border">
                     <div class="sqr">
+                        <img class="border" src="/images/services/harbor.svg">
+                    </div>
+                </div>
+            </div>
+            <div class="article__content">
+                <p class="article__excerpt">Artefakte mit Harbor</p>
+            </div>
+        </div>
+    </div>
+    <div class="article col col-4 col-d-4 col-t-6">
+        <div class="article__inner">
+            <div class="article__head">
+                <div class="sqr_border">
+                    <div class="sqr">
                         <img class="border" src="/images/services/argo.svg">
                     </div>
                 </div>
             </div>
             <div class="article__content">
-                <p class="article__excerpt">GitOps mit Argo CD und Flux</p>
+                <p class="article__excerpt">GitOps mit Argo CD und Flux CD</p>
             </div>
         </div>
     </div>
@@ -185,6 +199,20 @@ Implementierung moderner Technologien und Methoden.
             </div>
             <div class="article__content">
                 <p class="article__excerpt">Serverless</p>
+            </div>
+        </div>
+    </div>
+    <div class="article col col-4 col-d-4 col-t-6">
+        <div class="article__inner">
+            <div class="article__head">
+                <div class="sqr_border">
+                    <div class="sqr">
+                        <img class="border" src="/images/services/keycloak.svg">
+                    </div>
+                </div>
+            </div>
+            <div class="article__content">
+                <p class="article__excerpt">Authentifizierung</p>
             </div>
         </div>
     </div>

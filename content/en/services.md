@@ -64,12 +64,26 @@ technologies and methods.
             <div class="article__head">
                 <div class="sqr_border">
                     <div class="sqr">
+                        <img class="border" src="/images/services/harbor.svg">
+                    </div>
+                </div>
+            </div>
+            <div class="article__content">
+                <p class="article__excerpt">Artifacts with Harbor</p>
+            </div>
+        </div>
+    </div>
+    <div class="article col col-4 col-d-4 col-t-6">
+        <div class="article__inner">
+            <div class="article__head">
+                <div class="sqr_border">
+                    <div class="sqr">
                         <img class="border" src="/images/services/argo.svg">
                     </div>
                 </div>
             </div>
             <div class="article__content">
-                <p class="article__excerpt">GitOps with Argo CD and Flux</p>
+                <p class="article__excerpt">GitOps with Argo CD and Flux CD</p>
             </div>
         </div>
     </div>
@@ -182,6 +196,20 @@ technologies and methods.
             </div>
             <div class="article__content">
                 <p class="article__excerpt">Serverless</p>
+            </div>
+        </div>
+    </div>
+    <div class="article col col-4 col-d-4 col-t-6">
+        <div class="article__inner">
+            <div class="article__head">
+                <div class="sqr_border">
+                    <div class="sqr">
+                        <img class="border" src="/images/services/keycloak.svg">
+                    </div>
+                </div>
+            </div>
+            <div class="article__content">
+                <p class="article__excerpt">Authentification</p>
             </div>
         </div>
     </div>
