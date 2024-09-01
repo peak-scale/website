@@ -34,7 +34,7 @@ Implementierung moderner Technologien und Methoden.
 
   {{< grid-item
       image="services/argo.svg"
-      text="GitOps mit Argo CD und Flux CD" >}}
+      text="GitOps mit Argo CD, Flux CD und Sveltos" >}}
 
   {{< grid-item
       image="services/slsa.svg"
@@ -44,9 +44,25 @@ Implementierung moderner Technologien und Methoden.
       image="services/backstage.svg"
       text="Internal Developer Portals" >}}
 
+ {{< grid-item
+      image="services/docker.svg"
+      text="Containers" >}}
+
   {{< grid-item
       image="services/kubernetes.svg"
-      text="Container und Kubernetes" >}}
+      text="Massgeschneiderte Kubernetes-Distributionen" >}}
+
+  {{< grid-item
+      image="services/kubevirt.svg"
+      text="Virtualisierung auf Kubernetes" >}}
+
+  {{< grid-item
+      image="services/capsule.svg"
+      text="Kubernetes-Mandantenfähigkeit mit Capsule" >}}
+
+  {{< grid-item
+      image="services/capi.png"
+      text="Control Planes als Service mit CAPI oder Kubermatic KKP" >}}
 
   {{< grid-item
       image="services/gitlab.svg"
@@ -71,6 +87,12 @@ Implementierung moderner Technologien und Methoden.
   {{< grid-item
       image="services/keycloak.svg"
       text="Authentifizierung" >}}
+
+  {{< grid-item
+      image="services/opa.svg"
+      text="Policy as Code" >}}
+
+
 </div>
 
 

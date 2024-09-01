@@ -32,7 +32,7 @@ technologies and methods.
 
   {{< grid-item
       image="services/argo.svg"
-      text="GitOps with Argo CD and Flux CD" >}}
+      text="GitOps with Argo CD, Flux CD and Sveltos" >}}
 
   {{< grid-item
       image="services/slsa.svg"
@@ -43,8 +43,24 @@ technologies and methods.
       text="Internal Developer Portals" >}}
 
   {{< grid-item
+      image="services/docker.svg"
+      text="Containers" >}}
+
+  {{< grid-item
       image="services/kubernetes.svg"
-      text="Containers and Kubernetes" >}}
+      text="Tailor-made Kubernetes distributions" >}}
+
+  {{< grid-item
+      image="services/kubevirt.svg"
+      text="Virtualization on Kubernetes" >}}
+
+  {{< grid-item
+      image="services/capsule.svg"
+      text="Kubernetes multi-tenancy solutions with Capsule" >}}
+
+  {{< grid-item
+      image="services/capi.png"
+      text="Control Planes as a service with CAPI or Kubermatic KKP" >}}
 
   {{< grid-item
       image="services/gitlab.svg"
@@ -69,6 +85,11 @@ technologies and methods.
   {{< grid-item
       image="services/keycloak.svg"
       text="Authentication" >}}
+
+  {{< grid-item
+      image="services/opa.svg"
+      text="Policy as Code" >}}
+
 </div>
 
 ## Training
