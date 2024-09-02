@@ -41,24 +41,8 @@ Implementierung moderner Technologien und Methoden.
       text="Supply Chain Security mit SLSA und Sigstore" >}}
 
   {{< grid-item
-      image="services/backstage.svg"
-      text="Internal Developer Portals" >}}
-
- {{< grid-item
-      image="services/docker.svg"
-      text="Containers" >}}
-
-  {{< grid-item
       image="services/kubernetes.svg"
       text="Massgeschneiderte Kubernetes-Distributionen" >}}
-
-  {{< grid-item
-      image="services/kubevirt.svg"
-      text="Virtualisierung auf Kubernetes" >}}
-
-  {{< grid-item
-      image="services/capsule.svg"
-      text="Kubernetes-Mandantenfähigkeit mit Capsule" >}}
 
   {{< grid-item
       image="services/capi.png"

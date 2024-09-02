@@ -39,24 +39,8 @@ technologies and methods.
       text="Supply Chain Security with SLSA and Sigstore" >}}
 
   {{< grid-item
-      image="services/backstage.svg"
-      text="Internal Developer Portals" >}}
-
-  {{< grid-item
-      image="services/docker.svg"
-      text="Containers" >}}
-
-  {{< grid-item
       image="services/kubernetes.svg"
       text="Tailor-made Kubernetes distributions" >}}
-
-  {{< grid-item
-      image="services/kubevirt.svg"
-      text="Virtualization on Kubernetes" >}}
-
-  {{< grid-item
-      image="services/capsule.svg"
-      text="Kubernetes multi-tenancy solutions with Capsule" >}}
 
   {{< grid-item
       image="services/capi.png"
