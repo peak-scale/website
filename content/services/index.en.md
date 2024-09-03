@@ -43,6 +43,10 @@ technologies and methods.
       text="Tailor-made Kubernetes distributions" >}}
 
   {{< grid-item
+      image="services/capsule.svg"
+      text="Multi-Tenancy" >}}
+
+  {{< grid-item
       image="services/capi.png"
       text="Control Planes as a service with CAPI or Kubermatic KKP" >}}
 
@@ -65,10 +69,6 @@ technologies and methods.
   {{< grid-item
       image="services/func.svg"
       text="Serverless" >}}
-
-  {{< grid-item
-      image="services/keycloak.svg"
-      text="Authentication" >}}
 
   {{< grid-item
       image="services/opa.svg"
