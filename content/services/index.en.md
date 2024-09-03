@@ -40,7 +40,7 @@ technologies and methods.
 
   {{< grid-item
       image="services/kubernetes.svg"
-      text="Tailor-made Kubernetes distributions" >}}
+      text="Tailor made Kubernetes distributions" >}}
 
   {{< grid-item
       image="services/capsule.svg"
@@ -48,7 +48,7 @@ technologies and methods.
 
   {{< grid-item
       image="services/capi.png"
-      text="Control Planes as a service with CAPI or Kubermatic KKP" >}}
+      text="Control Planes as service" >}}
 
   {{< grid-item
       image="services/gitlab.svg"
