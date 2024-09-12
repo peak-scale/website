@@ -8,9 +8,6 @@ Although we are still a young company, we have already been able to win some wel
 
 <div class="row">
   {{< grid-item
-      image="customers/ace.png"
-      href="https://www.ace.ch/" >}}
-  {{< grid-item
       image="customers/bedag.png"
       href="https://www.bedag.ch/" >}}
   {{< grid-item
@@ -38,6 +35,9 @@ Although we are still a young company, we have already been able to win some wel
 With today's shortage of skilled staff, a broad network and strategic partnerships are an important part of our success.
 
 <div class="row">
+  {{< grid-item
+      image="customers/ace.png"
+      href="https://www.ace.ch/" >}}
   {{< grid-item
       image="partners/avega.svg"
       href="https://avega.ch/" >}}
