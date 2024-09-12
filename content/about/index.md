@@ -8,9 +8,6 @@ Obwohl wir noch ein junges Unternehmen sind, haben wir bereits einige namhafte K
 
 <div class="row">
   {{< grid-item
-      image="customers/ace.png"
-      href="https://www.ace.ch/" >}}
-  {{< grid-item
       image="customers/bedag.png"
       href="https://www.bedag.ch/" >}}
   {{< grid-item
@@ -39,6 +36,9 @@ Mit dem heutigen Fachkräftemangel sind ein breites Netzwerk und strategische Pa
 unseres Erfolgs.
 
 <div class="row">
+  {{< grid-item
+      image="partners/ace.png"
+      href="https://www.ace.ch/" >}}
   {{< grid-item
       image="partners/avega.svg"
       href="https://avega.ch/" >}}
