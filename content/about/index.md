@@ -2,7 +2,7 @@
 title: Über uns
 ---
 
-## Kunden
+## Kunden3
 
 Obwohl wir noch ein junges Unternehmen sind, haben wir bereits einige namhafte Kunden gewinnen können.
 
