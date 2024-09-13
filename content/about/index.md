@@ -40,14 +40,8 @@ unseres Erfolgs.
       image="partners/ace.png"
       href="https://www.ace.ch/" >}}
   {{< grid-item
-      image="partners/avega.svg"
-      href="https://avega.ch/" >}}
-  {{< grid-item
       image="partners/bespinian.svg"
       href="https://bespinian.io/" >}}
-  {{< grid-item
-      image="partners/kiwi.png"
-      href="https://kiwi.ch/" >}}
   {{< grid-item
       image="partners/nuvibit.png"
       href="https://nuvibit.com/" >}}
