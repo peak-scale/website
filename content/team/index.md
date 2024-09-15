@@ -40,6 +40,9 @@ bieten zu können.
     >}}
 </div>
 
+Möchtest du Teil unseres Teams werden? Wir freuen uns immer über Spontanbewerbungen an jobs@peakscale.ch.
+
+<!--
 Möchtest du Teil unseres Teams werden? Dann schau dir unsere offenen Stellen an:
 
 ### Cloud Native Engineers/Architects (60-100%)
@@ -76,3 +79,4 @@ Pipelines vorzugsweise auf Public Cloud Umgebungen.
 
 Sag uns, wie du mit uns die IT-Landschaft der Zukunft gestalten wirst. Kontaktiere uns auf LinkedIn oder schreib uns an
 jobs@peakscale.ch. Nur Direktbewerbungen.
+-->

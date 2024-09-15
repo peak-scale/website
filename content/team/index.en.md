@@ -39,6 +39,9 @@ We are a team of experienced IT professionals who are proud to be able to offer 
     >}}
 </div>
 
+Would you like to become part of our team? We are always happy to receive unsolicited applications at jobs@peakscale.ch.
+
+<!-- 
 Do you want to be part of our team? Then have a look at our open positions:
 
 ### Cloud Native Engineers/Architects (60-100%)
@@ -75,3 +78,4 @@ Public Cloud environments.
 
 Tell us how you will help us shape the IT landscape of the future. Contact us on LinkedIn or write to us at
 jobs@peakscale.ch. Only direct applications.
+-->
