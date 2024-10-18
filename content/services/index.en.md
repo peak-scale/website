@@ -87,6 +87,10 @@ We are happy to pass on our experience from practice and theory. In the form of 
   {{< grid-item
       image="services/cncf.svg"
       text="Cloud Native trainings for tech-savvy engineers" >}}
+  {{< grid-item
+      image="services/killercoda.svg"
+      href="https://killercoda.com/peakscale"
+      text="Interactive labs on Killercoda" >}}
 </div>
 
 ## Community

@@ -91,6 +91,10 @@ Architektur-Workshops oder umfangreichen, technischen Trainings.
   {{< grid-item
       image="services/cncf.svg"
       text="Cloud Native Trainings für technisch versierte Engineers" >}}
+  {{< grid-item
+      image="services/killercoda.svg"
+      href="https://killercoda.com/peakscale"
+      text="Interaktive Labs auf Killercoda" >}}
 </div>
 
 ## Community
