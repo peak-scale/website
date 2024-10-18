@@ -49,7 +49,7 @@
         <link rel="preconnect" href="https://{{ $pio_domain }}">
     {{- end }}
     <!-- Add SCRIPT DIRECTIVES -->
-    {{- if and (site.IsServer) (not site.Params.plausible.debug) -}}
+    {{- if and (hugo.IsServer) (not site.Params.plausible.debug) -}}
         <!-- To avoid stats bloat when in dev/server & not debug mode -->
         {{- printf "<!-- Dev mode : We do not load plausible script to avoid bloating your stats -->" | safeHTML }}
     {{- else }}
