@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   toggleTheme.addEventListener("click", () => {
-    darkMode();
+    toogleTheme();
   });
 
   function menuOpen() {
@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   // Theme Switcher
-  function darkMode() {
+  function toogleTheme() {
     if (html.classList.contains('dark-mode')) {
       html.classList.remove('dark-mode');
-      localStorage.removeItem("theme");
+      localStorage.setItem("theme", "light");
       document.documentElement.removeAttribute("dark");
     } else {
       html.classList.add('dark-mode');
