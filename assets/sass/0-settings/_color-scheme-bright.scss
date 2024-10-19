@@ -1,0 +1,31 @@
+/* Bright Color Scheme */
+:root {
+  --brand-blue-dark: #091836;
+  --brand-blue-bright: #0580c4;
+  --white: #ffffff;
+  --light-gray: #f0f0f0;
+  --gray: #555555;
+
+  --background-color: var(--white);
+  --background-alt-color: var(--light-gray);
+
+  --text-color: var(--brand-blue-dark);
+  --text-alt-color: var(--gray);
+
+  --heading-font-color: var(--brand-blue-dark);
+
+  --link-color: var(--brand-blue-dark);
+  --link-color-hover: var(--brand-blue-dark);
+
+  --button-color: var(--white);
+  --button-background-color: var(--brand-blue-bright);
+  --button-background-hover: var(--brand-blue-dark);
+
+  --border-color: var(--light-gray);
+  --border-color-alt: var(--light-gray);
+
+  --th-color: var(--light-gray);
+  --tr-color: var(--light-gray);
+
+  --syntax-highlighting-background: var(--light-gray);
+}

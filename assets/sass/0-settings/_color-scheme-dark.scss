@@ -1,0 +1,31 @@
+/* Dark Color Scheme */
+:root[dark] {
+  --brand-blue-dark: #091836;
+  --brand-blue-bright: #0580c4;
+  --white: #ffffff;
+  --light-gray: #f0f0f0;
+  --gray: #9e9e9e;
+
+  --background-color: var(--brand-blue-dark);
+  --background-alt-color: var(--light-gray);
+
+  --text-color: var(--gray);
+  --text-alt-color: var(--gray);
+
+  --heading-font-color: var(--light-gray);
+
+  --link-color: var(--light-gray);
+  --link-color-hover: var(--light-gray);
+
+  --button-color: var(--white);
+  --button-background-color: var(--brand-blue-bright);
+  --button-background-hover: var(--brand-blue-dark);
+
+  --border-color: var(--brand-blue-dark);
+  --border-color-alt: var(--brand-blue-dark);
+
+  --th-color: var(--brand-blue-dark);
+  --tr-color: var(--brand-blue-dark);
+
+  --syntax-highlighting-background: var(--brand-blue-dark);
+}

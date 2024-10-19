@@ -73,7 +73,7 @@
           }
 
           &.nav__link__current {
-            color: var(--brand-color);
+            color: var(--brand-blue-bright);
 
             &::after {
               content: none;
@@ -176,7 +176,7 @@
         &::after {
           transform: scaleX(1);
           transition: none;
-          background: var(--brand-color);
+          background: var(--brand-blue-bright);
         }
       }
 
