@@ -9,25 +9,28 @@ Obwohl wir noch ein junges Unternehmen sind, haben wir bereits einige namhafte K
 <div class="row">
   {{< grid-item
       image="customers/bedag.png"
-      href="https://www.bedag.ch/" >}}
+      href="https://bedag.ch" >}}
   {{< grid-item
       image="customers/bfh.svg"
-      href="https://www.bfh.ch/" >}}
+      href="https://bfh.ch" >}}
   {{< grid-item
       image="customers/bison.svg"
-      href="https://www.bison-group.com/" >}}
+      href="https://bison-group.com" >}}
   {{< grid-item
       image="customers/bund.svg"
-      href="https://admin.ch/" >}}
+      href="https://admin.ch" >}}
+  {{< grid-item
+      image="customers/ewb.svg"
+      href="https://ewb.ch" >}}
   {{< grid-item
       image="customers/gelan.png"
-      href="https://www.gelan.ch/" >}}
+      href="https://gelan.ch" >}}
   {{< grid-item
       image="customers/mobiliar.svg"
-      href="https://www.mobiliar.ch/" >}}
+      href="https://mobiliar.ch" >}}
   {{< grid-item
       image="customers/postfinance.svg"
-      href="https://www.postfinance.ch/" >}}
+      href="https://postfinance.ch" >}}
 </div>
 
 ## Partner
@@ -38,7 +41,7 @@ unseres Erfolgs.
 <div class="row">
   {{< grid-item
       image="partners/ace.png"
-      href="https://www.ace.ch" >}}
+      href="https://ace.ch" >}}
   {{< grid-item
       image="partners/bespinian.svg"
       href="https://bespinian.io" >}}
@@ -53,5 +56,5 @@ unseres Erfolgs.
       href="https://puzzle.ch" >}}
   {{< grid-item
       image="partners/zooey.svg"
-      href="https://www.zooey.ch" >}}
+      href="https://zooey.ch" >}}
 </div>
