@@ -38,17 +38,20 @@ unseres Erfolgs.
 <div class="row">
   {{< grid-item
       image="partners/ace.png"
-      href="https://www.ace.ch/" >}}
+      href="https://www.ace.ch" >}}
   {{< grid-item
       image="partners/bespinian.svg"
-      href="https://bespinian.io/" >}}
+      href="https://bespinian.io" >}}
   {{< grid-item
       image="partners/nuvibit.png"
-      href="https://nuvibit.com/" >}}
+      href="https://nuvibit.com" >}}
   {{< grid-item
       image="partners/origoss.svg"
-      href="https://origoss.com/" >}}
+      href="https://origoss.com" >}}
+  {{< grid-item
+      image="partners/puzzle.svg"
+      href="https://puzzle.ch" >}}
   {{< grid-item
       image="partners/zooey.svg"
-      href="https://www.zooey.ch/" >}}
+      href="https://www.zooey.ch" >}}
 </div>
