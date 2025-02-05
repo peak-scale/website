@@ -30,6 +30,11 @@ identifier = "team"
 name = "Team"
 pageRef = "/team"
 weight = 4
+[[languages.de.menus.main]]
+identifier = "contact"
+name = "Kontakt"
+pageRef = "/contact"
+weight = 5
 
 [languages.en]
 languageCode = "en-en"
@@ -58,6 +63,11 @@ identifier = "team"
 name = "Team"
 pageRef = "/team"
 weight = 4
+[[languages.en.menus.main]]
+identifier = "contact"
+name = "Contact"
+pageRef = "/contact"
+weight = 5
 
 [params]
 logo = "/images/logos/peakscale.svg"
