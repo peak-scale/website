@@ -11,10 +11,10 @@ privacy = "Datenschutz"
 legalnotice = "Impressum"
 [languages.de.params.hero]
 hero__title = "Cloud Native Experten"
-hero__description = """Bei Peak Scale sind wir überzeugt, dass IT-Architektur dem steten Wandel unterliegt.
-    Deshalb bauen wir auf pragmatische und evolutionäre Ansätze bei unseren Konzepten.
-    Gerne unterstützen und beraten wir mit Dienstleistungen in den Bereichen Architektur, Engineering,
-    Trainings und Assessments im Umfeld von modernen, Cloud Native-basierten Infrastrukturen."""
+hero__description = """Bei Peak Scale sind wir davon überzeugt, dass sich IT-Architektur ständig weiterentwickelt.
+    Deshalb setzen wir auf pragmatische und evolutionäre Ansätze.
+    Wir unterstützen und beraten mit Dienstleistungen in den Bereichen Architektur, Engineering, Training und
+    Assessments – stets im Kontext moderner, cloud-nativer Infrastrukturen."""
 [[languages.de.menus.main]]
 identifier = "services"
 name = "Angebot"
@@ -44,10 +44,10 @@ privacy = "Privacy"
 legalnotice = "Legal Notice"
 [languages.en.params.hero]
 hero__title = "Cloud Native Experts"
-hero__description = """At Peak Scale, we are convinced that IT architecture is subject to constant change.
-    That is why we rely on pragmatic and evolutionary approaches.
-    We are happy to support and advise with services in the areas of architecture, engineering,
-    training, and assessments in the context of modern, cloud native-based infrastructures."""
+hero__description = """At Peak Scale, we believe that IT architecture is constantly evolving.
+    That’s why we embrace pragmatic and evolutionary approaches.
+    We provide support and guidance through services in architecture, engineering, training, and assessments,
+    all within the context of modern, cloud-native infrastructures."""
 [[languages.en.menus.main]]
 identifier = "services"
 name = "Services"
