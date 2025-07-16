@@ -33,7 +33,22 @@ Although we are still a young company, we have already been able to win some wel
       href="https://postfinance.ch" >}}
 </div>
 
-## Partners
+## Technology Partners
+
+As a Sidero Labs partner, we provide support for [Omni](https://omni.siderolabs.com/),
+[Talos Linux](https://talos.dev), and Kubernetes.
+Additionally, we hold SUSE Emerald Partner status for [SUSE Rancher Prime](https://www.suse.com/products/rancher/).
+
+<div class="row">
+  {{< grid-item
+      image="partners/siderolabs.webp"
+      href="https://siderolabs.com" >}}
+  {{< grid-item
+      image="partners/suse.svg"
+      href="https://suse.com" >}}
+</div>
+
+## Partner Network
 
 With today's shortage of skilled staff, a broad network and strategic partnerships are an important part of our success.
 
