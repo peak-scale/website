@@ -10,33 +10,39 @@ bieten zu können.
 <div class="row">
     {{<team-item
         name="Mathias Herzog"
-        image="mathiasherzog.jpg"
+        image="mathiasherzog.png"
         linkedin="mathias-herzog-888a6788"
         title="Infrastructure Artist und Brückenbauer zwischen Technik, Organisation und Management"
     >}}
     {{<team-item
         name="Johann Gyger"
-        image="johanngyger.jpg"
+        image="johanngyger.png"
         linkedin="johanngyger"
         title="Software Artist, Cloud Native Ambassador und passionierter Engineer"
     >}}
     {{<team-item
         name="Oliver Bähler"
-        image="oliverbaehler.jpg"
+        image="oliverbaehler.png"
         linkedin="oliver-b%C3%A4hler-8b182b175"
         title="Solution Architect und Cloud Native Maintainer"
     >}}
     {{<team-item
         name="Nicola Lüthi"
-        image="nicolaluethi.jpeg"
+        image="nicolaluethi.png"
         linkedin="nicola-l%C3%BCthi-895045252"
         title="Cloud Native Engineer und Maintainer"
     >}}
     {{<team-item
         name="Lorenz Bischof"
-        image="lorenzbischof.jpg"
+        image="lorenzbischof.png"
         linkedin="lorenz-bischof"
         title="Cloud Native Engineer mit Fokus auf Benutzbarkeit, Sicherheit und Automatisierung"
+    >}}
+    {{<team-item
+        name="Philipp Grogg"
+        image="philippgrogg.png"
+        linkedin="philipp-grogg-1a369012b"
+        title="Senior DevOps Engineer, Senior Software Architect"
     >}}
 </div>
 
