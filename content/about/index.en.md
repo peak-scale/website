@@ -34,6 +34,9 @@ Although we are still a young company, we have already been able to win some wel
   {{< grid-item
       image="customers/eth.svg"
       href="https://ethz.ch/en.html" >}}
+  {{< grid-item
+      image="customers/fhnw.svg"
+      href="https://www.fhnw.ch" >}}
 </div>
 
 ## Technology Partners

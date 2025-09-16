@@ -34,6 +34,9 @@ Obwohl wir noch ein junges Unternehmen sind, haben wir bereits einige namhafte K
   {{< grid-item
       image="customers/eth.svg"
       href="https://ethz.ch/de.html" >}}
+  {{< grid-item
+      image="customers/fhnw.svg"
+      href="https://www.fhnw.ch" >}}
 </div>
 
 ## Technologiepartner
