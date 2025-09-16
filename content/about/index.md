@@ -31,6 +31,9 @@ Obwohl wir noch ein junges Unternehmen sind, haben wir bereits einige namhafte K
   {{< grid-item
       image="customers/postfinance.svg"
       href="https://postfinance.ch" >}}
+  {{< grid-item
+      image="customers/eth.svg"
+      href="https://ethz.ch/de.html" >}}
 </div>
 
 ## Technologiepartner

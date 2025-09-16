@@ -31,6 +31,9 @@ Although we are still a young company, we have already been able to win some wel
   {{< grid-item
       image="customers/postfinance.svg"
       href="https://postfinance.ch" >}}
+  {{< grid-item
+      image="customers/eth.svg"
+      href="https://ethz.ch/en.html" >}}
 </div>
 
 ## Technology Partners
