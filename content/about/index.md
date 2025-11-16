@@ -41,9 +41,10 @@ Obwohl wir noch ein junges Unternehmen sind, haben wir bereits einige namhafte K
 
 ## Technologiepartner
 
-Als Sidero Labs Partner bieten wir Support für [Omni](https://omni.siderolabs.com/), 
-[Talos Linux](https://talos.dev) und Kubernetes an. 
-Zusätzlich haben wir den SUSE Emerald Status für [SUSE Rancher Prime](https://www.suse.com/products/rancher/). 
+Als Sidero Labs Partner bieten wir Dienstleistungen und Support für [Omni](https://omni.siderolabs.com/),
+[Talos Linux](https://talos.dev) und Kubernetes an.
+Zusätzlich haben wir den SUSE Emerald Status für [SUSE Rancher Prime](https://www.suse.com/products/rancher/).
+Als Google Cloud Partner bieten wir Expertenlösungen und Consulting auf [GCP](https://cloud.google.com) an.
 
 <div class="row">
   {{< grid-item
@@ -52,6 +53,9 @@ Zusätzlich haben wir den SUSE Emerald Status für [SUSE Rancher Prime](https://
   {{< grid-item
       image="partners/suse.svg"
       href="https://suse.com" >}}
+  {{< grid-item
+      image="partners/google-cloud.svg"
+      href="https://cloud.google.com" >}}
 </div>
 
 ## Partner-Netzwerk
