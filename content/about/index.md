@@ -45,6 +45,8 @@ Als Sidero Labs Partner bieten wir Dienstleistungen und Support für [Omni](http
 [Talos Linux](https://talos.dev) und Kubernetes an.
 Zusätzlich haben wir den SUSE Emerald Status für [SUSE Rancher Prime](https://www.suse.com/products/rancher/).
 Als Google Cloud Partner bieten wir Expertenlösungen und Consulting auf [GCP](https://cloud.google.com) an.
+Zusammen mit [Clastix](https://clastix.io) bieten
+wir kommerziellen Support für [Capsule](https://projectcapsule.dev/support/).
 
 <div class="row">
   {{< grid-item
@@ -56,6 +58,9 @@ Als Google Cloud Partner bieten wir Expertenlösungen und Consulting auf [GCP](h
   {{< grid-item
       image="partners/google-cloud.svg"
       href="https://cloud.google.com" >}}
+  {{< grid-item
+      image="partners/clastix.svg"
+      href="https://clastix.io" >}}
 </div>
 
 ## Partner-Netzwerk
