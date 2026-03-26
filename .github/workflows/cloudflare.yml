@@ -1,13 +1,22 @@
-name: Build Preview Deployment
+name: Deploy to Cloudflare Pages
 
 on:
   pull_request:
-    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+  deployments: write
+
+concurrency:
+  group: cloudflare-pages
+  cancel-in-progress: false
 
 jobs:
-  build-preview:
+  deploy:
+    # Skip fork PRs — secrets are unavailable there
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    name: Build Preview Site and Upload Build Artifact
     env:
       HUGO_VERSION: 0.143.1
     steps:
@@ -24,18 +33,17 @@ jobs:
           fetch-depth: 0
       - name: Build with Hugo
         env:
-          # For maximum backward compatibility with Hugo modules
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
           hugo \
             --gc \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
-
-      # Uploads the build directory as a workflow artifact
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+            --minify
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
-          name: preview-build
-          path: ./public
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: peakscale
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
