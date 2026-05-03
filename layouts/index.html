@@ -64,12 +64,20 @@
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="logo-strip">
-      {{ range hugo.Data.customers }}
-      <a class="logo-strip__item" href="{{ .href }}" rel="noopener" aria-label="{{ .name }}">
-        <img src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="120" height="32">
-      </a>
-      {{ end }}
+    <div class="logo-carousel" aria-label="Kunden">
+      <div class="logo-carousel__track">
+        {{ range hugo.Data.customers }}
+        <a class="logo-tile" href="{{ .href }}" rel="noopener" aria-label="{{ .name }}">
+          <img src="{{ .image }}" alt="{{ .name }}" loading="lazy">
+        </a>
+        {{ end }}
+        {{/* duplicate for seamless loop */}}
+        {{ range hugo.Data.customers }}
+        <a class="logo-tile" href="{{ .href }}" rel="noopener" aria-hidden="true" tabindex="-1">
+          <img src="{{ .image }}" alt="" loading="lazy">
+        </a>
+        {{ end }}
+      </div>
     </div>
   </div>
 </section>

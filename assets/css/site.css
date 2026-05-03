@@ -454,27 +454,62 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .lifecycle__stage:first-child { border-top: 0; }
 }
 
-/* ---------- Logo strip (plain horizontal, no tile borders) ---------- */
+/* ---------- Customer logo carousel (boxed tiles, auto-scrolling marquee) ---------- */
 
-.logo-strip {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-  gap: clamp(20px, 4vw, 56px);
-  padding: var(--space-8) 0;
+.logo-carousel {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-6) 0;
+  /* Fade edges into the section background */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
 }
-.logo-strip__item {
-  display: inline-flex; align-items: center; justify-content: center;
-  height: 32px;
+.logo-carousel__track {
+  display: flex;
+  gap: var(--space-4);
+  width: max-content;
+  animation: logo-marquee 50s linear infinite;
+}
+.logo-carousel:hover .logo-carousel__track { animation-play-state: paused; }
+@keyframes logo-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-carousel__track { animation: none; }
+  .logo-carousel { -webkit-mask-image: none; mask-image: none; overflow-x: auto; }
+}
+
+.logo-tile {
   flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 200px; height: 110px;
+  padding: var(--space-4) var(--space-6);
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
-.logo-strip__item img {
-  height: 28px;
-  width: auto;
-  max-width: 130px;
+.logo-tile:hover {
+  border-color: var(--brand-mid);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-float);
+}
+.logo-tile img {
+  max-height: 56px;
+  max-width: 100%;
+  width: auto; height: auto;
+  object-fit: contain;
   filter: grayscale(1);
-  opacity: .55;
+  opacity: .65;
   transition: filter .2s ease, opacity .2s ease;
 }
-.logo-strip__item:hover img { filter: none; opacity: 1; }
+.logo-tile:hover img { filter: none; opacity: 1; }
+@media (max-width: 560px) {
+  .logo-tile { width: 160px; height: 90px; }
+  .logo-tile img { max-height: 44px; }
+}
 
 /* ---------- Partner logos (4 plain tiles, large logo) ---------- */
 
