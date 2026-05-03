@@ -138,7 +138,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   display: flex; align-items: center; gap: 14px;
 }
 .site-header__nav a {
-  font-size: 14px; font-weight: 500; color: var(--fg-muted);
+  font-size: 13px; font-weight: 600; color: var(--fg-muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
   padding: 4px 0; transition: color .18s ease;
 }
 .site-header__nav a:hover { color: var(--bright-blue); }
