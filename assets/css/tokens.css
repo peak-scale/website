@@ -36,6 +36,13 @@
   --stroke-on-dark-2: rgba(255, 255, 255, .16);
   --stroke-on-dark-3: rgba(255, 255, 255, .34);
 
+  /* Text on dark backgrounds — body / strong / muted tiers and the
+     accent-blue (rgb 122,192,232) used for eyebrows and meta on dark. */
+  --text-on-dark:        rgba(255, 255, 255, .78);
+  --text-on-dark-strong: rgba(255, 255, 255, .85);
+  --text-on-dark-soft:   rgba(255, 255, 255, .72);
+  --accent-on-dark:      rgb(122, 192, 232);
+
   /* Restrained warm / sage accents — found in Figma at low usage,
      reserved for status / tag / illustration details. NOT marketing flash. */
   --accent-sage:      rgb(144, 202, 125);   /* muted green */
@@ -239,21 +246,6 @@ p, .body {
   display: inline-block;
 }
 
-.eyebrow--sm { font-size: var(--text-eyebrow-sm); }
-
-.eyebrow--pill {
-  /* The white rounded-pill eyebrow that sits under the hero headline. */
-  background: var(--bg-white);
-  padding: 12px 16px;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-ui);
-  font-size: var(--text-eyebrow);
-  font-weight: var(--w-bold);
-  letter-spacing: var(--tracking-eyebrow);
-  color: var(--brand);
-  text-transform: uppercase;
-}
-
 .mono, code, kbd, samp, pre { font-family: var(--font-mono); font-size: .9em; }
 
 a { color: inherit; text-decoration: none; transition: color .18s ease, opacity .18s ease; }
@@ -316,24 +308,6 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-12) 0; 
 .card:hover {
   transform: translateY(-2px);
   border-color: var(--brand-mid);
-}
-
-.card--glass {
-  /* Used for tile #2 in the Why-Peak-Scale row. */
-  background: rgba(255,255,255,.05);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
-}
-
-.card--brand {
-  /* The dark gradient hero card (image + brand→deep gradient overlay). */
-  background: linear-gradient(rgb(5,128,196) 0%, rgb(9,24,54) 100%);
-  color: var(--bg-white);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
 }
 
 /* The blue rotated square that separates nav items in the Figma. */
