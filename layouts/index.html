@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="hero-photo" style="background-image: linear-gradient(180deg, rgba(240,248,252,.1) 0%, rgba(240,248,252,.6) 100%), url('/images/topo/topo-mountain-1.jpg');">
+    <div class="hero-photo" style="background-image: url('/images/hero/home-mountain.jpg'); background-color: #efe7c8;">
       <div class="hero-photo__tags" aria-hidden="true">
         {{ with $.Params.mountain.stages }}
         {{ range $i, $s := . }}
@@ -34,11 +34,18 @@
   <div class="container">
     <div class="section__head">
       <h2 class="display-xl">{{ .title }}</h2>
-      <p class="lead">{{ .lead }}</p>
+      {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
     </div>
+    {{ $items := .items }}
+    {{ $first := index $items 0 }}
+    {{ $rest := after 1 $items }}
     <div class="why-grid">
-      {{ range $i, $it := .items }}
-      <div class="card{{ if eq $i 0 }} card--feature{{ end }}">
+      <div class="card card--feature"{{ with $first.image }} style="background-image: url('{{ . }}'); background-size: 100% auto; background-position: center bottom; background-repeat: no-repeat;"{{ end }}>
+        <h3>{{ $first.title }}</h3>
+        <p>{{ $first.body }}</p>
+      </div>
+      {{ range $i, $it := $rest }}
+      <div class="card">
         <div class="card-meta">
           <span class="card-meta__num">0{{ add $i 1 }}</span>
           <span class="card-meta__rule"></span>
@@ -86,7 +93,7 @@
         {{ range hugo.Data.testimonials }}
         <figure class="testimonial" data-slide>
           <blockquote class="testimonial__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
-          <figcaption class="testimonial__cite">— {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
+          <figcaption class="testimonial__cite">{{ if eq $lang "de" }}– {{ .author_de }}{{ else }}— {{ .author_en }}{{ end }}</figcaption>
         </figure>
         {{ end }}
       </div>
@@ -105,7 +112,7 @@
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="lifecycle-rows">
-      {{ $images := slice "/images/topo/topo-mountain-1.jpg" "/images/topo/topo-mountain-2.jpg" "/images/topo/topo-mountain-1.jpg" "/images/topo/topo-mountain-2.jpg" -}}
+      {{ $images := slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg" -}}
       {{ $icons := slice "compass" "code" "clipboard" "graduation" -}}
       {{ range $i, $c := .cards }}
       <div class="lifecycle-rows__row">

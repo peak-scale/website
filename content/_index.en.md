@@ -25,8 +25,10 @@ mountain:
 why:
   eyebrow: "Why Peak Scale"
   title: "Why Peak Scale?"
-  lead: "Peak for depth. Scale for platforms that grow with you."
   items:
+    - title: "Peak for technical depth."
+      body: "Scale for platforms that grow with you."
+      image: "/images/section/topo-abstract.jpg"
     - title: "Swiss-first context"
       body: "Experience in Swiss IT environments — familiar with the requirements of enterprises, public bodies, and regulated industries."
     - title: "Hands-on collaboration"
@@ -64,7 +66,7 @@ challenges:
   eyebrow: "Typical challenges"
   title: "Complexity that doesn't go away on its own"
   lead: "We help teams tackle the following obstacles head-on."
-  bg: "/images/topo/topo-mountain-1.jpg"
+  bg: "/images/section/challenges.jpg"
   items:
     - title: "Sprawl across the platform"
       body: "Heterogeneous clusters, manual configuration, no shared picture of the environment."

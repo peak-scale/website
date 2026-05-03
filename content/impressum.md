@@ -1,6 +1,6 @@
 ---
 title: Impressum
-description: "Impressum von Peak Scale GmbH — Anbieterkennzeichnung gemäss Art. 3 Abs. 1 lit. s UWG."
+description: "Impressum von Peak Scale GmbH – Anbieterkennzeichnung gemäss Art. 3 Abs. 1 lit. s UWG."
 aliases:
   - /legalnotice/
 ---
@@ -35,4 +35,4 @@ Externe Links werden zum Zeitpunkt der Verlinkung geprüft. Auf die aktuelle und
 
 ## Urheberrecht
 
-Sämtliche Inhalte dieser Website — Texte, Bilder, Grafiken, Logos — sind, soweit nicht anders gekennzeichnet, urheberrechtlich geschützt. Eine Verwendung ausserhalb der gesetzlichen Schranken bedarf der vorherigen schriftlichen Zustimmung der Peak Scale GmbH.
+Sämtliche Inhalte dieser Website – Texte, Bilder, Grafiken, Logos – sind, soweit nicht anders gekennzeichnet, urheberrechtlich geschützt. Eine Verwendung ausserhalb der gesetzlichen Schranken bedarf der vorherigen schriftlichen Zustimmung der Peak Scale GmbH.

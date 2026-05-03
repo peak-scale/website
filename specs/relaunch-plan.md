@@ -1,6 +1,6 @@
 # Implementation Plan – peakscale.ch Relaunch
 
-Date: 3 May 2026 · Author: Johann Gyger (with Claude) · Status: Implementation in progress (Sprints 0–5 complete, Sprints 6–7 open)
+Date: 3 May 2026 · Author: Johann Gyger (with Claude) · Status: Implementation in progress (Sprints 0–5 complete, Sprint 6 in progress – hero/section imagery from the Figma export integrated; Sprint 7 open)
 
 ---
 
@@ -451,6 +451,16 @@ priority hint.
 2. Renditions get committed to `assets/images/` (processed by Hugo Pipes)
 3. A build step (htmltest) verifies every referenced image exists
 
+**Figma extraction (3 May):** the source-of-truth `Peak Scale (DEV).fig`
+is a Kiwi-encoded zip; `unzip` produces `canvas.fig`, `meta.json`,
+`thumbnail.png` and `images/<sha>` (no extension — sniff with `file`).
+Working copies of the 53 raster assets live in `static/_figextract/`
+(gitignored, not part of the build); only the curated heroes
+(`static/images/hero/`) and section/value crops
+(`static/images/section/`) are committed. The four 200×200 team
+headshots in the .fig are duplicates of the 360×360 PNGs already in
+`static/images/team/` — kept the existing higher-res copies.
+
 ---
 
 ## 11. SEO and Discoverability
@@ -639,7 +649,7 @@ projects. Realistic range: 6–10 weeks to production launch.
 | 3 – Services + Produkte | 1.5 weeks | Both pages with sections, hero visuals as placeholders | 3 pages in staging | done |
 | 4 – Team + Legal | 1 week | Team page with member cards, values, mission; Impressum + Datenschutz | 6 pages complete | done |
 | 5 – i18n + Content | 1 week | EN translation, Markdown migration of all DE content, copy edits | All content final | done (initial pass; Mathias EN review still open) |
-| 6 – Polish | 1 week | Hero visuals final, images licensed, OG generator, sitemap, redirects, performance tuning | Release candidate | open |
+| 6 – Polish | 1 week | Hero visuals final, images licensed, OG generator, sitemap, redirects, performance tuning | Release candidate | in progress (hero/section imagery integrated from `Peak Scale (DEV).fig`; OG, redirects, perf tune still open) |
 | 7 – QA + Launch | 3 days | Lighthouse, A11y, visual regression, DNS switch | Live | open |
 
 Sprints 5–7 may overlap once 3 pages are stable in staging.
@@ -722,8 +732,30 @@ still in front of go-live, grouped by theme.
 
 1. Promote the current uncommitted work to a `relaunch-2026` branch and
    open a tracking PR; add branch protection and a PR template.
-2. Replace stock topo / hero imagery with licensed or in-house photos
-   (or commission custom SVGs for compass / blocks / nodes).
+2. ~~Replace stock topo / hero imagery with licensed or in-house photos
+   (or commission custom SVGs for compass / blocks / nodes).~~
+   *Done 3 May:* extracted 53 raster images from
+   `Peak Scale (DEV).fig` (the file is a Kiwi-encoded zip; SHA-named
+   files unzip cleanly) into `static/_figextract/` (gitignored —
+   `.gitignore` updated). The four selected hero photos and seven
+   section/value crops are committed under `static/images/hero/` and
+   `static/images/section/`. Layouts now reference them: home hero
+   (`home-mountain.jpg`, low-poly mountain with the four stage pills),
+   services hero (`services-compass.jpg`), produkte hero
+   (`produkte-blocks.jpg`, replacing `visuals/blocks-large.html`), team
+   hero (`team-network.jpg`, replacing `visuals/network-large.html`),
+   the four lifecycle row crops on home, the five values row crops on
+   team, the two challenges-glass backgrounds (home + services), and
+   the produkte mid-page banner. The "Peak steht für technische
+   Tiefe" featured tile in the Why grid was added back as a 6th item
+   with the dark-blue topographic abstract anchored to the bottom of
+   the card. Image extension for the produkte/team SVG visuals
+   (`compass`, `blocks`, `network`, `mountain`, `topo`,
+   `*-large` variants) are now unused; only `visuals/mail.html`
+   remains in service. **Open within this item:** licensing /
+   replacing the stock mountain photography before go-live (Adobe
+   Stock or in-house shoot per §10), final review of `topo-abstract`
+   choice, and pruning the dead `visuals/*.html` partials.
 3. Generate per-page OG images (Hugo image pipeline) and drop them in
    `static/og/`; wire them through frontmatter `image:`.
 4. Native EN review of all copy (Mathias).
@@ -731,6 +763,18 @@ still in front of go-live, grouped by theme.
 6. Performance tune: confirm LCP/CLS/INP budgets on real devices,
    self-host fonts with `font-display: swap`, lazy-load below-the-fold
    images.
+
+**Done in copy / styling on 3 May (out-of-band but worth recording):**
+
+- DE em-dashes ("—") replaced with en-dashes ("–") across all six
+  German pages, `i18n/de.toml`, `data/testimonials.yaml` (DE only),
+  the footer about-line and three hard-coded testimonial citation
+  markers in `layouts/{index,services/list,team/list}.html` (now
+  lang-conditional). EN keeps em-dashes. Added as a feedback memory
+  so future edits don't reintroduce them.
+- `.display-xl` ("Warum Peak Scale?") cap reduced from 128 px to
+  88 px (`clamp(44px, 6vw, 88px)`), since the original Figma value
+  rendered too large in the live page width.
 
 **Sprint 7 – QA + Launch**
 

@@ -12,9 +12,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="hero-photo hero-photo--svg">
-      {{ partial "visuals/blocks-large.html" . }}
-    </div>
+    <div class="hero-photo" style="background-image: url('/images/hero/produkte-blocks.jpg');"></div>
   </div>
 </section>
 {{ end }}
@@ -77,7 +75,7 @@
       <h2>{{ .title }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="lifecycle-rows__media" style="aspect-ratio: 16/4; margin: 0 auto var(--space-8); max-width: 880px; background-image: linear-gradient(135deg, rgba(7,19,44,.6), rgba(5,128,196,.2)), url('/images/topo/topo-mountain-1.jpg');"></div>
+    <div class="lifecycle-rows__media" style="aspect-ratio: 16/4; margin: 0 auto var(--space-8); max-width: 880px; background-image: linear-gradient(135deg, rgba(7,19,44,.6), rgba(5,128,196,.2)), url('/images/section/challenges.jpg');"></div>
     <div class="grid grid--3" style="max-width: 880px; margin: 0 auto;">
       {{ range $i, $c := .cards }}
       <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap: var(--space-3);">

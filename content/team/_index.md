@@ -1,6 +1,6 @@
 ---
 title: Team
-description: "Das Engineering-Team hinter Peak Scale — sechs Spezialisten aus Bern, mit Open-Source-DNA und Fokus auf Cloud-Native-Plattformen."
+description: "Das Engineering-Team hinter Peak Scale – sechs Spezialisten aus Bern, mit Open-Source-DNA und Fokus auf Cloud-Native-Plattformen."
 aliases:
   - /about/
   - /ueber-uns/
@@ -8,14 +8,14 @@ aliases:
 hero:
   eyebrow: "Hinter Peak Scale"
   title: "Das Engineering-Team."
-  lead: "Spezialisiert auf Cloud-Native-Plattformen — von Architektur bis Betrieb. Klein genug, um direkt zu sein, fokussiert genug, um in der Tiefe zu liefern."
+  lead: "Spezialisiert auf Cloud-Native-Plattformen – von Architektur bis Betrieb. Klein genug, um direkt zu sein, fokussiert genug, um in der Tiefe zu liefern."
   sub: "Aus Bern, mit Open-Source-DNA und Schweizer Wurzeln."
   cta_primary: "Kontakt aufnehmen"
   cta_secondary: "Services ansehen"
   cta_secondary_href: "/services/"
 team_block:
   eyebrow: "Unser Team"
-  title: "Sechs Spezialisten — eine Seilschaft."
+  title: "Sechs Spezialisten – eine Seilschaft."
   lead: "Wir kennen unsere Kundinnen und Kunden persönlich. Keine Account-Manager-Schicht, keine Übergaben."
   cta: "Auf LinkedIn folgen"
 members:
@@ -32,14 +32,14 @@ mission:
     - "Wartbar"
 how_we_work:
   eyebrow: "So arbeiten wir"
-  title: "Sechs Prinzipien — täglich gelebt."
+  title: "Sechs Prinzipien – täglich gelebt."
   cards:
     - title: "Direkte Kommunikation"
       body: "Kein Account-Layer, kein Übersetzungsverlust. Wer baut, redet auch."
     - title: "Sparring auf Augenhöhe"
-      body: "Wir challengen Anforderungen, bevor wir sie umsetzen — auch unbequem."
+      body: "Wir challengen Anforderungen, bevor wir sie umsetzen – auch unbequem."
     - title: "Architektur entscheidet"
-      body: "Tooling folgt der Architektur — nicht umgekehrt."
+      body: "Tooling folgt der Architektur – nicht umgekehrt."
     - title: "Entscheidungen dokumentiert"
       body: "ADRs statt Bauchgefühl. Nachvollziehbar, auch in zwei Jahren."
     - title: "Enablement immer mit"
@@ -68,11 +68,11 @@ values:
     - title: "Offenheit"
       body: "Open Source, geteiltes Wissen, transparente Entscheidungen."
     - title: "Verlässlichkeit"
-      body: "Was wir zusagen, halten wir — auch wenn es unbequem wird."
+      body: "Was wir zusagen, halten wir – auch wenn es unbequem wird."
 community:
   eyebrow: "Community-Engagement"
   title: "Wo wir aktiv sind"
-  lead: "Konferenzen, Meetups, Open-Source-Maintainership — Teil eines lebendigen Schweizer Cloud-Native-Ökosystems."
+  lead: "Konferenzen, Meetups, Open-Source-Maintainership – Teil eines lebendigen Schweizer Cloud-Native-Ökosystems."
   tags:
     - "Swiss Cloud Native Day"
     - "Cloud Native Bern Meetup"
@@ -83,7 +83,7 @@ community:
 contact_block:
   eyebrow: "Mit uns arbeiten"
   title: "Sagen Sie Hallo."
-  lead: "Wir antworten in der Regel innert eines Werktages — direkt, von einer Person, die Bescheid weiss."
+  lead: "Wir antworten in der Regel innert eines Werktages – direkt, von einer Person, die Bescheid weiss."
 next_steps:
   eyebrow: "Weitergehen"
   title: "Wohin als Nächstes?"

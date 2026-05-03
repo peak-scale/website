@@ -333,18 +333,24 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .card-meta__rule { flex: 1; height: 1px; background: var(--border); }
 .card--brand .card-meta__rule { background: rgba(255,255,255,.2); }
 
-/* ---------- Why grid (5 tiles, 3 columns; first card featured & dark) ---------- */
+/* ---------- Why grid (6 tiles, 3 columns; first card featured & dark with topo image) ---------- */
 
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
 @media (max-width: 960px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
 
 .why-grid .card--feature {
-  background: linear-gradient(135deg, var(--brand-deep) 0%, var(--fg) 100%);
+  background-color: var(--brand-deep);
   color: #fff;
   position: relative;
   overflow: hidden;
   border-color: transparent;
+}
+/* Headline + body sit above the image, which fills the lower half */
+.why-grid .card--feature h3,
+.why-grid .card--feature p {
+  position: relative;
+  z-index: 1;
 }
 .why-grid .card--feature::before {
   content: ""; position: absolute; inset: -20% -10% auto auto;

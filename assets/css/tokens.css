@@ -192,7 +192,7 @@ h2, .h2 {
 
 .display-xl {
   /* For "Warum Peak Scale?" / section title pattern */
-  font-size: clamp(56px, 9vw, var(--text-display));
+  font-size: clamp(44px, 6vw, 88px);
   font-weight: var(--w-light);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-tight);

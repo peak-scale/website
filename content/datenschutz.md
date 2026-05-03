@@ -1,6 +1,6 @@
 ---
 title: Datenschutzerklärung
-description: "Datenschutzerklärung der Peak Scale GmbH — Informationen zur Bearbeitung von Personendaten gemäss revDSG und DSGVO."
+description: "Datenschutzerklärung der Peak Scale GmbH – Informationen zur Bearbeitung von Personendaten gemäss revDSG und DSGVO."
 aliases:
   - /privacy/
 ---
@@ -19,9 +19,9 @@ E-Mail: [welcome@peakscale.ch](mailto:welcome@peakscale.ch)
 
 ## 2. Begriffe und Rechtsgrundlagen
 
-**Personendaten** sind alle Angaben, die sich auf eine bestimmte oder bestimmbare natürliche Person beziehen. **Bearbeiten** umfasst jeden Umgang mit Personendaten — insbesondere das Erheben, Speichern, Verwenden, Bekanntgeben und Löschen.
+**Personendaten** sind alle Angaben, die sich auf eine bestimmte oder bestimmbare natürliche Person beziehen. **Bearbeiten** umfasst jeden Umgang mit Personendaten – insbesondere das Erheben, Speichern, Verwenden, Bekanntgeben und Löschen.
 
-Wir bearbeiten Personendaten im Einklang mit dem schweizerischen Datenschutzrecht (revDSG, DSV) sowie — soweit anwendbar — der EU-Datenschutz-Grundverordnung (DSGVO).
+Wir bearbeiten Personendaten im Einklang mit dem schweizerischen Datenschutzrecht (revDSG, DSV) sowie – soweit anwendbar – der EU-Datenschutz-Grundverordnung (DSGVO).
 
 ## 3. Art, Umfang und Zweck
 
@@ -59,7 +59,7 @@ Wir treffen geeignete technische und organisatorische Massnahmen, um eine dem Ri
 
 ### 8.1 Cookies
 
-Wir setzen auf unserer Website **keine** Cookies für Marketing- oder Tracking-Zwecke ein. Technisch erforderliche Cookies können — falls überhaupt verwendet — ohne ausdrückliche Einwilligung gesetzt werden.
+Wir setzen auf unserer Website **keine** Cookies für Marketing- oder Tracking-Zwecke ein. Technisch erforderliche Cookies können – falls überhaupt verwendet – ohne ausdrückliche Einwilligung gesetzt werden.
 
 ### 8.2 Server-Logdateien
 
