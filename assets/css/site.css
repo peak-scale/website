@@ -454,31 +454,48 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .lifecycle__stage:first-child { border-top: 0; }
 }
 
-/* ---------- Customer logo carousel (boxed tiles, auto-scrolling marquee) ---------- */
+/* ---------- Customer logo carousel (boxed tiles, JS-scrolled, arrows) ---------- */
 
 .logo-carousel {
   position: relative;
+  padding: var(--space-6) 56px;     /* leave room for the arrow buttons */
+}
+.logo-carousel__viewport {
   overflow: hidden;
-  padding: var(--space-6) 0;
   /* Fade edges into the section background */
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
 }
 .logo-carousel__track {
   display: flex;
   gap: var(--space-4);
-  width: max-content;
-  animation: logo-marquee 50s linear infinite;
-}
-.logo-carousel:hover .logo-carousel__track { animation-play-state: paused; }
-@keyframes logo-marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  transform: translateX(0);
+  transition: transform .5s ease;
+  will-change: transform;
 }
 @media (prefers-reduced-motion: reduce) {
-  .logo-carousel__track { animation: none; }
-  .logo-carousel { -webkit-mask-image: none; mask-image: none; overflow-x: auto; }
+  .logo-carousel__track { transition: none; }
 }
+
+.logo-carousel__nav {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  z-index: 2;
+  width: 44px; height: 44px; padding: 0;
+  border-radius: 9999px;
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  color: var(--brand);
+  font-size: 20px; line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: border-color .2s ease, color .2s ease, transform .1s ease;
+}
+.logo-carousel__nav:hover { border-color: var(--brand-mid); color: var(--brand-deep); }
+.logo-carousel__nav:active { transform: translateY(-50%) scale(.96); }
+.logo-carousel__nav--prev { left: 0; }
+.logo-carousel__nav--next { right: 0; }
 
 .logo-tile {
   flex: 0 0 auto;
