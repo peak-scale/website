@@ -776,8 +776,11 @@ still in front of go-live, grouped by theme.
    imagery that fits the brand is the bottleneck — we do that pass
    last, after OG / perf / EN / privacy are settled, so we don't
    license placeholders we end up swapping out.
-3. Generate per-page OG images (Hugo image pipeline) and drop them in
-   `static/og/`; wire them through frontmatter `image:`.
+3. ~~Generate per-page OG images (Hugo image pipeline) and drop them in
+   `static/og/`; wire them through frontmatter `image:`.~~
+   **Deferred** (3 May): nice-to-have polish, not launch-blocking.
+   The single fallback at `/images/peakscale-logo-square.png` keeps
+   share previews functional. Revisit only if a stakeholder asks.
 4. Native EN review of all copy (Mathias).
 5. Privacy-notice review by external specialist.
 6. Performance tune: confirm LCP/CLS/INP budgets on real devices,
