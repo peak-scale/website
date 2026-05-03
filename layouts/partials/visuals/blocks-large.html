@@ -1,0 +1,44 @@
+<svg class="hero-photo__svg" viewBox="0 0 1200 525" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="bl-bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="rgba(240,248,252,.9)"/>
+      <stop offset="100%" stop-color="rgba(240,248,252,1)"/>
+    </linearGradient>
+    <pattern id="bl-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(5,128,196,.06)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="bl-blue" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="rgb(5,128,196)"/>
+      <stop offset="100%" stop-color="rgb(26,69,156)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="525" fill="url(#bl-bg)"/>
+  <rect width="1200" height="525" fill="url(#bl-grid)"/>
+
+  <g transform="translate(440,80)">
+    <!-- Stack 1: tall blue -->
+    <polygon points="0,40 80,10 160,40 80,70" fill="url(#bl-blue)"/>
+    <polygon points="0,40 80,70 80,260 0,230" fill="rgba(9,24,54,.85)"/>
+    <polygon points="80,70 160,40 160,230 80,260" fill="rgba(5,128,196,.6)"/>
+
+    <!-- Stack 2: green -->
+    <polygon points="160,80 240,50 320,80 240,110" fill="rgb(144,202,125)"/>
+    <polygon points="160,80 240,110 240,290 160,260" fill="rgba(67,133,67,.85)"/>
+    <polygon points="240,110 320,80 320,260 240,290" fill="rgba(110,170,90,.85)"/>
+
+    <!-- Stack 3: gold/yellow -->
+    <polygon points="80,180 160,150 240,180 160,210" fill="rgb(232,200,100)"/>
+    <polygon points="80,180 160,210 160,360 80,330" fill="rgba(180,140,50,.85)"/>
+    <polygon points="160,210 240,180 240,330 160,360" fill="rgba(210,170,80,.85)"/>
+
+    <!-- Small front block -->
+    <polygon points="200,260 260,235 320,260 260,285" fill="rgb(5,128,196)"/>
+    <polygon points="200,260 260,285 260,360 200,335" fill="rgba(9,24,54,.85)"/>
+    <polygon points="260,285 320,260 320,335 260,360" fill="rgba(5,128,196,.7)"/>
+
+    <!-- Far right tall green -->
+    <polygon points="320,40 380,15 440,40 380,65" fill="rgb(110,170,90)"/>
+    <polygon points="320,40 380,65 380,250 320,225" fill="rgba(67,120,67,.85)"/>
+    <polygon points="380,65 440,40 440,225 380,250" fill="rgba(140,190,110,.85)"/>
+  </g>
+</svg>

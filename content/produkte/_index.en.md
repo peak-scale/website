@@ -1,0 +1,76 @@
+---
+title: Products
+description: "Our own solutions and selected technology partners for cloud-native platforms — from multi-tenancy to enterprise support."
+hero:
+  eyebrow: "Solutions built hands-on"
+  title: "Platforms that work."
+  lead: "Our own solutions and carefully chosen technology partners — for cloud-native platforms that hold up in the Swiss context."
+  sub: "From the multi-tenancy layer to enterprise support for open-source projects."
+  cta_primary: "Get in touch"
+  cta_secondary: "See services"
+  cta_secondary_href: "/services/"
+own:
+  eyebrow: "Our own solutions"
+  title: "What we build ourselves"
+  lead: "Where existing tools hit their limits we build our own solutions — preferably open and together with the community."
+  cards:
+    - title: "Cloud Native multi-tenancy"
+      body: "Capsule-based multi-tenancy for Kubernetes — production-ready and grounded in real Swiss setups."
+      eyebrow: "Focus"
+      items:
+        - "Tenant isolation at cluster level"
+        - "Self-service for developer teams"
+        - "Policy and quota management"
+        - "Integration with existing identity providers"
+    - title: "Capsule Enterprise support"
+      body: "Commercial support for Capsule, together with Clastix — SLAs, patches, and advice from the source."
+      eyebrow: "Includes"
+      items:
+        - "Defined response times"
+        - "Security patches"
+        - "Architecture and roadmap reviews"
+        - "Direct line to the maintainers"
+partners:
+  eyebrow: "Technology partners & integration"
+  title: "Vendor relationships with real support"
+  lead: "Not a long list — four partnerships that really hold up in Swiss setups."
+  cards:
+    - title: "Sidero Labs"
+      body: "Talos Linux, Omni, and Kubernetes — as a certified partner with productive support."
+      role: "Cluster layer"
+    - title: "SUSE Rancher Prime"
+      body: "Emerald status for Rancher — from multi-cluster management to regulated environments."
+      role: "Cluster management"
+    - title: "Google Cloud Platform"
+      body: "GCP partner for architectures, migration, and cloud-native workloads."
+      role: "Public cloud"
+    - title: "Clastix"
+      body: "Maintainers behind Capsule and Capsule Enterprise — together we deliver commercial support."
+      role: "Multi-tenancy"
+journey:
+  eyebrow: "From decision to operations"
+  title: "How we introduce products"
+  lead: "Three clear steps — from the first workshop to stable operations."
+  cards:
+    - num: "01"
+      title: "Orientation & decisions"
+      desc: "Workshops on requirements, architecture, and migration. A clear recommendation, no vendor lock-in."
+    - num: "02"
+      title: "Build & delivery"
+      desc: "Hands-on implementation — automated, documented, with knowledge transfer to the team."
+    - num: "03"
+      title: "Operations & scale"
+      desc: "Stable operations, lifecycle, extensions — with enterprise support if needed."
+next_steps:
+  eyebrow: "Continue"
+  title: "Where to go next?"
+  cards:
+    - eyebrow: "Services"
+      title: "What we do"
+      desc: "Architecture advisory, platform engineering, assessments, and trainings — across the lifecycle."
+      href: "/services/"
+    - eyebrow: "Team"
+      title: "Who is behind it"
+      desc: "A specialised engineering team from Bern."
+      href: "/team/"
+---

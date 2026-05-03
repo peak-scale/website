@@ -1,0 +1,47 @@
+- name: Mathias Herzog
+  image: /images/team/mathiasherzog.png
+  linkedin: https://www.linkedin.com/in/mathias-herzog-888a6788/
+  role_de: Co-Founder · Brückenbauer Technik ↔ Organisation
+  role_en: Co-founder · Bridges engineering and organisation
+  focus_de: ["Architektur", "Strategie", "Plattform-Betrieb"]
+  focus_en: ["Architecture", "Strategy", "Platform operations"]
+
+- name: Johann Gyger
+  image: /images/team/johanngyger.png
+  linkedin: https://www.linkedin.com/in/johanngyger/
+  role_de: Co-Founder · Cloud Native Ambassador
+  role_en: Co-founder · Cloud Native Ambassador
+  focus_de: ["Software Engineering", "Cloud Native", "Community"]
+  focus_en: ["Software engineering", "Cloud native", "Community"]
+
+- name: Oliver Bähler
+  image: /images/team/oliverbaehler.png
+  linkedin: https://www.linkedin.com/in/oliver-b%C3%A4hler-8b182b175/
+  role_de: Solution Architect · Cloud Native Maintainer
+  role_en: Solution architect · Cloud Native maintainer
+  focus_de: ["Multi-Tenancy", "GitOps", "Open Source"]
+  focus_en: ["Multi-tenancy", "GitOps", "Open source"]
+
+- name: Nicola Lüthi
+  image: /images/team/nicolaluethi.png
+  linkedin: https://www.linkedin.com/in/nicola-l%C3%BCthi-895045252/
+  role_de: Cloud Native Engineer · Maintainer
+  role_en: Cloud Native engineer · Maintainer
+  focus_de: ["Kubernetes", "Automatisierung", "Plattform-Engineering"]
+  focus_en: ["Kubernetes", "Automation", "Platform engineering"]
+
+- name: Lorenz Bischof
+  image: /images/team/lorenzbischof.png
+  linkedin: https://www.linkedin.com/in/lorenz-bischof/
+  role_de: Cloud Native Engineer · UX und Sicherheit
+  role_en: Cloud Native engineer · UX and security
+  focus_de: ["Sicherheit", "Benutzbarkeit", "Automatisierung"]
+  focus_en: ["Security", "Usability", "Automation"]
+
+- name: Philipp Grogg
+  image: /images/team/philippgrogg.png
+  linkedin: https://www.linkedin.com/in/philipp-grogg-1a369012b/
+  role_de: Senior DevOps Engineer · Senior Software Architect
+  role_en: Senior DevOps engineer · Senior software architect
+  focus_de: ["DevOps", "Architektur", "CI/CD"]
+  focus_en: ["DevOps", "Architecture", "CI/CD"]

@@ -1,26 +1,17 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
-
+<html lang="{{ .Site.Language.Lang }}">
 {{ partial "head.html" . }}
-
 <body>
-
-  <!-- {{ template "_internal/google_analytics.html" . }} -->
-
+  <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
   {{ partial "header.html" . }}
-
-  <!-- begin content -->
-  <main class="content" aria-label="Content">
+  {{ partial "mobile-menu.html" . }}
+  <main id="main">
     {{ block "main" . }}{{ end }}
   </main>
-  <!-- end content -->
-
-  <div class="top" title="Top">{{ partial "icon" "arrow-up" }}</div>
-
+  {{ partial "contact-floating.html" . }}
   {{ partial "footer.html" . }}
-
-  {{ partial "javascripts.html" . }}
-
+  {{ with resources.Get "js/peakscale.js" | js.Build (dict "minify" true) | fingerprint }}
+  <script defer src="{{ .RelPermalink }}"></script>
+  {{ end }}
 </body>
-
 </html>

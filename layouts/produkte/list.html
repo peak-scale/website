@@ -1,0 +1,118 @@
+{{ define "main" }}
+{{- $lang := .Site.Language.Lang -}}
+
+{{/* ---------- Hero (centered, blocks photo below) ---------- */}}
+{{ with .Params.hero }}
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <h1 class="hero__title">{{ .title }}</h1>
+      <p class="hero__lead">{{ .lead }}</p>
+      <div class="hero__kicker">{{ .sub }}</div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-photo hero-photo--svg">
+      {{ partial "visuals/blocks-large.html" . }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Own solutions (centered head + 2 stacked cards w/ green inset) ---------- */}}
+{{ with .Params.own }}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div style="max-width: 880px; margin: 0 auto; display:flex; flex-direction:column; gap: var(--space-6);">
+      {{ range .cards }}
+      <div class="card">
+        <div class="lifecycle-rows__icon" style="background: var(--brand-soft); color: var(--brand); margin-bottom: var(--space-4);">{{ partial "icon.html" (dict "name" "boxes" "size" 18) }}</div>
+        <h3 style="font-size: 22px;">{{ .title }}</h3>
+        <p>{{ .body }}</p>
+        <div class="eyebrow" style="margin-top: 18px; margin-bottom: 8px;">{{ .eyebrow }}</div>
+        <ul class="reset" style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px 16px; font-size:14px; color:var(--fg-muted);">
+          {{ range .items }}<li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>{{ . }}</span></li>{{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Partners (centered head + 4 cards in 2x2) ---------- */}}
+{{ with .Params.partners }}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    {{ $partnerImages := dict "Sidero Labs" "/images/partners/siderolabs.webp" "SUSE Rancher Prime" "/images/partners/suse.svg" "Google Cloud Platform" "/images/partners/google-cloud.svg" "Clastix" "/images/partners/clastix.svg" }}
+    <div class="grid grid--2" style="max-width: 980px; margin: 0 auto;">
+      {{ range .cards }}
+      <div class="card">
+        {{ with index $partnerImages .title }}
+        <img src="{{ . }}" alt="" style="max-height: 36px; width: auto; margin-bottom: var(--space-4);" loading="lazy">
+        {{ end }}
+        <h3>{{ .title }}</h3>
+        <p>{{ .body }}</p>
+        <div class="eyebrow" style="margin-top: 12px; color: var(--fg-subtle);">{{ .role }}</div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Journey (dark, centered head + photo banner + 3 numbered steps) ---------- */}}
+{{ with .Params.journey }}
+<section class="section section--dark">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="lifecycle-rows__media" style="aspect-ratio: 16/4; margin: 0 auto var(--space-8); max-width: 880px; background-image: linear-gradient(135deg, rgba(7,19,44,.6), rgba(5,128,196,.2)), url('/images/topo/topo-mountain-1.jpg');"></div>
+    <div class="grid grid--3" style="max-width: 880px; margin: 0 auto;">
+      {{ range $i, $c := .cards }}
+      <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap: var(--space-3);">
+        <div style="width: 44px; height: 44px; border-radius: 9999px; background: rgba(255,255,255,.1); border: 1px solid var(--stroke-on-dark-2); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size: 18px; font-weight: 500;">{{ add $i 1 }}</div>
+        <h3 style="color:#fff; font-size:18px; font-weight:500; margin: 0;">{{ $c.title }}</h3>
+        <p style="color: rgba(255,255,255,.78); font-size:13px; line-height:1.55; margin:0;">{{ $c.desc }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Next steps ---------- */}}
+{{ with .Params.next_steps }}
+<section class="section section--dark" style="background: var(--fg-deep);">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+    </div>
+    <div class="next-steps">
+      {{ range .cards }}
+      <a class="next-steps__card" href="{{ .href }}">
+        <span class="next-steps__eyebrow">{{ .eyebrow }}</span>
+        <h3 class="next-steps__title">{{ .title }}</h3>
+        <p class="next-steps__desc">{{ .desc }}</p>
+        <span class="next-steps__cta">
+          {{ if eq $lang "de" }}{{ .eyebrow }} ansehen{{ else }}View {{ lower .eyebrow }}{{ end }}
+          {{ partial "icon.html" (dict "name" "arrow-right" "size" 14) }}
+        </span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

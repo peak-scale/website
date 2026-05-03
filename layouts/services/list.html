@@ -1,0 +1,196 @@
+{{ define "main" }}
+{{- $lang := .Site.Language.Lang -}}
+
+{{/* ---------- Hero (centered, compass photo below, lifecycle path between) ---------- */}}
+{{ with .Params.hero }}
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <h1 class="hero__title">{{ .title }}</h1>
+      <p class="hero__lead">{{ .lead }}</p>
+      <div class="hero__kicker">{{ .sub }}</div>
+      {{ with $.Params.lifecycle_strip }}
+      <div class="lifecycle-path" aria-label="Lifecycle">
+        {{ range $i, $s := .stages }}
+        {{ if gt $i 0 }}<span class="lifecycle-path__arrow" aria-hidden="true">→</span>{{ end }}
+        <span class="lifecycle-path__step">{{ $s.name }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-photo" style="background-image: linear-gradient(180deg, rgba(184,169,120,.05) 0%, rgba(240,248,252,.4) 100%), url('/images/topo/topo-mountain-2.jpg');"></div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Architecture: 2 cards left + yellow testimonial right + green tag ---------- */}}
+{{ with .Params.architecture }}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__icon">{{ partial "icon.html" (dict "name" "compass" "size" 24) }}</span>
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="grid grid--2">
+      <div style="display:flex; flex-direction:column; gap: var(--space-6);">
+        {{ range .cards }}
+        <div class="card">
+          <h3>{{ .title }}</h3>
+          <p>{{ .body }}</p>
+          <div class="eyebrow" style="margin-top: 18px; margin-bottom: 8px;">{{ .eyebrow }}</div>
+          <ul class="reset" style="display:flex; flex-direction:column; gap:6px; font-size:15px; color:var(--fg-muted);">
+            {{ range .items }}<li>– {{ . }}</li>{{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+      <div style="display:flex; flex-direction:column; gap: var(--space-6);">
+        {{ with index hugo.Data.testimonials 0 }}
+        <figure class="testimonial-side">
+          <span class="testimonial-side__mark" aria-hidden="true">”</span>
+          <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
+          <figcaption class="testimonial-side__cite">— {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
+        </figure>
+        {{ end }}
+        <div class="tag-arbeitsweise">
+          <strong>{{ if eq $lang "de" }}Arbeitsweise{{ else }}How we work{{ end }}</strong>
+          {{ if eq $lang "de" }}Pragmatisch und iterativ: evidenzbasierte Entscheidungen und Architekturen, die tragen und mitwachsen.{{ else }}Pragmatic and iterative: evidence-based decisions and architectures that hold up and scale.{{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Engineering: 4 categories left + testimonial + tag right ---------- */}}
+{{ with .Params.engineering }}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__icon">{{ partial "icon.html" (dict "name" "code" "size" 24) }}</span>
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="grid grid--2">
+      <div style="display:flex; flex-direction:column; gap: var(--space-4);">
+        {{ range .categories }}
+        <div class="card cat-card">
+          <div class="eyebrow">{{ .title }}</div>
+          <ul class="cat-card__items">
+            {{ range .items }}<li>{{ . }}</li>{{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+      <div style="display:flex; flex-direction:column; gap: var(--space-6);">
+        {{ with index hugo.Data.testimonials 1 }}
+        <figure class="testimonial-side">
+          <span class="testimonial-side__mark" aria-hidden="true">”</span>
+          <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
+          <figcaption class="testimonial-side__cite">— {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
+        </figure>
+        {{ end }}
+        <div class="tag-arbeitsweise">
+          <strong>{{ if eq $lang "de" }}Wie wir arbeiten{{ else }}How we work{{ end }}</strong>
+          {{ if eq $lang "de" }}Hands-on im Engineering, enge Zusammenarbeit, Fokus auf Übertragbarkeit, Dokumentation und Enablement.{{ else }}Hands-on in engineering, close collaboration, focus on transferability, documentation, and enablement.{{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Assessments (dark) ---------- */}}
+{{ with .Params.assessments }}
+<section class="section section--dark">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__icon">{{ partial "icon.html" (dict "name" "clipboard" "size" 24) }}</span>
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="grid grid--3" style="margin-bottom: var(--space-8);">
+      {{ range .cards }}
+      <div class="lifecycle-cards__card">
+        <div class="lifecycle-rows__icon" style="margin-bottom: var(--space-3);">{{ partial "icon.html" (dict "name" "shield" "size" 18) }}</div>
+        <h3 class="lifecycle-cards__title">{{ .title }}</h3>
+        <p class="lifecycle-cards__desc">{{ .body }}</p>
+      </div>
+      {{ end }}
+    </div>
+    <div class="challenges-glass">
+      <div class="challenges-glass__bg" style="background-image: linear-gradient(135deg, rgba(7,19,44,.85) 0%, rgba(5,128,196,.4) 100%), url('/images/topo/topo-mountain-2.jpg');"></div>
+      <div class="challenges-glass__inner" style="display:flex; flex-direction:column; gap: var(--space-4);">
+        <div class="eyebrow" style="color: rgb(122,192,232);">{{ .output_title }}</div>
+        <div class="grid grid--3">
+          {{ range .output_items }}
+          <div style="display:flex; align-items:flex-start; gap:10px; color:#fff; font-size:15px; line-height:1.5;">
+            <span style="color: var(--accent-sage); font-size: 18px; line-height: 1;">✓</span>
+            <span>{{ . }}</span>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Training ---------- */}}
+{{ with .Params.training }}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__icon">{{ partial "icon.html" (dict "name" "graduation" "size" 24) }}</span>
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="grid grid--3" style="margin-bottom: var(--space-12);">
+      {{ range .cards }}
+      <div class="card">
+        <h3>{{ .title }}</h3>
+        <p>{{ .body }}</p>
+      </div>
+      {{ end }}
+    </div>
+    <div style="max-width: 720px; margin: 0 auto;">
+      {{ with index hugo.Data.testimonials 2 }}
+      <figure class="testimonial-side">
+        <span class="testimonial-side__mark" aria-hidden="true">”</span>
+        <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
+        <figcaption class="testimonial-side__cite">— {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
+      </figure>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Next steps (2 dark cards) ---------- */}}
+{{ with .Params.next_steps }}
+<section class="section section--dark" style="background: var(--fg-deep);">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+    </div>
+    <div class="next-steps">
+      {{ range .cards }}
+      <a class="next-steps__card" href="{{ .href }}">
+        <span class="next-steps__eyebrow">{{ .eyebrow }}</span>
+        <h3 class="next-steps__title">{{ .title }}</h3>
+        <p class="next-steps__desc">{{ .desc }}</p>
+        <span class="next-steps__cta">
+          {{ if eq $lang "de" }}{{ .eyebrow }} ansehen{{ else }}View {{ lower .eyebrow }}{{ end }}
+          {{ partial "icon.html" (dict "name" "arrow-right" "size" 14) }}
+        </span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

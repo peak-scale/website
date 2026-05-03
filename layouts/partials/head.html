@@ -1,55 +1,85 @@
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  {{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
+  {{- $desc := cond .IsHome .Site.Params.description (or .Description .Summary .Site.Params.description) -}}
+  {{- $ogImage := absURL (or .Params.image .Site.Params.ogImage) -}}
+
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $desc }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  {{ range .Translations -}}
+  <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+  {{ end -}}
+  <link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="{{ .Permalink }}">
+  <link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
-  <link rel="canonical" href="{{ .Permalink }}" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/website.manifest">
 
-  <title>{{ if not .IsHome }}{{ humanize .Title }} | {{ end }}{{ .Site.Title }}</title>
-  <meta name="description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{ .Description }}{{end}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ $ogImage }}">
+  <meta property="og:locale" content="{{ replace .Site.Language.Lang "-" "_" }}">
 
-  {{ with .OutputFormats.Get "rss" -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end }}
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}">
-  <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
-  <meta name="twitter:image" content="{{ if .Params.image }}{{ .Params.image }}{{ else }}{{ .Site.Params.imageSocial }}{{ end }}">
+  <meta name="twitter:title" content="{{ $title }}">
+  <meta name="twitter:description" content="{{ $desc }}">
+  <meta name="twitter:image" content="{{ $ogImage }}">
 
-  <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}">
-  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
-  <meta property="og:image" content="{{ if .Params.image }}{{ .Params.image }}{{ else }}{{ .Site.Params.imageSocial }}{{ end }}">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  {{- $tokens := resources.Get "css/tokens.css" -}}
+  {{- $site := resources.Get "css/site.css" -}}
+  {{- $css := slice $tokens $site | resources.Concat "css/peakscale.css" | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" as="style">
-
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <script>
-    // Set default theme
-    if (!localStorage.getItem("theme")) {
-      localStorage.setItem("theme", "dark")
-    }
-
-    // Init dark theme
-    if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.setAttribute("dark", "");
-      document.documentElement.classList.add('dark-mode');
-    }
-  </script>
-
-  {{ partial "plausible_head.html" . }}
-
-  <!-- CSS -->
-  {{ with resources.Get "sass/main.scss" | toCSS | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ with .Site.Params.plausible }}
+  {{ if .enable }}
+  <script defer data-domain="{{ .domain }}" src="https://plausible.io/js/script.js"></script>
+  {{ end }}
   {{ end }}
 
+  <meta name="theme-color" content="#0580c4">
+
+  {{/* JSON-LD: Organization on every page; Article-like cross-link on subpages */}}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Peak Scale GmbH",
+    "url": "{{ .Site.BaseURL }}",
+    "logo": "{{ absURL "/images/peakscale-logo-square.png" }}",
+    "email": "{{ .Site.Params.contactEmail }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ .Site.Params.companyAddress }}",
+      "addressLocality": "Bern",
+      "postalCode": "3011",
+      "addressCountry": "CH"
+    },
+    "sameAs": [
+      "{{ .Site.Params.linkedin }}"
+    ]
+  }
+  </script>
+  {{ if .IsHome }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Peak Scale",
+    "url": "{{ .Site.BaseURL }}",
+    "inLanguage": ["de-CH", "en"]
+  }
+  </script>
+  {{ end }}
 </head>

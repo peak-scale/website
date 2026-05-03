@@ -1,0 +1,197 @@
+{{ define "main" }}
+{{- $lang := .Site.Language.Lang -}}
+
+{{/* ---------- Hero (centered, network photo below) ---------- */}}
+{{ with .Params.hero }}
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <h1 class="hero__title">{{ .title }}</h1>
+      <p class="hero__lead">{{ .lead }}</p>
+      <div class="hero__kicker">{{ .sub }}</div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-photo hero-photo--svg">
+      {{ partial "visuals/network-large.html" . }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Team layout: dark "Unser Team" + member rows ---------- */}}
+<section class="section section--alt">
+  <div class="container">
+    <div class="team-layout">
+      {{ with .Params.team_block }}
+      <aside class="team-block">
+        <span class="team-block__icon">{{ partial "icon.html" (dict "name" "users" "size" 22) }}</span>
+        <h2 class="team-block__title">{{ .eyebrow }}</h2>
+        <p class="team-block__lead">{{ .lead }}</p>
+        <a class="team-block__cta" href="{{ $.Site.Params.linkedin }}" rel="noopener">
+          {{ partial "icon.html" (dict "name" "linkedin" "size" 14) }}
+          {{ .cta }}
+        </a>
+      </aside>
+      {{ end }}
+
+      <div class="team-list">
+        {{ range hugo.Data.team }}
+        <article class="team-row">
+          <img class="team-row__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="64" height="64">
+          <div class="team-row__body">
+            <h3 class="team-row__name">{{ .name }}</h3>
+            <p class="team-row__role">{{ if eq $lang "de" }}{{ .role_de }}{{ else }}{{ .role_en }}{{ end }}</p>
+            <div class="team-row__focus">
+              <span>{{ i18n "focus_areas_label" }}</span>
+              {{ range (cond (eq $lang "de") .focus_de .focus_en) }}<span>{{ . }}</span>{{ end }}
+            </div>
+          </div>
+          <a class="team-row__linkedin" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn — {{ .name }}">
+            {{ partial "icon.html" (dict "name" "linkedin" "size" 16) }}
+          </a>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- Mission ---------- */}}
+{{ with .Params.mission }}
+<section class="section">
+  <div class="container">
+    <div class="grid grid--2" style="gap: clamp(32px, 6vw, 80px); align-items: center;">
+      <div>
+        <h2 style="font-size: clamp(36px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.02em; margin: 0 0 var(--space-4);"><span style="color: var(--brand);">{{ .title }}</span></h2>
+        <p class="lead" style="margin: 0;">{{ .lead }}</p>
+      </div>
+      <div class="mission-tags">
+        {{ range .tags }}<span>{{ . }}</span>{{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- How we work (dark, 6 cards 2x3) ---------- */}}
+{{ with .Params.how_we_work }}
+<section class="section section--dark">
+  <div class="container">
+    <div class="section__head">
+      <h2><span style="color: rgb(122,192,232);">{{ .title }}</span></h2>
+    </div>
+    <div class="grid grid--3">
+      {{ range .cards }}
+      <div class="lifecycle-cards__card" style="display:flex; flex-direction:column; gap: var(--space-3);">
+        <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" "settings" "size" 18) }}</div>
+        <h3 style="color:#fff; font-size:18px; font-weight:500; margin: 4px 0 0;">{{ .title }}</h3>
+        <p style="color: rgba(255,255,255,.78); font-size:14px; line-height:1.55; margin:0;">{{ .body }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Why Cloud Native (5 rows, middle highlighted) ---------- */}}
+{{ with .Params.why_cloud_native }}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__icon">{{ partial "icon.html" (dict "name" "cloud" "size" 22) }}</span>
+      <h2>{{ .title }}</h2>
+    </div>
+    <div class="cn-rows">
+      {{ range $i, $p := .pills }}
+      <div class="cn-rows__row{{ if eq $i 2 }} is-feature{{ end }}">{{ $p }}</div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Werte (dark, 5 rows with photo + copy) ---------- */}}
+{{ with .Params.values }}
+<section class="section section--dark">
+  <div class="container">
+    <div class="section__head">
+      <h2><span style="color: rgb(122,192,232);">{{ .title }}</span></h2>
+    </div>
+    <div class="values-list" style="max-width: 980px; margin: 0 auto;">
+      {{ $vimgs := slice "/images/topo/topo-mountain-1.jpg" "/images/topo/topo-mountain-2.jpg" "/images/topo/topo-mountain-1.jpg" "/images/topo/topo-mountain-2.jpg" "/images/topo/topo-mountain-1.jpg" }}
+      {{ range $i, $v := .items }}
+      <div class="values-list__row">
+        <h3 class="values-list__title">{{ $v.title }}</h3>
+        <div class="values-list__media" style="background-image: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2)), url('{{ index $vimgs $i }}');"></div>
+        <p class="values-list__desc">{{ $v.body }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Community (cream beige bg) ---------- */}}
+{{ with .Params.community }}
+<section class="section" style="background: var(--accent-gold-soft);">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__icon" style="background: rgba(184,169,120,.2); color: var(--accent-gold-ink);">{{ partial "icon.html" (dict "name" "users" "size" 22) }}</span>
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="pill-row" style="justify-content: center;">
+      {{ range .tags }}<span class="pill pill--active">{{ . }}</span>{{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Contact block ---------- */}}
+{{ with .Params.contact_block }}
+<section class="section section--dark">
+  <div class="container">
+    <div class="grid grid--2" style="align-items: center; gap: clamp(32px, 5vw, 64px);">
+      <div>
+        <span class="eyebrow" style="color: rgb(122,192,232);">{{ .eyebrow }}</span>
+        <h2 style="margin-top: 12px; color:#fff;">{{ .title }}</h2>
+        <p class="lead" style="color: rgba(255,255,255,.85);">{{ .lead }}</p>
+        <div style="margin-top: var(--space-6);">
+          <a class="btn btn--inverse" href="mailto:{{ $.Site.Params.contactEmail }}">
+            {{ partial "icon.html" (dict "name" "mail" "size" 18) }}
+            {{ $.Site.Params.contactEmail }}
+          </a>
+        </div>
+      </div>
+      <div>{{ partial "visuals/mail.html" . }}</div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Next steps ---------- */}}
+{{ with .Params.next_steps }}
+<section class="section section--dark" style="background: var(--fg-deep);">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+    </div>
+    <div class="next-steps">
+      {{ range .cards }}
+      <a class="next-steps__card" href="{{ .href }}">
+        <span class="next-steps__eyebrow">{{ .eyebrow }}</span>
+        <h3 class="next-steps__title">{{ .title }}</h3>
+        <p class="next-steps__desc">{{ .desc }}</p>
+        <span class="next-steps__cta">
+          {{ if eq $lang "de" }}{{ .eyebrow }} ansehen{{ else }}View {{ lower .eyebrow }}{{ end }}
+          {{ partial "icon.html" (dict "name" "arrow-right" "size" 14) }}
+        </span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

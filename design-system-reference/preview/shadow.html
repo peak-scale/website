@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Shadow & elevation</title>
+<link rel="stylesheet" href="../colors_and_type.css?v=hifi2">
+<style>body{margin:0;padding:36px;background:var(--bg);font-family:var(--font-sans)}.row{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}.b{height:120px;background:var(--bg-white);border-radius:16px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;color:var(--fg-muted);text-align:center;padding:0 12px}</style>
+</head><body>
+<div class="row">
+<div class="b" style="box-shadow:var(--shadow-soft)">soft</div>
+<div class="b" style="box-shadow:var(--shadow-card)">card</div>
+<div class="b" style="box-shadow:var(--shadow-brand)">brand<br>(signature)</div>
+<div class="b" style="box-shadow:var(--shadow-float)">float<br>(header)</div>
+</div>
+<div style="margin-top:24px;font-family:var(--font-mono);font-size:11px;color:var(--fg-subtle);max-width:680px;line-height:1.6">
+The signature elevation is <code>--shadow-brand</code>: a four-stop layered RGBA-blue stack
+that fades from a sharp 6px blur to a wide 17px halo, all in <code>rgb(5,128,196)</code> at low alpha.
+</div>
+</body></html>

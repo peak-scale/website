@@ -1,0 +1,26 @@
+{{- $current := . -}}
+{{- $currentLang := $current.Site.Language.Lang -}}
+{{ range hugo.Sites -}}
+{{- $lang := .Language -}}
+{{- $isActive := eq $lang.Lang $currentLang -}}
+{{- $target := "/" -}}
+{{- if $isActive -}}
+  {{- $target = $current.RelPermalink -}}
+{{- else -}}
+  {{- $found := false -}}
+  {{- range $current.AllTranslations -}}
+    {{- if eq .Lang $lang.Lang -}}
+      {{- $target = .RelPermalink -}}
+      {{- $found = true -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $found -}}
+    {{- if eq $lang.Lang hugo.DefaultContentLanguage -}}
+      {{- $target = "/" -}}
+    {{- else -}}
+      {{- $target = printf "/%s/" $lang.Lang -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<a href="{{ $target }}"{{ if $isActive }} class="is-active" aria-current="true"{{ end }} hreflang="{{ $lang.Lang }}">{{ upper $lang.Lang }}</a>
+{{ end }}

@@ -1,0 +1,56 @@
+[skip_to_content]
+other = "Skip to content"
+
+[contact]
+other = "Contact"
+
+[contact_aria]
+other = "Get in touch"
+
+[contact_open_email]
+other = "Email Peak Scale"
+
+[contact_modal_title]
+other = "Contact"
+
+[contact_modal_lead]
+other = "Direct email contact — quick reply."
+
+[contact_label_direct]
+other = "Direct"
+
+[contact_label_address]
+other = "Address"
+
+[menu]
+other = "Menu"
+
+[menu_open]
+other = "Open menu"
+
+[menu_close]
+other = "Close menu"
+
+[lang_switch]
+other = "Switch language"
+
+[next_step_title]
+other = "Next stage"
+
+[next_step_lead]
+other = "Where to go from here."
+
+[footer_menu]
+other = "Menu"
+
+[footer_legal]
+other = "Legal"
+
+[footer_contact]
+other = "Contact"
+
+[focus_areas_label]
+other = "Focus:"
+
+[copyright]
+other = "© {{ .Year }} Peak Scale"

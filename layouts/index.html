@@ -1,5 +1,201 @@
 {{ define "main" }}
+{{- $lang := .Site.Language.Lang -}}
 
-  {{ partial "section-hero.html" . }}
+{{/* ---------- Hero (centered, photo below) ---------- */}}
+{{ with .Params.hero }}
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <h1 class="hero__title">{{ .title }}</h1>
+      <p class="hero__lead">{{ .lead }}</p>
+      <div class="hero__kicker">{{ .sub }}</div>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="{{ .cta_primary_href }}">{{ .cta_primary }} <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-photo" style="background-image: linear-gradient(180deg, rgba(240,248,252,.1) 0%, rgba(240,248,252,.6) 100%), url('/images/topo/topo-mountain-1.jpg');">
+      <div class="hero-photo__tags" aria-hidden="true">
+        {{ with $.Params.mountain.stages }}
+        {{ range $i, $s := . }}
+        <span class="hero-photo__tag hero-photo__tag--{{ add $i 1 }}">{{ $s.name }}</span>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Why Peak Scale (centered display headline, featured card 1) ---------- */}}
+{{ with .Params.why }}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="display-xl">{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="why-grid">
+      {{ range $i, $it := .items }}
+      <div class="card{{ if eq $i 0 }} card--feature{{ end }}">
+        <div class="card-meta">
+          <span class="card-meta__num">0{{ add $i 1 }}</span>
+          <span class="card-meta__rule"></span>
+        </div>
+        <h3>{{ $it.title }}</h3>
+        <p>{{ $it.body }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Customers logo strip ---------- */}}
+{{ with .Params.customers }}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="logo-strip">
+      {{ range hugo.Data.customers }}
+      <a class="logo-strip__item" href="{{ .href }}" rel="noopener" aria-label="{{ .name }}">
+        <img src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="120" height="32">
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Testimonials carousel (centered with chevrons) ---------- */}}
+{{ with .Params.testimonial }}
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">{{ .eyebrow }}</span>
+    </div>
+    <div class="testimonial-carousel" data-carousel>
+      <div class="testimonial-carousel__bg" aria-hidden="true"></div>
+      <button class="testimonial-carousel__nav testimonial-carousel__nav--prev" type="button" data-prev aria-label="Previous">‹</button>
+      <button class="testimonial-carousel__nav testimonial-carousel__nav--next" type="button" data-next aria-label="Next">›</button>
+      <div class="testimonial-carousel__viewport">
+        {{ range hugo.Data.testimonials }}
+        <figure class="testimonial" data-slide>
+          <blockquote class="testimonial__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
+          <figcaption class="testimonial__cite">— {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
+        </figure>
+        {{ end }}
+      </div>
+      <div class="testimonial-carousel__dots" data-dots aria-label="Pagination"></div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- What IT teams gain (dark, 4 horizontal rows) ---------- */}}
+{{ with .Params.lifecycle }}
+<section class="section section--dark">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="lifecycle-rows">
+      {{ $images := slice "/images/topo/topo-mountain-1.jpg" "/images/topo/topo-mountain-2.jpg" "/images/topo/topo-mountain-1.jpg" "/images/topo/topo-mountain-2.jpg" -}}
+      {{ $icons := slice "compass" "code" "clipboard" "graduation" -}}
+      {{ range $i, $c := .cards }}
+      <div class="lifecycle-rows__row">
+        <h3 class="lifecycle-rows__title">{{ $c.title }}</h3>
+        {{ if eq (mod $i 2) 0 -}}
+        <div class="lifecycle-rows__media" style="background-image: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2)), url('{{ index $images $i }}');"></div>
+        <div class="lifecycle-rows__card">
+          <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 18) }}</div>
+          <p class="lifecycle-rows__desc">{{ $c.desc }}</p>
+        </div>
+        {{- else -}}
+        <div class="lifecycle-rows__card">
+          <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 18) }}</div>
+          <p class="lifecycle-rows__desc">{{ $c.desc }}</p>
+        </div>
+        <div class="lifecycle-rows__media" style="background-image: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2)), url('{{ index $images $i }}');"></div>
+        {{- end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Challenges glass card on photo ---------- */}}
+{{ with .Params.challenges }}
+<section class="section">
+  <div class="container">
+    <div class="challenges-glass">
+      <div class="challenges-glass__bg" {{ with .bg }}style="background-image: linear-gradient(135deg, rgba(7,19,44,.85) 0%, rgba(5,128,196,.4) 100%), url('{{ . }}');"{{ end }}></div>
+      <div class="challenges-glass__inner">
+        <div style="text-align:center; max-width: 720px; margin: 0 auto;">
+          <h2 style="color:#fff;">{{ .title }}</h2>
+          <p class="lead" style="color: rgba(255,255,255,.85);">{{ .lead }}</p>
+        </div>
+        <div class="challenges-glass__list">
+          {{ range .items }}
+          <div class="challenges-glass__item">
+            <h3>{{ .title }}</h3>
+            <p>{{ .body }}</p>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Partner logos ---------- */}}
+{{ with .Params.partners }}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+    </div>
+    <div class="partner-logos">
+      {{ range hugo.Data.partners }}
+      <a class="partner-logos__item" href="{{ .href }}" rel="noopener">
+        <img src="{{ .image }}" alt="{{ .name }}" loading="lazy">
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Next steps (2 dark gradient cards) ---------- */}}
+{{ with .Params.next_steps }}
+<section class="section section--dark" style="background: var(--fg-deep);">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+    </div>
+    {{ $cards := first 2 .cards }}
+    <div class="next-steps">
+      {{ range $cards }}
+      <a class="next-steps__card" href="{{ .href }}">
+        <span class="next-steps__eyebrow">{{ .eyebrow }}</span>
+        <h3 class="next-steps__title">{{ .title }}</h3>
+        <p class="next-steps__desc">{{ .desc }}</p>
+        <span class="next-steps__cta">
+          {{ if eq $lang "de" }}{{ .eyebrow }} ansehen{{ else }}View {{ lower .eyebrow }}{{ end }}
+          {{ partial "icon.html" (dict "name" "arrow-right" "size" 14) }}
+        </span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
 
 {{ end }}

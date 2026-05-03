@@ -1,0 +1,76 @@
+---
+title: Produkte
+description: "Eigene Lösungen und ausgewählte Technologiepartner für tragfähige Cloud-Native-Plattformen — von Multi-Tenancy bis Enterprise-Support."
+hero:
+  eyebrow: "Hands-on entwickelte Lösungen"
+  title: "Plattformen, die funktionieren."
+  lead: "Eigene Lösungen und sorgfältig gewählte Technologiepartner — für Cloud-Native-Plattformen, die im Schweizer Kontext bestehen."
+  sub: "Vom Multi-Tenancy-Layer bis zum Enterprise-Support für Open-Source-Projekte."
+  cta_primary: "Kontakt aufnehmen"
+  cta_secondary: "Services ansehen"
+  cta_secondary_href: "/services/"
+own:
+  eyebrow: "Eigene Lösungen & Produkte"
+  title: "Was wir selbst bauen"
+  lead: "Wo bestehende Tools an ihre Grenzen kommen, entwickeln wir eigene Lösungen — bevorzugt offen und gemeinsam mit der Community."
+  cards:
+    - title: "Cloud Native Multi-Tenancy"
+      body: "Capsule-basierte Multi-Tenancy für Kubernetes — produktionsreif und mit Erfahrung aus realen Schweizer Setups."
+      eyebrow: "Schwerpunkt"
+      items:
+        - "Tenant-Isolation auf Cluster-Ebene"
+        - "Self-Service für Entwicklerteams"
+        - "Policy- und Quota-Management"
+        - "Integration in bestehende Identity-Provider"
+    - title: "Capsule Enterprise Support"
+      body: "Kommerzieller Support für Capsule, in Zusammenarbeit mit Clastix — SLAs, Patches und Beratung aus erster Hand."
+      eyebrow: "Bestandteile"
+      items:
+        - "Definierte Reaktionszeiten"
+        - "Sicherheits-Patches"
+        - "Architektur- und Roadmap-Reviews"
+        - "Direkter Draht zu den Maintainern"
+partners:
+  eyebrow: "Technologiepartner & Integration"
+  title: "Vendor-Beziehungen mit echtem Support"
+  lead: "Statt einer langen Liste — vier Partnerschaften, die in Schweizer Setups wirklich tragen."
+  cards:
+    - title: "Sidero Labs"
+      body: "Talos Linux, Omni und Kubernetes — als zertifizierter Partner mit produktivem Support."
+      role: "Cluster-Layer"
+    - title: "SUSE Rancher Prime"
+      body: "Emerald-Status für Rancher — vom Multi-Cluster-Management bis zur regulierten Umgebung."
+      role: "Cluster-Management"
+    - title: "Google Cloud Platform"
+      body: "GCP-Partner für Architekturen, Migration und Cloud-Native-Workloads."
+      role: "Public Cloud"
+    - title: "Clastix"
+      body: "Hersteller hinter Capsule und Capsule Enterprise — gemeinsam liefern wir kommerziellen Support."
+      role: "Multi-Tenancy"
+journey:
+  eyebrow: "Vom Entscheid zum Betrieb"
+  title: "Wie wir Produkte einführen"
+  lead: "Drei klare Schritte — vom ersten Workshop bis zum stabilen Betrieb."
+  cards:
+    - num: "01"
+      title: "Orientierung & Entscheide"
+      desc: "Workshops zu Anforderungen, Architektur und Migration. Eine klare Empfehlung, kein Vendor-Lock-in."
+    - num: "02"
+      title: "Aufbau & Umsetzung"
+      desc: "Hands-on Implementation — automatisiert, dokumentiert, mit Wissenstransfer ans Team."
+    - num: "03"
+      title: "Betrieb & Skalierung"
+      desc: "Stabiler Betrieb, Lifecycle, Erweiterungen — auf Wunsch mit Enterprise-Support."
+next_steps:
+  eyebrow: "Weitergehen"
+  title: "Wohin als Nächstes?"
+  cards:
+    - eyebrow: "Services"
+      title: "Was wir tun"
+      desc: "Architekturberatung, Platform Engineering, Assessments und Trainings — entlang des Lebenszyklus."
+      href: "/services/"
+    - eyebrow: "Team"
+      title: "Wer dahintersteht"
+      desc: "Ein spezialisiertes Engineering-Team aus Bern."
+      href: "/team/"
+---

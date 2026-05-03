@@ -1,105 +1,94 @@
+baseURL = "https://peakscale.ch/"
 title = "Peak Scale"
-
 defaultContentLanguage = "de"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
 
-[languages]
-[languages.de]
-languageCode = "de-ch"
-[languages.de.params]
-description = "Cloud Native Experten"
-privacy = "Datenschutz"
-legalnotice = "Impressum"
-[languages.de.params.hero]
-hero__title = "Cloud Native Experten"
-hero__description = """Bei Peak Scale sind wir davon überzeugt, dass sich IT-Architektur ständig weiterentwickelt.
-    Deshalb setzen wir auf pragmatische und evolutionäre Ansätze.
-    Wir unterstützen und beraten mit Dienstleistungen in den Bereichen Architektur, Engineering, Training und
-    Assessments – stets im Kontext moderner, cloud-nativer Infrastrukturen."""
-[[languages.de.menus.main]]
-identifier = "services"
-name = "Angebot"
-pageRef = "/services"
-weight = 2
-[[languages.de.menus.main]]
-identifier = "about"
-name = "Über uns"
-pageRef = "/about"
-weight = 3
-[[languages.de.menus.main]]
-identifier = "team"
-name = "Team"
-pageRef = "/team"
-weight = 4
-[[languages.de.menus.main]]
-identifier = "contact"
-name = "Kontakt"
-pageRef = "/contact"
-weight = 5
-
-[languages.en]
-languageCode = "en-en"
-[languages.en.params]
-description = "Cloud Native Experts"
-privacy = "Privacy"
-legalnotice = "Legal Notice"
-[languages.en.params.hero]
-hero__title = "Cloud Native Experts"
-hero__description = """At Peak Scale, we believe that IT architecture is constantly evolving.
-    That’s why we embrace pragmatic and evolutionary approaches.
-    We provide support and guidance through services in architecture, engineering, training, and assessments,
-    all within the context of modern, cloud-native infrastructures."""
-[[languages.en.menus.main]]
-identifier = "services"
-name = "Services"
-pageRef = "/services"
-weight = 2
-[[languages.en.menus.main]]
-identifier = "about"
-name = "About"
-pageRef = "/about"
-weight = 3
-[[languages.en.menus.main]]
-identifier = "team"
-name = "Team"
-pageRef = "/team"
-weight = 4
-[[languages.en.menus.main]]
-identifier = "contact"
-name = "Contact"
-pageRef = "/contact"
-weight = 5
+[taxonomies]
+# Intentionally empty — no tags/categories on a marketing site.
 
 [params]
-logo = "/images/logos/peakscale.svg"
-logoDark = "/images/logos/peakscale_dark.svg"
-author = "Peak Scale"
-imageSocial = "/images/logos/peakscale_social.png"
+contactEmail = "welcome@peakscale.ch"
+companyName = "Peak Scale GmbH"
+companyAddress = "Ryffligässchen 5"
+companyCity = "CH-3011 Bern"
+linkedin = "https://www.linkedin.com/company/peakscale/"
+ogImage = "/images/peakscale-logo-square.png"
+description = "Cloud Native Consulting & Platform Engineering aus Bern. Hands-on Partner für Strategie, Architektur, Engineering und Betrieb moderner Cloud-Plattformen."
 
 [params.plausible]
 enable = true
 domain = "peakscale.ch"
 
-#-------------------------------
-# Footer Settings
-# Other icons can be found at https://ionicons.com/v4/
-[[params.social]]
-icon = "logo-linkedin"
-name = "LinkedIn"
-link = "https://www.linkedin.com/company/peakscale/"
-color = "#0580c4"
-
-
-#-------------------------------
-# Contact Settings
-[params.contact]
-email = "mjvlykdz" # Add your Formspree form_id for contant form
-
 [markup]
-[markup.goldmark]
 [markup.goldmark.renderer]
 unsafe = true
-
 [markup.highlight]
 codeFences = true
 guessSyntax = true
 noClasses = false
+
+[outputs]
+home = ["HTML", "RSS"]
+
+[languages]
+[languages.de]
+label = "Deutsch"
+locale = "de-CH"
+weight = 1
+[languages.de.params]
+description = "Cloud Native Consulting & Platform Engineering aus Bern. Hands-on Partner für Strategie, Architektur, Engineering und Betrieb."
+[[languages.de.menus.main]]
+identifier = "services"
+name = "Services"
+pageRef = "/services"
+weight = 10
+[[languages.de.menus.main]]
+identifier = "produkte"
+name = "Produkte"
+pageRef = "/produkte"
+weight = 20
+[[languages.de.menus.main]]
+identifier = "team"
+name = "Team"
+pageRef = "/team"
+weight = 30
+[[languages.de.menus.legal]]
+name = "Impressum"
+pageRef = "/impressum"
+weight = 10
+[[languages.de.menus.legal]]
+name = "Datenschutz"
+pageRef = "/datenschutz"
+weight = 20
+
+[languages.en]
+label = "English"
+locale = "en"
+weight = 2
+[languages.en.params]
+description = "Cloud Native consulting & platform engineering from Bern. Hands-on partner for strategy, architecture, engineering, and operations of modern cloud platforms."
+[[languages.en.menus.main]]
+identifier = "services"
+name = "Services"
+pageRef = "/services"
+weight = 10
+[[languages.en.menus.main]]
+identifier = "produkte"
+name = "Products"
+pageRef = "/produkte"
+weight = 20
+[[languages.en.menus.main]]
+identifier = "team"
+name = "Team"
+pageRef = "/team"
+weight = 30
+[[languages.en.menus.legal]]
+name = "Imprint"
+pageRef = "/imprint"
+weight = 10
+[[languages.en.menus.legal]]
+name = "Privacy"
+pageRef = "/privacy"
+weight = 20

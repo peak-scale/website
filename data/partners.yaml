@@ -1,0 +1,20 @@
+- name: Sidero Labs
+  role_de: "Talos · Omni · Kubernetes"
+  role_en: "Talos · Omni · Kubernetes"
+  image: /images/partners/siderolabs.webp
+  href: https://siderolabs.com
+- name: SUSE Rancher Prime
+  role_de: "Emerald-Status"
+  role_en: "Emerald status"
+  image: /images/partners/suse.svg
+  href: https://www.suse.com/products/rancher/
+- name: Google Cloud
+  role_de: "GCP-Partner"
+  role_en: "GCP partner"
+  image: /images/partners/google-cloud.svg
+  href: https://cloud.google.com
+- name: Clastix
+  role_de: "Capsule Enterprise"
+  role_en: "Capsule Enterprise"
+  image: /images/partners/clastix.svg
+  href: https://clastix.io

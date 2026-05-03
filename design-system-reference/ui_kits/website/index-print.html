@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Peak Scale — UI Kit (Print)</title>
+  <link rel="stylesheet" href="../../colors_and_type.css?v=hifi2">
+  <style>
+    body { margin: 0; background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    /* responsive collapse (also helps narrower print pages) */
+    @media (max-width: 900px) {
+      header nav { display: none !important; }
+      section[data-h] > div { grid-template-columns: 1fr !important; gap: 32px !important; }
+    }
+
+    /* Visual divider between the two pages on screen */
+    .page-divider {
+      height: 1px; background: var(--border, #e5e7eb); margin: 0;
+    }
+
+    /* PRINT */
+    @page {
+      size: A4 portrait;
+      margin: 10mm;
+    }
+    @media print {
+      html, body { background: var(--bg) !important; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+      /* Kill animations / transitions */
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      /* Hide floating / interactive chrome that doesn't make sense in print */
+      .print-hide { display: none !important; }
+
+      /* Headers — keep sticky-ish behaviour off in print */
+      header[role="banner"], header.site-header, header { position: static !important; }
+
+      /* Each top-level section starts on a new page where reasonable */
+      .print-page { break-before: page; page-break-before: always; }
+      .print-page:first-of-type { break-before: auto; page-break-before: auto; }
+
+      /* Avoid splitting cards / hero / testimonials across pages */
+      .card, .hero, .testimonial, [data-h] { break-inside: avoid; page-break-inside: avoid; }
+
+      /* Trim excessive vertical paddings so content fits page */
+      section { padding-top: 32px !important; padding-bottom: 32px !important; }
+
+      /* The big centred display heading on HomePage uses inline padding 120/96 — tame it */
+      .display-xl { font-size: 72px !important; line-height: 1.05 !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="Section.jsx"></script>
+  <script type="text/babel" src="Header.jsx"></script>
+  <script type="text/babel" src="Hero.jsx"></script>
+  <script type="text/babel" src="WhyUs.jsx"></script>
+  <script type="text/babel" src="Footer.jsx"></script>
+  <script type="text/babel" src="ServicesPage.jsx"></script>
+  <script type="text/babel" src="HomePage.jsx"></script>
+  <script type="text/babel" data-presets="env,react">
+    // Print app — render every route stacked, no interactive chrome
+    const PrintApp = () => (
+      <div>
+        {/* Page 1: Services route */}
+        <div className="print-page" data-screen-label="01 Services">
+          <Header active="Services" onNav={() => {}} lang="DE" onLangChange={() => {}}/>
+          <ServicesPage/>
+          <Footer/>
+        </div>
+
+        <div className="page-divider print-hide"></div>
+
+        {/* Page 2: Home route */}
+        <div className="print-page" data-screen-label="02 Home">
+          <Header active="Produkte" onNav={() => {}} lang="DE" onLangChange={() => {}}/>
+          <HomePage/>
+          <Footer/>
+        </div>
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<PrintApp/>);
+
+    // Auto-print: wait for fonts + a tick for Babel/React mount, then print.
+    (async () => {
+      try {
+        if (document.fonts && document.fonts.ready) {
+          await document.fonts.ready;
+        }
+      } catch (e) {}
+      // give React a frame to commit
+      await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+      // safety delay
+      await new Promise(r => setTimeout(r, 600));
+      window.print();
+    })();
+  </script>
+</body>
+</html>
