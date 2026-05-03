@@ -31,7 +31,7 @@
   <div class="container">
     <div class="section__head">
       <span class="section__icon">{{ partial "icon.html" (dict "name" "compass" "size" 24) }}</span>
-      <h2>{{ .title }}</h2>
+      <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="grid grid--2">
@@ -71,11 +71,12 @@
   <div class="container">
     <div class="section__head">
       <span class="section__icon">{{ partial "icon.html" (dict "name" "code" "size" 24) }}</span>
-      <h2>{{ .title }}</h2>
+      <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="grid grid--2">
       <div style="display:flex; flex-direction:column; gap: var(--space-4);">
+        {{ with .subhead }}<div class="cat-subhead">{{ . }}</div>{{ end }}
         {{ range .categories }}
         <div class="card cat-card">
           <div class="eyebrow">{{ .title }}</div>
@@ -95,7 +96,17 @@
         {{ end }}
         <div class="tag-arbeitsweise">
           <strong>{{ if eq $lang "de" }}Wie wir arbeiten{{ else }}How we work{{ end }}</strong>
-          {{ if eq $lang "de" }}Hands-on im Engineering, enge Zusammenarbeit, Fokus auf Übertragbarkeit, Dokumentation und Enablement.{{ else }}Hands-on in engineering, close collaboration, focus on transferability, documentation, and enablement.{{ end }}
+          <ul class="reset" style="display:flex; flex-direction:column; gap:6px; margin-top:6px;">
+            {{ if eq $lang "de" }}
+            <li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>Hands-on Engineering</span></li>
+            <li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>Enge Zusammenarbeit mit dem Kundenteam</span></li>
+            <li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>Fokus auf Übertragbarkeit, Dokumentation und Enablement</span></li>
+            {{ else }}
+            <li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>Hands-on engineering</span></li>
+            <li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>Close collaboration with the client team</span></li>
+            <li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>Focus on transferability, documentation and enablement</span></li>
+            {{ end }}
+          </ul>
         </div>
       </div>
     </div>
@@ -109,7 +120,7 @@
   <div class="container">
     <div class="section__head">
       <span class="section__icon">{{ partial "icon.html" (dict "name" "clipboard" "size" 24) }}</span>
-      <h2>{{ .title }}</h2>
+      <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="grid grid--3" style="margin-bottom: var(--space-8);">
@@ -145,7 +156,7 @@
   <div class="container">
     <div class="section__head">
       <span class="section__icon">{{ partial "icon.html" (dict "name" "graduation" "size" 24) }}</span>
-      <h2>{{ .title }}</h2>
+      <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="grid grid--3" style="margin-bottom: var(--space-12);">
@@ -174,7 +185,7 @@
 <section class="section section--dark" style="background: var(--fg-deep);">
   <div class="container">
     <div class="section__head">
-      <h2>{{ .title }}</h2>
+      <h2>{{ .title | safeHTML }}</h2>
     </div>
     <div class="next-steps">
       {{ range .cards }}

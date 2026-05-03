@@ -26,7 +26,7 @@ lifecycle_strip:
       sub: "Stable operations & lifecycle"
 architecture:
   eyebrow: "Architecture"
-  title: "Cloud & architecture"
+  title: "Cloud & <span class=\"accent\">architecture</span>"
   lead: "When requirements shift, the architecture has to grow with them. We create the decision basis and structures that hold beyond the first roadmap."
   cards:
     - title: "Orientation & architecture advisory"
@@ -47,56 +47,58 @@ architecture:
         - "Decision basis for management & engineering"
 engineering:
   eyebrow: "Platform Engineering"
-  title: "Embedded with your team"
+  title: "Engineering"
   lead: "We work directly with your team on the design, build, and operation of modern cloud-native components — focused on automation, security, and reproducible workflows."
+  subhead: "Technologies & topic areas"
   categories:
     - title: "Containers & platforms"
-      items: ["Kubernetes", "Multi-tenancy with Capsule", "Control planes", "Cluster management"]
+      items: ["Kubernetes", "Multi-tenancy with Capsule", "Control planes & cluster management"]
     - title: "GitOps & workflows"
       items: ["Argo CD", "Flux", "CI/CD pipelines", "Supply chain security (SLSA)"]
     - title: "Infrastructure automation"
-      items: ["OpenTofu / Terraform", "Infrastructure as Code", "Configuration as Code"]
+      items: ["OpenTofu / Terraform", "Infrastructure as Code", "Configuration as Code", "End-to-end automation"]
     - title: "Security & observability"
-      items: ["Kubernetes security", "Policy as Code", "Monitoring & observability"]
+      items: ["Kubernetes security", "Policy as Code", "Monitoring & observability", "Logging & tracing"]
 assessments:
   eyebrow: "Assessments"
-  title: "Solid evaluations"
-  lead: "We review existing solutions across three axes — architecture, security, processes — and deliver a concrete list of actions."
+  title: "Assessments"
+  lead: "Independent analyses with clear recommendations — as a decision basis before larger changes or for taking stock."
   cards:
-    - title: "Architecture review"
-      body: "Inventory and assessment — with recommendations for modernisation and consolidation."
-    - title: "Kubernetes security assessment"
-      body: "Cluster configuration, policies, supply chain risks — measured against established standards."
-    - title: "GitOps & CI/CD review"
-      body: "Pipelines, deployment models, security gates — with maintainability and scale in mind."
+    - title: "Kubernetes Security Assessment"
+      body: "Identifying risks, misconfigurations and opportunities for improvement."
+    - title: "Architecture & Platform Review"
+      body: "Evaluation of existing platforms with respect to scale, operations, security and evolution."
+    - title: "Cloud Native Maturity Assessment"
+      body: "Transparent overview of the current maturity level — with concrete actions for improvement."
   output_title: "Always delivered:"
   output_items:
-    - "Findings report"
-    - "Prioritised list of actions"
-    - "Decision basis for management"
+    - "Executive summary for decision makers"
+    - "Technical details for engineers"
+    - "Prioritised actions"
+    - "Recommendations for architecture & management"
 training:
   eyebrow: "Training & enablement"
-  title: "Pass on what we know"
-  lead: "So your team can keep going on its own — compact workshops or deep technical training."
+  title: "Training & Enablement"
+  lead: "Knowledge transfer that helps in everyday work — practical, realistic and tailored to your team and environment."
   cards:
-    - title: "Architecture workshops"
-      body: "Short, focused, in your context. Methods and vocabulary that stay with the team."
-    - title: "Cloud Native trainings"
-      body: "Deep technical training for engineers — Kubernetes, GitOps, platform operations."
-    - title: "Killercoda labs"
-      body: "Interactive hands-on exercises, online — also available after the training."
+    - title: "Workshops"
+      body: "Short, focused sessions on cloud architecture, GitOps or Kubernetes."
+    - title: "Technical trainings"
+      body: "In-depth training for engineers — modular and adaptable."
+    - title: "Interactive labs"
+      body: "Hands-on exercises on Killercoda — reproducible, safe, realistic."
 testimonial:
   eyebrow: "Voices from projects"
 next_steps:
   eyebrow: "Continue"
-  title: "Where to go next?"
+  title: "Next <span class=\"accent\">stage</span>"
   cards:
     - eyebrow: "Products"
-      title: "What we build with"
-      desc: "Our own solutions and selected technology partners for cloud-native platforms."
+      title: "Our own solutions and enterprise support for core platform building blocks."
+      desc: ""
       href: "/produkte/"
     - eyebrow: "Team"
-      title: "Who is behind it"
-      desc: "A specialised engineering team from Bern."
+      title: "The engineering team behind Peak Scale — way of working, values and focus."
+      desc: ""
       href: "/team/"
 ---

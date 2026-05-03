@@ -22,19 +22,28 @@
 <section class="section section--alt">
   <div class="container">
     <div class="section__head">
-      <h2>{{ .title }}</h2>
-      <p class="lead">{{ .lead }}</p>
+      <h2>{{ .title | safeHTML }}</h2>
+      {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
     </div>
     <div style="max-width: 880px; margin: 0 auto; display:flex; flex-direction:column; gap: var(--space-6);">
       {{ range .cards }}
+      {{ $card := . }}
       <div class="card">
         <div class="lifecycle-rows__icon" style="background: var(--brand-soft); color: var(--brand); margin-bottom: var(--space-4);">{{ partial "icon.html" (dict "name" "boxes" "size" 18) }}</div>
-        <h3 style="font-size: 22px;">{{ .title }}</h3>
-        <p>{{ .body }}</p>
-        <div class="eyebrow" style="margin-top: 18px; margin-bottom: 8px;">{{ .eyebrow }}</div>
+        <h3 style="font-size: 22px;">{{ $card.title }}</h3>
+        <p>{{ $card.body }}</p>
+        <div class="eyebrow" style="margin-top: 18px; margin-bottom: 8px;">{{ $card.eyebrow }}</div>
         <ul class="reset" style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px 16px; font-size:14px; color:var(--fg-muted);">
-          {{ range .items }}<li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>{{ . }}</span></li>{{ end }}
+          {{ range $card.items }}<li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>{{ . }}</span></li>{{ end }}
         </ul>
+        {{ with $card.fit_items }}
+        <div class="fit-block">
+          <div class="fit-block__title">{{ $card.fit_title }}</div>
+          <ul class="reset fit-block__list">
+            {{ range . }}<li><span class="fit-block__check">✓</span><span>{{ . }}</span></li>{{ end }}
+          </ul>
+        </div>
+        {{ end }}
       </div>
       {{ end }}
     </div>
@@ -47,19 +56,26 @@
 <section class="section">
   <div class="container">
     <div class="section__head">
-      <h2>{{ .title }}</h2>
+      <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     {{ $partnerImages := dict "Sidero Labs" "/images/partners/siderolabs.webp" "SUSE Rancher Prime" "/images/partners/suse.svg" "Google Cloud Platform" "/images/partners/google-cloud.svg" "Clastix" "/images/partners/clastix.svg" }}
     <div class="grid grid--2" style="max-width: 980px; margin: 0 auto;">
       {{ range .cards }}
+      {{ $card := . }}
       <div class="card">
-        {{ with index $partnerImages .title }}
-        <img src="{{ . }}" alt="" style="max-height: 36px; width: auto; margin-bottom: var(--space-4);" loading="lazy">
+        {{ with index $partnerImages $card.title }}
+        <img src="{{ . }}" alt="" style="height: 36px; width: auto; margin-bottom: var(--space-4);" loading="lazy">
         {{ end }}
-        <h3>{{ .title }}</h3>
-        <p>{{ .body }}</p>
-        <div class="eyebrow" style="margin-top: 12px; color: var(--fg-subtle);">{{ .role }}</div>
+        <h3>{{ $card.title }}</h3>
+        {{ with $card.role }}<div class="eyebrow" style="margin-top: 4px; margin-bottom: 8px; color: var(--brand);">{{ . }}</div>{{ end }}
+        <p>{{ $card.body }}</p>
+        {{ with $card.themes }}
+        <div class="eyebrow" style="margin-top: 14px; margin-bottom: 8px; color: var(--fg-subtle);">{{ $card.themes_title }}</div>
+        <ul class="reset" style="display:flex; flex-direction:column; gap:6px; font-size:14px; color:var(--fg-muted);">
+          {{ range . }}<li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>{{ . }}</span></li>{{ end }}
+        </ul>
+        {{ end }}
       </div>
       {{ end }}
     </div>
@@ -72,7 +88,7 @@
 <section class="section section--dark">
   <div class="container">
     <div class="section__head">
-      <h2>{{ .title }}</h2>
+      <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="lifecycle-rows__media" style="aspect-ratio: 16/4; margin: 0 auto var(--space-8); max-width: 880px; background-image: linear-gradient(135deg, rgba(7,19,44,.6), rgba(5,128,196,.2)), url('/images/section/challenges.jpg');"></div>
@@ -94,7 +110,7 @@
 <section class="section section--dark" style="background: var(--fg-deep);">
   <div class="container">
     <div class="section__head">
-      <h2>{{ .title }}</h2>
+      <h2>{{ .title | safeHTML }}</h2>
     </div>
     <div class="next-steps">
       {{ range .cards }}

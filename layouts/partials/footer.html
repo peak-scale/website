@@ -1,10 +1,9 @@
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
-      <div>
-        <a class="site-footer__brand" href="{{ .Site.Home.RelPermalink }}">
-          {{ partial "brand-mark.html" . }}
-          Peak Scale
+      <div class="site-footer__brand-col">
+        <a class="site-footer__brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Peak Scale">
+          <img src="/images/peakscale-logo-dark.svg" alt="Peak Scale" width="160" height="56">
         </a>
         <p class="site-footer__about">
           {{ if eq .Site.Language.Lang "de" -}}
@@ -13,13 +12,16 @@
           Hands-on support for platform engineering teams — from architecture and Kubernetes to stable operations.
           {{- end }}
         </p>
+        <a class="site-footer__linkedin-icon" href="{{ .Site.Params.linkedin }}" rel="noopener" aria-label="LinkedIn">
+          {{ partial "icon.html" (dict "name" "linkedin" "size" 18) }}
+        </a>
       </div>
 
       <div>
         <span class="footer-col__title">{{ i18n "footer_menu" }}</span>
         <ul class="footer-col__list">
           {{ range .Site.Menus.main -}}
-          <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+          <li><a href="{{ .URL | relLangURL }}"><span class="footer-col__arrow" aria-hidden="true">↗</span>{{ .Name }}</a></li>
           {{- end }}
         </ul>
       </div>
@@ -28,32 +30,15 @@
         <span class="footer-col__title">{{ i18n "footer_legal" }}</span>
         <ul class="footer-col__list">
           {{ range .Site.Menus.legal -}}
-          <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+          <li><a href="{{ .URL | relLangURL }}"><span class="footer-col__arrow" aria-hidden="true">↗</span>{{ .Name }}</a></li>
           {{- end }}
-        </ul>
-      </div>
-
-      <div>
-        <span class="footer-col__title">{{ i18n "footer_contact" }}</span>
-        <ul class="footer-col__list">
-          <li><a href="mailto:{{ .Site.Params.contactEmail }}">{{ .Site.Params.contactEmail }}</a></li>
-          <li><span>{{ .Site.Params.companyAddress }}</span></li>
-          <li><span>{{ .Site.Params.companyCity }}</span></li>
-          <li>
-            <a href="{{ .Site.Params.linkedin }}" rel="noopener" class="site-footer__linkedin">
-              {{ partial "icon.html" (dict "name" "linkedin" "size" 14) }}
-              LinkedIn
-            </a>
-          </li>
         </ul>
       </div>
     </div>
 
     <div class="site-footer__bottom">
-      <span>© {{ now.Year }} Peak Scale GmbH · {{ .Site.Params.companyAddress }}, {{ .Site.Params.companyCity }}</span>
-      <span class="site-footer__social">
-        {{ if eq .Site.Language.Lang "de" }}Hands-on Cloud Native Consulting{{ else }}Hands-on cloud-native consulting{{ end }}
-      </span>
+      <span>Peak Scale GmbH · {{ .Site.Params.companyAddress }}, {{ .Site.Params.companyCity }} · <a href="mailto:{{ .Site.Params.contactEmail }}">{{ .Site.Params.contactEmail }}</a></span>
+      <span>© {{ now.Year }} Peak Scale</span>
     </div>
   </div>
 </footer>

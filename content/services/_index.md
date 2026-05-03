@@ -26,7 +26,7 @@ lifecycle_strip:
       sub: "Stabiler Betrieb & Lifecycle"
 architecture:
   eyebrow: "Architektur"
-  title: "Cloud & Architektur"
+  title: "Cloud & <span class=\"accent\">Architektur</span>"
   lead: "Wenn sich Anforderungen ändern, muss Architektur mitwachsen. Wir schaffen Entscheidungsgrundlagen und Strukturen, die über die erste Roadmap hinaus tragen."
   cards:
     - title: "Orientierung & Architekturberatung"
@@ -47,56 +47,58 @@ architecture:
         - "Entscheidungsgrundlage für Management & Engineering"
 engineering:
   eyebrow: "Platform Engineering"
-  title: "Direkt im Team"
+  title: "Engineering"
   lead: "Wir arbeiten direkt mit Ihrem Team am Design, Aufbau und Betrieb moderner Cloud-Native-Komponenten – mit Fokus auf Automatisierung, Sicherheit und reproduzierbare Abläufe."
+  subhead: "Technologien & Themenfelder"
   categories:
     - title: "Container & Plattformen"
-      items: ["Kubernetes", "Multi-Tenancy mit Capsule", "Control Planes", "Cluster Management"]
+      items: ["Kubernetes", "Multi-Tenancy mit Capsule", "Control Planes & Cluster Management"]
     - title: "GitOps & Workflows"
       items: ["Argo CD", "Flux", "CI/CD Pipelines", "Supply Chain Security (SLSA)"]
     - title: "Infrastructure Automation"
-      items: ["OpenTofu / Terraform", "Infrastructure as Code", "Configuration as Code"]
+      items: ["OpenTofu / Terraform", "Infrastructure as Code", "Configuration as Code", "Automatisierung durchgängig"]
     - title: "Security & Observability"
-      items: ["Kubernetes Security", "Policy as Code", "Monitoring & Observability"]
+      items: ["Kubernetes Security", "Policy as Code", "Monitoring & Observability", "Logging & Tracing"]
 assessments:
   eyebrow: "Assessments"
-  title: "Fundierte Beurteilungen"
-  lead: "Wir prüfen bestehende Lösungen entlang dreier Achsen – Architektur, Sicherheit, Prozesse – und liefern eine konkrete Massnahmenliste."
+  title: "Assessments"
+  lead: "Unabhängige Analysen mit klaren Empfehlungen – als Entscheidungsgrundlage vor grösseren Veränderungen oder zur Standortbestimmung."
   cards:
-    - title: "Architektur-Review"
-      body: "Bestandsaufnahme und Bewertung – mit Empfehlungen für Modernisierung und Konsolidierung."
     - title: "Kubernetes Security Assessment"
-      body: "Cluster-Konfiguration, Policies, Supply-Chain-Risiken – abgeglichen mit etablierten Standards."
-    - title: "GitOps & CI/CD Review"
-      body: "Pipelines, Deployment-Modelle, Sicherheits-Gates – mit Blick auf Wartbarkeit und Skalierung."
+      body: "Erkennung von Risiken, Fehlkonfigurationen und Verbesserungsmöglichkeiten."
+    - title: "Architecture & Platform Review"
+      body: "Bewertung bestehender Plattformen hinsichtlich Skalierung, Betrieb, Sicherheit und Weiterentwicklung."
+    - title: "Cloud Native Maturity Assessment"
+      body: "Transparenter Überblick über den aktuellen Reifegrad – mit konkreten Massnahmen zur Verbesserung."
   output_title: "Output immer:"
   output_items:
-    - "Bericht mit Befunden"
-    - "Priorisierte Massnahmenliste"
-    - "Entscheidungsgrundlage für Management"
+    - "Executive Summary für Entscheider"
+    - "Technische Details für Engineers"
+    - "Priorisierte Massnahmen"
+    - "Handlungsempfehlungen für Architektur & Management"
 training:
   eyebrow: "Training & Enablement"
-  title: "Wissen weitergeben"
-  lead: "Damit Ihr Team eigenständig weiterarbeiten kann – kompakte Workshops oder tiefe technische Trainings."
+  title: "Training & Enablement"
+  lead: "Wissenstransfer, der im Alltag hilft – praxisnah, realistisch und auf Ihr Team und ihre Umgebung abgestimmt."
   cards:
-    - title: "Architektur-Workshops"
-      body: "Kurz, fokussiert, in Ihrem Kontext. Methoden und Vokabular, die im Team bleiben."
-    - title: "Cloud Native Trainings"
-      body: "Tiefe technische Trainings für Engineers – Kubernetes, GitOps, Plattformbetrieb."
-    - title: "Killercoda Labs"
-      body: "Interaktive Hands-on-Übungen, online verfügbar – auch nach dem Training."
+    - title: "Workshops"
+      body: "Kurze, fokussierte Sessions zu Cloud-Architektur, GitOps oder Kubernetes."
+    - title: "Technische Trainings"
+      body: "Vertiefende Trainings für Engineers – modular und anpassbar."
+    - title: "Interaktive Labs"
+      body: "Hands-on-Aufgaben auf Killercoda, reproduzierbar, sicher, realitätsnah."
 testimonial:
   eyebrow: "Stimmen aus Projekten"
 next_steps:
   eyebrow: "Weitergehen"
-  title: "Wohin als Nächstes?"
+  title: "Nächste <span class=\"accent\">Etappe</span>"
   cards:
     - eyebrow: "Produkte"
-      title: "Womit wir bauen"
-      desc: "Eigene Lösungen und ausgewählte Technologiepartner für Cloud Native Plattformen."
+      title: "Eigene Lösungen und Enterprise Support für zentrale Plattformbausteine."
+      desc: ""
       href: "/produkte/"
     - eyebrow: "Team"
-      title: "Wer dahintersteht"
-      desc: "Ein spezialisiertes Engineering-Team aus Bern."
+      title: "Das Engineering-Team hinter Peak Scale – Arbeitsweise, Werte und Fokus."
+      desc: ""
       href: "/team/"
 ---

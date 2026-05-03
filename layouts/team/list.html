@@ -61,7 +61,7 @@
   <div class="container">
     <div class="grid grid--2" style="gap: clamp(32px, 6vw, 80px); align-items: center;">
       <div>
-        <h2 style="font-size: clamp(36px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.02em; margin: 0 0 var(--space-4);"><span style="color: var(--brand);">{{ .title }}</span></h2>
+        <h2 style="font-size: clamp(36px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.02em; margin: 0 0 var(--space-4);">{{ .title | safeHTML }}</h2>
         <p class="lead" style="margin: 0;">{{ .lead }}</p>
       </div>
       <div class="mission-tags">
@@ -77,7 +77,7 @@
 <section class="section section--dark">
   <div class="container">
     <div class="section__head">
-      <h2><span style="color: rgb(122,192,232);">{{ .title }}</span></h2>
+      <h2>{{ .title | safeHTML }}</h2>
     </div>
     <div class="grid grid--3">
       {{ range .cards }}
@@ -99,12 +99,14 @@
     <div class="section__head">
       <span class="section__icon">{{ partial "icon.html" (dict "name" "cloud" "size" 22) }}</span>
       <h2>{{ .title }}</h2>
+      {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
     </div>
     <div class="cn-rows">
       {{ range $i, $p := .pills }}
       <div class="cn-rows__row{{ if eq $i 2 }} is-feature{{ end }}">{{ $p }}</div>
       {{ end }}
     </div>
+    {{ with .footnote }}<p style="text-align:center; max-width: 720px; margin: var(--space-6) auto 0; color: var(--fg-muted); font-size: 14px;">{{ . }}</p>{{ end }}
   </div>
 </section>
 {{ end }}
@@ -114,7 +116,7 @@
 <section class="section section--dark">
   <div class="container">
     <div class="section__head">
-      <h2><span style="color: rgb(122,192,232);">{{ .title }}</span></h2>
+      <h2>{{ .title | safeHTML }}</h2>
     </div>
     <div class="values-list" style="max-width: 980px; margin: 0 auto;">
       {{ $vimgs := slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg" "/images/section/ridge.jpg" }}
@@ -142,6 +144,7 @@
     <div class="pill-row" style="justify-content: center;">
       {{ range .tags }}<span class="pill pill--active">{{ . }}</span>{{ end }}
     </div>
+    {{ with .footnote }}<p style="text-align:center; max-width: 720px; margin: var(--space-6) auto 0; color: var(--fg-muted); font-size: 14px;">{{ . }}</p>{{ end }}
   </div>
 </section>
 {{ end }}
@@ -173,7 +176,7 @@
 <section class="section section--dark" style="background: var(--fg-deep);">
   <div class="container">
     <div class="section__head">
-      <h2>{{ .title }}</h2>
+      <h2>{{ .title | safeHTML }}</h2>
     </div>
     <div class="next-steps">
       {{ range .cards }}
