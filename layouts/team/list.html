@@ -59,10 +59,10 @@
 {{ with .Params.mission }}
 <section class="section">
   <div class="container">
-    <div class="grid grid--2" style="gap: clamp(32px, 6vw, 80px); align-items: center;">
+    <div class="mission-grid">
       <div>
-        <h2 style="font-size: clamp(36px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.02em; margin: 0 0 var(--space-4);">{{ .title | safeHTML }}</h2>
-        <p class="lead" style="margin: 0;">{{ .lead }}</p>
+        <h2 class="heading-xl">{{ .title | safeHTML }}</h2>
+        <p class="lead lead--flush">{{ .lead }}</p>
       </div>
       <div class="mission-tags">
         {{ range .tags }}<span>{{ . }}</span>{{ end }}
@@ -81,10 +81,10 @@
     </div>
     <div class="grid grid--3">
       {{ range .cards }}
-      <div class="lifecycle-cards__card" style="display:flex; flex-direction:column; gap: var(--space-3);">
+      <div class="lifecycle-cards__card is-stack">
         <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" "settings" "size" 18) }}</div>
-        <h3 style="color:#fff; font-size:18px; font-weight:500; margin: 4px 0 0;">{{ .title }}</h3>
-        <p style="color: rgba(255,255,255,.78); font-size:14px; line-height:1.55; margin:0;">{{ .body }}</p>
+        <h3 class="lifecycle-cards__title">{{ .title }}</h3>
+        <p class="lifecycle-cards__desc">{{ .body }}</p>
       </div>
       {{ end }}
     </div>
@@ -106,7 +106,7 @@
       <div class="cn-rows__row{{ if eq $i 2 }} is-feature{{ end }}">{{ $p }}</div>
       {{ end }}
     </div>
-    {{ with .footnote }}<p style="text-align:center; max-width: 720px; margin: var(--space-6) auto 0; color: var(--fg-muted); font-size: 14px;">{{ . }}</p>{{ end }}
+    {{ with .footnote }}<p class="section__footnote">{{ . }}</p>{{ end }}
   </div>
 </section>
 {{ end }}
@@ -118,7 +118,7 @@
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
     </div>
-    <div class="values-list" style="max-width: 980px; margin: 0 auto;">
+    <div class="values-list">
       {{ $vimgs := slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg" "/images/section/ridge.jpg" }}
       {{ range $i, $v := .items }}
       <div class="values-list__row">
@@ -134,17 +134,17 @@
 
 {{/* ---------- Community (cream beige bg) ---------- */}}
 {{ with .Params.community }}
-<section class="section" style="background: var(--accent-gold-soft);">
+<section class="section section--gold">
   <div class="container">
     <div class="section__head">
-      <span class="section__icon" style="background: rgba(184,169,120,.2); color: var(--accent-gold-ink);">{{ partial "icon.html" (dict "name" "users" "size" 22) }}</span>
+      <span class="section__icon section__icon--gold">{{ partial "icon.html" (dict "name" "users" "size" 22) }}</span>
       <h2>{{ .title }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="pill-row" style="justify-content: center;">
+    <div class="pill-row pill-row--center">
       {{ range .tags }}<span class="pill pill--active">{{ . }}</span>{{ end }}
     </div>
-    {{ with .footnote }}<p style="text-align:center; max-width: 720px; margin: var(--space-6) auto 0; color: var(--fg-muted); font-size: 14px;">{{ . }}</p>{{ end }}
+    {{ with .footnote }}<p class="section__footnote">{{ . }}</p>{{ end }}
   </div>
 </section>
 {{ end }}
@@ -153,17 +153,17 @@
 {{ with .Params.contact_block }}
 <section class="section section--dark">
   <div class="container">
-    <div class="grid grid--2" style="align-items: center; gap: clamp(32px, 5vw, 64px);">
+    <div class="contact-cta">
       <div>
-        <span class="eyebrow" style="color: rgb(122,192,232);">{{ .eyebrow }}</span>
-        <h2 style="margin-top: 12px; color:#fff;">{{ .title }}</h2>
-        <p class="lead" style="color: rgba(255,255,255,.85);">{{ .lead }}</p>
-        <div style="margin-top: var(--space-6);">
+        <span class="eyebrow contact-cta__eyebrow">{{ .eyebrow }}</span>
+        <h2 class="contact-cta__title">{{ .title }}</h2>
+        <p class="lead">{{ .lead }}</p>
+        <p class="contact-cta__actions">
           <a class="btn btn--inverse" href="mailto:{{ $.Site.Params.contactEmail }}">
             {{ partial "icon.html" (dict "name" "mail" "size" 18) }}
             {{ $.Site.Params.contactEmail }}
           </a>
-        </div>
+        </p>
       </div>
       <div>{{ partial "visuals/mail.html" . }}</div>
     </div>
@@ -173,7 +173,7 @@
 
 {{/* ---------- Next steps ---------- */}}
 {{ with .Params.next_steps }}
-<section class="section section--dark" style="background: var(--fg-deep);">
+<section class="section section--dark section--deep">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>

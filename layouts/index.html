@@ -148,8 +148,8 @@
       <div class="challenges-glass__bg" {{ with .bg }}style="background-image: linear-gradient(135deg, rgba(60,90,55,.55) 0%, rgba(140,180,110,.45) 100%), url('{{ . }}');"{{ end }}></div>
       <div class="challenges-glass__inner challenges-glass__inner--split">
         <div class="challenges-glass__intro">
-          <h2 style="color:#fff;">{{ .title }}</h2>
-          <p class="lead" style="color: rgba(255,255,255,.85);">{{ .lead }}</p>
+          <h2>{{ .title }}</h2>
+          <p class="lead">{{ .lead }}</p>
         </div>
         <div class="challenges-glass__stack">
           {{ range .items }}
@@ -186,7 +186,7 @@
 
 {{/* ---------- Next steps (3 cards: 1 large navy + 2 small gold/sage gradients) ---------- */}}
 {{ with .Params.next_steps }}
-<section class="section section--dark" style="background: var(--fg-deep);">
+<section class="section section--dark section--deep">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>

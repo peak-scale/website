@@ -25,16 +25,16 @@
       <h2>{{ .title | safeHTML }}</h2>
       {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
     </div>
-    <div style="max-width: 880px; margin: 0 auto; display:flex; flex-direction:column; gap: var(--space-6);">
+    <div class="col-narrow own-cards">
       {{ range .cards }}
       {{ $card := . }}
-      <div class="card">
-        <div class="lifecycle-rows__icon" style="background: var(--brand-soft); color: var(--brand); margin-bottom: var(--space-4);">{{ partial "icon.html" (dict "name" "boxes" "size" 18) }}</div>
-        <h3 style="font-size: 22px;">{{ $card.title }}</h3>
+      <div class="card own-card">
+        <div class="own-card__icon">{{ partial "icon.html" (dict "name" "boxes" "size" 18) }}</div>
+        <h3 class="own-card__title">{{ $card.title }}</h3>
         <p>{{ $card.body }}</p>
-        <div class="eyebrow" style="margin-top: 18px; margin-bottom: 8px;">{{ $card.eyebrow }}</div>
-        <ul class="reset" style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px 16px; font-size:14px; color:var(--fg-muted);">
-          {{ range $card.items }}<li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>{{ . }}</span></li>{{ end }}
+        <div class="eyebrow own-card__eyebrow">{{ $card.eyebrow }}</div>
+        <ul class="checklist checklist--grid-2">
+          {{ range $card.items }}<li>{{ . }}</li>{{ end }}
         </ul>
         {{ with $card.fit_items }}
         <div class="fit-block">
@@ -60,20 +60,20 @@
       <p class="lead">{{ .lead }}</p>
     </div>
     {{ $partnerImages := dict "Sidero Labs" "/images/partners/siderolabs.webp" "SUSE Rancher Prime" "/images/partners/suse.svg" "Google Cloud Platform" "/images/partners/google-cloud.svg" "Clastix" "/images/partners/clastix.svg" }}
-    <div class="grid grid--2" style="max-width: 980px; margin: 0 auto;">
+    <div class="grid grid--2 partner-cards">
       {{ range .cards }}
       {{ $card := . }}
-      <div class="card">
+      <div class="card partner-card">
         {{ with index $partnerImages $card.title }}
-        <img src="{{ . }}" alt="" style="height: 36px; width: auto; margin-bottom: var(--space-4);" loading="lazy">
+        <img class="partner-card__logo" src="{{ . }}" alt="" loading="lazy">
         {{ end }}
         <h3>{{ $card.title }}</h3>
-        {{ with $card.role }}<div class="eyebrow" style="margin-top: 4px; margin-bottom: 8px; color: var(--brand);">{{ . }}</div>{{ end }}
+        {{ with $card.role }}<div class="eyebrow partner-card__role">{{ . }}</div>{{ end }}
         <p>{{ $card.body }}</p>
         {{ with $card.themes }}
-        <div class="eyebrow" style="margin-top: 14px; margin-bottom: 8px; color: var(--fg-subtle);">{{ $card.themes_title }}</div>
-        <ul class="reset" style="display:flex; flex-direction:column; gap:6px; font-size:14px; color:var(--fg-muted);">
-          {{ range . }}<li style="display:flex; gap:8px;"><span style="color: var(--accent-sage);">✓</span><span>{{ . }}</span></li>{{ end }}
+        <div class="eyebrow partner-card__themes-title">{{ $card.themes_title }}</div>
+        <ul class="checklist">
+          {{ range . }}<li>{{ . }}</li>{{ end }}
         </ul>
         {{ end }}
       </div>
@@ -91,13 +91,13 @@
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="lifecycle-rows__media" style="aspect-ratio: 16/4; margin: 0 auto var(--space-8); max-width: 880px; background-image: linear-gradient(135deg, rgba(7,19,44,.6), rgba(5,128,196,.2)), url('/images/section/challenges.jpg');"></div>
-    <div class="grid grid--3" style="max-width: 880px; margin: 0 auto;">
+    <div class="journey-banner" style="background-image: linear-gradient(135deg, rgba(7,19,44,.6), rgba(5,128,196,.2)), url('/images/section/challenges.jpg');"></div>
+    <div class="grid grid--3 col-narrow">
       {{ range $i, $c := .cards }}
-      <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap: var(--space-3);">
-        <div style="width: 44px; height: 44px; border-radius: 9999px; background: rgba(255,255,255,.1); border: 1px solid var(--stroke-on-dark-2); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size: 18px; font-weight: 500;">{{ add $i 1 }}</div>
-        <h3 style="color:#fff; font-size:18px; font-weight:500; margin: 0;">{{ $c.title }}</h3>
-        <p style="color: rgba(255,255,255,.78); font-size:13px; line-height:1.55; margin:0;">{{ $c.desc }}</p>
+      <div class="numbered-step">
+        <div class="numbered-step__num">{{ add $i 1 }}</div>
+        <h3>{{ $c.title }}</h3>
+        <p>{{ $c.desc }}</p>
       </div>
       {{ end }}
     </div>
@@ -107,7 +107,7 @@
 
 {{/* ---------- Next steps ---------- */}}
 {{ with .Params.next_steps }}
-<section class="section section--dark" style="background: var(--fg-deep);">
+<section class="section section--dark section--deep">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>

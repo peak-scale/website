@@ -675,7 +675,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   line-height: 1.1; font-weight: 500; letter-spacing: -0.01em;
   margin: 0 0 var(--space-4);
 }
-.challenges-glass__intro .lead { margin: 0; }
+.challenges-glass__intro .lead { margin: 0; color: var(--text-on-dark-strong); }
 .challenges-glass__stack { display: flex; flex-direction: column; gap: var(--space-3); }
 .challenges-glass__stack .challenges-glass__item { padding: var(--space-5) var(--space-6); }
 .challenges-glass__item.is-featured {
@@ -912,7 +912,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 
 /* Werte — 5 rows with photo + copy */
-.values-list { display: flex; flex-direction: column; gap: var(--space-4); }
+.values-list { display: flex; flex-direction: column; gap: var(--space-4); max-width: 980px; margin-left: auto; margin-right: auto; }
 .values-list__row {
   display: grid;
   grid-template-columns: 200px 240px 1fr;
@@ -950,6 +950,82 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   border-color: rgba(255,255,255,.18);
   color: #fff;
 }
+
+/* ---------- Team page: mission, community, contact CTA ---------- */
+
+.heading-xl {
+  font-size: clamp(36px, 4.4vw, 56px); font-weight: 500;
+  letter-spacing: -0.02em; margin: 0 0 var(--space-4);
+}
+.lead--flush { margin: 0; }
+
+.mission-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 80px); align-items: center;
+}
+@media (max-width: 760px) { .mission-grid { grid-template-columns: 1fr; } }
+
+.section--gold { background: var(--accent-gold-soft); }
+.section__icon--gold {
+  background: rgba(184,169,120,.2);
+  color: var(--accent-gold-ink);
+}
+.pill-row--center { justify-content: center; }
+
+.contact-cta {
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: clamp(32px, 5vw, 64px);
+}
+@media (max-width: 760px) { .contact-cta { grid-template-columns: 1fr; } }
+.contact-cta__eyebrow { color: var(--accent-on-dark); }
+.contact-cta__title { margin-top: 12px; }
+.contact-cta__actions { margin-top: var(--space-6); }
+
+/* ---------- Service columns (Services page) ---------- */
+
+.service-stack { display: flex; flex-direction: column; gap: var(--space-6); }
+.service-stack--tight { gap: var(--space-4); }
+.service-card__items {
+  display: flex; flex-direction: column; gap: 6px;
+  font-size: 15px; color: var(--fg-muted);
+}
+.card__eyebrow { margin-top: 18px; margin-bottom: 8px; }
+.tag-arbeitsweise__list { margin-top: 6px; }
+.assessment-cards { margin-bottom: var(--space-8); }
+.output-block { display: flex; flex-direction: column; gap: var(--space-4); }
+.output-block__title { color: var(--accent-on-dark); }
+.output-block__list { display: grid; grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 760px) { .output-block__list { grid-template-columns: 1fr; } }
+
+/* ---------- Journey banner (Produkte) ---------- */
+
+.journey-banner {
+  aspect-ratio: 16/4;
+  margin: 0 auto var(--space-8);
+  max-width: 880px;
+  border-radius: var(--radius-lg);
+  background-size: cover; background-position: center;
+  border: 1px solid var(--stroke-on-dark-2);
+}
+
+/* ---------- Partner cards (Produkte) ---------- */
+
+.partner-cards { max-width: 980px; margin: 0 auto; }
+.partner-card__logo { height: 36px; width: auto; margin-bottom: var(--space-4); }
+.partner-card__role { margin-top: 4px; margin-bottom: 8px; color: var(--brand); }
+.partner-card__themes-title { margin-top: 14px; margin-bottom: 8px; color: var(--fg-subtle); }
+
+/* ---------- Own-solutions cards (Produkte) ---------- */
+
+.own-cards { display: flex; flex-direction: column; gap: var(--space-6); }
+.own-card__icon {
+  width: 40px; height: 40px; border-radius: 9999px;
+  background: var(--brand-soft); color: var(--brand);
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-bottom: var(--space-4);
+}
+.own-card__title { font-size: 22px; }
+.own-card__eyebrow { margin-top: 18px; margin-bottom: 8px; }
 
 /* ---------- Fit-for block (Produkte cards "Geeignet für") ---------- */
 
@@ -996,24 +1072,62 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   color: var(--fg); background: var(--bg);
 }
 
-/* ---------- Contact block (Team page) ---------- */
+/* ---------- Generic helpers for repeated layout patterns ---------- */
 
-.contact-block {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: var(--space-12);
-  align-items: center;
-  padding: clamp(32px, 5vw, 56px);
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-brand);
+.col-narrow      { max-width: 880px; margin-left: auto; margin-right: auto; }
+.col-narrow--md  { max-width: 720px; margin-left: auto; margin-right: auto; }
+.training-cards  { margin-bottom: var(--space-12); }
+
+.section--deep   { background: var(--fg-deep); }
+
+.section__footnote {
+  text-align: center; max-width: 720px;
+  margin: var(--space-6) auto 0;
+  color: var(--fg-muted); font-size: 14px;
 }
-@media (max-width: 760px) { .contact-block { grid-template-columns: 1fr; } }
-.contact-block__email {
-  font-family: var(--font-mono); font-size: 18px; color: var(--brand);
-  display: inline-block; margin-top: var(--space-4);
+
+/* Checkmark bullet list — variants for grid layout and dark sections.
+   Templates write `<ul class="checklist">` and just list <li>s; the
+   green checkmark comes from ::before. */
+.checklist {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 6px;
+  font-size: 14px; color: var(--fg-muted);
 }
+.checklist li { display: flex; align-items: flex-start; gap: 8px; }
+.checklist li::before {
+  content: "✓"; color: var(--accent-sage);
+  flex-shrink: 0; font-weight: 600;
+}
+.checklist--grid-2 {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px;
+}
+.checklist--md  { font-size: 15px; }
+.checklist--on-dark { color: #fff; font-size: 15px; line-height: 1.5; }
+.checklist--on-dark li::before { font-size: 18px; line-height: 1; }
+
+/* Numbered step (centered, dark section) — used in produkte journey. */
+.numbered-step {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: var(--space-3);
+}
+.numbered-step__num {
+  width: 44px; height: 44px; border-radius: 9999px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid var(--stroke-on-dark-2);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 18px; font-weight: 500;
+}
+.numbered-step h3 { color: #fff; font-size: 18px; font-weight: 500; margin: 0; }
+.numbered-step p { color: var(--text-on-dark); font-size: 13px; line-height: 1.55; margin: 0; }
+
+/* Dark "lifecycle-cards" with a stacked icon → title → desc layout.
+   Used by team how-we-work; the assessments services section already
+   uses lifecycle-cards__title/__desc directly without `is-stack`. */
+.lifecycle-cards__card.is-stack {
+  display: flex; flex-direction: column; gap: var(--space-3);
+}
+.lifecycle-cards__card.is-stack .lifecycle-cards__title { margin: 4px 0 0; }
 
 /* ---------- Footer ---------- */
 
