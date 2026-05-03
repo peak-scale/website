@@ -1,59 +1,61 @@
 /* =====================================================================
    Peak Scale — Colors & Type   (rev: hi-fi-2)
    Source of truth: the Hi-fi Figma "Peak Scale (DEV).fig". Built on top
-   of an icy blue-white surface with one bright Swiss blue, one very-dark
-   navy, and a cool grey body. The lo-fi (shadcn / Work Sans / near-black)
+   of an icy blue-white surface with one bright blue, one very-dark
+   blue, and a cool grey body. The lo-fi (shadcn / Work Sans / near-black)
    is kept under `legacy-*` for archival reference only.
+
+   ----------------------------------------------------------------------
+   BRAND IDENTITY
+   The Peak Scale brand is exactly three colors, defined by the logo
+   (`static/images/peakscale-logo*.svg`):
+
+     Dark blue    #091836   rgb(9, 24, 54)     → --dark-blue
+     Bright blue  #0580c4   rgb(5, 128, 196)   → --bright-blue
+     White        #ffffff                      → --bg-white
+
+   Everything else below (icy --bg, --fg-muted body grey, sage / gold
+   accents, on-dark text + stroke, etc.) is SUPPORTIVE PALETTE — it keeps
+   the page readable and gives cards their lift, but it is not part of
+   the brand identity. Treat it as dosage, not as a fourth or fifth
+   brand color.
    ===================================================================== */
 
 /* ---------- Palette (raw RGB / HSL, named after Figma usage) ---------- */
 :root {
   /* Page surfaces */
   --bg:               rgb(240, 248, 252);   /* icy blue-white — page bg */
-  --bg-white:         rgb(255, 255, 255);   /* card surface */
-  --bg-soft:          rgb(253, 254, 255);   /* near-white card */
-  --bg-tint:          rgb(240, 248, 252);   /* alt section */
+  --bg-white:         rgb(255, 255, 255);   /* [BRAND] white — card surface */
 
-  /* Inks */
-  --fg:               rgb(9, 24, 54);       /* very dark navy — display */
-  --fg-deep:          rgb(7, 19, 44);       /* footer / inverse surface */
-  --fg-mid:           rgb(21, 36, 64);      /* secondary dark */
+  /* Brand blues */
+  --dark-blue:        rgb(9, 24, 54);       /* [BRAND] dark blue — display, dark surfaces, hover ink */
+  --bright-blue:      rgb(5, 128, 196);     /* [BRAND] bright blue — eyebrows, dots, links, primary buttons */
+
+  /* Supporting greys (body / meta) */
   --fg-muted:         rgb(81, 87, 99);      /* body copy (cool gray) */
   --fg-subtle:        rgb(165, 171, 183);   /* meta */
-
-  /* Brand blue (Swiss bright) */
-  --brand:            rgb(5, 128, 196);     /* primary accent — eyebrows, dots, links */
-  --brand-soft:       rgba(5, 128, 196, .08);  /* tints, soft fills */
-  --brand-mid:        rgb(27, 138, 200);    /* hover stroke */
-  --brand-deep:       rgb(26, 69, 156);     /* strong text on light */
 
   /* Hairlines & strokes */
   --border:           rgb(208, 214, 227);
   --border-faint:     rgba(208, 214, 227, .5);
 
-  /* Translucent strokes used on dark imagery */
-  --stroke-on-dark-1: rgba(255, 255, 255, .12);
-  --stroke-on-dark-2: rgba(255, 255, 255, .16);
-  --stroke-on-dark-3: rgba(255, 255, 255, .34);
+  /* Translucent stroke used on dark imagery */
+  --stroke-on-dark: rgba(255, 255, 255, .16);
 
-  /* Text on dark backgrounds — body / strong / muted tiers and the
-     accent-blue (rgb 122,192,232) used for eyebrows and meta on dark. */
+  /* Text on dark backgrounds — body white at low alpha, plus a softer
+     accent-blue (rgb 122,192,232) for eyebrows / meta on dark. */
   --text-on-dark:        rgba(255, 255, 255, .78);
-  --text-on-dark-strong: rgba(255, 255, 255, .85);
-  --text-on-dark-soft:   rgba(255, 255, 255, .72);
   --accent-on-dark:      rgb(122, 192, 232);
 
-  /* Restrained warm / sage accents — found in Figma at low usage,
-     reserved for status / tag / illustration details. NOT marketing flash. */
-  --accent-sage:      rgb(144, 202, 125);   /* muted green */
-  --accent-sage-soft: rgb(233, 247, 224);
-  --accent-gold:      rgb(184, 169, 120);   /* warm gold */
-  --accent-gold-soft: rgb(248, 243, 188);
-  --accent-gold-ink:  rgb(167, 154, 110);
-
-  /* Status (used very rarely) */
-  --status-ok:        rgb(5, 196, 56);
-  --status-err:       rgb(196, 5, 5);
+  /* Two photo-anchored accent colors — sampled from the rope hero in
+     `static/images/section/platform-engineering.jpg` (yellow + green ropes
+     under sunset) and the warm sky in `cloud-architecture.jpg`. Reserved
+     for checkmarks, tags, status, illustration details. NOT marketing
+     flash; keep dosage light next to the brand blues. */
+  --accent-yellow:      rgb(232, 184, 60);    /* warm honey / amber */
+  --accent-yellow-soft: rgb(252, 238, 180);   /* pale honey wash on light surfaces */
+  --accent-green:       rgb(125, 175, 75);    /* fresh grass green */
+  --accent-green-soft:  rgb(228, 240, 210);   /* pale grass wash on light surfaces */
 
   /* Soft brand-tinted shadow stack — the signature Figma elevation.
      Layered RGBA blue, fading from sharp to wide. */
@@ -171,7 +173,7 @@ html, body {
   font-family: var(--font-sans);
   font-size: var(--text-body);
   line-height: var(--leading-normal);
-  color: var(--fg);
+  color: var(--dark-blue);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -183,7 +185,7 @@ h1, .h1 {
   font-weight: var(--w-medium);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-tight);
-  color: var(--fg);
+  color: var(--dark-blue);
   margin: 0 0 var(--space-6);
   text-wrap: balance;
 }
@@ -242,14 +244,14 @@ p, .body {
   font-weight: var(--w-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-eyebrow);
-  color: var(--brand);
+  color: var(--bright-blue);
   display: inline-block;
 }
 
 .mono, code, kbd, samp, pre { font-family: var(--font-mono); font-size: .9em; }
 
 a { color: inherit; text-decoration: none; transition: color .18s ease, opacity .18s ease; }
-a:hover { color: var(--brand); }
+a:hover { color: var(--bright-blue); }
 
 hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-12) 0; }
 
@@ -273,14 +275,14 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-12) 0; 
 }
 .btn:active { transform: scale(.98); }
 
-.btn--primary { background: var(--brand); color: var(--bg-white); }
-.btn--primary:hover { background: var(--brand-deep); }
+.btn--primary { background: var(--bright-blue); color: var(--bg-white); }
+.btn--primary:hover { background: var(--dark-blue); }
 
-.btn--inverse { background: var(--bg-white); color: var(--brand); border-color: var(--bg-white); }
-.btn--inverse:hover { background: var(--bg-tint); }
+.btn--inverse { background: var(--bg-white); color: var(--bright-blue); border-color: var(--bg-white); }
+.btn--inverse:hover { background: var(--bg); }
 
-.btn--ghost { background: transparent; color: var(--fg); border-color: var(--border); }
-.btn--ghost:hover { border-color: var(--brand-mid); color: var(--brand); }
+.btn--ghost { background: transparent; color: var(--dark-blue); border-color: var(--border); }
+.btn--ghost:hover { border-color: var(--bright-blue); color: var(--bright-blue); }
 
 .pill {
   display: inline-flex;
@@ -291,14 +293,14 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-12) 0; 
   font-size: var(--text-sm);
   font-weight: var(--w-medium);
   background: transparent;
-  color: var(--fg);
+  color: var(--dark-blue);
   border: 1px solid transparent;
 }
-.pill--active { background: var(--bg-white); color: var(--brand); border-color: var(--border); }
+.pill--active { background: var(--bg-white); color: var(--bright-blue); border-color: var(--border); }
 
 /* The signature Figma card — soft tinted shadow, 16px radius. */
 .card {
-  background: var(--bg-soft);
+  background: var(--bg-white);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
@@ -307,7 +309,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-12) 0; 
 }
 .card:hover {
   transform: translateY(-2px);
-  border-color: var(--brand-mid);
+  border-color: var(--bright-blue);
 }
 
 /* The blue rotated square that separates nav items in the Figma. */
@@ -315,7 +317,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-12) 0; 
   display: inline-block;
   width: 6px;
   height: 6px;
-  background: var(--brand);
+  background: var(--bright-blue);
   transform: rotate(45deg);
   border-radius: 2px;
   vertical-align: middle;

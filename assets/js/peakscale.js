@@ -69,54 +69,93 @@
     slides.forEach(function (s, idx) { if (idx !== 0) s.style.display = 'none'; });
   });
 
-  // ---------- Logo carousel (transform-based slider, prev/next + auto-advance) ----------
+  // ---------- Logo carousel (shuffled, infinite, transform-based) ----------
   document.querySelectorAll('[data-logo-carousel]').forEach(function (carousel) {
     const track = carousel.querySelector('[data-logo-track]');
-    const viewport = carousel.querySelector('.logo-carousel__viewport');
     const prev = carousel.querySelector('[data-logo-prev]');
     const next = carousel.querySelector('[data-logo-next]');
-    if (!track || !viewport) return;
+    if (!track) return;
+
+    // 1. Shuffle the source tiles in place (Fisher-Yates) so each visit
+    //    sees customers in a different order.
+    const originals = Array.from(track.children);
+    for (let i = originals.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [originals[i], originals[j]] = [originals[j], originals[i]];
+    }
+    originals.forEach(function (t) { track.appendChild(t); });   // re-order
+
+    // 2. Append a single clone of the (shuffled) set so the track is
+    //    twice the width of one copy — this is what makes the wrap-around
+    //    invisible: when we slide past the end of the originals, the
+    //    second copy is already in view, and we instantly snap the
+    //    transform back by one set-width without the user noticing.
+    Array.from(track.children).forEach(function (tile) {
+      const clone = tile.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.tabIndex = -1;
+      track.appendChild(clone);
+    });
 
     let offset = 0;
 
     function tileStep() {
       const tile = track.querySelector('.logo-tile');
-      if (!tile) return 216;
+      if (!tile) return 220;
       const gap = parseFloat(getComputedStyle(track).gap) || 0;
       return tile.getBoundingClientRect().width + gap;
     }
-    function maxOffset() {
-      return Math.max(0, track.scrollWidth - viewport.clientWidth);
+    function setWidth() { return track.scrollWidth / 2; }
+    function apply() { track.style.transform = 'translateX(-' + offset + 'px)'; }
+
+    // Set transform with no transition (used for the invisible wrap-snap).
+    function snap(target) {
+      track.style.transition = 'none';
+      offset = target;
+      apply();
+      void track.offsetWidth;            // flush
+      track.style.transition = '';
     }
-    function apply() {
-      track.style.transform = 'translateX(-' + offset + 'px)';
+    // Halt any in-flight transition by snapping to the currently-rendered
+    // position. Otherwise on hover/click the track keeps sliding for up
+    // to .5s and tiles slip out from under the cursor.
+    function freezeAtRendered() {
+      const m = new DOMMatrixReadOnly(getComputedStyle(track).transform);
+      snap(-m.m41);
     }
     function nudge(dir) {
       const step = tileStep();
-      const max = maxOffset();
+      // Going backwards from the start: invisibly jump forward by one
+      // set-width to the mirror position on the second copy, then animate
+      // backward from there. Looks like a normal leftward slide.
+      if (dir < 0 && offset - step < 0) snap(offset + setWidth());
       offset += dir * step;
-      // Wrap at edges
-      if (offset > max) offset = 0;
-      else if (offset < 0) offset = max;
       apply();
     }
 
-    if (prev) prev.addEventListener('click', function () { nudge(-1); });
-    if (next) next.addEventListener('click', function () { nudge(1); });
+    // After every animated step, if we've slid past the first copy,
+    // snap back by one set-width. The two copies are identical at the
+    // boundary, so the snap is invisible.
+    track.addEventListener('transitionend', function () {
+      if (offset >= setWidth()) snap(offset - setWidth());
+    });
+
+    if (prev) prev.addEventListener('click', function () { freezeAtRendered(); nudge(-1); });
+    if (next) next.addEventListener('click', function () { freezeAtRendered(); nudge(1); });
 
     // Auto-advance, paused on hover / focus / reduced motion.
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let timer = null;
     function start() { if (!timer && !reduced) timer = setInterval(function () { nudge(1); }, 3500); }
-    function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+    function stop()  { if (timer) { clearInterval(timer); timer = null; } freezeAtRendered(); }
     carousel.addEventListener('mouseenter', stop);
     carousel.addEventListener('mouseleave', start);
     carousel.addEventListener('focusin', stop);
     carousel.addEventListener('focusout', start);
-    // Re-clamp on resize
+    // Re-clamp on resize so we never end up beyond the new set-width.
     window.addEventListener('resize', function () {
-      const max = maxOffset();
-      if (offset > max) { offset = max; apply(); }
+      const w = setWidth();
+      if (w > 0 && offset >= w) { offset -= w; apply(); }
     });
     start();
   });
