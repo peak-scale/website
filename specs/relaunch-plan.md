@@ -762,13 +762,16 @@ still in front of go-live, grouped by theme.
    the card. Image extension for the produkte/team SVG visuals
    (`compass`, `blocks`, `network`, `mountain`, `topo`,
    `*-large` variants) are now unused; only `visuals/mail.html`
-   remains in service. **Open within this item, ordered:**
-   (a) prune the dead `visuals/*.html` partials (low-risk cleanup —
-   doable any time);
-   (b) final review of the `topo-abstract` choice for the Why feature
+   remains in service. The other `visuals/*.html` partials are
+   **kept on purpose** — they are hand-coded brand-token SVGs
+   (~300 lines total, no external deps), candidates for the OG
+   generator (item 3), the print stylesheet (§14), and any
+   second-opinion fallback for a raster that doesn't survive review.
+   Do not prune. **Open within this item:**
+   (a) final review of the `topo-abstract` choice for the Why feature
    tile;
-   (c) **deferred to end of Sprint 6** (decision §17 #12): replace the
-   Figma stock mountain photography with selected stock (or an
+   (b) **deferred to end of Sprint 6** (decision §17 #12): replace
+   the Figma stock mountain photography with selected stock (or an
    in-house shoot per §10) and license only the final set. Picking
    imagery that fits the brand is the bottleneck — we do that pass
    last, after OG / perf / EN / privacy are settled, so we don't
