@@ -661,7 +661,7 @@ Sprints 5–7 may overlap once 3 pages are stable in staging.
 | Risk | Likelihood | Impact | Mitigation |
 | --- | --- | --- | --- |
 | Hero visuals (compass, blocks, nodes) are stock and not stylistically consistent | medium | medium | Commission custom SVG early or draw in-house; placeholders in MVP |
-| Image licenses unclear – stock images in the HiFi are placeholders | high | medium | Verify or replace licenses before go-live; budget for Adobe Stock |
+| Image licenses unclear – stock images in the HiFi are placeholders | high | medium | **Deferred to end of Sprint 6** (decision 3 May): the Figma exports stay in production until we've identified replacement stock that actually fits the brand. Picking new images is the bottleneck, not the licensing step itself; revisit once everything else in Sprint 6 is closed |
 | Privacy notice in HiFi is generic, not legally reviewed | high | high | Have a specialist review before go-live |
 | EN translation costs time and tone of voice gets lost | medium | medium | DE-only soft launch is an option; EN as a follow-up iteration |
 | Team cards do not scale from 6 to 20 | low | low | Layout test with 20 dummy members in Sprint 4 |
@@ -710,6 +710,16 @@ Sprints 5–7 may overlap once 3 pages are stable in staging.
     menu, carousel), and removing the Node toolchain made the build
     purely Hugo-driven. Performance budgets in §12 were tightened
     accordingly.
+12. **Image licensing deferred to end of Sprint 6** (3 May):
+    the Figma exports we currently ship are stock placeholders per
+    ooliv's note. We are not licensing them as-is; instead we will
+    select replacement stock (or commission an in-house alpine shoot,
+    per Mathias) once the rest of Sprint 6 is closed, then license
+    only the chosen final set. Reason: picking images that actually
+    fit the brand is the bottleneck, not the license step itself, and
+    licensing the placeholders would burn budget on imagery we may
+    swap out anyway. Risk row in §16 updated; punch-list item 2 in
+    §18 keeps the open follow-up.
 
 ### Remaining open points
 
@@ -752,10 +762,17 @@ still in front of go-live, grouped by theme.
    the card. Image extension for the produkte/team SVG visuals
    (`compass`, `blocks`, `network`, `mountain`, `topo`,
    `*-large` variants) are now unused; only `visuals/mail.html`
-   remains in service. **Open within this item:** licensing /
-   replacing the stock mountain photography before go-live (Adobe
-   Stock or in-house shoot per §10), final review of `topo-abstract`
-   choice, and pruning the dead `visuals/*.html` partials.
+   remains in service. **Open within this item, ordered:**
+   (a) prune the dead `visuals/*.html` partials (low-risk cleanup —
+   doable any time);
+   (b) final review of the `topo-abstract` choice for the Why feature
+   tile;
+   (c) **deferred to end of Sprint 6** (decision §17 #12): replace the
+   Figma stock mountain photography with selected stock (or an
+   in-house shoot per §10) and license only the final set. Picking
+   imagery that fits the brand is the bottleneck — we do that pass
+   last, after OG / perf / EN / privacy are settled, so we don't
+   license placeholders we end up swapping out.
 3. Generate per-page OG images (Hugo image pipeline) and drop them in
    `static/og/`; wire them through frontmatter `image:`.
 4. Native EN review of all copy (Mathias).
