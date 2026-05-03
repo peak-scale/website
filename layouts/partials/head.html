@@ -37,9 +37,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  {{- $tokens := resources.Get "css/tokens.css" -}}
+  {{- $base := resources.Get "css/base.css" -}}
   {{- $site := resources.Get "css/site.css" -}}
-  {{- $css := slice $tokens $site | resources.Concat "css/peakscale.css" | minify | fingerprint -}}
+  {{- $css := slice $base $site | resources.Concat "css/peakscale.css" | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
   {{ with .Site.Params.plausible }}

@@ -1,5 +1,4 @@
-/* Peak Scale — site styles. Built on top of tokens from tokens.css.
-   tokens.css is concatenated by Hugo Pipes (see head.html). */
+/* Peak Scale — site styles. base.css is concatenated ahead of this file. */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
