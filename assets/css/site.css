@@ -229,9 +229,24 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 /* ---------- Hero (centered) ---------- */
 
 .hero {
+  position: relative;
   padding: clamp(56px, 8vw, 120px) 0 clamp(40px, 6vw, 80px);
   text-align: center;
+  overflow: hidden;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 44%;
+  left: 58%;
+  width: 1750px;
+  aspect-ratio: 177 / 91;
+  transform: translate(-50%, -50%);
+  background: url('/images/peakscale-watermark.svg') center / contain no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero__inner, .hero > .container { position: relative; z-index: 1; }
 .hero__inner {
   max-width: 880px;
   margin: 0 auto;
@@ -718,7 +733,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .challenges-glass__intro .lead { margin: 0; color: var(--text-on-dark); }
 .challenges-glass__stack { display: flex; flex-direction: column; gap: var(--space-3); }
-.challenges-glass__stack .challenges-glass__item { padding: var(--space-5) var(--space-6); }
+.challenges-glass__stack .challenges-glass__item { padding: 20px var(--space-6); }
 .challenges-glass__item.is-featured {
   background: rgba(255,255,255,.94);
   border-color: rgba(255,255,255,.94);
@@ -1048,8 +1063,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 /* ---------- Fit-for block (Produkte cards "Geeignet für") ---------- */
 
 .fit-block {
-  margin-top: var(--space-5);
-  padding: var(--space-4) var(--space-5);
+  margin-top: 20px;
+  padding: var(--space-4) 20px;
   background: rgba(154, 199, 132, .14);
   border: 1px solid rgba(154, 199, 132, .35);
   border-radius: var(--radius-md);
