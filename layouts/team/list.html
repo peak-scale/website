@@ -17,40 +17,38 @@
 </section>
 {{ end }}
 
-{{/* ---------- Team layout: dark "Unser Team" + member rows ---------- */}}
+{{/* ---------- Team grid: featured "Unser Team" card + member cards (why-grid 2-col) ---------- */}}
 <section class="section section--alt">
   <div class="container">
-    <div class="team-layout">
+    <div class="why-grid why-grid--2">
       {{ with .Params.team_block }}
-      <aside class="team-block">
-        <span class="team-block__icon">{{ partial "icon.html" (dict "name" "users" "size" 22) }}</span>
-        <h2 class="team-block__title">{{ .eyebrow }}</h2>
-        <p class="team-block__lead">{{ .lead }}</p>
-        <a class="team-block__cta" href="{{ $.Site.Params.linkedin }}" rel="noopener">
+      <aside class="card card--feature team-feature">
+        <span class="team-feature__icon">{{ partial "icon.html" (dict "name" "users" "size" 22) }}</span>
+        <h2 class="team-feature__title">{{ .eyebrow }}</h2>
+        <p class="team-feature__lead">{{ .lead }}</p>
+        <a class="team-feature__cta" href="{{ $.Site.Params.linkedin }}" rel="noopener">
           {{ partial "icon.html" (dict "name" "linkedin" "size" 14) }}
           {{ .cta }}
         </a>
       </aside>
       {{ end }}
 
-      <div class="team-list">
-        {{ range hugo.Data.team }}
-        <article class="team-row">
-          <img class="team-row__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="64" height="64">
-          <div class="team-row__body">
-            <h3 class="team-row__name">{{ .name }}</h3>
-            <p class="team-row__role">{{ if eq $lang "de" }}{{ .role_de }}{{ else }}{{ .role_en }}{{ end }}</p>
-            <div class="team-row__focus">
-              <span>{{ i18n "focus_areas_label" }}</span>
-              {{ range (cond (eq $lang "de") .focus_de .focus_en) }}<span>{{ . }}</span>{{ end }}
-            </div>
+      {{ range hugo.Data.team }}
+      <article class="card team-member">
+        <img class="team-member__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="64" height="64">
+        <div class="team-member__body">
+          <h3 class="team-member__name">{{ .name }}</h3>
+          <p class="team-member__role">{{ if eq $lang "de" }}{{ .role_de }}{{ else }}{{ .role_en }}{{ end }}</p>
+          <div class="team-member__focus">
+            <span>{{ i18n "focus_areas_label" }}</span>
+            {{ range (cond (eq $lang "de") .focus_de .focus_en) }}<span>{{ . }}</span>{{ end }}
           </div>
-          <a class="team-row__linkedin" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
-            {{ partial "icon.html" (dict "name" "linkedin" "size" 16) }}
-          </a>
-        </article>
-        {{ end }}
-      </div>
+        </div>
+        <a class="team-member__linkedin" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
+          {{ partial "icon.html" (dict "name" "linkedin" "size" 16) }}
+        </a>
+      </article>
+      {{ end }}
     </div>
   </div>
 </section>

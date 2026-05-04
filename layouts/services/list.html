@@ -74,9 +74,9 @@
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
+    {{ with .subhead }}<div class="cat-subhead">{{ . }}</div>{{ end }}
     <div class="grid grid--2">
       <div class="service-stack service-stack--tight">
-        {{ with .subhead }}<div class="cat-subhead">{{ . }}</div>{{ end }}
         {{ range .categories }}
         <div class="card cat-card">
           <div class="eyebrow">{{ .title }}</div>
