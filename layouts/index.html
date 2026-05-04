@@ -10,7 +10,7 @@
       <p class="hero__lead">{{ .lead }}</p>
       <div class="hero__kicker">{{ .sub }}</div>
       <div class="hero__ctas">
-        <a class="btn btn--primary" href="{{ .cta_primary_href }}">{{ .cta_primary }} <span aria-hidden="true">→</span></a>
+        <a class="btn btn--primary" href="{{ .cta_primary_href }}">{{ .cta_primary }} {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}</a>
       </div>
     </div>
   </div>
@@ -204,7 +204,7 @@
         {{ end }}
         <span class="next-steps__cta">
           {{ if eq $lang "de" }}{{ $c.eyebrow }} ansehen{{ else }}View {{ lower $c.eyebrow }}{{ end }}
-          {{ partial "icon.html" (dict "name" "arrow-right" "size" 14) }}
+          {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}
         </span>
       </a>
       {{ end }}
