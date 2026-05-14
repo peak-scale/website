@@ -97,8 +97,10 @@ next_steps:
       title: "Our own solutions and enterprise support for core platform building blocks"
       desc: ""
       href: "/produkte/"
+      variant: "gold"
     - eyebrow: "Team"
       title: "The engineering team behind Peak Scale – way of working, values and focus"
       desc: ""
       href: "/team/"
+      variant: "sage"
 ---

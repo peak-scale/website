@@ -97,8 +97,10 @@ next_steps:
       title: "Eigene Lösungen und Enterprise Support für zentrale Plattformbausteine"
       desc: ""
       href: "/produkte/"
+      variant: "gold"
     - eyebrow: "Team"
       title: "Das Engineering-Team hinter Peak Scale – Arbeitsweise, Werte und Fokus"
       desc: ""
       href: "/team/"
+      variant: "sage"
 ---

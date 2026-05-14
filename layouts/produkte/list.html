@@ -106,27 +106,6 @@
 {{ end }}
 
 {{/* ---------- Next steps ---------- */}}
-{{ with .Params.next_steps }}
-<section class="section section--dark section--deep">
-  <div class="container">
-    <div class="section__head">
-      <h2>{{ .title | safeHTML }}</h2>
-    </div>
-    <div class="next-steps">
-      {{ range .cards }}
-      <a class="next-steps__card" href="{{ .href }}">
-        <span class="next-steps__eyebrow">{{ .eyebrow }}</span>
-        <h3 class="next-steps__title">{{ .title }}</h3>
-        <p class="next-steps__desc">{{ .desc }}</p>
-        <span class="next-steps__cta">
-          {{ if eq $lang "de" }}{{ .eyebrow }} ansehen{{ else }}View {{ lower .eyebrow }}{{ end }}
-          {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}
-        </span>
-      </a>
-      {{ end }}
-    </div>
-  </div>
-</section>
-{{ end }}
+{{ with .Params.next_steps }}{{ partial "next-steps.html" . }}{{ end }}
 
 {{ end }}

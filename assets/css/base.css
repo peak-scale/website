@@ -61,18 +61,15 @@
     --font-ui: 'Inter', system-ui, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-    --text-display: 128px;
-    --text-hero: 86px;
-    --text-h1: 64px;
-    --text-h2: 48px;
-    --text-h3: 32px;
-    --text-h4: 24px;
-    --text-lead: 24px;
-    --text-body: 18px;
-    --text-sm: 16px;
-    --text-xs: 14px;
-    --text-eyebrow: 14px;
-    --text-eyebrow-sm: 12px;
+    /* 7-step type scale. Display sizes scale fluidly; the rest are fixed.
+       Pull-quote / lifecycle stage / prose h2 collapse into title-lg. */
+    --text-display:    clamp(40px, 5.6vw, 72px);  /* hero only */
+    --text-display-sm: clamp(28px, 3.4vw, 48px);  /* section headings */
+    --text-title-lg:   22px;                       /* feature cards, pull quote */
+    --text-title:      18px;                       /* all card h3 */
+    --text-body:       16px;                       /* body, hero lead, lead */
+    --text-sm:         14px;                       /* descriptions, captions */
+    --text-eyebrow:    12px;                       /* uppercase labels, nav, micro */
 
     --w-extralight: 200;
     --w-light: 300;
@@ -130,7 +127,7 @@ html, body {
 
 h1, .h1 {
     font-family: var(--font-sans);
-    font-size: clamp(40px, 6vw, var(--text-hero));
+    font-size: var(--text-display);
     font-weight: var(--w-medium);
     line-height: var(--leading-display);
     letter-spacing: var(--tracking-tight);
@@ -139,8 +136,8 @@ h1, .h1 {
     text-wrap: balance;
 }
 
-h2, .h2 {
-    font-size: clamp(36px, 5vw, var(--text-h2));
+h2, .h2, .display-xl {
+    font-size: var(--text-display-sm);
     font-weight: var(--w-medium);
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);
@@ -148,31 +145,22 @@ h2, .h2 {
     text-wrap: balance;
 }
 
-.display-xl {
-    font-size: clamp(44px, 6vw, 88px);
-    font-weight: var(--w-light);
-    line-height: var(--leading-display);
-    letter-spacing: var(--tracking-tight);
-    text-align: center;
-    margin: 0;
-}
-
 h3, .h3 {
-    font-size: var(--text-h3);
+    font-size: var(--text-title);
     font-weight: var(--w-medium);
     line-height: var(--leading-tight);
     margin: 0 0 var(--space-4);
 }
 
 h4, .h4 {
-    font-size: var(--text-h4);
+    font-size: var(--text-title-lg);
     font-weight: var(--w-medium);
     line-height: var(--leading-tight);
     margin: 0 0 var(--space-3);
 }
 
 .lead {
-    font-size: var(--text-lead);
+    font-size: var(--text-body);
     font-weight: var(--w-regular);
     line-height: var(--leading-normal);
     color: var(--fg-muted);

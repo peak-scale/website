@@ -17,7 +17,7 @@ team_block:
   eyebrow: "Unser Team"
   title: "Unser Team"
   lead: "Wir sind Engineers, Architekten und Plattform-Spezialisten mit unterschiedlichen Schwerpunkten – verbunden durch eine gemeinsame Haltung. Plattformen müssen nachvollziehbar, automatisiert und im Alltag tragfähig sein."
-  cta: "Lass uns auf LinkedIn vernetzen"
+  cta: "Folge uns auf LinkedIn"
 members:
   eyebrow: "Mitglieder"
   title: "Wer dahintersteht"
@@ -99,4 +99,5 @@ next_steps:
       title: "Eigene Lösungen und Enterprise Support für zentrale Plattformbausteine"
       desc: ""
       href: "/produkte/"
+      variant: "gold"
 ---

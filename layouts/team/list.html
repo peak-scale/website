@@ -34,11 +34,21 @@
       {{ end }}
 
       {{ range hugo.Data.team }}
+      {{ $parts := split .name " " }}
+      {{ $initials := printf "%s%s" (substr (index $parts 0) 0 1) (substr (index $parts (sub (len $parts) 1)) 0 1) }}
+      {{ if .linkedin }}
       <a class="card team-member" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
         <span class="team-member__linkedin" aria-hidden="true">
           {{ partial "icon.html" (dict "name" "linkedin" "size" 24) }}
         </span>
+      {{ else }}
+      <div class="card team-member team-member--no-link">
+      {{ end }}
+        {{ if .image }}
         <img class="team-member__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="96" height="96">
+        {{ else }}
+        <span class="team-member__avatar team-member__avatar--placeholder" aria-hidden="true">{{ $initials }}</span>
+        {{ end }}
         <div class="team-member__body">
           <h3 class="team-member__name">{{ .name }}</h3>
           <p class="team-member__role">{{ if eq $lang "de" }}{{ .role_de }}{{ else }}{{ .role_en }}{{ end }}</p>
@@ -48,9 +58,9 @@
             {{ partial "icon.html" (dict "name" "zap" "size" 16) }}
             {{ i18n "focus_areas_label" }}
           </span>
-          {{ range (cond (eq $lang "de") .focus_de .focus_en) }}<span>{{ . }}</span>{{ end }}
+          <p class="team-member__focus-text">{{ if eq $lang "de" }}{{ .focus_de }}{{ else }}{{ .focus_en }}{{ end }}</p>
         </div>
-      </a>
+      {{ if .linkedin }}</a>{{ else }}</div>{{ end }}
       {{ end }}
     </div>
   </div>
@@ -174,27 +184,6 @@
 {{ end }}
 
 {{/* ---------- Next steps ---------- */}}
-{{ with .Params.next_steps }}
-<section class="section section--dark section--deep">
-  <div class="container">
-    <div class="section__head">
-      <h2>{{ .title | safeHTML }}</h2>
-    </div>
-    <div class="next-steps">
-      {{ range .cards }}
-      <a class="next-steps__card" href="{{ .href }}">
-        <span class="next-steps__eyebrow">{{ .eyebrow }}</span>
-        <h3 class="next-steps__title">{{ .title }}</h3>
-        <p class="next-steps__desc">{{ .desc }}</p>
-        <span class="next-steps__cta">
-          {{ if eq $lang "de" }}{{ .eyebrow }} ansehen{{ else }}View {{ lower .eyebrow }}{{ end }}
-          {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}
-        </span>
-      </a>
-      {{ end }}
-    </div>
-  </div>
-</section>
-{{ end }}
+{{ with .Params.next_steps }}{{ partial "next-steps.html" . }}{{ end }}
 
 {{ end }}

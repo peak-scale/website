@@ -109,4 +109,5 @@ next_steps:
       title: "The engineering team behind Peak Scale – way of working, values and focus"
       desc: ""
       href: "/team/"
+      variant: "sage"
 ---

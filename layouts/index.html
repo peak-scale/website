@@ -65,7 +65,7 @@
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="logo-carousel" data-logo-carousel aria-label="Kunden">
-      <button class="logo-carousel__nav logo-carousel__nav--prev" type="button" data-logo-prev aria-label="{{ if eq $lang "de" }}Zurück{{ else }}Previous{{ end }}">‹</button>
+      <button class="logo-carousel__nav logo-carousel__nav--prev" type="button" data-logo-prev aria-label="{{ if eq $lang "de" }}Zurück{{ else }}Previous{{ end }}">{{ partial "icon.html" (dict "name" "chevron-left" "size" 20) }}</button>
       <div class="logo-carousel__viewport">
         <div class="logo-carousel__track" data-logo-track>
           {{ range hugo.Data.customers }}
@@ -75,7 +75,7 @@
           {{ end }}
         </div>
       </div>
-      <button class="logo-carousel__nav logo-carousel__nav--next" type="button" data-logo-next aria-label="{{ if eq $lang "de" }}Weiter{{ else }}Next{{ end }}">›</button>
+      <button class="logo-carousel__nav logo-carousel__nav--next" type="button" data-logo-next aria-label="{{ if eq $lang "de" }}Weiter{{ else }}Next{{ end }}">{{ partial "icon.html" (dict "name" "chevron-right" "size" 20) }}</button>
     </div>
   </div>
 </section>
@@ -90,8 +90,8 @@
     </div>
     <div class="testimonial-carousel" data-carousel>
       <div class="testimonial-carousel__bg" aria-hidden="true"></div>
-      <button class="testimonial-carousel__nav testimonial-carousel__nav--prev" type="button" data-prev aria-label="Previous">‹</button>
-      <button class="testimonial-carousel__nav testimonial-carousel__nav--next" type="button" data-next aria-label="Next">›</button>
+      <button class="testimonial-carousel__nav testimonial-carousel__nav--prev" type="button" data-prev aria-label="Previous">{{ partial "icon.html" (dict "name" "chevron-left" "size" 24) }}</button>
+      <button class="testimonial-carousel__nav testimonial-carousel__nav--next" type="button" data-next aria-label="Next">{{ partial "icon.html" (dict "name" "chevron-right" "size" 24) }}</button>
       <div class="testimonial-carousel__viewport">
         {{ range hugo.Data.testimonials }}
         <figure class="testimonial" data-slide>
@@ -185,32 +185,6 @@
 {{ end }}
 
 {{/* ---------- Next steps (3 cards: 1 large navy + 2 small gold/sage gradients) ---------- */}}
-{{ with .Params.next_steps }}
-<section class="section section--dark section--deep">
-  <div class="container">
-    <div class="section__head">
-      <h2>{{ .title | safeHTML }}</h2>
-    </div>
-    <div class="next-steps next-steps--mosaic">
-      {{ range $i, $c := .cards }}
-      <a class="next-steps__card next-steps__card--{{ if eq $i 0 }}primary{{ else }}{{ default "default" $c.variant }}{{ end }}" href="{{ $c.href }}">
-        <span class="next-steps__eyebrow">{{ $c.eyebrow }}</span>
-        <h3 class="next-steps__title">{{ $c.title }}</h3>
-        {{ with $c.desc }}<p class="next-steps__desc">{{ . }}</p>{{ end }}
-        {{ with $c.checklist }}
-        <ul class="next-steps__checklist">
-          {{ range . }}<li><span class="next-steps__check" aria-hidden="true">✓</span>{{ . }}</li>{{ end }}
-        </ul>
-        {{ end }}
-        <span class="next-steps__cta">
-          {{ if eq $lang "de" }}{{ $c.eyebrow }} ansehen{{ else }}View {{ lower $c.eyebrow }}{{ end }}
-          {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}
-        </span>
-      </a>
-      {{ end }}
-    </div>
-  </div>
-</section>
-{{ end }}
+{{ with .Params.next_steps }}{{ partial "next-steps.html" . }}{{ end }}
 
 {{ end }}
