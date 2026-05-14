@@ -29,7 +29,7 @@
       {{ range .cards }}
       {{ $card := . }}
       <div class="card own-card">
-        <div class="own-card__icon">{{ partial "icon.html" (dict "name" "boxes" "size" 18) }}</div>
+        <div class="own-card__icon">{{ partial "icon.html" (dict "name" "boxes" "size" 24) }}</div>
         <h3 class="own-card__title">{{ $card.title }}</h3>
         <p>{{ $card.body }}</p>
         <div class="eyebrow own-card__eyebrow">{{ $card.eyebrow }}</div>

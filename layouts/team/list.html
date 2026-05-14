@@ -79,13 +79,14 @@
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
+      {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
     </div>
-    <div class="grid grid--3">
+    {{ with .eyebrow }}<p class="how-we-work__intro">{{ . }}:</p>{{ end }}
+    <div class="how-we-work-grid">
       {{ range .cards }}
-      <div class="lifecycle-cards__card is-stack">
-        <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" "settings" "size" 18) }}</div>
-        <h3 class="lifecycle-cards__title">{{ .title }}</h3>
-        <p class="lifecycle-cards__desc">{{ .body }}</p>
+      <div class="how-we-work__card">
+        <div class="how-we-work__icon">{{ partial "icon.html" (dict "name" "settings" "size" 22) }}</div>
+        <h3 class="how-we-work__title">{{ .title }}</h3>
       </div>
       {{ end }}
     </div>

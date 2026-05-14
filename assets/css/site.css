@@ -272,19 +272,23 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   margin: 0 auto var(--space-8);
   padding: 8px 18px;
   background: var(--bg-white);
-  border: 1px solid rgba(5,128,196,.4);
   border-radius: var(--radius-pill);
   font-family: var(--font-ui);
   font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: var(--tracking-eyebrow);
-  color: var(--dark-blue);
-  box-shadow: 0 2px 6px rgba(5,128,196,.08);
+  color: var(--bright-blue);
 }
 .hero__ctas {
   display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
   margin-top: var(--space-2);
 }
-.hero__ctas .btn { padding: 14px 28px; }
+.hero__ctas .btn {
+  padding: 14px 28px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 12px;
+  font-weight: 700;
+}
 /* Match the .next-steps__cta arrow badge so the home-hero CTA reads as the
    same component family: colored circle with white arrow at the end of the
    pill. Inside the bright-blue primary button we use --dark-blue so the
@@ -349,7 +353,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 .card__icon {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px; margin-bottom: 18px;
+  width: 52px; height: 52px; margin-bottom: 18px;
   color: var(--bright-blue);
 }
 .card__icon svg { stroke-width: 1.5; }
@@ -362,32 +366,32 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 @media (max-width: 560px) { .why-grid, .why-grid--2 { grid-template-columns: 1fr; } }
 
 .why-grid .card--feature {
-  background-color: var(--dark-blue);
+  background: linear-gradient(160deg, var(--dark-blue) 0%, rgba(5,128,196,.55) 100%);
   color: #fff;
   position: relative;
   overflow: hidden;
   border-color: transparent;
 }
-/* Headline + body sit above the image, which fills the lower half */
-.why-grid .card--feature h3,
-.why-grid .card--feature p {
+/* Image fills the full card; headline overlays the upper area (where the
+   source image is dark and blends into the gradient). */
+.why-grid .card--feature h3 {
   position: relative;
   z-index: 1;
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.3;
 }
-.why-grid .card--feature::before {
-  content: ""; position: absolute; inset: -20% -10% auto auto;
-  width: 280px; height: 280px;
-  background: radial-gradient(closest-side, rgba(5,128,196,.45), rgba(5,128,196,0) 70%);
-  pointer-events: none;
-}
+.why-grid .card--feature h3 strong { font-weight: 700; color: #fff; }
+.why-grid .card--feature p { position: relative; z-index: 1; color: var(--text-on-dark); }
 .why-grid .card--feature::after {
-  content: ""; position: absolute; left: -10%; bottom: -30%;
-  width: 200px; height: 200px;
-  background: radial-gradient(closest-side, rgba(122,192,232,.3), transparent 70%);
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--feature-image) center calc(100% + 150px) / 120% auto no-repeat;
+  mix-blend-mode: screen;
+  filter: saturate(1.4) brightness(1.15);
   pointer-events: none;
 }
-.why-grid .card--feature h3 { color: #fff; }
-.why-grid .card--feature p { color: var(--text-on-dark); }
 
 /* ---------- Lifecycle: horizontal arrow path ---------- */
 
@@ -574,15 +578,17 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 .testimonial-carousel__nav {
   position: absolute; top: 50%; transform: translateY(-50%);
-  background: var(--bg-white); border: 1px solid var(--border);
-  width: 44px; height: 44px; border-radius: 9999px;
+  background: var(--bright-blue); border: 1px solid var(--bright-blue);
+  width: 56px; height: 56px; border-radius: 9999px;
   display: inline-flex; align-items: center; justify-content: center;
-  color: var(--bright-blue); cursor: pointer; padding: 0;
+  color: #fff; cursor: pointer; padding: 0;
+  font-size: 22px; line-height: 1;
   z-index: 2;
   box-shadow: var(--shadow-soft);
-  transition: border-color .2s ease, color .2s ease;
+  transition: background .2s ease, transform .1s ease;
 }
-.testimonial-carousel__nav:hover { border-color: var(--bright-blue); color: var(--dark-blue); }
+.testimonial-carousel__nav:hover { background: var(--dark-blue); border-color: var(--dark-blue); color: #fff; }
+.testimonial-carousel__nav:active { transform: translateY(-50%) scale(.96); }
 .testimonial-carousel__nav--prev { left: 0; }
 .testimonial-carousel__nav--next { right: 0; }
 
@@ -660,7 +666,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   justify-content: center;
 }
 .lifecycle-rows__icon {
-  width: 40px; height: 40px; border-radius: 9999px;
+  width: 52px; height: 52px; border-radius: 9999px;
   background: rgba(122,192,232,.15); color: var(--accent-on-dark);
   display: inline-flex; align-items: center; justify-content: center;
   flex-shrink: 0;
@@ -767,8 +773,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 
 .next-steps__card {
-  display: flex; flex-direction: column; gap: var(--space-3);
-  padding: var(--space-8);
+  display: flex; flex-direction: column; gap: var(--space-4);
+  padding: var(--space-12) var(--space-8);
   background: linear-gradient(160deg, var(--dark-blue) 0%, rgba(5,128,196,.55) 100%);
   border: 1px solid rgba(255,255,255,.1);
   border-radius: var(--radius-lg);
@@ -777,7 +783,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   position: relative;
   overflow: hidden;
   transition: transform .2s ease, border-color .2s ease;
-  min-height: 200px;
+  min-height: 260px;
 }
 .next-steps__card--gold {
   background: linear-gradient(135deg, rgba(184,169,120,.85) 0%, rgba(167,154,110,.95) 100%);
@@ -812,7 +818,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   color: var(--accent-green-soft); background: rgba(228,240,210,.18);
   border-color: rgba(228,240,210,.45);
 }
-.next-steps__title { font-size: clamp(22px, 2.4vw, 28px); font-weight: 500; margin: 0; color: #fff; line-height: 1.25; letter-spacing: -0.01em; }
+.next-steps__title { font-size: clamp(28px, 3.4vw, 44px); font-weight: 500; margin: 0; color: #fff; line-height: 1.15; letter-spacing: -0.015em; text-wrap: balance; }
 .next-steps__desc { color: var(--text-on-dark); margin: 0; font-size: 14px; line-height: 1.55; }
 .next-steps__checklist {
   list-style: none; padding: 0; margin: var(--space-4) 0 0;
@@ -1066,7 +1072,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 .own-cards { display: flex; flex-direction: column; gap: var(--space-6); }
 .own-card__icon {
-  width: 40px; height: 40px; border-radius: 9999px;
+  width: 52px; height: 52px; border-radius: 9999px;
   background: rgba(5, 128, 196, .08); color: var(--bright-blue);
   display: inline-flex; align-items: center; justify-content: center;
   margin-bottom: var(--space-4);
@@ -1107,7 +1113,12 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   color: var(--dark-blue);
   margin-bottom: var(--space-4);
 }
-.cat-card .eyebrow { margin-bottom: 14px; }
+.cat-card__title {
+  font-size: 18px; font-weight: 500;
+  color: var(--dark-blue);
+  margin: 0 0 14px;
+  line-height: 1.3;
+}
 .cat-card__items {
   display: flex; flex-wrap: wrap; gap: 6px;
   list-style: none; margin: 0; padding: 0;
@@ -1169,12 +1180,45 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .numbered-step p { color: var(--text-on-dark); font-size: 13px; line-height: 1.55; margin: 0; }
 
 /* Dark "lifecycle-cards" with a stacked icon → title → desc layout.
-   Used by team how-we-work; the assessments services section already
-   uses lifecycle-cards__title/__desc directly without `is-stack`. */
+   The assessments services section uses lifecycle-cards__title/__desc
+   directly without `is-stack`. */
 .lifecycle-cards__card.is-stack {
   display: flex; flex-direction: column; gap: var(--space-3);
 }
 .lifecycle-cards__card.is-stack .lifecycle-cards__title { margin: 4px 0 0; }
+
+/* ---------- How we work (team page): 2x3 pill-style cards, icon + label only ---------- */
+.how-we-work__intro {
+  margin: 0 0 var(--space-6);
+  color: var(--accent-on-dark);
+  font-family: var(--font-ui);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: var(--tracking-eyebrow); text-transform: uppercase;
+}
+.how-we-work-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4);
+}
+@media (max-width: 720px) {
+  .how-we-work-grid { grid-template-columns: 1fr; }
+}
+.how-we-work__card {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius-lg);
+}
+.how-we-work__icon {
+  width: 48px; height: 48px; border-radius: 9999px;
+  background: rgba(122,192,232,.12); color: var(--accent-on-dark);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.how-we-work__title {
+  margin: 0;
+  color: #fff;
+  font-size: 18px; font-weight: 500; line-height: 1.3;
+}
 
 /* ---------- Footer ---------- */
 

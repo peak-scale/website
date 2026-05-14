@@ -7,9 +7,9 @@ aliases:
   - /contact/
 hero:
   eyebrow: "Hinter Peak Scale"
-  title: "Das Engineering-Team hinter Peak Scale."
+  title: "Das Engineering-Team hinter Peak Scale"
   lead: "Wir sind ein spezialisiertes Engineering- und Architekturteam für Cloud Native Plattformen – pragmatisch, technisch fundiert und nah an der Betriebsrealität."
-  sub: "Hands-on – direkt mit den Experten, die auch den Betrieb mitdenken."
+  sub: "Hands-on – direkt mit den Experten, die auch den Betrieb mitdenken"
   cta_primary: "Kontakt aufnehmen"
   cta_secondary: "Services ansehen"
   cta_secondary_href: "/services/"
@@ -84,7 +84,7 @@ community:
     - "Beiträge zu Open-Source-Werkzeugen, die wir täglich nutzen"
   footnote: "Dieses Engagement hält uns nah an aktuellen Entwicklungen – und gibt uns wertvolle Einblicke in Herausforderungen verschiedener Teams und Branchen."
 contact_block:
-  eyebrow: "Mit uns arbeiten"
+  eyebrow: "Kontakt"
   title: "Mit uns arbeiten"
   lead: "Wenn Sie Peak Scale näher kennenlernen möchten, geben wir gerne Einblick in Arbeitsweise, Entscheidungslogik und typische Vorgehensmodelle – unverbindlich, ohne klassischen Sales-Prozess."
 next_steps:
@@ -92,11 +92,11 @@ next_steps:
   title: "Nächste <span class=\"accent\">Etappe</span>"
   cards:
     - eyebrow: "Services"
-      title: "Beratung, Engineering, Assessments und Enablement für Plattform-Teams."
+      title: "Beratung, Engineering, Assessments und Enablement für Plattform-Teams"
       desc: ""
       href: "/services/"
     - eyebrow: "Produkte"
-      title: "Eigene Lösungen und Enterprise Support für zentrale Plattformbausteine."
+      title: "Eigene Lösungen und Enterprise Support für zentrale Plattformbausteine"
       desc: ""
       href: "/produkte/"
 ---

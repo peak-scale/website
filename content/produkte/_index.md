@@ -3,9 +3,9 @@ title: Produkte
 description: "Eigene Lösungen und ausgewählte Technologiepartner für tragfähige Cloud-Native-Plattformen – von Multi-Tenancy bis Enterprise-Support."
 hero:
   eyebrow: "Hands-on entwickelte Lösungen"
-  title: "Plattformen, die funktionieren."
+  title: "Plattformen, die funktionieren"
   lead: "Wir liefern eigene Lösungen und professionellen Enterprise Support für ausgewählte Cloud Native Technologien – mit Fokus auf Stabilität, Sicherheit und verlässlichen Plattformbetrieb."
-  sub: "Hands-on für Produkte, Enterprise Support und Plattformbetrieb."
+  sub: "Hands-on für Produkte, Enterprise Support und Plattformbetrieb"
   cta_primary: "Kontakt aufnehmen"
   cta_secondary: "Services ansehen"
   cta_secondary_href: "/services/"
@@ -102,11 +102,11 @@ next_steps:
   title: "Nächste <span class=\"accent\">Etappe</span>"
   cards:
     - eyebrow: "Services"
-      title: "Beratung, Engineering, Assessments und Enablement für Plattform-Teams."
+      title: "Beratung, Engineering, Assessments und Enablement für Plattform-Teams"
       desc: ""
       href: "/services/"
     - eyebrow: "Team"
-      title: "Das Engineering-Team hinter Peak Scale – Arbeitsweise, Werte und Fokus."
+      title: "Das Engineering-Team hinter Peak Scale – Arbeitsweise, Werte und Fokus"
       desc: ""
       href: "/team/"
 ---

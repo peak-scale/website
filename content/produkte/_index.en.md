@@ -1,11 +1,11 @@
 ---
 title: Products
-description: "Our own solutions and selected technology partners for cloud-native platforms — from multi-tenancy to enterprise support."
+description: "Our own solutions and selected technology partners for cloud-native platforms – from multi-tenancy to enterprise support."
 hero:
   eyebrow: "Solutions built hands-on"
-  title: "Platforms that work."
-  lead: "We deliver our own solutions and professional enterprise support for selected cloud native technologies — focused on stability, security and reliable platform operations."
-  sub: "Hands-on for products, enterprise support and platform operations."
+  title: "Platforms that work"
+  lead: "We deliver our own solutions and professional enterprise support for selected cloud native technologies – focused on stability, security and reliable platform operations."
+  sub: "Hands-on for products, enterprise support and platform operations"
   cta_primary: "Get in touch"
   cta_secondary: "See services"
   cta_secondary_href: "/services/"
@@ -14,7 +14,7 @@ own:
   title: "Our own solutions & products"
   cards:
     - title: "Cloud Native multi-tenancy"
-      body: "Tenant separation on Kubernetes — from tenancy model and governance to automated tenant onboarding. Sustainable in everyday operations and cleanly operable."
+      body: "Tenant separation on Kubernetes – from tenancy model and governance to automated tenant onboarding. Sustainable in everyday operations and cleanly operable."
       eyebrow: "What we deliver"
       items:
         - "Tenancy blueprint (namespace model, isolation levels, responsibilities)"
@@ -28,7 +28,7 @@ own:
         - "Platform teams in enterprise and public-sector environments"
         - "Organisations with clear requirements for isolation, governance and fair resource usage"
     - title: "Capsule Enterprise support"
-      body: "Professional enterprise support for the Capsule multi-tenancy operator — for platform teams and organisations with clear tenant separation and governance requirements."
+      body: "Professional enterprise support for the Capsule multi-tenancy operator – for platform teams and organisations with clear tenant separation and governance requirements."
       eyebrow: "What we deliver"
       items:
         - "Installation & configuration"
@@ -45,11 +45,11 @@ own:
 partners:
   eyebrow: "Technology partners & integration"
   title: "Technology partners & integration"
-  lead: "With selected technology partners we integrate core platform building blocks into your architecture — load-bearing in everyday operations, from the decision to stable operation."
+  lead: "With selected technology partners we integrate core platform building blocks into your architecture – load-bearing in everyday operations, from the decision to stable operation."
   cards:
     - title: "Sidero Labs"
       role: "Talos Linux · Omni Platform · Kubernetes support"
-      body: "We support the use of the Sidero toolsuite — from evaluation and architecture to operational running."
+      body: "We support the use of the Sidero toolsuite – from evaluation and architecture to operational running."
       themes_title: "Typical topics"
       themes:
         - "Cluster bootstrapping with Talos"
@@ -58,7 +58,7 @@ partners:
         - "Scaling and upgrades"
     - title: "Clastix"
       role: "Multi-tenancy enterprise hub"
-      body: "We support design, rollout and operation of Capsule — including enterprise support for productive platform operations."
+      body: "We support design, rollout and operation of Capsule – including enterprise support for productive platform operations."
       themes_title: "Typical topics"
       themes:
         - "Multi-tenancy rollout"
@@ -67,7 +67,7 @@ partners:
         - "Integration into existing platforms"
     - title: "SUSE Rancher Prime"
       role: "Kubernetes management for enterprise environments"
-      body: "As an Emerald-status partner we support architecture, integration and evolution of Rancher installations — including operations and governance."
+      body: "As an Emerald-status partner we support architecture, integration and evolution of Rancher installations – including operations and governance."
       themes_title: "Typical topics"
       themes:
         - "Multi-cluster management"
@@ -76,7 +76,7 @@ partners:
         - "Operations & monitoring"
     - title: "Google Cloud Platform"
       role: "Cloud architecture · migration · platform engineering"
-      body: "We support building modern cloud environments on GCP — from landing zone to platform automation."
+      body: "We support building modern cloud environments on GCP – from landing zone to platform automation."
       themes_title: "Typical topics"
       themes:
         - "Landing zones"
@@ -86,7 +86,7 @@ partners:
 journey:
   eyebrow: "From decision to operations"
   title: "From decision to <span class=\"accent\">operations</span>"
-  lead: "We accompany platform teams across the entire lifecycle — from the decision and architecture through implementation to stable operations and controlled evolution."
+  lead: "We accompany platform teams across the entire lifecycle – from the decision and architecture through implementation to stable operations and controlled evolution."
   cards:
     - num: "01"
       title: "Orientation & decisions"
@@ -102,11 +102,11 @@ next_steps:
   title: "Next <span class=\"accent\">stage</span>"
   cards:
     - eyebrow: "Services"
-      title: "Advisory, engineering, assessments and enablement for platform teams."
+      title: "Advisory, engineering, assessments and enablement for platform teams"
       desc: ""
       href: "/services/"
     - eyebrow: "Team"
-      title: "The engineering team behind Peak Scale — way of working, values and focus."
+      title: "The engineering team behind Peak Scale – way of working, values and focus"
       desc: ""
       href: "/team/"
 ---

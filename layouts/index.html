@@ -40,13 +40,13 @@
     {{ $first := index $items 0 }}
     {{ $rest := after 1 $items }}
     <div class="why-grid">
-      <div class="card card--feature"{{ with $first.image }} style="background-image: url('{{ . }}'); background-size: 100% auto; background-position: center bottom; background-repeat: no-repeat;"{{ end }}>
-        <h3>{{ $first.title }}</h3>
-        <p>{{ $first.body }}</p>
+      <div class="card card--feature"{{ with $first.image }} style="--feature-image: url('{{ . }}');"{{ end }}>
+        <h3>{{ $first.title | safeHTML }}</h3>
+        {{ with $first.body }}<p>{{ . }}</p>{{ end }}
       </div>
       {{ range $rest }}
       <div class="card">
-        <span class="card__icon">{{ partial "icon.html" (dict "name" (default "compass" .icon) "size" 22) }}</span>
+        <span class="card__icon">{{ partial "icon.html" (dict "name" (default "compass" .icon) "size" 32) }}</span>
         <h3>{{ .title }}</h3>
         <p>{{ .body }}</p>
       </div>
@@ -123,12 +123,12 @@
         {{ if eq (mod $i 2) 0 -}}
         <div class="lifecycle-rows__media" style="background-image: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2)), url('{{ index $images $i }}');"></div>
         <div class="lifecycle-rows__card">
-          <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 18) }}</div>
+          <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
           <p class="lifecycle-rows__desc">{{ $c.desc }}</p>
         </div>
         {{- else -}}
         <div class="lifecycle-rows__card">
-          <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 18) }}</div>
+          <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
           <p class="lifecycle-rows__desc">{{ $c.desc }}</p>
         </div>
         <div class="lifecycle-rows__media" style="background-image: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2)), url('{{ index $images $i }}');"></div>
@@ -145,7 +145,7 @@
 <section class="section">
   <div class="container">
     <div class="challenges-glass challenges-glass--split">
-      <div class="challenges-glass__bg" {{ with .bg }}style="background-image: linear-gradient(135deg, rgba(60,90,55,.55) 0%, rgba(140,180,110,.45) 100%), url('{{ . }}');"{{ end }}></div>
+      <div class="challenges-glass__bg" {{ with .bg }}style="background-image: linear-gradient(135deg, rgba(95,115,55,.7) 0%, rgba(210,200,100,.55) 100%), url('{{ . }}');"{{ end }}></div>
       <div class="challenges-glass__inner challenges-glass__inner--split">
         <div class="challenges-glass__intro">
           <h2>{{ .title }}</h2>

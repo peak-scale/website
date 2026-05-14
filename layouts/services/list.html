@@ -79,7 +79,7 @@
       <div class="service-stack service-stack--tight">
         {{ range .categories }}
         <div class="card cat-card">
-          <div class="eyebrow">{{ .title }}</div>
+          <h3 class="cat-card__title">{{ .title }}</h3>
           <ul class="cat-card__items">
             {{ range .items }}<li>{{ . }}</li>{{ end }}
           </ul>
@@ -126,7 +126,7 @@
     <div class="grid grid--3 assessment-cards">
       {{ range .cards }}
       <div class="lifecycle-cards__card is-stack">
-        <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" "shield" "size" 18) }}</div>
+        <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" "shield" "size" 24) }}</div>
         <h3 class="lifecycle-cards__title">{{ .title }}</h3>
         <p class="lifecycle-cards__desc">{{ .body }}</p>
       </div>

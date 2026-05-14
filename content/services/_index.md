@@ -4,10 +4,10 @@ description: "Architekturberatung, Platform Engineering, Assessments und Trainin
 aliases:
   - /angebot/
 hero:
-  eyebrow: "Strategie → Architektur → Platform Engineering → Betrieb"
-  title: "Professional Services, die überzeugen."
+  eyebrow: "Strategie → Architektur → Engineering → Betrieb"
+  title: "Professional Services, die überzeugen"
   lead: "Wir begleiten Sie von technischer Orientierung und Architektur bis zur Umsetzung – damit Cloud-Native-Plattformen stabil, sicher und langfristig betreibbar sind."
-  sub: "Hands-on entlang klarer Etappen mit iterativen Feedback-Zyklen."
+  sub: "Hands-on entlang klarer Etappen mit iterativen Feedback-Zyklen"
   cta_primary: "Kontakt aufnehmen"
   cta_secondary: "Produkte ansehen"
   cta_secondary_href: "/produkte/"
@@ -20,7 +20,7 @@ lifecycle_strip:
       sub: "Orientierung & Zielbild"
     - name: "Architektur"
       sub: "Tragfähige Zielarchitektur"
-    - name: "Platform Engineering"
+    - name: "Engineering"
       sub: "Hands-on Umsetzung"
     - name: "Betrieb"
       sub: "Stabiler Betrieb & Lifecycle"
@@ -61,7 +61,7 @@ engineering:
       items: ["Kubernetes Security", "Policy as Code", "Monitoring & Observability", "Logging & Tracing"]
 assessments:
   eyebrow: "Assessments"
-  title: "Assessments"
+  title: "<span class=\"accent\">Assessments</span>"
   lead: "Unabhängige Analysen mit klaren Empfehlungen – als Entscheidungsgrundlage vor grösseren Veränderungen oder zur Standortbestimmung."
   cards:
     - title: "Kubernetes Security Assessment"
@@ -94,11 +94,11 @@ next_steps:
   title: "Nächste <span class=\"accent\">Etappe</span>"
   cards:
     - eyebrow: "Produkte"
-      title: "Eigene Lösungen und Enterprise Support für zentrale Plattformbausteine."
+      title: "Eigene Lösungen und Enterprise Support für zentrale Plattformbausteine"
       desc: ""
       href: "/produkte/"
     - eyebrow: "Team"
-      title: "Das Engineering-Team hinter Peak Scale – Arbeitsweise, Werte und Fokus."
+      title: "Das Engineering-Team hinter Peak Scale – Arbeitsweise, Werte und Fokus"
       desc: ""
       href: "/team/"
 ---
