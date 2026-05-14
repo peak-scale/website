@@ -91,7 +91,7 @@
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="journey-banner" style="background-image: linear-gradient(135deg, rgba(7,19,44,.6), rgba(5,128,196,.2)), url('/images/section/challenges.jpg');"></div>
+    <div class="journey-banner" style="background-image: var(--overlay-photo), url('/images/section/challenges.jpg');"></div>
     <div class="grid grid--3 col-narrow">
       {{ range $i, $c := .cards }}
       <div class="numbered-step">

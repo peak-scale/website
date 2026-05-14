@@ -121,17 +121,17 @@
       <div class="lifecycle-rows__row">
         <h3 class="lifecycle-rows__title">{{ $c.title }}</h3>
         {{ if eq (mod $i 2) 0 -}}
-        <div class="lifecycle-rows__media" style="background-image: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2)), url('{{ index $images $i }}');"></div>
-        <div class="lifecycle-rows__card">
-          <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
-          <p class="lifecycle-rows__desc">{{ $c.desc }}</p>
+        <div class="lifecycle-rows__media" style="background-image: var(--overlay-photo), url('{{ index $images $i }}');"></div>
+        <div class="icon-tile icon-tile--stack">
+          <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
+          <p class="icon-tile__body">{{ $c.desc }}</p>
         </div>
         {{- else -}}
-        <div class="lifecycle-rows__card">
-          <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
-          <p class="lifecycle-rows__desc">{{ $c.desc }}</p>
+        <div class="icon-tile icon-tile--stack">
+          <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
+          <p class="icon-tile__body">{{ $c.desc }}</p>
         </div>
-        <div class="lifecycle-rows__media" style="background-image: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2)), url('{{ index $images $i }}');"></div>
+        <div class="lifecycle-rows__media" style="background-image: var(--overlay-photo), url('{{ index $images $i }}');"></div>
         {{- end }}
       </div>
       {{ end }}
@@ -153,7 +153,7 @@
         </div>
         <div class="challenges-glass__stack">
           {{ range .items }}
-          <div class="challenges-glass__item{{ if .featured }} is-featured{{ end }}">
+          <div class="challenges-glass__item{{ if .featured }} challenges-glass__item--featured{{ end }}">
             <h3>{{ .title }}</h3>
             <p>{{ .body }}</p>
           </div>

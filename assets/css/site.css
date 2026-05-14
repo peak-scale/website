@@ -315,7 +315,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   background-size: cover; background-position: center;
   box-shadow: var(--shadow-soft);
 }
-.hero-photo--svg { background: var(--bg-white); border: 1px solid var(--border); }
 .hero-photo__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
 .hero-photo__tags {
@@ -657,41 +656,10 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   background-size: cover; background-position: center;
   border: 1px solid var(--stroke-on-dark);
 }
-.lifecycle-rows__card {
-  background: rgba(255,255,255,.04);
-  border: 1px solid var(--stroke-on-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  display: flex; flex-direction: column; gap: var(--space-3);
-  justify-content: center;
-}
-.lifecycle-rows__icon {
-  width: 52px; height: 52px; border-radius: 9999px;
-  background: rgba(122,192,232,.15); color: var(--accent-on-dark);
-  display: inline-flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.lifecycle-rows__desc {
-  font-size: var(--text-sm); color: var(--text-on-dark); margin: 0; line-height: 1.55;
-}
 @media (max-width: 760px) {
   .lifecycle-rows__row { grid-template-columns: 1fr; }
   .lifecycle-rows__media { display: none; }
 }
-
-/* Legacy cards-grid (used elsewhere) */
-.lifecycle-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
-@media (max-width: 1000px) { .lifecycle-cards { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .lifecycle-cards { grid-template-columns: 1fr; } }
-.lifecycle-cards__card {
-  background: rgba(255,255,255,.04);
-  border: 1px solid var(--stroke-on-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-}
-.lifecycle-cards__num { font-family: var(--font-mono); font-size: var(--text-eyebrow); color: var(--accent-on-dark); margin-bottom: 8px; display: block; }
-.lifecycle-cards__title { font-size: var(--text-title); font-weight: 500; color: #fff; margin: 0 0 8px; }
-.lifecycle-cards__desc { font-size: var(--text-sm); color: var(--text-on-dark); margin: 0; line-height: 1.55; }
 
 /* ---------- Glass challenges card ---------- */
 
@@ -711,8 +679,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   background-size: cover; background-position: center;
 }
 .challenges-glass__inner { position: relative; z-index: 1; }
-.challenges-glass__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-8); }
-@media (max-width: 760px) { .challenges-glass__list { grid-template-columns: 1fr; } }
 .challenges-glass__item {
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.12);
@@ -740,12 +706,12 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .challenges-glass__intro .lead { margin: 0; color: var(--text-on-dark); }
 .challenges-glass__stack { display: flex; flex-direction: column; gap: var(--space-3); }
 .challenges-glass__stack .challenges-glass__item { padding: 20px var(--space-6); }
-.challenges-glass__item.is-featured {
+.challenges-glass__item--featured {
   background: rgba(255,255,255,.94);
   border-color: rgba(255,255,255,.94);
 }
-.challenges-glass__item.is-featured h3 { color: var(--dark-blue); }
-.challenges-glass__item.is-featured p { color: var(--fg-muted); }
+.challenges-glass__item--featured h3 { color: var(--dark-blue); }
+.challenges-glass__item--featured p { color: var(--fg-muted); }
 @media (max-width: 860px) {
   .challenges-glass__inner--split { grid-template-columns: 1fr; }
 }
@@ -818,7 +784,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   color: var(--accent-green-soft); background: rgba(228,240,210,.18);
   border-color: rgba(228,240,210,.45);
 }
-.next-steps__title { font-size: var(--text-display-sm); font-weight: 500; margin: 0; color: #fff; line-height: 1.15; letter-spacing: -0.015em; text-wrap: balance; }
+.next-steps__title { font-size: var(--text-title-lg); font-weight: 500; margin: 0; color: #fff; line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; }
 .next-steps__desc { color: var(--text-on-dark); margin: 0; font-size: var(--text-sm); line-height: 1.55; }
 .next-steps__checklist {
   list-style: none; padding: 0; margin: var(--space-4) 0 0;
@@ -937,42 +903,48 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .team-member { grid-template-columns: 80px 1fr; }
 }
 
-/* Mission tags row */
-.mission-tags {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* ---------- Icon tile (shared: icon + title, optional body) ----------
+   Used by home (lifecycle rows), team (how-we-work, why-cloud-native),
+   services (assessment cards). Light by default; flips dark inside
+   `.section--dark`. `--stack` puts the icon above the text; `--feature`
+   highlights the tile with the accent-green fill. */
+.icon-tile {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.icon-tile--stack {
+  flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-3);
-  max-width: 580px;
+  padding: var(--space-6);
+  justify-content: center;
 }
-.mission-tags > span {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  padding: 14px 18px;
-  border-radius: var(--radius-md);
-  font-size: var(--text-sm); font-weight: 500;
-  color: var(--dark-blue);
-  text-align: center;
+.icon-tile__icon {
+  width: 48px; height: 48px; border-radius: 9999px;
+  background: rgba(5,128,196,.08); color: var(--bright-blue);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-
-/* Why Cloud Native — 5 rows, middle highlighted green */
-.cn-rows {
-  display: flex; flex-direction: column; gap: var(--space-3);
-  max-width: 720px; margin: 0 auto;
+.icon-tile__title {
+  margin: 0; color: var(--dark-blue);
+  font-size: var(--text-title); font-weight: 500; line-height: 1.3;
 }
-.cn-rows__row {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  padding: 16px 24px;
-  border-radius: var(--radius-md);
-  font-size: var(--text-sm); color: var(--dark-blue);
-  text-align: center;
+.icon-tile__body {
+  margin: 0; color: var(--fg-muted);
+  font-size: var(--text-sm); line-height: 1.55;
 }
-.cn-rows__row.is-feature {
-  background: var(--accent-green);
-  border-color: var(--accent-green);
-  color: #fff;
-  font-weight: 500;
+.section--dark .icon-tile {
+  background: rgba(255,255,255,.04);
+  border-color: var(--stroke-on-dark);
 }
+.section--dark .icon-tile__icon {
+  background: rgba(122,192,232,.12); color: var(--accent-on-dark);
+}
+.section--dark .icon-tile__title { color: #fff; }
+.section--dark .icon-tile__body { color: var(--text-on-dark); }
 
 /* Werte — 5 rows with photo + copy */
 .values-list { display: flex; flex-direction: column; gap: var(--space-4); max-width: 980px; margin-left: auto; margin-right: auto; }
@@ -998,48 +970,17 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .values-list__media { display: none; }
 }
 
-/* ---------- Tag pill rows / value tiles ---------- */
-
-.pill-row {
-  display: flex; flex-wrap: wrap; gap: 10px;
-}
-.pill-row .pill {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  color: var(--dark-blue);
-}
-.section--dark .pill-row .pill {
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.18);
-  color: #fff;
-}
-
-/* ---------- Team page: mission, community, contact CTA ---------- */
-
-.heading-xl {
-  font-size: var(--text-display-sm); font-weight: 500;
-  letter-spacing: -0.02em; margin: 0 0 var(--space-4);
-}
-.lead--flush { margin: 0; }
-
-.mission-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 6vw, 80px); align-items: center;
-}
-@media (max-width: 760px) { .mission-grid { grid-template-columns: 1fr; } }
+/* ---------- Team page: community, contact CTA ---------- */
 
 .section--gold { background: var(--accent-yellow-soft); }
 .section__icon--gold {
   background: rgba(184,169,120,.2);
   color: var(--accent-yellow);
 }
-.pill-row--center { justify-content: center; }
 
 .contact-cta {
-  display: grid; grid-template-columns: 1fr 1fr;
-  align-items: center; gap: clamp(32px, 5vw, 64px);
+  max-width: 720px; margin: 0 auto; text-align: center;
 }
-@media (max-width: 760px) { .contact-cta { grid-template-columns: 1fr; } }
 .contact-cta__eyebrow { color: var(--accent-on-dark); }
 .contact-cta__title { margin-top: 12px; }
 .contact-cta__actions { margin-top: var(--space-6); }
@@ -1189,45 +1130,25 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .numbered-step h3 { color: #fff; font-size: var(--text-title); font-weight: 500; margin: 0; }
 .numbered-step p { color: var(--text-on-dark); font-size: var(--text-sm); line-height: 1.55; margin: 0; }
 
-/* Dark "lifecycle-cards" with a stacked icon → title → desc layout.
-   The assessments services section uses lifecycle-cards__title/__desc
-   directly without `is-stack`. */
-.lifecycle-cards__card.is-stack {
-  display: flex; flex-direction: column; gap: var(--space-3);
+/* 2-col grid for icon tiles. Used by how-we-work, mission.
+   `grid-auto-rows: 1fr` keeps every tile the same height even when
+   titles wrap to two lines. */
+.icon-tile-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  gap: var(--space-4);
 }
-.lifecycle-cards__card.is-stack .lifecycle-cards__title { margin: 4px 0 0; }
+@media (max-width: 720px) {
+  .icon-tile-grid { grid-template-columns: 1fr; }
+}
 
-/* ---------- How we work (team page): 2x3 pill-style cards, icon + label only ---------- */
+/* Eyebrow line above how-we-work tiles. */
 .how-we-work__intro {
   margin: 0 0 var(--space-6);
   color: var(--accent-on-dark);
   font-family: var(--font-ui);
   font-size: var(--text-sm); font-weight: 700;
   letter-spacing: var(--tracking-eyebrow); text-transform: uppercase;
-}
-.how-we-work-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4);
-}
-@media (max-width: 720px) {
-  .how-we-work-grid { grid-template-columns: 1fr; }
-}
-.how-we-work__card {
-  display: flex; align-items: center; gap: var(--space-4);
-  padding: var(--space-4) var(--space-6);
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: var(--radius-lg);
-}
-.how-we-work__icon {
-  width: 48px; height: 48px; border-radius: 9999px;
-  background: rgba(122,192,232,.12); color: var(--accent-on-dark);
-  display: inline-flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.how-we-work__title {
-  margin: 0;
-  color: #fff;
-  font-size: var(--text-title); font-weight: 500; line-height: 1.3;
 }
 
 /* ---------- Footer ---------- */

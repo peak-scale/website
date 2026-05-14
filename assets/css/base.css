@@ -41,6 +41,11 @@
     --accent-green: rgb(125, 175, 75);        /* fresh grass */
     --accent-green-soft: rgb(228, 240, 210);  /* pale wash */
 
+    /* Photo overlay — subtle navy → blue wash applied above section
+       background-images so the photo stays readable. Used inline in
+       templates as the first layer of `background-image`. */
+    --overlay-photo: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2));
+
     /* Shadows */
     --shadow-brand: 0 3px 6px 0 rgba(5, 128, 196, .10),
     0 11px 11px 0 rgba(5, 128, 196, .09),
@@ -256,25 +261,6 @@ hr {
 .btn--ghost:hover {
     border-color: var(--bright-blue);
     color: var(--bright-blue);
-}
-
-.pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: var(--radius-pill);
-    font-size: var(--text-sm);
-    font-weight: var(--w-medium);
-    background: transparent;
-    color: var(--dark-blue);
-    border: 1px solid transparent;
-}
-
-.pill--active {
-    background: var(--bg-white);
-    color: var(--bright-blue);
-    border-color: var(--border);
 }
 
 .card {

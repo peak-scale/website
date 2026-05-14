@@ -125,10 +125,10 @@
     </div>
     <div class="grid grid--3 assessment-cards">
       {{ range .cards }}
-      <div class="lifecycle-cards__card is-stack">
-        <div class="lifecycle-rows__icon">{{ partial "icon.html" (dict "name" "shield" "size" 24) }}</div>
-        <h3 class="lifecycle-cards__title">{{ .title }}</h3>
-        <p class="lifecycle-cards__desc">{{ .body }}</p>
+      <div class="icon-tile icon-tile--stack">
+        <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" "shield" "size" 24) }}</div>
+        <h3 class="icon-tile__title">{{ .title }}</h3>
+        <p class="icon-tile__body">{{ .body }}</p>
       </div>
       {{ end }}
     </div>
