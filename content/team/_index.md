@@ -7,7 +7,7 @@ aliases:
   - /contact/
 hero:
   eyebrow: "Hinter Peak Scale"
-  title: "Das Engineering-Team hinter Peak Scale"
+  title: "Das Engineering-Team hinter Peak Scale."
   lead: "Wir sind ein spezialisiertes Engineering- und Architekturteam für Cloud Native Plattformen – pragmatisch, technisch fundiert und nah an der Betriebsrealität."
   sub: "Hands-on – direkt mit den Experten, die auch den Betrieb mitdenken."
   cta_primary: "Kontakt aufnehmen"

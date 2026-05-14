@@ -6,6 +6,9 @@
 {{- end -}}
 {{- $sw := 2 -}}
 {{- $svg := "" -}}
+{{- if eq $name "linkedin" -}}
+<svg width="{{ $size }}" height="{{ $size }}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"/></svg>
+{{- else -}}
 {{- if eq $name "cloud" -}}{{- $svg = `<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>` -}}
 {{- else if eq $name "code" -}}{{- $svg = `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>` -}}
 {{- else if eq $name "clipboard" -}}{{- $svg = `<rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/>` -}}
@@ -14,7 +17,6 @@
 {{- else if eq $name "arrow-up-right" -}}{{- $svg = `<line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>` -}}
 {{- else if eq $name "menu" -}}{{- $svg = `<line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/>` -}}
 {{- else if eq $name "x" -}}{{- $svg = `<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>` -}}
-{{- else if eq $name "linkedin" -}}{{- $svg = `<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>` -}}
 {{- else if eq $name "shield" -}}{{- $svg = `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>` -}}
 {{- else if eq $name "users" -}}{{- $svg = `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>` -}}
 {{- else if eq $name "compass" -}}{{- $svg = `<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>` -}}
@@ -28,5 +30,7 @@
 {{- else if eq $name "globe" -}}{{- $svg = `<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>` -}}
 {{- else if eq $name "doc" -}}{{- $svg = `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>` -}}
 {{- else if eq $name "spark" -}}{{- $svg = `<path d="M12 3v3"/><path d="M12 18v3"/><path d="M5.6 5.6l2.1 2.1"/><path d="M16.3 16.3l2.1 2.1"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="M5.6 18.4l2.1-2.1"/><path d="M16.3 7.7l2.1-2.1"/>` -}}
+{{- else if eq $name "zap" -}}{{- $svg = `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>` -}}
 {{- end -}}
 <svg width="{{ $size }}" height="{{ $size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{{ $sw }}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ $svg | safeHTML }}</svg>
+{{- end -}}

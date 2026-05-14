@@ -872,39 +872,53 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   border: 1px solid rgba(255,255,255,.24);
   text-transform: uppercase; letter-spacing: 0.05em;
 }
-.team-feature__cta:hover { background: rgba(255,255,255,.25); color: #fff; }
+.team-feature:hover .team-feature__cta { background: rgba(255,255,255,.25); color: #fff; }
 
 .team-member {
+  position: relative;
   display: grid;
-  grid-template-columns: 64px 1fr auto;
-  gap: var(--space-4);
+  grid-template-columns: 96px 1fr;
+  column-gap: var(--space-4);
+  row-gap: var(--space-3);
   align-items: center;
   transition: border-color .2s ease, transform .2s ease;
 }
-.team-member:hover { border-color: var(--bright-blue); transform: translateY(-1px); }
 .team-member__avatar {
-  width: 64px; height: 64px; border-radius: 9999px; object-fit: cover;
+  width: 96px; height: 96px; border-radius: 9999px; object-fit: cover;
   background: var(--bg);
 }
 .team-member__body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .team-member__name { font-size: 18px; font-weight: 500; color: var(--dark-blue); margin: 0; }
 .team-member__role { font-size: 13px; color: var(--fg-muted); margin: 0; }
 .team-member__focus {
-  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;
-  font-family: var(--font-ui); font-size: 11px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-subtle);
+  grid-column: 1 / -1;
+  display: flex; flex-wrap: wrap; gap: 6px;
+  font-family: var(--font-ui); font-size: 14px; color: var(--fg-muted);
+}
+.team-member__focus-label {
+  width: 100%;
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--bright-blue);
+  font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 12px;
+  margin-bottom: 2px;
+}
+.team-member__focus-label svg {
+  fill: var(--fg-subtle);
+  stroke: none;
 }
 .team-member__linkedin {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
   display: inline-flex; align-items: center; justify-content: center;
-  width: 32px; height: 32px; border-radius: 4px;
-  background: var(--bright-blue); color: #fff;
+  color: var(--bright-blue);
+  transition: color .2s ease;
 }
-.team-member__linkedin:hover { background: var(--dark-blue); color: #fff; }
+.team-member:hover .team-member__linkedin { color: var(--dark-blue); }
 
 @media (max-width: 560px) {
   .why-grid > .team-feature { grid-row: auto; }
-  .team-member { grid-template-columns: 56px 1fr; }
-  .team-member__linkedin { grid-column: 1 / -1; justify-self: start; }
+  .team-member { grid-template-columns: 80px 1fr; }
 }
 
 /* Mission tags row */

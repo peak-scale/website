@@ -3,7 +3,7 @@ title: Produkte
 description: "Eigene Lösungen und ausgewählte Technologiepartner für tragfähige Cloud-Native-Plattformen – von Multi-Tenancy bis Enterprise-Support."
 hero:
   eyebrow: "Hands-on entwickelte Lösungen"
-  title: "Plattformen, die funktionieren"
+  title: "Plattformen, die funktionieren."
   lead: "Wir liefern eigene Lösungen und professionellen Enterprise Support für ausgewählte Cloud Native Technologien – mit Fokus auf Stabilität, Sicherheit und verlässlichen Plattformbetrieb."
   sub: "Hands-on für Produkte, Enterprise Support und Plattformbetrieb."
   cta_primary: "Kontakt aufnehmen"

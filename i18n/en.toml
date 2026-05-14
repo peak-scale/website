@@ -50,7 +50,7 @@ other = "Legal"
 other = "Contact"
 
 [focus_areas_label]
-other = "Focus:"
+other = "Focus"
 
 [copyright]
 other = "© {{ .Year }} Peak Scale"

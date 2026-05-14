@@ -22,32 +22,35 @@
   <div class="container">
     <div class="why-grid why-grid--2">
       {{ with .Params.team_block }}
-      <aside class="card card--feature team-feature">
+      <a class="card card--feature team-feature" href="{{ $.Site.Params.linkedin }}" rel="noopener">
         <span class="team-feature__icon">{{ partial "icon.html" (dict "name" "users" "size" 22) }}</span>
         <h2 class="team-feature__title">{{ .eyebrow }}</h2>
         <p class="team-feature__lead">{{ .lead }}</p>
-        <a class="team-feature__cta" href="{{ $.Site.Params.linkedin }}" rel="noopener">
-          {{ partial "icon.html" (dict "name" "linkedin" "size" 14) }}
+        <span class="team-feature__cta">
+          {{ partial "icon.html" (dict "name" "linkedin" "size" 20) }}
           {{ .cta }}
-        </a>
-      </aside>
+        </span>
+      </a>
       {{ end }}
 
       {{ range hugo.Data.team }}
-      <article class="card team-member">
-        <img class="team-member__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="64" height="64">
+      <a class="card team-member" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
+        <span class="team-member__linkedin" aria-hidden="true">
+          {{ partial "icon.html" (dict "name" "linkedin" "size" 24) }}
+        </span>
+        <img class="team-member__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="96" height="96">
         <div class="team-member__body">
           <h3 class="team-member__name">{{ .name }}</h3>
           <p class="team-member__role">{{ if eq $lang "de" }}{{ .role_de }}{{ else }}{{ .role_en }}{{ end }}</p>
-          <div class="team-member__focus">
-            <span>{{ i18n "focus_areas_label" }}</span>
-            {{ range (cond (eq $lang "de") .focus_de .focus_en) }}<span>{{ . }}</span>{{ end }}
-          </div>
         </div>
-        <a class="team-member__linkedin" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
-          {{ partial "icon.html" (dict "name" "linkedin" "size" 16) }}
-        </a>
-      </article>
+        <div class="team-member__focus">
+          <span class="team-member__focus-label">
+            {{ partial "icon.html" (dict "name" "zap" "size" 16) }}
+            {{ i18n "focus_areas_label" }}
+          </span>
+          {{ range (cond (eq $lang "de") .focus_de .focus_en) }}<span>{{ . }}</span>{{ end }}
+        </div>
+      </a>
       {{ end }}
     </div>
   </div>

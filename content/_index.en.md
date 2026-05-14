@@ -47,7 +47,7 @@ testimonial:
   eyebrow: "Voices from projects"
 lifecycle:
   eyebrow: "What IT teams gain"
-  title: "Clear direction — across the lifecycle"
+  title: "What <span class=\"accent\">IT teams</span> stand to <span class=\"accent\">gain</span>"
   lead: "Pragmatic delivery instead of a consulting layer. Four stages, one team."
   cards:
     - num: "01"
