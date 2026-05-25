@@ -4,6 +4,6 @@
 pkgs.mkShell {
   buildInputs = with pkgs; [
     hugo
-    nodePackages.svgo
+    svgo
   ];
 }
