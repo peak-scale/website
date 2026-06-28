@@ -4,29 +4,38 @@
 (function () {
   'use strict';
 
-  // ---------- Mobile menu ----------
+  // ---------- Mobile menu (pill drawer) ----------
   const menuToggle = document.querySelector('[data-menu-toggle]');
   const menu = document.querySelector('[data-menu]');
-  const menuClose = document.querySelector('[data-menu-close]');
 
+  function isOpen() { return !!menu && menu.classList.contains('is-open'); }
   function openMenu() {
     if (!menu) return;
-    menu.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
-    const firstLink = menu.querySelector('a');
-    if (firstLink) firstLink.focus();
+    menu.classList.add('is-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
   }
   function closeMenu() {
     if (!menu) return;
-    menu.setAttribute('hidden', '');
-    document.body.style.overflow = '';
-    if (menuToggle) menuToggle.focus();
+    menu.classList.remove('is-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
   }
+  function toggleMenu() { isOpen() ? closeMenu() : openMenu(); }
 
-  if (menuToggle) menuToggle.addEventListener('click', openMenu);
-  if (menuClose) menuClose.addEventListener('click', closeMenu);
+  if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
+
+  // Close when a menu link is followed.
+  if (menu) menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape (returning focus to the toggle).
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && menu && !menu.hasAttribute('hidden')) closeMenu();
+    if (e.key === 'Escape' && isOpen()) { closeMenu(); if (menuToggle) menuToggle.focus(); }
+  });
+
+  // Close when clicking outside the header.
+  document.addEventListener('click', function (e) {
+    if (isOpen() && !e.target.closest('.site-header')) closeMenu();
   });
 
   // ---------- Testimonial carousel ----------

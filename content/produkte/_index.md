@@ -2,15 +2,15 @@
 title: Produkte
 description: "Eigene Lösungen und ausgewählte Technologiepartner für tragfähige Cloud-Native-Plattformen – von Multi-Tenancy bis Enterprise-Support."
 hero:
-  eyebrow: "Hands-on entwickelte Lösungen"
-  title: "Plattformen, die funktionieren"
+  eyebrow: "Eigene Lösungen & Enterprise Support"
+  title: "Plattformbausteine für jedes Gelände."
   lead: "Wir liefern eigene Lösungen und professionellen Enterprise Support für ausgewählte Cloud Native Technologien – mit Fokus auf Stabilität, Sicherheit und verlässlichen Plattformbetrieb."
   sub: "Hands-on für Produkte, Enterprise Support und Plattformbetrieb"
   cta_primary: "Kontakt aufnehmen"
   cta_secondary: "Services ansehen"
   cta_secondary_href: "/services/"
 own:
-  eyebrow: "Eigene Lösungen & Produkte"
+  eyebrow: "Was wir bauen"
   title: "Eigene Lösungen & Produkte"
   cards:
     - title: "Cloud Native Multi-Tenancy"
@@ -43,7 +43,7 @@ own:
         - "Enterprise Kubernetes Cluster"
         - "Projekte mit komplexen Mandantenmodellen"
 partners:
-  eyebrow: "Technologiepartner & Integration"
+  eyebrow: "Ökosystem"
   title: "Technologiepartner & Integration"
   lead: "Mit ausgewählten Technologiepartnern integrieren wir zentrale Plattformbausteine in Ihre Architektur – tragfähig im Alltag, von der Entscheidung bis zum stabilen Betrieb."
   cards:

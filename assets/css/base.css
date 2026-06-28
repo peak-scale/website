@@ -56,9 +56,47 @@
     --shadow-soft: 0px 6px 12px rgba(9, 24, 54, .05);
 }
 
-/* ---------- Typography ---------- */
+/* ---------- Typography ----------
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Inter:wght@400;600;700&display=swap');
+   Self-hosted variable fonts — DM Sans (display/body) and Inter (UI).
+   Subsetted by Google Fonts to latin + latin-ext, the only coverage this
+   German/English site needs. Files live in `static/fonts/`. Self-hosting
+   replaces the former Google Fonts `@import`: no third-party requests
+   (privacy / no CDN dependency) and no flash of unstyled text when the
+   font CDN is slow or blocked. Each file is one variable font, so a
+   single `@font-face` per subset covers the whole weight range. */
+@font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 100 1000;
+    font-display: swap;
+    src: url('/fonts/dm-sans-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 100 1000;
+    font-display: swap;
+    src: url('/fonts/dm-sans-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/inter-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 :root {
     --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont,
@@ -239,7 +277,9 @@ hr {
 }
 
 .btn--primary:hover {
-    background: var(--dark-blue);
+    background: rgb(4, 105, 161);
+    color: var(--bg-white);
+    box-shadow: 0 8px 18px -8px rgba(5, 128, 196, .55);
 }
 
 .btn--inverse {
@@ -283,12 +323,10 @@ a.card:hover,
     border-color: var(--bright-blue);
 }
 
-.dot-square {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background: var(--bright-blue);
-    transform: rotate(45deg);
-    border-radius: 2px;
-    vertical-align: middle;
+.nav-sep {
+    display: inline-flex;
+    align-items: center;
+    color: var(--bright-blue);
+    opacity: 0.7;
 }
+.nav-sep svg { display: block; }

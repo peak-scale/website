@@ -5,15 +5,15 @@ aliases:
   - /about/
   - /contact/
 hero:
-  eyebrow: "Behind Peak Scale"
-  title: "The engineering team behind Peak Scale"
+  eyebrow: "Engineering & architecture"
+  title: "The team behind Peak Scale"
   lead: "We are a specialised engineering and architecture team for cloud native platforms – pragmatic, technically grounded, and close to operational reality."
   sub: "Hands-on – directly with the experts who also think about operations"
   cta_primary: "Get in touch"
   cta_secondary: "See services"
   cta_secondary_href: "/services/"
 team_block:
-  eyebrow: "Our team"
+  eyebrow: "Who we are"
   title: "Our team"
   lead: "We are engineers, architects, and platform specialists with different focus areas – connected by a shared mindset. Platforms have to be traceable, automated, and load-bearing in everyday operations."
   cta: "Follow us on LinkedIn"
@@ -48,7 +48,7 @@ how_we_work:
     - title: "Documentation that's actually used"
       body: "ADRs, runbooks and checklists that genuinely help in operations."
 why_cloud_native:
-  eyebrow: "Why cloud native?"
+  eyebrow: "Our conviction"
   title: "Why cloud native?"
   lead: "Cloud native is not a trend for us, it's the dependable basis of modern platforms – open, automated, and load-bearing for the long run."
   pills:
@@ -73,7 +73,7 @@ values:
     - title: "Community"
       body: "We are actively involved in the (Swiss) cloud native ecosystem."
 community:
-  eyebrow: "Community engagement"
+  eyebrow: "In the ecosystem"
   title: "Engagement in the community"
   lead: "Sharing knowledge is part of who we are. We actively contribute to events, meetups, and open-source projects."
   tags:

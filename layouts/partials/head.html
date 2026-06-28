@@ -34,8 +34,8 @@
   <meta name="twitter:description" content="{{ $desc }}">
   <meta name="twitter:image" content="{{ $ogImage }}">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   {{- $base := resources.Get "css/base.css" -}}
   {{- $site := resources.Get "css/site.css" -}}

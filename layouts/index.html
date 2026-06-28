@@ -3,25 +3,13 @@
 
 {{/* ---------- Hero (centered, photo below) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero">
+<section class="hero" style="--hero-motif: url('/images/hero/texture-home.svg')">
   <div class="container">
     <div class="hero__inner">
+      <div class="hero__kicker">{{ .eyebrow }}</div>
       <h1 class="hero__title">{{ .title }}</h1>
-      <p class="hero__lead">{{ .lead }}</p>
-      <div class="hero__kicker">{{ .sub }}</div>
       <div class="hero__ctas">
-        <a class="btn btn--primary" href="{{ .cta_primary_href }}">{{ .cta_primary }} {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}</a>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="hero-photo" style="background-image: url('/images/hero/home-mountain.jpg'); background-color: #efe7c8;">
-      <div class="hero-photo__tags" aria-hidden="true">
-        {{ with $.Params.mountain.stages }}
-        {{ range $i, $s := . }}
-        <span class="hero-photo__tag hero-photo__tag--{{ add $i 1 }}">{{ $s.name }}</span>
-        {{ end }}
-        {{ end }}
+        <a class="btn btn--primary" href="{{ with .cta_primary_href }}{{ . }}{{ else }}mailto:{{ $.Site.Params.contactEmail }}{{ end }}">{{ .cta_primary }} {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}</a>
       </div>
     </div>
   </div>
@@ -145,7 +133,7 @@
 <section class="section">
   <div class="container">
     <div class="challenges-glass challenges-glass--split">
-      <div class="challenges-glass__bg" {{ with .bg }}style="background-image: linear-gradient(135deg, rgba(95,115,55,.7) 0%, rgba(210,200,100,.55) 100%), url('{{ . }}');"{{ end }}></div>
+      <div class="challenges-glass__bg" {{ with .bg }}style="background-image: linear-gradient(135deg, rgba(7,19,44,.85) 0%, rgba(5,128,196,.4) 100%), url('{{ . }}');"{{ end }}></div>
       <div class="challenges-glass__inner challenges-glass__inner--split">
         <div class="challenges-glass__intro">
           <h2>{{ .title }}</h2>

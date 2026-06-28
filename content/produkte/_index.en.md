@@ -2,15 +2,15 @@
 title: Products
 description: "Our own solutions and selected technology partners for cloud-native platforms – from multi-tenancy to enterprise support."
 hero:
-  eyebrow: "Solutions built hands-on"
-  title: "Platforms that work"
+  eyebrow: "Our own solutions & enterprise support"
+  title: "Platform building blocks for any terrain."
   lead: "We deliver our own solutions and professional enterprise support for selected cloud native technologies – focused on stability, security and reliable platform operations."
   sub: "Hands-on for products, enterprise support and platform operations"
   cta_primary: "Get in touch"
   cta_secondary: "See services"
   cta_secondary_href: "/services/"
 own:
-  eyebrow: "Our own solutions & products"
+  eyebrow: "What we build"
   title: "Our own solutions & products"
   cards:
     - title: "Cloud Native multi-tenancy"
@@ -43,7 +43,7 @@ own:
         - "Enterprise Kubernetes clusters"
         - "Projects with complex tenant models"
 partners:
-  eyebrow: "Technology partners & integration"
+  eyebrow: "Ecosystem"
   title: "Technology partners & integration"
   lead: "With selected technology partners we integrate core platform building blocks into your architecture – load-bearing in everyday operations, from the decision to stable operation."
   cards:
