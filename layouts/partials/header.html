@@ -7,7 +7,7 @@
 
       <nav class="site-header__nav" aria-label="Main">
         {{ range $i, $item := .Site.Menus.main -}}
-        {{ if gt $i 0 }}<span class="nav-sep" aria-hidden="true">{{ partial "icon.html" (dict "name" "trail-marker" "size" 8) }}</span>{{ end }}
+        {{ if gt $i 0 }}<span class="nav-sep" aria-hidden="true">{{ partial "icon.html" (dict "name" "trail-marker" "size" 12) }}</span>{{ end }}
         {{- $active := or ($.IsMenuCurrent "main" $item) ($.HasMenuCurrent "main" $item) -}}
         <a href="{{ $item.URL | relLangURL }}" {{ if $active }}class="is-active" aria-current="page"{{ end }}>{{ $item.Name }}</a>
         {{- end }}
