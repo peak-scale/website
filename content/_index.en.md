@@ -2,7 +2,7 @@
 title: Peak Scale
 description: "Cloud Native consulting and platform engineering from Bern. Hands-on partner for strategy, architecture, engineering, and operations of modern cloud platforms."
 hero:
-  eyebrow: "Hands-on from strategy to operations"
+  eyebrow: "Platform engineering & cloud architecture from Bern"
   title: "We know the route."
   lead: "We support you from strategy and architecture all the way to delivery – technically grounded, hands-on, and shaped to your context."
   sub: "Hands-on for platforms that work – on-prem and across the public clouds"

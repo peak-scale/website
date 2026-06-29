@@ -3,13 +3,24 @@
 
 {{/* ---------- Hero (centered, photo below) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero" style="--hero-motif: url('/images/hero/texture-home.svg')">
+<section class="hero hero--photo" style="--hero-motif: url('/images/hero/texture-home.svg')">
   <div class="container">
     <div class="hero__inner">
       <div class="hero__kicker">{{ .eyebrow }}</div>
       <h1 class="hero__title">{{ .title }}</h1>
       <div class="hero__ctas">
         <a class="btn btn--primary" href="{{ with .cta_primary_href }}{{ . }}{{ else }}mailto:{{ $.Site.Params.contactEmail }}{{ end }}">{{ .cta_primary }} {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-photo" style="background-image: url('/images/hero/home-mountain.jpg'); background-color: #efe7c8;">
+      <div class="hero-photo__tags" aria-hidden="true">
+        {{ with $.Params.mountain.stages }}
+        {{ range $i, $s := . }}
+        <span class="hero-photo__tag hero-photo__tag--{{ add $i 1 }}">{{ $s.name }}</span>
+        {{ end }}
+        {{ end }}
       </div>
     </div>
   </div>
