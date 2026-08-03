@@ -273,7 +273,11 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .hero--photo + .section {
   padding-top: calc(40px + clamp(56px, 8vw, 96px));
 }
-/* Subtle topographic brand map, full-bleed behind the whole intro. */
+/* Subtle topographic brand map, full-bleed behind the whole intro.
+   Per-page texture swapped via modifier class, not inline style. */
+.hero--produkte { --hero-motif: url('/images/hero/texture-produkte.svg'); }
+.hero--services { --hero-motif: url('/images/hero/texture-services.svg'); }
+.hero--team { --hero-motif: url('/images/hero/texture-team.svg'); }
 .hero::before {
   content: "";
   position: absolute;

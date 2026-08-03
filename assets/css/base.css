@@ -277,9 +277,9 @@ hr {
 }
 
 .btn--primary:hover {
-    background: rgb(4, 105, 161);
+    background: color-mix(in srgb, var(--bright-blue) 82%, black);
     color: var(--bg-white);
-    box-shadow: 0 8px 18px -8px rgba(5, 128, 196, .55);
+    box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--bright-blue) 55%, transparent);
 }
 
 .btn--inverse {
