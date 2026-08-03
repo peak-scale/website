@@ -2,8 +2,8 @@
 title: Peak Scale
 description: "Cloud Native consulting and platform engineering from Bern. Hands-on partner for strategy, architecture, engineering, and operations of modern cloud platforms."
 hero:
-  eyebrow: "Platform engineering & cloud architecture from Bern"
-  title: "We know the route."
+  eyebrow: "Hands-on across the full lifecycle"
+  title: "Cloud transformations that succeed"
   lead: "We support you from strategy and architecture all the way to delivery – technically grounded, hands-on, and shaped to your context."
   sub: "Hands-on for platforms that work – on-prem and across the public clouds"
   cta_primary: "See services"
@@ -23,7 +23,7 @@ mountain:
     - name: "Training & Enablement"
       sub: "Workshops and deep technical training so teams can move on independently."
 why:
-  eyebrow: "What sets us apart"
+  eyebrow: "Why Peak Scale"
   title: "Why Peak Scale?"
   items:
     - title: "<strong>Peak for technical depth.</strong> Scale for platforms that grow with you."
@@ -40,13 +40,13 @@ why:
     - title: "Specialised team"
       body: "No full-service generalist shop – a focused team with deep cloud-native expertise."
 customers:
-  eyebrow: "Trusted by"
+  eyebrow: "Our customers"
   title: "Our <span class=\"accent\">customers</span>"
   lead: "A selection of customers we've supported on architecture, engineering, or assessment projects."
 testimonial:
   eyebrow: "Voices from <span class=\"accent\">projects</span>"
 lifecycle:
-  eyebrow: "The payoff"
+  eyebrow: "What IT teams gain"
   title: "What <span class=\"accent\">IT teams</span> stand to <span class=\"accent\">gain</span>"
   lead: "Clear orientation, technical excellence, and pragmatic delivery – across the full lifecycle."
   cards:
@@ -59,7 +59,7 @@ lifecycle:
     - title: "Training & Enablement"
       desc: "We share knowledge – in compact workshops or deep technical trainings for engineers and architects."
 challenges:
-  eyebrow: "From real projects"
+  eyebrow: "Typical challenges"
   title: "Typical challenges we solve"
   lead: "Typical stages in cloud transformations – from real projects."
   bg: "/images/section/challenges.jpg"
@@ -74,7 +74,7 @@ challenges:
     - title: "Cloud-native expertise in the team"
       body: "We build knowledge that stays in the team – through pair-engineering, workshops, and documentation."
 partners:
-  eyebrow: "Ecosystem"
+  eyebrow: "Technology partners"
   title: "Technology partners"
   lead: "We work with leading cloud-native vendors."
 next_steps:

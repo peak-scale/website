@@ -5,7 +5,7 @@ aliases:
   - /angebot/
 hero:
   eyebrow: "Strategie → Architektur → Engineering → Betrieb"
-  title: "Vier Etappen. Eine Seilschaft."
+  title: "Professional Services, die überzeugen"
   lead: "Wir begleiten Sie von technischer Orientierung und Architektur bis zur Umsetzung – damit Cloud-Native-Plattformen stabil, sicher und langfristig betreibbar sind."
   sub: "Hands-on entlang klarer Etappen mit iterativen Feedback-Zyklen"
   cta_primary: "Kontakt aufnehmen"

@@ -10,7 +10,7 @@ hero:
   cta_secondary: "Services ansehen"
   cta_secondary_href: "/services/"
 own:
-  eyebrow: "Was wir bauen"
+  eyebrow: "Eigene Lösungen & Produkte"
   title: "Eigene Lösungen & Produkte"
   cards:
     - title: "Cloud Native Multi-Tenancy"
@@ -43,7 +43,7 @@ own:
         - "Enterprise Kubernetes Cluster"
         - "Projekte mit komplexen Mandantenmodellen"
 partners:
-  eyebrow: "Ökosystem"
+  eyebrow: "Technologiepartner & Integration"
   title: "Technologiepartner & Integration"
   lead: "Mit ausgewählten Technologiepartnern integrieren wir zentrale Plattformbausteine in Ihre Architektur – tragfähig im Alltag, von der Entscheidung bis zum stabilen Betrieb."
   cards:

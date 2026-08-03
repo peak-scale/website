@@ -5,7 +5,7 @@ aliases:
   - /angebot/
 hero:
   eyebrow: "Strategy → Architecture → Engineering → Operations"
-  title: "Four stages, one rope team."
+  title: "Professional services that hold up"
   lead: "We support you from technical orientation and architecture all the way to delivery – so cloud-native platforms stay stable, secure, and operable for the long run."
   sub: "Hands-on along clear stages with iterative feedback cycles"
   cta_primary: "Get in touch"
