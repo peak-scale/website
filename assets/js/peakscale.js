@@ -1,23 +1,133 @@
 /* Peak Scale — minimal client JS.
-   Mobile menu toggle, testimonial carousel (chevrons + dots). */
+   Header state, mobile menu toggle, testimonial carousel (chevrons + dots). */
 
 (function () {
   'use strict';
 
+  // ---------- Transparent hero header ----------
+  const scrollHeader = document.querySelector('[data-scroll-header]');
+  const hero = document.querySelector('.hero');
+  let lastScrollY = window.scrollY;
+  let headerOffset = scrollHeader && window.scrollY > 16 ? -scrollHeader.offsetHeight : 0;
+  let heroHeaderFollowsDocument = true;
+  let stickyRevealStarted = false;
+
+  function setNaturalHeader(isNatural) {
+    heroHeaderFollowsDocument = isNatural;
+    if (scrollHeader) scrollHeader.classList.toggle('is-natural', isNatural);
+  }
+
+  function setHeaderOffset() {
+    if (scrollHeader) scrollHeader.style.setProperty('--header-offset', headerOffset + 'px');
+  }
+
+  function revealHeader() {
+    headerOffset = 0;
+    setHeaderOffset();
+  }
+
+  function updateHeader() {
+    if (!scrollHeader) return;
+
+    const currentScrollY = window.scrollY;
+    const isAtTop = currentScrollY <= 16;
+    const isMenuOpen = scrollHeader.classList.contains('is-menu-open');
+    const headerHeight = scrollHeader.offsetHeight;
+    const scrollDelta = currentScrollY - lastScrollY;
+    const heroEnd = hero ? hero.offsetTop + hero.offsetHeight : headerHeight;
+
+    if (isMenuOpen) {
+      headerOffset = 0;
+      stickyRevealStarted = false;
+    } else if (currentScrollY <= heroEnd) {
+      const enteredHero = lastScrollY > heroEnd;
+
+      if (enteredHero) {
+        // Keep the handoff binary at the hero edge. A reveal that has become
+        // visible completes; an entirely hidden header stays out of view.
+        if (headerOffset > -headerHeight) {
+          headerOffset = 0;
+          setNaturalHeader(false);
+        } else {
+          headerOffset = -headerHeight;
+          setNaturalHeader(true);
+        }
+        stickyRevealStarted = false;
+      }
+
+      if (!heroHeaderFollowsDocument && scrollDelta > 0) {
+        // If an open sticky header is followed by downward scrolling inside
+        // the hero, let it move out at exactly the scroll speed.
+        headerOffset = Math.max(-headerHeight, headerOffset - scrollDelta);
+        if (headerOffset <= -headerHeight) setNaturalHeader(true);
+      } else if (-currentScrollY >= headerOffset) {
+        // Rejoin the original header only when its natural page position
+        // catches up, avoiding a jump when the viewport reaches the top.
+        setNaturalHeader(true);
+      }
+    } else {
+      if (heroHeaderFollowsDocument) {
+        // The natural header is already above the viewport at this point;
+        // switch to the fixed version in the equivalent hidden position.
+        setNaturalHeader(false);
+        headerOffset = -headerHeight;
+        stickyRevealStarted = false;
+      } else if (scrollDelta < 0) {
+        // Only begin revealing when there is enough distance left to show
+        // the complete header before reaching the hero.
+        const hasRevealSpace = currentScrollY > heroEnd + headerHeight;
+        if (stickyRevealStarted || hasRevealSpace || headerOffset >= -1) {
+          stickyRevealStarted = headerOffset < -1;
+          headerOffset = Math.min(0, headerOffset - scrollDelta);
+          if (headerOffset >= -1) {
+            headerOffset = 0;
+            stickyRevealStarted = false;
+          }
+        }
+      } else {
+        stickyRevealStarted = false;
+        headerOffset = Math.max(-headerHeight, headerOffset - scrollDelta);
+      }
+    }
+
+    // Only paint the white sticky surface while the fixed header is
+    // actually visible. This also prevents its shadow peeking into view
+    // while the header itself is fully hidden.
+    const stickyHeaderIsVisible = !heroHeaderFollowsDocument && headerOffset > -headerHeight;
+    scrollHeader.classList.toggle('is-scrolled', !isAtTop && stickyHeaderIsVisible);
+
+    setHeaderOffset();
+    lastScrollY = currentScrollY;
+  }
+
+  if (scrollHeader) {
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    window.addEventListener('resize', updateHeader);
+    scrollHeader.addEventListener('focusin', revealHeader);
+  }
+
   // ---------- Mobile menu (pill drawer) ----------
   const menuToggle = document.querySelector('[data-menu-toggle]');
   const menu = document.querySelector('[data-menu]');
+  const header = document.querySelector('.site-header');
 
   function isOpen() { return !!menu && menu.classList.contains('is-open'); }
   function openMenu() {
     if (!menu) return;
     menu.classList.add('is-open');
+    if (header) {
+      header.classList.add('is-menu-open');
+      revealHeader();
+    }
     if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
   }
   function closeMenu() {
     if (!menu) return;
     menu.classList.remove('is-open');
+    if (header) header.classList.remove('is-menu-open');
     if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    updateHeader();
   }
   function toggleMenu() { isOpen() ? closeMenu() : openMenu(); }
 

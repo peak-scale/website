@@ -1,11 +1,14 @@
 {{ define "main" }}
 {{- $lang := .Site.Language.Lang -}}
 
-{{/* ---------- Hero (centered, compass photo below, lifecycle path between) ---------- */}}
+{{/* ---------- Hero (full-bleed mountaineer photo, lifecycle path between) ---------- */}}
 {{ with .Params.hero }}
 <section class="hero hero--services">
   <div class="container">
     <div class="hero__inner">
+      <h1 class="hero__title">{{ .title }}</h1>
+      <p class="lead">{{ .lead }}</p>
+      {{ with .sub }}<span class="hero__badge">{{ . }}</span>{{ end }}
       {{ with $.Params.lifecycle_strip }}
       <div class="lifecycle-path" aria-label="Lifecycle">
         {{ range $i, $s := .stages }}
@@ -14,10 +17,6 @@
         {{ end }}
       </div>
       {{ end }}
-      <h1 class="hero__title">{{ .title }}</h1>
-      <div class="hero__ctas">
-        <a class="btn btn--primary" href="{{ with .cta_primary_href }}{{ . }}{{ else }}mailto:{{ $.Site.Params.contactEmail }}{{ end }}">{{ .cta_primary }} {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}</a>
-      </div>
     </div>
   </div>
 </section>
@@ -25,22 +24,24 @@
 
 {{/* ---------- Architecture: 2 cards left + yellow testimonial right + green tag ---------- */}}
 {{ with .Params.architecture }}
-<section class="section section--alt">
+<section class="section section--alt services-architecture">
   <div class="container">
     <div class="section__head">
-      <span class="section__icon">{{ partial "icon.html" (dict "name" "compass" "size" 24) }}</span>
+      <span class="section__icon section__icon--accent">{{ partial "icon.html" (dict "name" "cloud" "size" 24) }}</span>
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="grid grid--2">
       <div class="service-stack">
-        {{ range .cards }}
+        {{ $architectureIcons := slice "architecture" "solution-review" }}
+        {{ range $i, $card := .cards }}
         <div class="card">
-          <h3>{{ .title }}</h3>
-          <p>{{ .body }}</p>
-          <div class="eyebrow card__eyebrow">{{ .eyebrow }}</div>
+          <span class="card__icon service-card__icon">{{ partial "icon.html" (dict "name" (index $architectureIcons $i) "size" 30) }}</span>
+          <h3>{{ $card.title }}</h3>
+          <p>{{ $card.body }}</p>
+          <div class="eyebrow card__eyebrow">{{ $card.eyebrow }}</div>
           <ul class="reset service-card__items">
-            {{ range .items }}<li>– {{ . }}</li>{{ end }}
+            {{ range $card.items }}<li><span class="list-check-icon" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>{{ . }}</li>{{ end }}
           </ul>
         </div>
         {{ end }}
@@ -48,7 +49,7 @@
       <div class="service-stack">
         {{ with index hugo.Data.testimonials 0 }}
         <figure class="testimonial-side">
-          <span class="testimonial-side__mark" aria-hidden="true">”</span>
+          <span class="testimonial-side__mark" aria-hidden="true">{{ partial "icon.html" (dict "name" "quote" "size" 108) }}</span>
           <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
           <figcaption class="testimonial-side__cite">{{ if eq $lang "de" }}– {{ .author_de }}{{ else }}— {{ .author_en }}{{ end }}</figcaption>
         </figure>
@@ -65,21 +66,23 @@
 
 {{/* ---------- Engineering: 4 categories left + testimonial + tag right ---------- */}}
 {{ with .Params.engineering }}
-<section class="section">
+<section class="section services-engineering">
   <div class="container">
     <div class="section__head">
-      <span class="section__icon">{{ partial "icon.html" (dict "name" "code" "size" 24) }}</span>
+      <span class="section__icon section__icon--accent">{{ partial "icon.html" (dict "name" "platform" "size" 24) }}</span>
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     {{ with .subhead }}<div class="cat-subhead">{{ . }}</div>{{ end }}
     <div class="grid grid--2">
       <div class="service-stack service-stack--tight">
-        {{ range .categories }}
+        {{ $engineeringIcons := slice "containers" "gitops" "automation" "security-observability" }}
+        {{ range $i, $category := .categories }}
         <div class="card cat-card">
-          <h3 class="cat-card__title">{{ .title }}</h3>
+          <span class="card__icon service-card__icon">{{ partial "icon.html" (dict "name" (index $engineeringIcons $i) "size" 30) }}</span>
+          <h3 class="cat-card__title">{{ $category.title }}</h3>
           <ul class="cat-card__items">
-            {{ range .items }}<li>{{ . }}</li>{{ end }}
+            {{ range $category.items }}<li><span class="list-check-icon" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>{{ . }}</li>{{ end }}
           </ul>
         </div>
         {{ end }}
@@ -87,7 +90,7 @@
       <div class="service-stack">
         {{ with index hugo.Data.testimonials 1 }}
         <figure class="testimonial-side">
-          <span class="testimonial-side__mark" aria-hidden="true">”</span>
+          <span class="testimonial-side__mark" aria-hidden="true">{{ partial "icon.html" (dict "name" "quote" "size" 108) }}</span>
           <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
           <figcaption class="testimonial-side__cite">{{ if eq $lang "de" }}– {{ .author_de }}{{ else }}— {{ .author_en }}{{ end }}</figcaption>
         </figure>
@@ -96,13 +99,13 @@
           <strong>{{ if eq $lang "de" }}Wie wir arbeiten{{ else }}How we work{{ end }}</strong>
           <ul class="checklist tag-arbeitsweise__list">
             {{ if eq $lang "de" }}
-            <li>Hands-on Engineering</li>
-            <li>Enge Zusammenarbeit mit dem Kundenteam</li>
-            <li>Fokus auf Übertragbarkeit, Dokumentation und Enablement</li>
+            <li><span class="list-check-icon list-check-icon--green" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>Hands-on Engineering</li>
+            <li><span class="list-check-icon list-check-icon--green" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>Enge Zusammenarbeit mit dem Kundenteam</li>
+            <li><span class="list-check-icon list-check-icon--green" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>Fokus auf Übertragbarkeit, Dokumentation und Enablement</li>
             {{ else }}
-            <li>Hands-on engineering</li>
-            <li>Close collaboration with the client team</li>
-            <li>Focus on transferability, documentation and enablement</li>
+            <li><span class="list-check-icon list-check-icon--green" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>Hands-on engineering</li>
+            <li><span class="list-check-icon list-check-icon--green" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>Close collaboration with the client team</li>
+            <li><span class="list-check-icon list-check-icon--green" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>Focus on transferability, documentation and enablement</li>
             {{ end }}
           </ul>
         </div>
@@ -114,19 +117,20 @@
 
 {{/* ---------- Assessments (dark) ---------- */}}
 {{ with .Params.assessments }}
-<section class="section section--dark">
+<section class="section section--dark section--single-color-heading services-assessments">
   <div class="container">
     <div class="section__head">
-      <span class="section__icon">{{ partial "icon.html" (dict "name" "clipboard" "size" 24) }}</span>
+      <span class="section__icon section__icon--accent">{{ partial "icon.html" (dict "name" "assessment" "size" 24) }}</span>
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="grid grid--3 assessment-cards">
-      {{ range .cards }}
+      {{ $assessmentIcons := slice "assessment" "platform" "cloud" }}
+      {{ range $i, $card := .cards }}
       <div class="icon-tile icon-tile--stack">
-        <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" "shield" "size" 24) }}</div>
-        <h3 class="icon-tile__title">{{ .title }}</h3>
-        <p class="icon-tile__body">{{ .body }}</p>
+        <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $assessmentIcons $i) "size" 24) }}</div>
+        <h3 class="icon-tile__title">{{ $card.title }}</h3>
+        <p class="icon-tile__body">{{ $card.body }}</p>
       </div>
       {{ end }}
     </div>
@@ -135,7 +139,7 @@
       <div class="challenges-glass__inner output-block">
         <div class="eyebrow output-block__title">{{ .output_title }}</div>
         <ul class="checklist checklist--on-dark output-block__list">
-          {{ range .output_items }}<li>{{ . }}</li>{{ end }}
+          {{ range .output_items }}<li><span class="list-check-icon list-check-icon--blue" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>{{ . }}</li>{{ end }}
         </ul>
       </div>
     </div>
@@ -145,25 +149,27 @@
 
 {{/* ---------- Training ---------- */}}
 {{ with .Params.training }}
-<section class="section">
+<section class="section services-training">
   <div class="container">
     <div class="section__head">
-      <span class="section__icon">{{ partial "icon.html" (dict "name" "graduation" "size" 24) }}</span>
+      <span class="section__icon section__icon--accent">{{ partial "icon.html" (dict "name" "training" "size" 24) }}</span>
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="grid grid--3 training-cards">
-      {{ range .cards }}
+      {{ $trainingIcons := slice "workshops" "technical-training" "labs" }}
+      {{ range $i, $card := .cards }}
       <div class="card">
-        <h3>{{ .title }}</h3>
-        <p>{{ .body }}</p>
+        <span class="card__icon service-card__icon">{{ partial "icon.html" (dict "name" (index $trainingIcons $i) "size" 30) }}</span>
+        <h3>{{ $card.title }}</h3>
+        <p>{{ $card.body }}</p>
       </div>
       {{ end }}
     </div>
     <div class="col-narrow--md">
       {{ with index hugo.Data.testimonials 2 }}
       <figure class="testimonial-side">
-        <span class="testimonial-side__mark" aria-hidden="true">”</span>
+        <span class="testimonial-side__mark" aria-hidden="true">{{ partial "icon.html" (dict "name" "quote" "size" 108) }}</span>
         <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
         <figcaption class="testimonial-side__cite">{{ if eq $lang "de" }}– {{ .author_de }}{{ else }}— {{ .author_en }}{{ end }}</figcaption>
       </figure>

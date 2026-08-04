@@ -4,13 +4,9 @@ description: "Architekturberatung, Platform Engineering, Assessments und Trainin
 aliases:
   - /angebot/
 hero:
-  eyebrow: "Strategie → Architektur → Engineering → Betrieb"
   title: "Professional Services, die überzeugen"
   lead: "Wir begleiten Sie von technischer Orientierung und Architektur bis zur Umsetzung – damit Cloud-Native-Plattformen stabil, sicher und langfristig betreibbar sind."
   sub: "Hands-on entlang klarer Etappen mit iterativen Feedback-Zyklen"
-  cta_primary: "Kontakt aufnehmen"
-  cta_secondary: "Produkte ansehen"
-  cta_secondary_href: "/produkte/"
 lifecycle_strip:
   eyebrow: "Lebenszyklus"
   title: "Vier Etappen – eine Route"

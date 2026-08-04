@@ -21,7 +21,7 @@
         <span class="footer-col__title">{{ i18n "footer_menu" }}</span>
         <ul class="footer-col__list">
           {{ range .Site.Menus.main -}}
-          <li><a href="{{ .URL | relLangURL }}"><span class="footer-col__arrow" aria-hidden="true">↗</span>{{ .Name }}</a></li>
+          <li><a href="{{ .URL | relLangURL }}"><span class="footer-col__arrow" aria-hidden="true">{{ partial "icon.html" (dict "name" "arrow-up-right" "size" 10) }}</span>{{ .Name }}</a></li>
           {{- end }}
         </ul>
       </div>
@@ -30,7 +30,7 @@
         <span class="footer-col__title">{{ i18n "footer_legal" }}</span>
         <ul class="footer-col__list">
           {{ range .Site.Menus.legal -}}
-          <li><a href="{{ .URL | relLangURL }}"><span class="footer-col__arrow" aria-hidden="true">↗</span>{{ .Name }}</a></li>
+          <li><a href="{{ .URL | relLangURL }}"><span class="footer-col__arrow" aria-hidden="true">{{ partial "icon.html" (dict "name" "arrow-up-right" "size" 10) }}</span>{{ .Name }}</a></li>
           {{- end }}
         </ul>
       </div>

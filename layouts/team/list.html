@@ -1,28 +1,26 @@
 {{ define "main" }}
 {{- $lang := .Site.Language.Lang -}}
 
-{{/* ---------- Hero (centered, network photo below) ---------- */}}
+{{/* ---------- Hero (full-bleed rope-knot photo) ---------- */}}
 {{ with .Params.hero }}
 <section class="hero hero--team">
   <div class="container">
     <div class="hero__inner">
-      <div class="hero__kicker">{{ .eyebrow }}</div>
       <h1 class="hero__title">{{ .title }}</h1>
-      <div class="hero__ctas">
-        <a class="btn btn--primary" href="{{ with .cta_primary_href }}{{ . }}{{ else }}mailto:{{ $.Site.Params.contactEmail }}{{ end }}">{{ .cta_primary }} {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}</a>
-      </div>
+      <p class="lead">{{ .lead }}</p>
+      {{ with .sub }}<span class="hero__badge">{{ . }}</span>{{ end }}
     </div>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Team grid: featured "Unser Team" card + member cards (why-grid 2-col) ---------- */}}
-<section class="section section--alt">
+{{/* ---------- Team grid: fixed "Unser Team" sidebar + single-column member list ---------- */}}
+<section class="section section--alt team-members">
   <div class="container">
-    <div class="why-grid why-grid--2">
+    <div class="team-grid">
       {{ with .Params.team_block }}
       <a class="card card--feature team-feature" href="{{ $.Site.Params.linkedin }}" rel="noopener">
-        <span class="team-feature__icon">{{ partial "icon.html" (dict "name" "users" "size" 22) }}</span>
+        <span class="team-feature__icon">{{ partial "icon.html" (dict "name" "team" "size" 22) }}</span>
         <h2 class="team-feature__title">{{ .eyebrow }}</h2>
         <p class="team-feature__lead">{{ .lead }}</p>
         <span class="team-feature__cta">
@@ -32,9 +30,8 @@
       </a>
       {{ end }}
 
-      {{ range hugo.Data.team }}
-      {{ $parts := split .name " " }}
-      {{ $initials := printf "%s%s" (substr (index $parts 0) 0 1) (substr (index $parts (sub (len $parts) 1)) 0 1) }}
+      <div class="team-grid__members">
+      {{ range where hugo.Data.team "image" "ne" nil }}
       {{ if .linkedin }}
       <a class="card team-member" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
         <span class="team-member__linkedin" aria-hidden="true">
@@ -43,44 +40,39 @@
       {{ else }}
       <div class="card team-member team-member--no-link">
       {{ end }}
-        {{ if .image }}
         <img class="team-member__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="96" height="96">
-        {{ else }}
-        <span class="team-member__avatar team-member__avatar--placeholder" aria-hidden="true">{{ $initials }}</span>
-        {{ end }}
         <div class="team-member__body">
           <h3 class="team-member__name">{{ .name }}</h3>
           <p class="team-member__role">{{ if eq $lang "de" }}{{ .role_de }}{{ else }}{{ .role_en }}{{ end }}</p>
         </div>
         <div class="team-member__focus">
           <span class="team-member__focus-label">
-            {{ partial "icon.html" (dict "name" "zap" "size" 16) }}
+            {{ partial "icon.html" (dict "name" "lightning" "size" 16) }}
             {{ i18n "focus_areas_label" }}
           </span>
           <p class="team-member__focus-text">{{ if eq $lang "de" }}{{ .focus_de }}{{ else }}{{ .focus_en }}{{ end }}</p>
         </div>
       {{ if .linkedin }}</a>{{ else }}</div>{{ end }}
       {{ end }}
+      </div>
     </div>
   </div>
 </section>
 
-{{/* ---------- Mission ---------- */}}
+{{/* ---------- Mission (split: text left, pill tags right) ---------- */}}
 {{ with .Params.mission }}
-<section class="section">
+<section class="section section--topo team-mission">
   <div class="container">
-    <div class="section__head">
-      <h2>{{ .title | safeHTML }}</h2>
-      <p class="lead">{{ .lead }}</p>
-    </div>
-    {{ $missionicons := slice "compass" "clipboard" "boxes" "users" }}
-    <div class="icon-tile-grid">
-      {{ range $i, $t := .tags }}
-      <div class="icon-tile">
-        <span class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $missionicons $i) "size" 22) }}</span>
-        <h3 class="icon-tile__title">{{ $t }}</h3>
+    <div class="mission-split">
+      <div class="section__head section__head--left">
+        <h2>{{ .title | safeHTML }}</h2>
+        <p class="lead">{{ .lead }}</p>
       </div>
-      {{ end }}
+      <div class="text-pill-row">
+        {{ range .tags }}
+        <span class="text-pill">{{ . }}</span>
+        {{ end }}
+      </div>
     </div>
   </div>
 </section>
@@ -88,7 +80,7 @@
 
 {{/* ---------- How we work (dark, 6 cards 2x3) ---------- */}}
 {{ with .Params.how_we_work }}
-<section class="section section--dark">
+<section class="section section--dark section--accent-green team-working">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
@@ -96,10 +88,11 @@
     </div>
     {{ with .eyebrow }}<p class="how-we-work__intro">{{ . }}:</p>{{ end }}
     <div class="icon-tile-grid">
-      {{ range .cards }}
+      {{ $workingIcons := slice "communication" "sparring" "iterative-architecture" "assessment" "enablement" "documentation" }}
+      {{ range $i, $card := .cards }}
       <div class="icon-tile">
-        <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" "settings" "size" 22) }}</div>
-        <h3 class="icon-tile__title">{{ .title }}</h3>
+        <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $workingIcons $i) "size" 22) }}</div>
+        <h3 class="icon-tile__title">{{ $card.title }}</h3>
       </div>
       {{ end }}
     </div>
@@ -107,22 +100,18 @@
 </section>
 {{ end }}
 
-{{/* ---------- Why Cloud Native (5 rows, middle highlighted) ---------- */}}
+{{/* ---------- Why Cloud Native (full-width stacked bars, one featured) ---------- */}}
 {{ with .Params.why_cloud_native }}
-<section class="section">
+<section class="section team-cloud-native">
   <div class="container">
     <div class="section__head">
       <span class="section__icon">{{ partial "icon.html" (dict "name" "cloud" "size" 22) }}</span>
       <h2>{{ .title }}</h2>
       {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
     </div>
-    {{ $cnicons := slice "rocket" "shield" "boxes" "settings" "globe" }}
-    <div class="icon-tile-grid">
-      {{ range $i, $p := .pills }}
-      <div class="icon-tile">
-        <span class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $cnicons $i) "size" 22) }}</span>
-        <h3 class="icon-tile__title">{{ $p }}</h3>
-      </div>
+    <div class="stat-bars">
+      {{ range .pills }}
+      <div class="stat-bar{{ if .featured }} stat-bar--featured{{ end }}">{{ .title }}</div>
       {{ end }}
     </div>
     {{ with .footnote }}<p class="section__footnote">{{ . }}</p>{{ end }}
@@ -132,7 +121,7 @@
 
 {{/* ---------- Werte (dark, 5 rows with photo + copy) ---------- */}}
 {{ with .Params.values }}
-<section class="section section--dark">
+<section class="section section--dark section--accent-green team-values">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
@@ -151,22 +140,18 @@
 </section>
 {{ end }}
 
-{{/* ---------- Community (cream beige bg) ---------- */}}
+{{/* ---------- Community ---------- */}}
 {{ with .Params.community }}
-<section class="section section--gold">
+<section class="section team-community">
   <div class="container">
     <div class="section__head">
-      <span class="section__icon section__icon--gold">{{ partial "icon.html" (dict "name" "users" "size" 22) }}</span>
+      <span class="section__icon">{{ partial "icon.html" (dict "name" "community" "size" 22) }}</span>
       <h2>{{ .title }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    {{ $communityicons := slice "cloud" "users" "graduation" "code" }}
-    <div class="icon-tile-grid">
-      {{ range $i, $t := .tags }}
-      <div class="icon-tile">
-        <span class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $communityicons $i) "size" 22) }}</span>
-        <h3 class="icon-tile__title">{{ $t }}</h3>
-      </div>
+    <div class="text-pill-row" style="justify-content: center;">
+      {{ range .tags }}
+      <span class="text-pill">{{ . }}</span>
       {{ end }}
     </div>
     {{ with .footnote }}<p class="section__footnote">{{ . }}</p>{{ end }}
@@ -176,7 +161,7 @@
 
 {{/* ---------- Contact block ---------- */}}
 {{ with .Params.contact_block }}
-<section class="section section--dark">
+<section class="section section--dark team-contact">
   <div class="container">
     <div class="contact-cta">
       <span class="eyebrow contact-cta__eyebrow">{{ .eyebrow }}</span>
@@ -184,7 +169,7 @@
       <p class="lead">{{ .lead }}</p>
       <p class="contact-cta__actions">
         <a class="btn btn--inverse" href="mailto:{{ $.Site.Params.contactEmail }}">
-          {{ partial "icon.html" (dict "name" "mail" "size" 18) }}
+          {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 18) }}
           {{ $.Site.Params.contactEmail }}
         </a>
       </p>

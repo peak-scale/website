@@ -2,13 +2,9 @@
 title: Products
 description: "Our own solutions and selected technology partners for cloud-native platforms – from multi-tenancy to enterprise support."
 hero:
-  eyebrow: "Solutions built hands-on"
   title: "Platforms that work"
   lead: "We deliver our own solutions and professional enterprise support for selected cloud native technologies – focused on stability, security and reliable platform operations."
   sub: "Hands-on for products, enterprise support and platform operations"
-  cta_primary: "Get in touch"
-  cta_secondary: "See services"
-  cta_secondary_href: "/services/"
 own:
   eyebrow: "Our own solutions & products"
   title: "Our own solutions & products"

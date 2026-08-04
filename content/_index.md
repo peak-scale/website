@@ -2,13 +2,8 @@
 title: Peak Scale
 description: "Cloud Native Consulting & Platform Engineering aus Bern. Hands-on Partner für Strategie, Architektur, Engineering und Betrieb moderner Cloud-Plattformen."
 hero:
-  eyebrow: "Hands-on entlang des gesamten Lebenszyklus"
-  title: "Cloud-Transformationen, die gelingen"
+  title: "Orientierung für anspruchsvolle Cloud-Transformationen."
   lead: "Wir begleiten Kunden von der Strategie und Architektur bis zur Umsetzung – technisch fundiert, praxisnah und auf ihre Bedürfnisse abgestimmt."
-  sub: "Hands-on für funktionierende Plattformen – on-prem und in den Public Clouds"
-  cta_primary: "Services ansehen"
-  cta_primary_href: "/services/"
-  cta_secondary: "Kontakt aufnehmen"
 mountain:
   eyebrow: "Vom Basecamp zum Gipfel"
   title: "Vier Etappen, ein Team."
@@ -28,22 +23,16 @@ why:
   items:
     - title: "<strong>Peak steht für technische Tiefe.</strong> Scale für Plattformen, die mitwachsen."
       body: ""
-      image: "/images/section/topo-abstract.jpg"
     - title: "Swiss-first Kontext"
       body: "Erfahrung in Schweizer IT-Umgebungen – vertraut mit typischen Anforderungen von Unternehmen, Behörden und regulierten Branchen."
-      icon: "building"
     - title: "Hands-on Zusammenarbeit"
       body: "Direkt mit Engineering- und Architekturteams – kollaborativ, technisch, ohne unnötige Beratungslayer."
-      icon: "users"
     - title: "Security & Wartbarkeit"
       body: "Realistische Risikobewertung und konkrete Massnahmen – damit Plattformen sicher bleiben und langfristig betreibbar sind."
-      icon: "shield"
     - title: "Enablement statt Abhängigkeit"
       body: "Wissenstransfer, Dokumentation und Training – damit Teams nachhaltig selbstständig weiterarbeiten."
-      icon: "graduation"
     - title: "Spezialisiertes Team"
       body: "Kein Full-Service-Bauchladen – ein fokussiertes Team mit tiefem Cloud-Native-Know-how."
-      icon: "spark"
 customers:
   eyebrow: "Unsere Kunden"
   title: "Unsere <span class=\"accent\">Kunden</span>"

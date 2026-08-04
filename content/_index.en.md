@@ -2,13 +2,8 @@
 title: Peak Scale
 description: "Cloud Native consulting and platform engineering from Bern. Hands-on partner for strategy, architecture, engineering, and operations of modern cloud platforms."
 hero:
-  eyebrow: "Hands-on across the full lifecycle"
-  title: "Cloud transformations that succeed"
+  title: "Orientation for demanding cloud transformations."
   lead: "We support you from strategy and architecture all the way to delivery – technically grounded, hands-on, and shaped to your context."
-  sub: "Hands-on for platforms that work – on-prem and across the public clouds"
-  cta_primary: "See services"
-  cta_primary_href: "/services/"
-  cta_secondary: "Get in touch"
 mountain:
   eyebrow: "From basecamp to summit"
   title: "Four stages, one team."
@@ -28,7 +23,6 @@ why:
   items:
     - title: "<strong>Peak for technical depth.</strong> Scale for platforms that grow with you."
       body: ""
-      image: "/images/section/topo-abstract.jpg"
     - title: "Swiss-first context"
       body: "Experience in Swiss IT environments – familiar with the requirements of enterprises, public bodies, and regulated industries."
     - title: "Hands-on collaboration"

@@ -4,13 +4,9 @@ description: "Architecture advisory, platform engineering, assessments and train
 aliases:
   - /angebot/
 hero:
-  eyebrow: "Strategy → Architecture → Engineering → Operations"
   title: "Professional services that hold up"
   lead: "We support you from technical orientation and architecture all the way to delivery – so cloud-native platforms stay stable, secure, and operable for the long run."
   sub: "Hands-on along clear stages with iterative feedback cycles"
-  cta_primary: "Get in touch"
-  cta_secondary: "See products"
-  cta_secondary_href: "/produkte/"
 lifecycle_strip:
   eyebrow: "Lifecycle"
   title: "Four stages – one route"

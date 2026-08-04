@@ -1,27 +1,24 @@
 {{ define "main" }}
 {{- $lang := .Site.Language.Lang -}}
 
-{{/* ---------- Hero (centered, photo below) ---------- */}}
+{{/* ---------- Hero (topo texture bg, lead, yellow stage-pill row) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero hero--photo">
+<section class="hero">
   <div class="container">
     <div class="hero__inner">
-      <div class="hero__kicker">{{ .eyebrow }}</div>
       <h1 class="hero__title">{{ .title }}</h1>
-      <div class="hero__ctas">
-        <a class="btn btn--primary" href="{{ with .cta_primary_href }}{{ . }}{{ else }}mailto:{{ $.Site.Params.contactEmail }}{{ end }}">{{ .cta_primary }} {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}</a>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="hero-photo" style="background-image: url('/images/hero/home-mountain.jpg'); background-color: #efe7c8;">
-      <div class="hero-photo__tags" aria-hidden="true">
-        {{ with $.Params.mountain.stages }}
-        {{ range $i, $s := . }}
-        <span class="hero-photo__tag hero-photo__tag--{{ add $i 1 }}">{{ $s.name }}</span>
-        {{ end }}
+      <p class="lead">{{ .lead }}</p>
+      {{ with $.Params.mountain.stages }}
+      {{ $stages := . }}
+      {{ $icons := slice "stage-cloud" "stage-assessments" "stage-platform" "stage-training" }}
+      {{ $order := slice 0 2 1 3 }}
+      <div class="hero-stage-pills" aria-hidden="true">
+        {{ range $i, $stageIndex := $order }}
+        {{ $stage := index $stages $stageIndex }}
+        <span class="hero-stage-pill"><span class="hero-stage-pill__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 16) }}</span>{{ $stage.name }}</span>
         {{ end }}
       </div>
+      {{ end }}
     </div>
   </div>
 </section>
@@ -29,7 +26,7 @@
 
 {{/* ---------- Why Peak Scale (centered display headline, featured card 1, icons on rest) ---------- */}}
 {{ with .Params.why }}
-<section class="section">
+<section class="section home-why">
   <div class="container">
     <div class="section__head">
       <h2 class="display-xl">{{ .title | safeHTML }}</h2>
@@ -39,13 +36,14 @@
     {{ $first := index $items 0 }}
     {{ $rest := after 1 $items }}
     <div class="why-grid">
-      <div class="card card--feature"{{ with $first.image }} style="--feature-image: url('{{ . }}');"{{ end }}>
+      <div class="card card--feature">
         <h3>{{ $first.title | safeHTML }}</h3>
         {{ with $first.body }}<p>{{ . }}</p>{{ end }}
       </div>
-      {{ range $rest }}
+      {{ $whyIcons := slice "building-briefcase" "users-settings" "wallet-lock" "folder-settings" "users-focus" }}
+      {{ range $i, $item := $rest }}
       <div class="card">
-        <span class="card__icon">{{ partial "icon.html" (dict "name" (default "compass" .icon) "size" 32) }}</span>
+        <span class="card__icon">{{ partial "icon.html" (dict "name" (index $whyIcons $i) "size" 32) }}</span>
         <h3>{{ .title }}</h3>
         <p>{{ .body }}</p>
       </div>
@@ -57,7 +55,7 @@
 
 {{/* ---------- Customers logo strip ---------- */}}
 {{ with .Params.customers }}
-<section class="section section--alt">
+<section class="section section--alt home-customers">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
@@ -82,13 +80,12 @@
 
 {{/* ---------- Testimonials carousel (centered with chevrons) ---------- */}}
 {{ with .Params.testimonial }}
-<section class="section">
+<section class="section section--single-color-heading home-testimonials">
   <div class="container">
     <div class="section__head">
       <h2>{{ .eyebrow | safeHTML }}</h2>
     </div>
     <div class="testimonial-carousel" data-carousel>
-      <div class="testimonial-carousel__bg" aria-hidden="true"></div>
       <button class="testimonial-carousel__nav testimonial-carousel__nav--prev" type="button" data-prev aria-label="Previous">{{ partial "icon.html" (dict "name" "chevron-left" "size" 24) }}</button>
       <button class="testimonial-carousel__nav testimonial-carousel__nav--next" type="button" data-next aria-label="Next">{{ partial "icon.html" (dict "name" "chevron-right" "size" 24) }}</button>
       <div class="testimonial-carousel__viewport">
@@ -107,7 +104,7 @@
 
 {{/* ---------- What IT teams gain (dark, 4 horizontal rows) ---------- */}}
 {{ with .Params.lifecycle }}
-<section class="section section--dark">
+<section class="section section--dark section--accent-green section--single-color-heading home-lifecycle">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
@@ -115,7 +112,7 @@
     </div>
     <div class="lifecycle-rows">
       {{ $images := slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg" -}}
-      {{ $icons := slice "compass" "code" "clipboard" "graduation" -}}
+      {{ $icons := slice "cloud" "platform" "assessment" "training" -}}
       {{ range $i, $c := .cards }}
       <div class="lifecycle-rows__row">
         <h3 class="lifecycle-rows__title">{{ $c.title }}</h3>
@@ -141,10 +138,10 @@
 
 {{/* ---------- Challenges glass card on photo (left intro + right card list) ---------- */}}
 {{ with .Params.challenges }}
-<section class="section">
+<section class="section home-challenges">
   <div class="container">
     <div class="challenges-glass challenges-glass--split">
-      <div class="challenges-glass__bg" {{ with .bg }}style="background-image: linear-gradient(135deg, rgba(7,19,44,.85) 0%, rgba(5,128,196,.4) 100%), url('{{ . }}');"{{ end }}></div>
+      <div class="challenges-glass__bg" {{ with .bg }}style="--challenges-bg: url('{{ . }}');"{{ end }}></div>
       <div class="challenges-glass__inner challenges-glass__inner--split">
         <div class="challenges-glass__intro">
           <h2>{{ .title }}</h2>
@@ -166,7 +163,7 @@
 
 {{/* ---------- Partner logos ---------- */}}
 {{ with .Params.partners }}
-<section class="section section--alt">
+<section class="section section--alt home-partners">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title }}</h2>

@@ -15,12 +15,18 @@
 
 :root {
     /* Page surfaces */
-    --bg: rgb(240, 248, 252);                 /* icy blue-white page bg */
+    --bg: rgb(240, 248, 251);                 /* icy blue-white page bg */
     --bg-white: rgb(255, 255, 255);           /* [BRAND] white */
+    --bg-ice: rgb(229, 246, 255);             /* stronger section tint */
 
     /* Brand blues */
     --dark-blue: rgb(9, 24, 54);              /* [BRAND] display, dark surfaces, hover ink */
-    --bright-blue: rgb(5, 128, 196);          /* [BRAND] eyebrows, dots, links, primary buttons */
+    --bright-blue: rgb(5, 128, 196);          /* [BRAND] decorative accents and large display color */
+    --bright-blue-text: rgb(5, 117, 180);     /* accessible small text / button background */
+    --bright-blue-deep: rgb(6, 97, 153);      /* accessible gradient endpoint behind light text */
+    --dark-blue-soft: rgb(21, 36, 64);
+    --dark-blue-raised: rgb(49, 62, 87);
+    --footer-bg: rgb(7, 19, 44);
 
     /* Supporting greys */
     --fg-muted: rgb(81, 87, 99);              /* body copy */
@@ -40,6 +46,7 @@
     --accent-yellow-soft: rgb(252, 238, 180); /* pale wash */
     --accent-green: rgb(125, 175, 75);        /* fresh grass */
     --accent-green-soft: rgb(228, 240, 210);  /* pale wash */
+    --check-green: rgb(72, 120, 38);          /* accessible green for meaningful check icons */
 
     /* Photo overlay — subtle navy → blue wash applied above section
        background-images so the photo stays readable. Used inline in
@@ -114,46 +121,32 @@
     --text-sm:         14px;                       /* descriptions, captions */
     --text-eyebrow:    12px;                       /* uppercase labels, nav, micro */
 
-    --w-extralight: 200;
-    --w-light: 300;
     --w-regular: 400;
     --w-medium: 500;
     --w-bold: 700;
-    --w-black: 900;
 
     --leading-display: 1.1;
     --leading-tight: 1.2;
     --leading-snug: 1.4;
     --leading-normal: 1.6;
 
-    --tracking-tight: -0.02em;
+    --tracking-tight: 0;
     --tracking-eyebrow: 0.1em;
 }
 
 /* ---------- Spacing, radius ---------- */
 
 :root {
-    --space-1: 4px;
     --space-2: 8px;
     --space-3: 12px;
     --space-4: 16px;
     --space-6: 24px;
     --space-8: 32px;
     --space-12: 48px;
-    --space-16: 64px;
-    --space-20: 80px;
-    --space-24: 96px;
-    --space-30: 120px;
-
     --radius-sm: 4px;
     --radius-md: 8px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
+    --radius-lg: 8px;
     --radius-pill: 60px;
-    --radius-full: 9999px;
-
-    --layout-max: 1200px;
-    --layout-gutter: 360px;
 }
 
 /* ---------- Element styles ---------- */
@@ -223,7 +216,7 @@ p, .body {
     font-weight: var(--w-bold);
     text-transform: uppercase;
     letter-spacing: var(--tracking-eyebrow);
-    color: var(--bright-blue);
+    color: var(--bright-blue-text);
     display: inline-block;
 }
 
@@ -239,7 +232,7 @@ a {
 }
 
 a:hover {
-    color: var(--bright-blue);
+    color: var(--bright-blue-text);
 }
 
 hr {
@@ -272,7 +265,7 @@ hr {
 }
 
 .btn--primary {
-    background: var(--bright-blue);
+    background: var(--bright-blue-text);
     color: var(--bg-white);
 }
 
@@ -284,23 +277,12 @@ hr {
 
 .btn--inverse {
     background: var(--bg-white);
-    color: var(--bright-blue);
+    color: var(--bright-blue-text);
     border-color: var(--bg-white);
 }
 
 .btn--inverse:hover {
     background: var(--bg);
-}
-
-.btn--ghost {
-    background: transparent;
-    color: var(--dark-blue);
-    border-color: var(--border);
-}
-
-.btn--ghost:hover {
-    border-color: var(--bright-blue);
-    color: var(--bright-blue);
 }
 
 .card {
