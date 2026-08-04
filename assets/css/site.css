@@ -305,25 +305,25 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   display: flex;
   align-items: center;
 }
-/* Default (homepage): subtle topographic brand map, full-bleed behind the
-   whole intro — no photo, just the icy page bg with contour lines. */
-.hero::before {
-  content: "";
+/* The hero visual is a real image so the browser can discover and prioritise
+   it directly from the HTML while retaining background-size: cover behavior. */
+.hero__media {
   position: absolute;
   inset: 0;
-  background: url('/images/topo/hoehenlinien-hellblau.svg') center / cover no-repeat;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
   pointer-events: none;
   z-index: 0;
 }
 .page-home .hero {
   background: var(--bg-ice);
 }
-.page-home .hero::before {
-  inset: 0;
-  background-image: url('/images/topo/hero-topo.svg');
-  background-position: right center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.page-home .hero__media {
+  object-position: right center;
 }
 .hero__inner, .hero > .container { position: relative; z-index: 1; }
 .hero__inner {
@@ -344,14 +344,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   max-width: 720px;
 }
 
-/* Full-bleed photo heroes (Produkte/Services/Team): a real photo fills the
-   whole section behind the copy. A flat navy overlay keeps solid white copy
-   at AA contrast even over the brightest parts of each photograph. */
-.hero--produkte::before,
-.hero--services::before,
-.hero--team::before {
-  background: var(--hero-photo) center / cover no-repeat;
-}
+/* A flat navy overlay keeps solid white copy at AA contrast even over the
+   brightest parts of each hero photograph. */
 .hero--produkte::after,
 .hero--services::after,
 .hero--team::after {
@@ -366,11 +360,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .hero--services,
 .hero--team {
   color: #fff;
-}
-.hero--produkte { --hero-photo: url('/images/hero/produkte-photo.jpg'); }
-.hero--team { --hero-photo: url('/images/hero/team-photo.jpg'); }
-.hero--services {
-  --hero-photo: url('/images/hero/services-photo.jpg');
 }
 .hero--produkte .hero__title,
 .hero--services .hero__title,
@@ -1706,9 +1695,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   }
   .hero__title {
     font-size: clamp(38px, 9vw, 60px);
-  }
-  .page-home .hero::before {
-    background-size: cover;
   }
 }
 
