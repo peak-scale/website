@@ -1691,7 +1691,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   }
   .hero {
     min-height: clamp(520px, 68svh, 640px);
-    padding: 48px 0;
+    /* The hero header overlays the page on hero routes. Reserve its 76px
+       mobile height so tall hero copy cannot crowd the logo and menu. */
+    padding: 96px 0 48px;
   }
   .hero__title {
     font-size: clamp(38px, 9vw, 60px);

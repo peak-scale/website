@@ -37,6 +37,22 @@
   <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 
+  {{- $heroImage := "" -}}
+  {{- $heroType := "image/webp" -}}
+  {{- if .IsHome -}}
+    {{- $heroImage = "/images/topo/hero-topo.svg" -}}
+    {{- $heroType = "image/svg+xml" -}}
+  {{- else if eq .Section "services" -}}
+    {{- $heroImage = "/images/hero/services-photo.webp" -}}
+  {{- else if eq .Section "produkte" -}}
+    {{- $heroImage = "/images/hero/produkte-photo.webp" -}}
+  {{- else if eq .Section "team" -}}
+    {{- $heroImage = "/images/hero/team-photo.webp" -}}
+  {{- end -}}
+  {{- with $heroImage }}
+  <link rel="preload" href="{{ . }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+  {{- end }}
+
   {{- $base := resources.Get "css/base.css" -}}
   {{- $site := resources.Get "css/site.css" -}}
   {{- $css := slice $base $site | resources.Concat "css/peakscale.css" | minify | fingerprint -}}
