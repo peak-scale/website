@@ -1,34 +1,18 @@
-{{- /*
-  Next-steps cross-link section.
-  Context: a `next_steps` block with `.title` and `.cards`.
-  Each card: eyebrow, title, href, optional desc, optional checklist, optional variant.
-  3 cards render as the mosaic (first card spans two rows); 2 cards render as a simple grid.
-  Variant determines the card colour: primary (default for first), gold, sage, or default.
-*/ -}}
-{{- $lang := site.Language.Lang -}}
-{{- $cardCount := len .cards -}}
-<section class="section section--dark section--deep section--single-color-heading">
+{{- /* Quiet, consistent cross-links shared by all primary pages. */ -}}
+<section class="section section--dark next-section">
   <div class="container">
-    <div class="section__head">
+    <div class="section__head section__head--left">
       <h2>{{ .title | safeHTML }}</h2>
     </div>
-    <div class="next-steps{{ if eq $cardCount 3 }} next-steps--mosaic{{ end }}">
-      {{ range $i, $c := .cards }}
-      {{ $variant := $c.variant }}
-      {{ if not $variant }}{{ if eq $i 0 }}{{ $variant = "primary" }}{{ else }}{{ $variant = "default" }}{{ end }}{{ end }}
-      <a class="next-steps__card next-steps__card--{{ $variant }}" href="{{ $c.href }}">
-        <span class="next-steps__eyebrow">{{ $c.eyebrow }}</span>
-        <h3 class="next-steps__title">{{ $c.title }}</h3>
-        {{ with $c.desc }}<p class="next-steps__desc">{{ . }}</p>{{ end }}
-        {{ with $c.checklist }}
-        <ul class="next-steps__checklist">
-          {{ range . }}<li><span class="next-steps__check" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-outline" "size" 32) }}</span>{{ . }}</li>{{ end }}
-        </ul>
-        {{ end }}
-        <span class="next-steps__cta">
-          {{ if eq $lang "de" }}{{ $c.eyebrow }} ansehen{{ else }}View {{ lower $c.eyebrow }}{{ end }}
-          {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}
+    <div class="next-steps">
+      {{ range .cards }}
+      <a class="next-steps__link" href="{{ .href | relLangURL }}">
+        <span class="next-steps__eyebrow">{{ .eyebrow }}</span>
+        <span class="next-steps__content">
+          <span class="next-steps__title">{{ .title }}</span>
+        {{ with .desc }}<p class="next-steps__desc">{{ . }}</p>{{ end }}
         </span>
+        <span class="next-steps__arrow" aria-hidden="true">{{ partial "icon.html" (dict "name" "arrow-up-right" "size" 20) }}</span>
       </a>
       {{ end }}
     </div>

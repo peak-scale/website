@@ -1,313 +1,90 @@
-/* Peak Scale — minimal client JS.
-   Header state, mobile menu toggle, testimonial carousel (chevrons + dots). */
+/* Peak Scale — only functional interaction: mobile navigation and testimonials. */
 
 (function () {
   'use strict';
 
-  // ---------- Transparent hero header ----------
-  const scrollHeader = document.querySelector('[data-scroll-header]');
-  const hero = document.querySelector('.hero');
-  let lastScrollY = window.scrollY;
-  let headerOffset = scrollHeader && window.scrollY > 16 ? -scrollHeader.offsetHeight : 0;
-  let heroHeaderFollowsDocument = true;
-  let stickyRevealStarted = false;
-
-  function setNaturalHeader(isNatural) {
-    heroHeaderFollowsDocument = isNatural;
-    if (scrollHeader) scrollHeader.classList.toggle('is-natural', isNatural);
-  }
-
-  function setHeaderOffset() {
-    if (scrollHeader) scrollHeader.style.setProperty('--header-offset', headerOffset + 'px');
-  }
-
-  function revealHeader() {
-    headerOffset = 0;
-    setHeaderOffset();
-  }
-
-  function updateHeader() {
-    if (!scrollHeader) return;
-
-    const currentScrollY = window.scrollY;
-    const isAtTop = currentScrollY <= 16;
-    const isMenuOpen = scrollHeader.classList.contains('is-menu-open');
-    const headerHeight = scrollHeader.offsetHeight;
-    const scrollDelta = currentScrollY - lastScrollY;
-    const heroEnd = hero ? hero.offsetTop + hero.offsetHeight : headerHeight;
-
-    if (isMenuOpen) {
-      headerOffset = 0;
-      stickyRevealStarted = false;
-    } else if (currentScrollY <= heroEnd) {
-      const enteredHero = lastScrollY > heroEnd;
-
-      if (enteredHero) {
-        // Keep the handoff binary at the hero edge. A reveal that has become
-        // visible completes; an entirely hidden header stays out of view.
-        if (headerOffset > -headerHeight) {
-          headerOffset = 0;
-          setNaturalHeader(false);
-        } else {
-          headerOffset = -headerHeight;
-          setNaturalHeader(true);
-        }
-        stickyRevealStarted = false;
-      }
-
-      if (!heroHeaderFollowsDocument && scrollDelta > 0) {
-        // If an open sticky header is followed by downward scrolling inside
-        // the hero, let it move out at exactly the scroll speed.
-        headerOffset = Math.max(-headerHeight, headerOffset - scrollDelta);
-        if (headerOffset <= -headerHeight) setNaturalHeader(true);
-      } else if (-currentScrollY >= headerOffset) {
-        // Rejoin the original header only when its natural page position
-        // catches up, avoiding a jump when the viewport reaches the top.
-        setNaturalHeader(true);
-      }
-    } else {
-      if (heroHeaderFollowsDocument) {
-        // The natural header is already above the viewport at this point;
-        // switch to the fixed version in the equivalent hidden position.
-        setNaturalHeader(false);
-        headerOffset = -headerHeight;
-        stickyRevealStarted = false;
-      } else if (scrollDelta < 0) {
-        // Only begin revealing when there is enough distance left to show
-        // the complete header before reaching the hero.
-        const hasRevealSpace = currentScrollY > heroEnd + headerHeight;
-        if (stickyRevealStarted || hasRevealSpace || headerOffset >= -1) {
-          stickyRevealStarted = headerOffset < -1;
-          headerOffset = Math.min(0, headerOffset - scrollDelta);
-          if (headerOffset >= -1) {
-            headerOffset = 0;
-            stickyRevealStarted = false;
-          }
-        }
-      } else {
-        stickyRevealStarted = false;
-        headerOffset = Math.max(-headerHeight, headerOffset - scrollDelta);
-      }
-    }
-
-    // Only paint the white sticky surface while the fixed header is
-    // actually visible, avoiding a white edge while it is fully hidden.
-    const stickyHeaderIsVisible = !heroHeaderFollowsDocument && headerOffset > -headerHeight;
-    scrollHeader.classList.toggle('is-scrolled', !isAtTop && stickyHeaderIsVisible);
-
-    setHeaderOffset();
-    lastScrollY = currentScrollY;
-  }
-
-  if (scrollHeader) {
-    updateHeader();
-    window.addEventListener('scroll', updateHeader, { passive: true });
-    window.addEventListener('resize', updateHeader);
-    scrollHeader.addEventListener('focusin', revealHeader);
-  }
-
-  // ---------- Hero media parallax ----------
-  // Keep this intentionally restrained: the image travels at most 42px down as
-  // its hero leaves the viewport. Motion-sensitive visitors keep the static
-  // image declared in the markup.
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const heroMedia = Array.from(document.querySelectorAll('.hero__media'));
-
-  if (heroMedia.length && !reduceMotion.matches) {
-    let parallaxFrame = null;
-
-    heroMedia.forEach(function (media) { media.classList.add('is-parallax'); });
-
-    function updateHeroParallax() {
-      parallaxFrame = null;
-      heroMedia.forEach(function (media) {
-        const heroSection = media.closest('.hero');
-        if (!heroSection) return;
-
-        const bounds = heroSection.getBoundingClientRect();
-        const progress = Math.min(1, Math.max(0, -bounds.top / bounds.height));
-        media.style.setProperty('--hero-parallax-offset', (progress * 42).toFixed(2) + 'px');
-      });
-    }
-
-    function requestHeroParallax() {
-      if (parallaxFrame === null) parallaxFrame = window.requestAnimationFrame(updateHeroParallax);
-    }
-
-    requestHeroParallax();
-    window.addEventListener('scroll', requestHeroParallax, { passive: true });
-    window.addEventListener('resize', requestHeroParallax);
-  }
-
-  // ---------- Mobile menu (pill drawer) ----------
   const menuToggle = document.querySelector('[data-menu-toggle]');
   const menu = document.querySelector('[data-menu]');
   const header = document.querySelector('.site-header');
 
-  function isOpen() { return !!menu && menu.classList.contains('is-open'); }
-  function openMenu() {
-    if (!menu) return;
-    menu.classList.add('is-open');
-    if (header) {
-      header.classList.add('is-menu-open');
-      revealHeader();
-    }
-    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+  function menuIsOpen() {
+    return Boolean(menu && menu.classList.contains('is-open'));
   }
-  function closeMenu() {
-    if (!menu) return;
-    menu.classList.remove('is-open');
-    if (header) header.classList.remove('is-menu-open');
-    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
-    updateHeader();
+
+  function setMenu(open) {
+    if (!menu || !menuToggle) return;
+    menu.classList.toggle('is-open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    if (header) header.classList.toggle('is-menu-open', open);
   }
-  function toggleMenu() { isOpen() ? closeMenu() : openMenu(); }
 
-  if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
+  if (menuToggle && menu) {
+    menuToggle.addEventListener('click', function () {
+      setMenu(!menuIsOpen());
+    });
 
-  // Close when a menu link is followed.
-  if (menu) menu.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', closeMenu);
-  });
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setMenu(false); });
+    });
 
-  // Close on Escape (returning focus to the toggle).
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && isOpen()) { closeMenu(); if (menuToggle) menuToggle.focus(); }
-  });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && menuIsOpen()) {
+        setMenu(false);
+        menuToggle.focus();
+      }
+    });
 
-  // Close when clicking outside the header.
-  document.addEventListener('click', function (e) {
-    if (isOpen() && !e.target.closest('.site-header')) closeMenu();
-  });
+    document.addEventListener('click', function (event) {
+      if (menuIsOpen() && !event.target.closest('.site-header')) setMenu(false);
+    });
+  }
 
-  // ---------- Testimonial carousel ----------
   document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
-    const slides = carousel.querySelectorAll('[data-slide]');
+    const slides = Array.from(carousel.querySelectorAll('[data-slide]'));
     const dotsWrap = carousel.querySelector('[data-dots]');
-    const prevBtn = carousel.querySelector('[data-prev]');
-    const nextBtn = carousel.querySelector('[data-next]');
-    if (slides.length <= 1) {
-      if (prevBtn) prevBtn.style.display = 'none';
-      if (nextBtn) nextBtn.style.display = 'none';
-      if (dotsWrap) dotsWrap.style.display = 'none';
+    const prevButton = carousel.querySelector('[data-prev]');
+    const nextButton = carousel.querySelector('[data-next]');
+
+    if (!slides.length) return;
+
+    if (slides.length === 1) {
+      if (prevButton) prevButton.hidden = true;
+      if (nextButton) nextButton.hidden = true;
+      if (dotsWrap) dotsWrap.hidden = true;
       return;
     }
 
     let active = 0;
-    function go(i) {
-      active = (i + slides.length) % slides.length;
-      slides.forEach(function (s, idx) {
-        s.style.display = idx === active ? '' : 'none';
+
+    function showSlide(index) {
+      active = (index + slides.length) % slides.length;
+
+      slides.forEach(function (slide, slideIndex) {
+        slide.hidden = slideIndex !== active;
       });
+
       if (dotsWrap) {
-        dotsWrap.querySelectorAll('button').forEach(function (b, idx) {
-          b.classList.toggle('is-active', idx === active);
+        dotsWrap.querySelectorAll('button').forEach(function (dot, dotIndex) {
+          const isActive = dotIndex === active;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-current', isActive ? 'true' : 'false');
         });
       }
     }
+
     if (dotsWrap) {
-      slides.forEach(function (_, idx) {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('aria-label', 'Slide ' + (idx + 1));
-        if (idx === 0) b.classList.add('is-active');
-        b.addEventListener('click', function () { go(idx); });
-        dotsWrap.appendChild(b);
+      slides.forEach(function (_, index) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', 'Slide ' + (index + 1));
+        dot.addEventListener('click', function () { showSlide(index); });
+        dotsWrap.appendChild(dot);
       });
     }
-    if (prevBtn) prevBtn.addEventListener('click', function () { go(active - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { go(active + 1); });
-    slides.forEach(function (s, idx) { if (idx !== 0) s.style.display = 'none'; });
-  });
 
-  // ---------- Logo carousel (shuffled, infinite, transform-based) ----------
-  document.querySelectorAll('[data-logo-carousel]').forEach(function (carousel) {
-    const track = carousel.querySelector('[data-logo-track]');
-    const prev = carousel.querySelector('[data-logo-prev]');
-    const next = carousel.querySelector('[data-logo-next]');
-    if (!track) return;
+    if (prevButton) prevButton.addEventListener('click', function () { showSlide(active - 1); });
+    if (nextButton) nextButton.addEventListener('click', function () { showSlide(active + 1); });
 
-    // 1. Shuffle the source tiles in place (Fisher-Yates) so each visit
-    //    sees customers in a different order.
-    const originals = Array.from(track.children);
-    for (let i = originals.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [originals[i], originals[j]] = [originals[j], originals[i]];
-    }
-    originals.forEach(function (t) { track.appendChild(t); });   // re-order
-
-    // 2. Append a single clone of the (shuffled) set so the track is
-    //    twice the width of one copy — this is what makes the wrap-around
-    //    invisible: when we slide past the end of the originals, the
-    //    second copy is already in view, and we instantly snap the
-    //    transform back by one set-width without the user noticing.
-    Array.from(track.children).forEach(function (tile) {
-      const clone = tile.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      clone.tabIndex = -1;
-      track.appendChild(clone);
-    });
-
-    let offset = 0;
-
-    function tileStep() {
-      const tile = track.querySelector('.logo-tile');
-      if (!tile) return 220;
-      const gap = parseFloat(getComputedStyle(track).gap) || 0;
-      return tile.getBoundingClientRect().width + gap;
-    }
-    function setWidth() { return track.scrollWidth / 2; }
-    function apply() { track.style.transform = 'translateX(-' + offset + 'px)'; }
-
-    // Set transform with no transition (used for the invisible wrap-snap).
-    function snap(target) {
-      track.style.transition = 'none';
-      offset = target;
-      apply();
-      void track.offsetWidth;            // flush
-      track.style.transition = '';
-    }
-    // Halt any in-flight transition by snapping to the currently-rendered
-    // position. Otherwise on hover/click the track keeps sliding for up
-    // to .5s and tiles slip out from under the cursor.
-    function freezeAtRendered() {
-      const m = new DOMMatrixReadOnly(getComputedStyle(track).transform);
-      snap(-m.m41);
-    }
-    function nudge(dir) {
-      const step = tileStep();
-      // Going backwards from the start: invisibly jump forward by one
-      // set-width to the mirror position on the second copy, then animate
-      // backward from there. Looks like a normal leftward slide.
-      if (dir < 0 && offset - step < 0) snap(offset + setWidth());
-      offset += dir * step;
-      apply();
-    }
-
-    // After every animated step, if we've slid past the first copy,
-    // snap back by one set-width. The two copies are identical at the
-    // boundary, so the snap is invisible.
-    track.addEventListener('transitionend', function () {
-      if (offset >= setWidth()) snap(offset - setWidth());
-    });
-
-    if (prev) prev.addEventListener('click', function () { freezeAtRendered(); nudge(-1); });
-    if (next) next.addEventListener('click', function () { freezeAtRendered(); nudge(1); });
-
-    // Auto-advance, paused on hover / focus / reduced motion.
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let timer = null;
-    function start() { if (!timer && !reduced) timer = setInterval(function () { nudge(1); }, 3500); }
-    function stop()  { if (timer) { clearInterval(timer); timer = null; } freezeAtRendered(); }
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-    carousel.addEventListener('focusin', stop);
-    carousel.addEventListener('focusout', start);
-    // Re-clamp on resize so we never end up beyond the new set-width.
-    window.addEventListener('resize', function () {
-      const w = setWidth();
-      if (w > 0 && offset >= w) { offset -= w; apply(); }
-    });
-    start();
+    showSlide(0);
   });
 })();

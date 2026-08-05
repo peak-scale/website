@@ -1,108 +1,115 @@
 {{ define "main" }}
 {{- $lang := .Site.Language.Lang -}}
 
-{{/* ---------- Hero (full-bleed climbing-wall photo) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero hero--produkte">
+<section class="hero hero--photo hero--produkte">
   <img class="hero__media" src="/images/hero/produkte-photo.webp" alt="" width="2400" height="1592" fetchpriority="high" aria-hidden="true">
   <div class="container">
     <div class="hero__inner">
+      <p class="hero__kicker">{{ if eq $lang "de" }}Produkte & Support{{ else }}Products & support{{ end }}</p>
       <h1 class="hero__title">{{ .title }}</h1>
       <p class="lead">{{ .lead }}</p>
-      {{ with .sub }}<span class="hero__badge">{{ . }}</span>{{ end }}
+      {{ with .sub }}<p class="hero__meta">{{ . }}</p>{{ end }}
     </div>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Own solutions (centered head + 2 stacked cards w/ green inset) ---------- */}}
 {{ with .Params.own }}
-<section class="section section--alt products-own">
+<section class="section section--subtle products-own">
   <div class="container">
-    <div class="section__head">
+    <div class="section__head section__head--left">
+      <p class="eyebrow">{{ .eyebrow }}</p>
       <h2>{{ .title | safeHTML }}</h2>
       {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
     </div>
-    <div class="col-narrow own-cards">
-      {{ $productIcons := slice "multitenancy" "capsule-support" }}
-      {{ range $i, $card := .cards }}
-      <div class="card own-card">
-        <div class="own-card__icon">{{ partial "icon.html" (dict "name" (index $productIcons $i) "size" 24) }}</div>
-        <h3 class="own-card__title">{{ $card.title }}</h3>
-        <p>{{ $card.body }}</p>
-        <div class="eyebrow own-card__eyebrow">{{ $card.eyebrow }}</div>
-        <ul class="checklist checklist--grid-2">
-          {{ range $card.items }}<li><span class="list-check-icon" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>{{ . }}</li>{{ end }}
-        </ul>
-        {{ with $card.fit_items }}
-        <div class="fit-block">
-          <div class="fit-block__title">{{ $card.fit_title }}</div>
-          <ul class="reset fit-block__list">
-            {{ range . }}<li><span class="fit-block__check" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span><span>{{ . }}</span></li>{{ end }}
-          </ul>
+    <div class="product-list">
+      {{ range .cards }}
+      {{ $card := . }}
+      <article class="product-detail">
+        <div class="product-detail__intro">
+          <h3>{{ .title }}</h3>
+          <p>{{ .body }}</p>
         </div>
-        {{ end }}
-      </div>
+        <div class="product-detail__columns">
+          <div>
+            <p class="detail-label">{{ .eyebrow }}</p>
+            <ul class="detail-list">
+              {{ range .items }}<li>{{ . }}</li>{{ end }}
+            </ul>
+          </div>
+          {{ with .fit_items }}
+          <div class="fit-list">
+            <p class="detail-label">{{ $card.fit_title }}</p>
+            <ul class="detail-list">
+              {{ range . }}<li>{{ . }}</li>{{ end }}
+            </ul>
+          </div>
+          {{ end }}
+        </div>
+      </article>
       {{ end }}
     </div>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Partners (centered head + 4 cards in 2x2) ---------- */}}
 {{ with .Params.partners }}
 <section class="section products-partners">
   <div class="container">
-    <div class="section__head">
+    <div class="section__head section__head--left">
+      <p class="eyebrow">{{ .eyebrow }}</p>
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     {{ $partnerImages := dict "Sidero Labs" "/images/partners/siderolabs.svg" "SUSE Rancher Prime" "/images/partners/suse.svg" "Google Cloud Platform" "/images/partners/google-cloud.svg" "Clastix" "/images/partners/clastix.svg" }}
-    <div class="grid grid--2 partner-cards">
+    <div class="partner-detail-grid">
       {{ range .cards }}
       {{ $card := . }}
-      <div class="card partner-card">
-        {{ with index $partnerImages $card.title }}
-        <img class="partner-card__logo" src="{{ . }}" alt="{{ $card.title }}" loading="lazy">
-        {{ end }}
-        {{ with $card.role }}<div class="eyebrow partner-card__role">{{ . }}</div>{{ end }}
-        <p>{{ $card.body }}</p>
-        {{ with $card.themes }}
-        <div class="eyebrow partner-card__themes-title">{{ $card.themes_title }}</div>
-        <ul class="checklist">
-          {{ range . }}<li><span class="list-check-icon" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-circle" "size" 24) }}</span>{{ . }}</li>{{ end }}
-        </ul>
-        {{ end }}
-      </div>
+      <article class="partner-detail">
+        <div class="partner-detail__identity">
+          {{ with index $partnerImages $card.title }}
+          <img src="{{ . }}" alt="{{ $card.title }}" loading="lazy">
+          {{ end }}
+          {{ with $card.role }}<p>{{ . }}</p>{{ end }}
+        </div>
+        <div class="partner-detail__body">
+          <p>{{ $card.body }}</p>
+          {{ with $card.themes }}
+          <p class="detail-label">{{ $card.themes_title }}</p>
+          <ul class="detail-list detail-list--compact">
+            {{ range . }}<li>{{ . }}</li>{{ end }}
+          </ul>
+          {{ end }}
+        </div>
+      </article>
       {{ end }}
     </div>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Journey (dark, centered head + photo banner + 3 numbered steps) ---------- */}}
 {{ with .Params.journey }}
-<section class="section section--dark section--accent-green section--single-color-heading products-journey">
+<section class="section section--dark products-journey">
   <div class="container">
-    <div class="section__head">
+    <div class="section__head section__head--left">
+      <p class="eyebrow">{{ .eyebrow }}</p>
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="journey-banner" style="background-image: var(--overlay-photo), url('/images/section/challenges.jpg');"></div>
-    <div class="grid grid--3 col-narrow">
-      {{ range $i, $c := .cards }}
-      <div class="numbered-step">
-        <div class="numbered-step__num">{{ add $i 1 }}</div>
-        <h3>{{ $c.title }}</h3>
-        <p>{{ $c.desc }}</p>
-      </div>
+    <ol class="journey-list">
+      {{ range $i, $item := .cards }}
+      <li class="journey-step">
+        <span class="journey-step__num" aria-hidden="true">0{{ add $i 1 }}</span>
+        <h3>{{ $item.title }}</h3>
+        <p>{{ $item.desc }}</p>
+      </li>
       {{ end }}
-    </div>
+    </ol>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Next steps ---------- */}}
 {{ with .Params.next_steps }}{{ partial "next-steps.html" . }}{{ end }}
 
 {{ end }}

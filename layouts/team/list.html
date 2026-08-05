@@ -1,187 +1,165 @@
 {{ define "main" }}
 {{- $lang := .Site.Language.Lang -}}
 
-{{/* ---------- Hero (full-bleed rope-knot photo) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero hero--team">
+<section class="hero hero--photo hero--team">
   <img class="hero__media" src="/images/hero/team-photo.webp" alt="" width="2400" height="1319" fetchpriority="high" aria-hidden="true">
   <div class="container">
     <div class="hero__inner">
+      <p class="hero__kicker">Peak Scale</p>
       <h1 class="hero__title">{{ .title }}</h1>
       <p class="lead">{{ .lead }}</p>
-      {{ with .sub }}<span class="hero__badge">{{ . }}</span>{{ end }}
+      {{ with .sub }}<p class="hero__meta">{{ . }}</p>{{ end }}
     </div>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Team grid: fixed "Unser Team" sidebar + single-column member list ---------- */}}
-<section class="section section--alt team-members">
+<section class="section section--subtle team-members">
   <div class="container">
-    <div class="team-grid">
-      {{ with .Params.team_block }}
-      <a class="card card--feature team-feature" href="{{ $.Site.Params.linkedin }}" rel="noopener">
-        <span class="team-feature__icon">{{ partial "icon.html" (dict "name" "team" "size" 22) }}</span>
-        <h2 class="team-feature__title">{{ .eyebrow }}</h2>
-        <p class="team-feature__lead">{{ .lead }}</p>
-        <span class="team-feature__cta">
-          {{ partial "icon.html" (dict "name" "linkedin" "size" 20) }}
-          {{ .cta }}
-        </span>
+    {{ with .Params.team_block }}
+    <div class="section__head section__head--left team-intro">
+      <p class="eyebrow">{{ .eyebrow }}</p>
+      <h2>{{ .title }}</h2>
+      <p class="lead">{{ .lead }}</p>
+      <a class="text-link" href="{{ $.Site.Params.linkedin }}" rel="noopener">
+        {{ partial "icon.html" (dict "name" "linkedin" "size" 18) }}
+        {{ .cta }}
       </a>
-      {{ end }}
+    </div>
+    {{ end }}
 
-      <div class="team-grid__members">
+    <div class="team-directory">
       {{ range where hugo.Data.team "image" "ne" nil }}
       {{ if .linkedin }}
-      <a class="card team-member" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
-        <span class="team-member__linkedin" aria-hidden="true">
-          {{ partial "icon.html" (dict "name" "linkedin" "size" 24) }}
-        </span>
+      <a class="team-person" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
       {{ else }}
-      <div class="card team-member team-member--no-link">
+      <article class="team-person">
       {{ end }}
-        <img class="team-member__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="96" height="96">
-        <div class="team-member__body">
-          <h3 class="team-member__name">{{ .name }}</h3>
-          <p class="team-member__role">{{ if eq $lang "de" }}{{ .role_de }}{{ else }}{{ .role_en }}{{ end }}</p>
+        <img class="team-person__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="160" height="160">
+        <div class="team-person__content">
+          <div class="team-person__heading">
+            <h3>{{ .name }}</h3>
+            {{ if .linkedin }}<span class="team-person__linkedin" aria-hidden="true">{{ partial "icon.html" (dict "name" "linkedin" "size" 18) }}</span>{{ end }}
+          </div>
+          <p class="team-person__role">{{ if eq $lang "de" }}{{ .role_de }}{{ else }}{{ .role_en }}{{ end }}</p>
+          <p class="team-person__focus"><span>{{ i18n "focus_areas_label" }}:</span> {{ if eq $lang "de" }}{{ .focus_de }}{{ else }}{{ .focus_en }}{{ end }}</p>
         </div>
-        <div class="team-member__focus">
-          <span class="team-member__focus-label">
-            {{ partial "icon.html" (dict "name" "lightning" "size" 16) }}
-            {{ i18n "focus_areas_label" }}
-          </span>
-          <p class="team-member__focus-text">{{ if eq $lang "de" }}{{ .focus_de }}{{ else }}{{ .focus_en }}{{ end }}</p>
-        </div>
-      {{ if .linkedin }}</a>{{ else }}</div>{{ end }}
+      {{ if .linkedin }}</a>{{ else }}</article>{{ end }}
       {{ end }}
-      </div>
     </div>
   </div>
 </section>
 
-{{/* ---------- Mission (split: text left, pill tags right) ---------- */}}
 {{ with .Params.mission }}
 <section class="section team-mission">
-  <img class="team-mission__topo" src="/images/topo/hero-topo.svg#svgView(viewBox(-320,-191,2560,1527))" alt="" width="1920" height="1145" aria-hidden="true">
   <div class="container">
-    <div class="mission-split">
+    <div class="mission-layout">
       <div class="section__head section__head--left">
+        <p class="eyebrow">{{ if eq $lang "de" }}Wofür wir arbeiten{{ else }}What we work toward{{ end }}</p>
         <h2>{{ .title | safeHTML }}</h2>
         <p class="lead">{{ .lead }}</p>
-        {{ with .body }}<p class="mission-split__body">{{ . }}</p>{{ end }}
+        {{ with .body }}<p>{{ . }}</p>{{ end }}
       </div>
-      <div class="text-pill-row">
-        {{ range .tags }}
-        <span class="text-pill">{{ . }}</span>
-        {{ end }}
-      </div>
+      <ul class="mission-list">
+        {{ range .tags }}<li>{{ . }}</li>{{ end }}
+      </ul>
     </div>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- How we work (dark, 6 cards 2x3) ---------- */}}
 {{ with .Params.how_we_work }}
-<section class="section section--dark section--accent-green section--single-color-heading team-working">
+<section class="section section--dark team-working">
   <div class="container">
-    <div class="section__head">
+    <div class="section__head section__head--left">
+      <p class="eyebrow">{{ .eyebrow }}</p>
       <h2>{{ .title | safeHTML }}</h2>
       {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
     </div>
-    {{ with .eyebrow }}<p class="how-we-work__intro">{{ . }}:</p>{{ end }}
-    <div class="icon-tile-grid">
-      {{ $workingIcons := slice "communication" "sparring" "iterative-architecture" "assessment" "enablement" "documentation" }}
-      {{ range $i, $card := .cards }}
-      <div class="icon-tile">
-        <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $workingIcons $i) "size" 22) }}</div>
-        <h3 class="icon-tile__title">{{ $card.title }}</h3>
-      </div>
+    <div class="principle-grid">
+      {{ range .cards }}
+      <article class="principle-item">
+        <h3>{{ .title }}</h3>
+        <p>{{ .body }}</p>
+      </article>
       {{ end }}
     </div>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Why Cloud Native (full-width stacked bars, one featured) ---------- */}}
 {{ with .Params.why_cloud_native }}
 <section class="section team-cloud-native">
   <div class="container">
-    <div class="section__head">
-      <span class="section__icon">{{ partial "icon.html" (dict "name" "cloud" "size" 22) }}</span>
+    <div class="section__head section__head--left">
+      <p class="eyebrow">{{ .eyebrow }}</p>
       <h2>{{ .title }}</h2>
       {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
     </div>
-    <div class="stat-bars">
-      {{ range .pills }}
-      <div class="stat-bar{{ if .featured }} stat-bar--featured{{ end }}">{{ .title }}</div>
-      {{ end }}
-    </div>
-    {{ with .footnote }}<p class="section__footnote">{{ . }}</p>{{ end }}
+    <ul class="cloud-native-list">
+      {{ range .pills }}<li>{{ .title }}</li>{{ end }}
+    </ul>
+    {{ with .footnote }}<p class="section__footnote section__footnote--left">{{ . }}</p>{{ end }}
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Werte (dark, 5 rows with photo + copy) ---------- */}}
 {{ with .Params.values }}
-<section class="section section--dark section--accent-green section--single-color-heading team-values">
+<section class="section section--subtle team-values">
   <div class="container">
-    <div class="section__head">
+    <div class="section__head section__head--left">
+      <p class="eyebrow">{{ .eyebrow }}</p>
       <h2>{{ .title | safeHTML }}</h2>
     </div>
-    <div class="values-list">
-      {{ $vimgs := slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg" "/images/section/ridge.jpg" }}
-      {{ range $i, $v := .items }}
-      <div class="values-list__row">
-        <h3 class="values-list__title">{{ $v.title }}</h3>
-        <div class="values-list__media" style="background-image: var(--overlay-photo), url('{{ index $vimgs $i }}');"></div>
-        <p class="values-list__desc">{{ $v.body }}</p>
-      </div>
+    <div class="value-list">
+      {{ range .items }}
+      <article class="value-item">
+        <h3>{{ .title }}</h3>
+        <p>{{ .body }}</p>
+      </article>
       {{ end }}
     </div>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Community ---------- */}}
 {{ with .Params.community }}
 <section class="section team-community">
   <div class="container">
-    <div class="section__head">
-      <span class="section__icon">{{ partial "icon.html" (dict "name" "community" "size" 22) }}</span>
-      <h2>{{ .title }}</h2>
-      <p class="lead">{{ .lead }}</p>
+    <div class="community-layout">
+      <div class="section__head section__head--left">
+        <p class="eyebrow">{{ .eyebrow }}</p>
+        <h2>{{ .title }}</h2>
+        <p class="lead">{{ .lead }}</p>
+        {{ with .footnote }}<p>{{ . }}</p>{{ end }}
+      </div>
+      <ul class="community-list">
+        {{ range .tags }}<li>{{ . }}</li>{{ end }}
+      </ul>
     </div>
-    <div class="text-pill-row" style="justify-content: center;">
-      {{ range .tags }}
-      <span class="text-pill">{{ . }}</span>
-      {{ end }}
-    </div>
-    {{ with .footnote }}<p class="section__footnote">{{ . }}</p>{{ end }}
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Contact block ---------- */}}
 {{ with .Params.contact_block }}
 <section class="section section--dark team-contact">
   <div class="container">
     <div class="contact-cta">
-      <span class="eyebrow contact-cta__eyebrow">{{ .eyebrow }}</span>
-      <h2 class="contact-cta__title">{{ .title }}</h2>
-      <p class="lead">{{ .lead }}</p>
-      <p class="contact-cta__actions">
-        <a class="btn btn--inverse" href="mailto:{{ $.Site.Params.contactEmail }}">
-          {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 18) }}
-          {{ $.Site.Params.contactEmail }}
-        </a>
-      </p>
+      <div>
+        <p class="eyebrow">{{ .eyebrow }}</p>
+        <h2>{{ .title }}</h2>
+        <p class="lead">{{ .lead }}</p>
+      </div>
+      <a class="btn btn--inverse" href="mailto:{{ $.Site.Params.contactEmail }}">
+        {{ $.Site.Params.contactEmail }}
+        {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 18) }}
+      </a>
     </div>
   </div>
 </section>
 {{ end }}
 
-{{/* ---------- Next steps ---------- */}}
 {{ with .Params.next_steps }}{{ partial "next-steps.html" . }}{{ end }}
 
 {{ end }}
