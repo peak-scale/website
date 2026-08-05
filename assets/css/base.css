@@ -4,7 +4,7 @@
    Three brand colors, defined by the logo
    (`static/images/peakscale-logo*.svg`):
 
-     Dark blue    #091836   rgb(9, 24, 54)     → --dark-blue
+     Dark blue    #26344c   rgb(38, 52, 76)    → --dark-blue
      Bright blue  #0580c4   rgb(5, 128, 196)   → --bright-blue
      White        #ffffff                      → --bg-white
 
@@ -20,7 +20,7 @@
     --bg-ice: rgb(229, 246, 255);             /* stronger section tint */
 
     /* Brand blues */
-    --dark-blue: rgb(9, 24, 54);              /* [BRAND] display, dark surfaces, hover ink */
+    --dark-blue: rgb(38, 52, 76);             /* [BRAND] display, dark surfaces, hover ink */
     --bright-blue: rgb(5, 128, 196);          /* [BRAND] decorative accents and large display color */
     --bright-blue-text: rgb(5, 117, 180);     /* accessible small text / button background */
     --bright-blue-deep: rgb(6, 97, 153);      /* accessible gradient endpoint behind light text */
@@ -44,7 +44,7 @@
     /* Accents (small dosage: checkmarks, tags, status, illustration details) */
     --accent-yellow: rgb(232, 184, 60);       /* warm honey / amber */
     --accent-yellow-soft: rgb(252, 238, 180); /* pale wash */
-    --accent-green: rgb(125, 175, 75);        /* fresh grass */
+    --accent-green: rgb(144, 202, 125);       /* Figma title green */
     --accent-green-soft: rgb(228, 240, 210);  /* pale wash */
     --check-green: rgb(72, 120, 38);          /* accessible green for meaningful check icons */
 

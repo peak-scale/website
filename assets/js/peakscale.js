@@ -107,6 +107,39 @@
     scrollHeader.addEventListener('focusin', revealHeader);
   }
 
+  // ---------- Hero media parallax ----------
+  // Keep this intentionally restrained: the image travels at most 42px down as
+  // its hero leaves the viewport. Motion-sensitive visitors keep the static
+  // image declared in the markup.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const heroMedia = Array.from(document.querySelectorAll('.hero__media'));
+
+  if (heroMedia.length && !reduceMotion.matches) {
+    let parallaxFrame = null;
+
+    heroMedia.forEach(function (media) { media.classList.add('is-parallax'); });
+
+    function updateHeroParallax() {
+      parallaxFrame = null;
+      heroMedia.forEach(function (media) {
+        const heroSection = media.closest('.hero');
+        if (!heroSection) return;
+
+        const bounds = heroSection.getBoundingClientRect();
+        const progress = Math.min(1, Math.max(0, -bounds.top / bounds.height));
+        media.style.setProperty('--hero-parallax-offset', (progress * 42).toFixed(2) + 'px');
+      });
+    }
+
+    function requestHeroParallax() {
+      if (parallaxFrame === null) parallaxFrame = window.requestAnimationFrame(updateHeroParallax);
+    }
+
+    requestHeroParallax();
+    window.addEventListener('scroll', requestHeroParallax, { passive: true });
+    window.addEventListener('resize', requestHeroParallax);
+  }
+
   // ---------- Mobile menu (pill drawer) ----------
   const menuToggle = document.querySelector('[data-menu-toggle]');
   const menu = document.querySelector('[data-menu]');
