@@ -32,7 +32,7 @@ why:
     - title: "Enablement statt Abhängigkeit"
       body: "Wissenstransfer, Dokumentation und Training – damit Teams nachhaltig selbstständig weiterarbeiten."
     - title: "Spezialisiertes Team"
-      body: "Kein Full-Service-Bauchladen – ein fokussiertes Team mit tiefem Cloud-Native-Know-how."
+      body: "Ein fokussiertes Team mit tiefem Cloud-Native-Know-how und klarer Spezialisierung."
 customers:
   eyebrow: "Unsere Kunden"
   title: "Unsere <span class=\"accent\">Kunden</span>"

@@ -19,9 +19,9 @@ members:
   title: "Wer dahintersteht"
   notice: "Hinweis: Rollen können wechseln (Architekt – Engineer; Senior Marketing; Tech)."
 mission:
-  eyebrow: "Unsere Mission"
   title: "Unsere <span class=\"accent\">Mission</span>"
-  lead: "Wir unterstützen IT-Abteilungen dabei, stabile, sichere und zukunftsfähige Plattformen aufzubauen. Im Zentrum stehen pragmatische Entscheidungen, technische Tiefe und Architekturen, die sich über Jahre weiterentwickeln können – unabhängig von einzelnen Herstellern oder Produkten."
+  lead: "Wir unterstützen IT-Abteilungen dabei, stabile, sichere und zukunftsfähige Plattformen aufzubauen."
+  body: "Im Zentrum stehen pragmatische Entscheidungen, technische Tiefe und Architekturen, die sich über Jahre weiterentwickeln können – unabhängig von einzelnen Herstellern oder Produkten."
   tags:
     - "Klare Ziele"
     - "Nachvollziehbare Entscheide"

@@ -46,21 +46,13 @@
     --accent-yellow-soft: rgb(252, 238, 180); /* pale wash */
     --accent-green: rgb(144, 202, 125);       /* Figma title green */
     --accent-green-soft: rgb(228, 240, 210);  /* pale wash */
-    --check-green: rgb(72, 120, 38);          /* accessible green for meaningful check icons */
+    --check-green: rgb(144, 202, 125);        /* Figma green check icons */
 
     /* Photo overlay — subtle navy → blue wash applied above section
        background-images so the photo stays readable. Used inline in
        templates as the first layer of `background-image`. */
     --overlay-photo: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2));
 
-    /* Shadows */
-    --shadow-brand: 0 3px 6px 0 rgba(5, 128, 196, .10),
-    0 11px 11px 0 rgba(5, 128, 196, .09),
-    0 24px 14px 0 rgba(5, 128, 196, .05),
-    0 43px 17px 0 rgba(5, 128, 196, .01);
-    --shadow-float: 0 8px 24px -8px rgba(9, 24, 54, .18),
-    0 2px 8px -2px rgba(9, 24, 54, .08);
-    --shadow-soft: 0px 6px 12px rgba(9, 24, 54, .05);
 }
 
 /* ---------- Typography ----------
@@ -256,7 +248,7 @@ hr {
     line-height: 1;
     border: 1px solid transparent;
     cursor: pointer;
-    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .1s ease, box-shadow .2s ease;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .1s ease;
     white-space: nowrap;
 }
 
@@ -272,7 +264,6 @@ hr {
 .btn--primary:hover {
     background: color-mix(in srgb, var(--bright-blue) 82%, black);
     color: var(--bg-white);
-    box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--bright-blue) 55%, transparent);
 }
 
 .btn--inverse {
@@ -290,8 +281,7 @@ hr {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: var(--space-8);
-    box-shadow: var(--shadow-brand);
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    transition: transform .2s ease, border-color .2s ease;
 }
 
 a.card {

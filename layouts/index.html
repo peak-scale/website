@@ -63,7 +63,6 @@
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="logo-carousel" data-logo-carousel aria-label="Kunden">
-      <button class="logo-carousel__nav logo-carousel__nav--prev" type="button" data-logo-prev aria-label="{{ if eq $lang "de" }}Zurück{{ else }}Previous{{ end }}">{{ partial "icon.html" (dict "name" "chevron-left" "size" 20) }}</button>
       <div class="logo-carousel__viewport">
         <div class="logo-carousel__track" data-logo-track>
           {{ range hugo.Data.customers }}
@@ -73,7 +72,6 @@
           {{ end }}
         </div>
       </div>
-      <button class="logo-carousel__nav logo-carousel__nav--next" type="button" data-logo-next aria-label="{{ if eq $lang "de" }}Weiter{{ else }}Next{{ end }}">{{ partial "icon.html" (dict "name" "chevron-right" "size" 20) }}</button>
     </div>
   </div>
 </section>

@@ -18,9 +18,9 @@ members:
   title: "Who is behind it"
   notice: "Note: Roles can change (architect – engineer; senior maintainer; tech)."
 mission:
-  eyebrow: "Our mission"
   title: "Our <span class=\"accent\">mission</span>"
-  lead: "We help IT departments build stable, secure, and future-ready platforms. At the centre are pragmatic decisions, technical depth, and architectures that can evolve over years – independent of individual vendors or products."
+  lead: "We help IT departments build stable, secure, and future-ready platforms."
+  body: "At the centre are pragmatic decisions, technical depth, and architectures that can evolve over years – independent of individual vendors or products."
   tags:
     - "Clear goals"
     - "Traceable decisions"

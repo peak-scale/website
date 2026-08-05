@@ -63,9 +63,8 @@
       {{ $card := . }}
       <div class="card partner-card">
         {{ with index $partnerImages $card.title }}
-        <img class="partner-card__logo" src="{{ . }}" alt="" loading="lazy">
+        <img class="partner-card__logo" src="{{ . }}" alt="{{ $card.title }}" loading="lazy">
         {{ end }}
-        <h3>{{ $card.title }}</h3>
         {{ with $card.role }}<div class="eyebrow partner-card__role">{{ . }}</div>{{ end }}
         <p>{{ $card.body }}</p>
         {{ with $card.themes }}
@@ -83,7 +82,7 @@
 
 {{/* ---------- Journey (dark, centered head + photo banner + 3 numbered steps) ---------- */}}
 {{ with .Params.journey }}
-<section class="section section--dark section--accent-green products-journey">
+<section class="section section--dark section--accent-green section--single-color-heading products-journey">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>

@@ -91,8 +91,7 @@
     }
 
     // Only paint the white sticky surface while the fixed header is
-    // actually visible. This also prevents its shadow peeking into view
-    // while the header itself is fully hidden.
+    // actually visible, avoiding a white edge while it is fully hidden.
     const stickyHeaderIsVisible = !heroHeaderFollowsDocument && headerOffset > -headerHeight;
     scrollHeader.classList.toggle('is-scrolled', !isAtTop && stickyHeaderIsVisible);
 

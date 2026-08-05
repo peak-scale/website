@@ -62,12 +62,14 @@
 
 {{/* ---------- Mission (split: text left, pill tags right) ---------- */}}
 {{ with .Params.mission }}
-<section class="section section--topo team-mission">
+<section class="section team-mission">
+  <img class="team-mission__topo" src="/images/topo/hero-topo.svg#svgView(viewBox(-320,-191,2560,1527))" alt="" width="1920" height="1145" aria-hidden="true">
   <div class="container">
     <div class="mission-split">
       <div class="section__head section__head--left">
         <h2>{{ .title | safeHTML }}</h2>
         <p class="lead">{{ .lead }}</p>
+        {{ with .body }}<p class="mission-split__body">{{ . }}</p>{{ end }}
       </div>
       <div class="text-pill-row">
         {{ range .tags }}
@@ -81,7 +83,7 @@
 
 {{/* ---------- How we work (dark, 6 cards 2x3) ---------- */}}
 {{ with .Params.how_we_work }}
-<section class="section section--dark section--accent-green team-working">
+<section class="section section--dark section--accent-green section--single-color-heading team-working">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
@@ -122,7 +124,7 @@
 
 {{/* ---------- Werte (dark, 5 rows with photo + copy) ---------- */}}
 {{ with .Params.values }}
-<section class="section section--dark section--accent-green team-values">
+<section class="section section--dark section--accent-green section--single-color-heading team-values">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
