@@ -1263,24 +1263,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   z-index: 0;
 }
 .team-mission > .container { position: relative; z-index: 1; }
-.team-mission .section__head h2 { font-size: 64px; }
-.team-mission .lead,
-.team-mission .mission-split__body { font-size: 20px; }
-.team-mission .mission-split {
-  grid-template-columns: 546px 594px;
-  gap: 60px;
-}
-.team-mission .text-pill-row {
-  display: grid;
-  grid-template-columns: max-content max-content;
-  gap: 24px;
-}
-.team-mission .text-pill {
-  padding: 16px 32px;
-  font-size: 24px;
-}
-.team-mission .text-pill:nth-child(3),
-.team-mission .text-pill:nth-child(4) { grid-column: 1 / -1; width: max-content; }
+/* Heading, lead and pills all stay on the shared type scale — this section is a
+   peer of "Unsere Arbeitsweise", not a hero. */
+.team-mission .mission-split { gap: clamp(var(--space-8), 5vw, 60px); }
 /* Warum Cloud Native — full-width stacked bars, one highlighted green. */
 .stat-bars {
   display: flex; flex-direction: column; gap: var(--space-3);
@@ -1488,6 +1473,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 @media (max-width: 960px) {
   .grid--3,
   .why-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Two columns leave the pills too little room below this width. */
+  .mission-split { grid-template-columns: 1fr; }
   .partner-logos { grid-template-columns: repeat(2, 220px); }
 }
 
@@ -1504,12 +1491,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 @media (max-width: 760px) {
   .lifecycle-rows__row,
   .values-list__row,
-  .mission-split,
   .team-grid { grid-template-columns: 1fr; }
-  .team-mission .mission-split { grid-template-columns: 1fr; }
-  .team-mission .text-pill-row { display: flex; }
-  .team-mission .text-pill:nth-child(3),
-  .team-mission .text-pill:nth-child(4) { width: auto; }
   .lifecycle-rows__media,
   .values-list__media { display: none; }
   .values-list__row { gap: var(--space-3); }
