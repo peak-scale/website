@@ -301,7 +301,7 @@ hr {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: var(--space-8);
-    transition: transform .2s ease, border-color .2s ease;
+    transition: border-color .2s ease;
 }
 
 a.card {
@@ -311,7 +311,6 @@ a.card {
 
 a.card:hover,
 .card:has(a):hover {
-    transform: translateY(-2px);
     border-color: var(--bright-blue);
 }
 

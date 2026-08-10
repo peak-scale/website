@@ -362,11 +362,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   text-align: left;
   white-space: normal;
   text-decoration: none;
-  transition: transform .18s ease;
-}
-/* Lift only — the system is flat, so nothing here casts a shadow. */
-.hero-stage-pill:hover {
-  transform: translateY(-2px);
 }
 .hero-stage-pill__icon {
   display: inline-flex; align-items: center; justify-content: center;
@@ -507,8 +502,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .logo-carousel__viewport {
   overflow: hidden;
-  /* Vertical slack so the tile's translateY(-2px) hover lift and its
-     top border aren't clipped by the overflow boundary. */
+  /* Vertical slack so the tile's top and bottom borders aren't clipped
+     by the overflow boundary. */
   padding: 6px 0;
   /* Fade the strip out at its own edges. A fixed band, not a percentage,
      so the fade stays at the edge on every viewport. */
@@ -539,12 +534,11 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   background: var(--bg-white);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  transition: border-color .2s ease, transform .2s ease;
+  transition: border-color .2s ease;
 }
 .logo-tile:hover,
 .partner-logos__item:hover {
   border-color: var(--bright-blue);
-  transform: translateY(-2px);
 }
 /* Each img fills the entire tile interior; object-fit: contain then
    scales the SVG to the largest size that fits, so portrait marks
@@ -779,7 +773,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   color: #fff;
   position: relative;
   overflow: hidden;
-  transition: transform .2s ease, border-color .2s ease;
+  transition: border-color .2s ease;
   min-height: 260px;
 }
 /* Flat fills: both gradients ran between two near-identical values and read
@@ -792,7 +786,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   background: var(--accent-green-deep);
   border-color: rgba(228,240,210,.35);
 }
-.next-steps__card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.45); color: #fff; }
+.next-steps__card:hover { border-color: rgba(255,255,255,.45); color: #fff; }
 .next-steps__eyebrow {
   display: inline-block;
   font-family: var(--font-ui); font-size: var(--text-eyebrow); font-weight: 700;
