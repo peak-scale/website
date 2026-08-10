@@ -35,13 +35,13 @@ why:
       body: "No full-service generalist shop – a focused team with deep cloud-native expertise."
 customers:
   eyebrow: "Our customers"
-  title: "Our <span class=\"accent\">customers</span>"
+  title: "Our customers"
   lead: "A selection of customers we've supported on architecture, engineering, or assessment projects."
 testimonial:
-  eyebrow: "Voices from <span class=\"accent\">projects</span>"
+  eyebrow: "Voices from projects"
 lifecycle:
   eyebrow: "What IT teams gain"
-  title: "What <span class=\"accent\">IT teams</span> stand to <span class=\"accent\">gain</span>"
+  title: "What IT teams stand to gain"
   lead: "Clear orientation, technical excellence, and pragmatic delivery – across the full lifecycle."
   cards:
     - title: "Cloud Architecture"
@@ -73,7 +73,7 @@ partners:
   lead: "We work with leading cloud-native vendors."
 next_steps:
   eyebrow: "Continue"
-  title: "Next <span class=\"accent\">stage</span>"
+  title: "Next stage"
   cards:
     - eyebrow: "Services"
       title: "Scope of work & core areas"

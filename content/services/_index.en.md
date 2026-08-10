@@ -24,7 +24,7 @@ lifecycle_strip:
       sub: "Stable operations & lifecycle"
 architecture:
   eyebrow: "Architecture"
-  title: "Cloud & <span class=\"accent\">architecture</span>"
+  title: "Cloud & architecture"
   lead: "When requirements shift, the architecture has to grow with them. We create the decision basis and structures that hold beyond the first roadmap."
   cards:
     - title: "Orientation & architecture advisory"
@@ -59,7 +59,7 @@ engineering:
       items: ["Kubernetes security", "Policy as Code", "Monitoring & observability", "Logging & tracing"]
 assessments:
   eyebrow: "Assessments"
-  title: "<span class=\"accent\">Assessments</span>"
+  title: "Assessments"
   lead: "Independent analyses with clear recommendations – as a decision basis before larger changes or for taking stock."
   cards:
     - title: "Kubernetes Security Assessment"
@@ -89,7 +89,7 @@ testimonial:
   eyebrow: "Voices from projects"
 next_steps:
   eyebrow: "Continue"
-  title: "Next <span class=\"accent\">stage</span>"
+  title: "Next stage"
   cards:
     - eyebrow: "Products"
       title: "Our own solutions and enterprise support for core platform building blocks"

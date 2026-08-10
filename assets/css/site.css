@@ -389,13 +389,12 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   scroll-margin-top: var(--header-h);
 }
 
-/* ---------- Accent helper for partial heading words ---------- */
-.accent {
-  color: var(--section-heading-accent, var(--bright-blue));
-}
+/* ---------- Section heading accent ----------
+   Headings carry one colour, never two: a colour switch mid-sentence splits
+   the line into two things to read. The accent lives on the whole heading
+   where a section wants one. */
 .section--accent-green { --section-heading-accent: var(--accent-green); }
-.section--single-color-heading .section__head .accent { color: inherit; }
-.section--single-color-heading.section--accent-green .section__head h2 {
+.section--accent-green .section__head h2 {
   color: var(--section-heading-accent);
 }
 
@@ -429,12 +428,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .home-why .display-xl {
   margin-bottom: 0;
   font-size: var(--text-display);
-  background: linear-gradient(90deg, var(--dark-blue), var(--bright-blue-text));
-  background-clip: text;
-  color: transparent;
+  color: var(--dark-blue);
   font-weight: 300;
   line-height: 1.1;
-  -webkit-background-clip: text;
 }
 .home-why .why-grid {
   gap: clamp(18px, 2vw, 24px);
@@ -1107,7 +1103,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   display: inline-flex;
   width: 24px;
   height: 24px;
-  margin-top: 1px;
+  /* Centre the 24px icon box on the first text line (14px x 1.6 = 22.4px). */
+  margin-top: -1px;
   color: var(--fg-subtle);
   flex: 0 0 auto;
 }
@@ -1117,8 +1114,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .fit-block__check { color: var(--check-green); }
 .list-check-icon--blue { color: var(--bright-blue); }
 .checklist--grid-2 {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px;
 }
+.checklist--grid-2 > li { min-width: 0; overflow-wrap: break-word; }
 .checklist--on-dark { color: #fff; font-size: var(--text-sm); line-height: 1.5; }
 
 /* Numbered step (centered, dark section) — used in produkte journey. */
@@ -1496,6 +1494,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 @media (max-width: 600px) {
   .grid--2,
   .grid--3 { grid-template-columns: 1fr; }
+  .checklist--grid-2 { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 560px) {
@@ -1744,28 +1743,35 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .home-customers .logo-tile {
     scroll-snap-align: start;
   }
-  .home-customers .logo-tile[aria-hidden="true"] {
+  /* The cloned second copy stays in the flow here too: it is what lets the
+     auto-scroll (and a swipe past the end) wrap around invisibly. */
+  .home-testimonials .testimonial-carousel__nav {
     display: none;
   }
-  .home-testimonials .testimonial-carousel__nav,
+  /* The dots stay: swiping is the control, but they are the only cue for how
+     many quotes there are and where in the strip you currently sit. */
   .home-testimonials .testimonial-carousel__dots {
-    display: none;
+    margin-top: var(--space-3);
   }
 
   .home-testimonials .testimonial-carousel {
     max-width: none;
   }
+  /* No padding or gap on the scroller: each slide is exactly one viewport
+     wide, so a snapped quote fills the strip and no sliver of its neighbours
+     shows at rest. Breathing room lives inside the slide instead. */
   .home-testimonials .testimonial-carousel__viewport {
     display: flex;
     align-items: stretch;
-    gap: var(--space-4);
+    gap: 0;
     min-height: 0;
-    padding-inline: var(--space-3);
-    scroll-padding-inline: var(--space-3);
+    padding-inline: 0;
+    scroll-padding-inline: 0;
   }
   .home-testimonials .testimonial {
     display: grid !important;
-    flex: 0 0 calc(100% - var(--space-6));
+    flex: 0 0 100%;
+    padding-inline: var(--space-3);
     place-content: center;
     scroll-snap-align: center;
   }

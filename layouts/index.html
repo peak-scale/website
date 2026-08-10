@@ -87,7 +87,7 @@
 
 {{/* ---------- Testimonials carousel (centered with chevrons) ---------- */}}
 {{ with .Params.testimonial }}
-<section class="section section--single-color-heading home-testimonials">
+<section class="section home-testimonials">
   <div class="container">
     <div class="section__head">
       <h2>{{ .eyebrow | safeHTML }}</h2>
@@ -111,7 +111,7 @@
 
 {{/* ---------- What IT teams gain (dark, 4 horizontal rows) ---------- */}}
 {{ with .Params.lifecycle }}
-<section class="section section--dark section--accent-green section--single-color-heading home-lifecycle">
+<section class="section section--dark section--accent-green home-lifecycle">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>

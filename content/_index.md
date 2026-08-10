@@ -35,13 +35,13 @@ why:
       body: "Ein fokussiertes Team mit tiefem Cloud-Native-Know-how und klarer Spezialisierung."
 customers:
   eyebrow: "Unsere Kunden"
-  title: "Unsere <span class=\"accent\">Kunden</span>"
+  title: "Unsere Kunden"
   lead: "Eine Auswahl unserer Kunden, die wir in Architektur-, Engineering- oder Assessment-Projekten begleitet haben."
 testimonial:
-  eyebrow: "Stimmen aus <span class=\"accent\">Projekten</span>"
+  eyebrow: "Stimmen aus Projekten"
 lifecycle:
   eyebrow: "Was IT-Teams gewinnen"
-  title: "Was <span class=\"accent\">IT-Teams</span> dadurch <span class=\"accent\">gewinnen</span>"
+  title: "Was IT-Teams dadurch gewinnen"
   lead: "Klare Orientierung, technische Exzellenz und pragmatische Umsetzung – entlang des gesamten Lebenszyklus."
   cards:
     - title: "Cloud Architecture"
@@ -73,7 +73,7 @@ partners:
   lead: "Wir arbeiten mit führenden Cloud Native Anbietern zusammen."
 next_steps:
   eyebrow: "Weitergehen"
-  title: "Nächste <span class=\"accent\">Etappe</span>"
+  title: "Nächste Etappe"
   cards:
     - eyebrow: "Services"
       title: "Leistungsspektrum & Kernbereiche"

@@ -81,7 +81,7 @@ partners:
         - "Plattform-Automatisierung"
 journey:
   eyebrow: "Vom Entscheid zum Betrieb"
-  title: "Vom Entscheid bis <span class=\"accent\">zum Betrieb</span>"
+  title: "Vom Entscheid bis zum Betrieb"
   lead: "Wir begleiten Plattform-Teams entlang des gesamten Lebenszyklus – vom Entscheid und der Architektur über die Implementierung bis zum stabilen Betrieb und zur kontrollierten Weiterentwicklung."
   cards:
     - num: "01"
@@ -95,7 +95,7 @@ journey:
       desc: "Stabiler Betrieb, Lifecycle, Enterprise Support, kontrollierte Weiterentwicklung."
 next_steps:
   eyebrow: "Weitergehen"
-  title: "Nächste <span class=\"accent\">Etappe</span>"
+  title: "Nächste Etappe"
   cards:
     - eyebrow: "Services"
       title: "Beratung, Engineering, Assessments und Enablement für Plattform-Teams"

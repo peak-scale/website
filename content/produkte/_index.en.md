@@ -81,7 +81,7 @@ partners:
         - "Platform automation"
 journey:
   eyebrow: "From decision to operations"
-  title: "From decision to <span class=\"accent\">operations</span>"
+  title: "From decision to operations"
   lead: "We accompany platform teams across the entire lifecycle – from the decision and architecture through implementation to stable operations and controlled evolution."
   cards:
     - num: "01"
@@ -95,7 +95,7 @@ journey:
       desc: "Stable operations, lifecycle, enterprise support, controlled evolution."
 next_steps:
   eyebrow: "Continue"
-  title: "Next <span class=\"accent\">stage</span>"
+  title: "Next stage"
   cards:
     - eyebrow: "Services"
       title: "Advisory, engineering, assessments and enablement for platform teams"

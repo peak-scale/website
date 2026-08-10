@@ -19,7 +19,7 @@ members:
   title: "Wer dahintersteht"
   notice: "Hinweis: Rollen können wechseln (Architekt – Engineer; Senior Marketing; Tech)."
 mission:
-  title: "Unsere <span class=\"accent\">Mission</span>"
+  title: "Unsere Mission"
   lead: "Wir unterstützen IT-Abteilungen dabei, stabile, sichere und zukunftsfähige Plattformen aufzubauen."
   body: "Im Zentrum stehen pragmatische Entscheidungen, technische Tiefe und Architekturen, die sich über Jahre weiterentwickeln können – unabhängig von einzelnen Herstellern oder Produkten."
   tags:
@@ -29,7 +29,7 @@ mission:
     - "Gemeinsame Umsetzung mit dem Kundenteam"
 how_we_work:
   eyebrow: "So arbeiten wir"
-  title: "Unsere Arbeits<span class=\"accent\">weise</span>"
+  title: "Unsere Arbeitsweise"
   lead: "Wir arbeiten eng mit den Engineering- und Architekturteams unserer Kunden zusammen – als technische Partner im Projektalltag. Kurze Wege, klares Sparring und Schritte, die im Betrieb tragen und mitwachsen."
   cards:
     - title: "Kurze Kommunikationswege"
@@ -58,7 +58,7 @@ why_cloud_native:
   footnote: "Wir setzen bewusst auf offene Standards und etablierte Open-Source-Technologien – ohne proprietären Lock-in."
 values:
   eyebrow: "Unsere Werte"
-  title: "Unsere <span class=\"accent\">Werte</span>"
+  title: "Unsere Werte"
   items:
     - title: "Pragmatismus"
       body: "Wir bevorzugen Lösungen, die funktionieren – nicht solche, die nur auf dem Papier gut aussehen."
@@ -86,7 +86,7 @@ contact_block:
   lead: "Wenn Sie Peak Scale näher kennenlernen möchten, geben wir gerne Einblick in Arbeitsweise, Entscheidungslogik und typische Vorgehensmodelle – unverbindlich, ohne klassischen Sales-Prozess."
 next_steps:
   eyebrow: "Weitergehen"
-  title: "Nächste <span class=\"accent\">Etappe</span>"
+  title: "Nächste Etappe"
   cards:
     - eyebrow: "Services"
       title: "Beratung, Engineering, Assessments und Enablement für Plattform-Teams"

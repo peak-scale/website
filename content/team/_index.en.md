@@ -18,7 +18,7 @@ members:
   title: "Who is behind it"
   notice: "Note: Roles can change (architect – engineer; senior maintainer; tech)."
 mission:
-  title: "Our <span class=\"accent\">mission</span>"
+  title: "Our mission"
   lead: "We help IT departments build stable, secure, and future-ready platforms."
   body: "At the centre are pragmatic decisions, technical depth, and architectures that can evolve over years – independent of individual vendors or products."
   tags:
@@ -28,7 +28,7 @@ mission:
     - "Joint delivery with the customer team"
 how_we_work:
   eyebrow: "How we work"
-  title: "Our way of <span class=\"accent\">working</span>"
+  title: "Our way of working"
   lead: "We work closely with our customers' engineering and architecture teams – as technical partners in everyday project work. Short paths, clear sparring, and steps that hold up in operations and scale."
   cards:
     - title: "Short communication paths"
@@ -57,7 +57,7 @@ why_cloud_native:
   footnote: "We deliberately rely on open standards and established open-source technologies – without proprietary lock-in."
 values:
   eyebrow: "Our values"
-  title: "Our <span class=\"accent\">values</span>"
+  title: "Our values"
   items:
     - title: "Pragmatism"
       body: "We prefer solutions that work – over those that only look good on paper."
@@ -85,7 +85,7 @@ contact_block:
   lead: "If you'd like to get to know Peak Scale, we're happy to give you a look at how we work, decide, and approach typical engagements – informally, with no classic sales process."
 next_steps:
   eyebrow: "Continue"
-  title: "Next <span class=\"accent\">stage</span>"
+  title: "Next stage"
   cards:
     - eyebrow: "Services"
       title: "Advisory, engineering, assessments and enablement for platform teams"
