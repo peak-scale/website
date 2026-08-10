@@ -1478,6 +1478,21 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .icon-tile-grid { grid-template-columns: 1fr; }
 }
 
+/* The homepage's four stage pills wrap to three ragged rows on a phone at
+   their full size; trimming the padding and the icon fits them two per row.
+   The hero band they sit in is shortened alongside them, further down. */
+@media (max-width: 680px) {
+  .hero-stage-pills {
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+  .hero-stage-pill {
+    min-height: 44px;
+    padding: 8px 14px 8px 8px;
+  }
+  .hero-stage-pill__icon { width: 28px; height: 28px; }
+}
+
 @media (max-width: 600px) {
   .grid--2,
   .grid--3 { grid-template-columns: 1fr; }
@@ -1764,14 +1779,31 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .site-header__logo {
     height: 38px;
   }
+  /* No `min-height` here on purpose: this block used to raise the hero to
+     clamp(520px, 68svh, 640px), a higher floor *and* a steeper slope than the
+     desktop ramp, so every viewport shorter than ~920px got a hero taller than
+     the same page showed on a laptop — the band grew as the screen shrank.
+     Tablet now follows the one ramp on `.hero`; only the padding tightens. */
   .hero {
-    min-height: clamp(520px, 68svh, 640px);
     padding: 48px 0;
   }
   /* From tablet down the framed tiles shrink and sit closer together, so
      several logos fit in the strip at once. */
   .logo-tile { width: 110px; height: 58px; padding: 6px 8px; }
   .logo-carousel__track { gap: var(--space-2); }
+}
+
+/* Phones undo the band growth above. 68svh suits a tablet, where the hero is
+   still wide enough to need the height; on a 390px screen it made the hero
+   574px under a 64px header — three quarters of the viewport, and on Team a
+   268px-tall block of copy floating in ~300px of spare photo. Sized to end
+   inside the first screen so the section below shows its top edge. Must stay
+   after the ≤999px block: same specificity, so source order decides. */
+@media (max-width: 680px) {
+  .hero {
+    min-height: clamp(320px, 46svh, 440px);
+    padding: var(--space-8) 0;
+  }
 }
 
 /* ---------- Markdown prose (legal pages) ---------- */

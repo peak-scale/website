@@ -116,10 +116,15 @@
        maximum at exactly 1440px (72/1440 = 5vw, 48/1440 = 3.3333vw,
        36/1440 = 2.5vw). Below their floors nothing moves, above 1440 nothing
        moves, and in between the three grow in step instead of each crossing
-       over at its own width — the scale behaves as one system at every size. */
-    --text-display:    clamp(40px, 5vw, 72px);       /* hero only */
-    --text-display-sm: clamp(28px, 3.3333vw, 48px);  /* section headings */
-    --text-display-xs: clamp(26px, 2.5vw, 36px);     /* feature-card anchor tile */
+       over at its own width — the scale behaves as one system at every size.
+
+       The floors are set for a 390px phone, not for the tablet width where
+       the slope happens to arrive: at 40px the German hero headline took four
+       lines and dominated the viewport. Lowering them also lets the headings
+       start growing from phone width instead of standing still to ~800px. */
+    --text-display:    clamp(32px, 5vw, 72px);       /* hero only */
+    --text-display-sm: clamp(24px, 3.3333vw, 48px);  /* section headings */
+    --text-display-xs: clamp(22px, 2.5vw, 36px);     /* feature-card anchor tile */
     --text-title-lg:   22px;                       /* pull quote, lifecycle stage */
     --text-title:      18px;                       /* all card h3 */
     --text-body:       16px;                       /* body, hero lead, lead */
