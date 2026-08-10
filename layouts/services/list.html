@@ -3,7 +3,7 @@
 
 {{/* ---------- Hero (full-bleed mountaineer photo, lifecycle path between) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero hero--services">
+<section class="hero{{ if eq (.ink | default "light") "dark" }} hero--on-dark{{ end }}">
   <img class="hero__media" src="/images/hero/services-photo.webp" alt="" width="2400" height="1600" fetchpriority="high" aria-hidden="true">
   <div class="container">
     <div class="hero__inner">
@@ -25,7 +25,7 @@
 
 {{/* ---------- Architecture: 2 cards left + yellow testimonial right + green tag ---------- */}}
 {{ with .Params.architecture }}
-<section class="section section--alt section--single-color-heading services-architecture">
+<section id="architecture" class="section section--alt section--single-color-heading services-architecture">
   <div class="container">
     <div class="section__head">
       <span class="section__icon section__icon--accent">{{ partial "icon.html" (dict "name" "cloud" "size" 24) }}</span>
@@ -67,7 +67,7 @@
 
 {{/* ---------- Engineering: 4 categories left + testimonial + tag right ---------- */}}
 {{ with .Params.engineering }}
-<section class="section services-engineering">
+<section id="engineering" class="section services-engineering">
   <div class="container">
     <div class="section__head">
       <span class="section__icon section__icon--accent">{{ partial "icon.html" (dict "name" "platform" "size" 24) }}</span>
@@ -118,7 +118,7 @@
 
 {{/* ---------- Assessments (dark) ---------- */}}
 {{ with .Params.assessments }}
-<section class="section section--dark section--single-color-heading services-assessments">
+<section id="assessments" class="section section--dark section--single-color-heading services-assessments">
   <div class="container">
     <div class="section__head">
       <span class="section__icon section__icon--accent">{{ partial "icon.html" (dict "name" "assessment" "size" 24) }}</span>
@@ -150,7 +150,7 @@
 
 {{/* ---------- Training ---------- */}}
 {{ with .Params.training }}
-<section class="section services-training">
+<section id="training" class="section services-training">
   <div class="container">
     <div class="section__head">
       <span class="section__icon section__icon--accent">{{ partial "icon.html" (dict "name" "training" "size" 24) }}</span>

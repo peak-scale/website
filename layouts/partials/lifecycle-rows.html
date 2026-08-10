@@ -1,0 +1,18 @@
+{{/* Horizontal rows: title column + photo and copy tile, sides alternating
+     (the swap is CSS — see `.lifecycle-rows__row:nth-child(even)`).
+     dict: "rows" (each with title and desc or body), "images", optional "icons".
+     Images and icons wrap rather than index past the end when a row is added. */}}
+{{- $images := .images -}}
+{{- $icons := .icons -}}
+<div class="lifecycle-rows">
+  {{ range $i, $row := .rows }}
+  <div class="lifecycle-rows__row">
+    <h3 class="lifecycle-rows__title">{{ $row.title }}</h3>
+    <div class="lifecycle-rows__media" style="background-image: url('{{ index $images (mod $i (len $images)) }}');"></div>
+    <div class="icon-tile icon-tile--stack">
+      {{ with $icons }}<div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index . (mod $i (len .))) "size" 24) }}</div>{{ end }}
+      <p class="icon-tile__body">{{ $row.desc | default $row.body }}</p>
+    </div>
+  </div>
+  {{ end }}
+</div>

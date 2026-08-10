@@ -26,16 +26,18 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding-left: clamp(20px, 4vw, 40px);
-  padding-right: clamp(20px, 4vw, 40px);
+  padding-inline: var(--gutter);
 }
 
 .section {
   padding: clamp(72px, 7vw, 132px) 0;
 }
+/* A white surface closes with a hairline — the white bands here, and the
+   header and hero further down this file. Bands on the page background draw
+   none: the change of surface already is the boundary, and a rule on the top
+   edge as well would fence every band in instead of separating them. */
 .section--alt {
   background: var(--bg-white);
-  border-top: 1px solid var(--border-faint);
   border-bottom: 1px solid var(--border-faint);
 }
 .section--dark {
@@ -98,41 +100,35 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 /* ---------- Header ---------- */
 
+/* One source for the bar height: the header itself, its inner rows, and the
+   scroll-margin that keeps anchored sections clear of it. */
+:root { --header-h: 88px; }
+
+/* The bar is solid white on every route — one nav treatment site-wide.
+   `sticky` (not `fixed`) keeps it in flow, so hiding and revealing it on scroll
+   never shifts the document underneath. JS drives --header-offset by the scroll
+   delta, which reads as a header that simply scrolls away and comes back. */
 .site-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 30;
-  min-height: 112px;
+  min-height: var(--header-h);
   padding: 0;
   background: var(--bg-white);
-  transition: background-color .25s ease;
-}
-.site-header--hero {
-  position: fixed;
-  inset: 0 0 auto;
-  width: 100%;
-  background: transparent;
+  border-bottom: 1px solid var(--border-faint);
   transform: translateY(var(--header-offset, 0px));
-}
-.site-header--hero.is-natural {
-  position: absolute;
-  transform: none;
-}
-.site-header--hero.is-scrolled,
-.site-header--hero.is-menu-open {
-  background: var(--bg-white);
 }
 .site-header__pill {
   max-width: 1200px;
-  min-height: 112px;
+  min-height: var(--header-h);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   padding: 0;
   background: var(--bg-white);
 }
-.site-header--hero .site-header__pill { background: transparent; }
 .site-header__bar {
-  min-height: 112px;
+  min-height: var(--header-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,21 +142,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   flex-shrink: 0;
 }
 .site-header__brand:hover { color: var(--dark-blue); }
+/* One logo everywhere — the bar is always white, so the brand colors hold. */
 .site-header__logo {
-  height: 58px; width: auto; display: block;
-  transition: opacity .2s ease;
-}
-.site-header__logo--contrast {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  filter: hue-rotate(208deg) saturate(.57) brightness(1.73);
-}
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .site-header__logo--default {
-  opacity: 0;
-}
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .site-header__logo--contrast {
-  opacity: 1;
+  height: 48px; width: auto; display: block;
 }
 
 .site-header__right {
@@ -173,37 +157,14 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   display: flex; align-items: center; gap: 18px;
 }
 .site-header__nav a {
-  font-size: 11px; font-weight: 700; color: var(--dark-blue);
-  text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: var(--text-eyebrow); font-weight: 700; color: var(--dark-blue);
+  text-transform: uppercase; letter-spacing: var(--tracking-eyebrow);
   padding: 4px 0; transition: color .18s ease;
 }
 .site-header__nav a:hover,
 .site-header__nav a.is-active { color: var(--bright-blue-text); }
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .site-header__nav a {
-  color: #fff;
-}
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .site-header__nav a:hover {
-  color: #fff;
-}
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .site-header__nav a.is-active {
-  color: var(--accent-yellow);
-}
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .nav-sep {
-  color: #fff;
-}
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .site-header__nav a.is-active + .nav-sep,
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .site-header__nav .nav-sep:has(+ a.is-active) {
-  color: var(--accent-yellow);
-  opacity: 1;
-}
-.site-header--photo.is-scrolled .nav-sep,
-.site-header--photo.is-menu-open .nav-sep {
-  color: var(--dark-blue);
-}
-.site-header--photo.is-scrolled .site-header__nav a.is-active + .nav-sep,
-.site-header--photo.is-scrolled .site-header__nav .nav-sep:has(+ a.is-active),
-.site-header--photo.is-menu-open .site-header__nav a.is-active + .nav-sep,
-.site-header--photo.is-menu-open .site-header__nav .nav-sep:has(+ a.is-active) {
+.site-header__nav a.is-active + .nav-sep,
+.site-header__nav .nav-sep:has(+ a.is-active) {
   color: var(--bright-blue-text);
   opacity: 1;
 }
@@ -217,28 +178,18 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   background: transparent; border-radius: 9999px; padding: 0;
 }
 .lang-switch a {
-  padding: 4px 8px; font-size: 11px; font-weight: 600;
+  padding: 4px 8px; font-size: var(--text-eyebrow); font-weight: 600;
   border-radius: 9999px; color: var(--fg-muted);
   transition: background .18s ease, color .18s ease;
 }
 .lang-switch a.is-active {
   background: var(--bright-blue-text); color: #fff;
 }
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .lang-switch a {
-  color: rgba(255, 255, 255, .78);
-}
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .lang-switch a.is-active {
-  background: #fff;
-  color: var(--bright-blue-text);
-}
 
 .site-header__menu-toggle {
   display: none;
   border: 0; background: transparent; padding: 6px; cursor: pointer;
   color: var(--dark-blue);
-}
-.site-header--photo:not(.is-scrolled):not(.is-menu-open) .site-header__menu-toggle {
-  color: #fff;
 }
 
 /* Hamburger that morphs into an X */
@@ -296,16 +247,25 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 .hero {
   position: relative;
-  min-height: clamp(560px, 68svh, 760px);
+  /* Sized to sit under the sticky header: ~88px shorter than the full-bleed
+     values, so header + hero still fill the intended share of the viewport. */
+  min-height: clamp(470px, 58svh, 670px);
   margin-top: 0;
   padding: clamp(48px, 6vw, 80px) 0;
   text-align: center;
   overflow: hidden;
   display: flex;
   align-items: center;
+  /* Same hairline the `.section--alt` bands use, so the header, the hero and
+     the section bands are all separated by one rule. */
+  border-bottom: 1px solid var(--border-faint);
 }
 /* The hero visual is a real image so the browser can discover and prioritise
    it directly from the HTML while retaining background-size: cover behavior. */
+/* Where a <picture> wraps it (home, to swap the SVG viewBox per breakpoint) it
+   is a pure plumbing element — keep it out of the hero's flex flow so it can
+   never show up as a zero-width flex item beside the container. */
+.hero > picture { display: contents; }
 .hero__media {
   position: absolute;
   inset: 0;
@@ -317,6 +277,12 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   object-position: center;
   pointer-events: none;
   z-index: 0;
+}
+/* Pans a hero photo up so the copy sits on its calmer upper half. Produkte's
+   wall needs it: without the overlay, centred framing puts the lead straight
+   over the hand and the hold's shadow, where no flat ink clears AA. */
+.hero__media--top {
+  object-position: center 10%;
 }
 .hero__media.is-parallax {
   /* The hero starts at the top of the document, so its upper edge has already
@@ -336,50 +302,35 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   margin: 0 auto;
 }
 .hero__title {
-  font-size: 72px;
+  font-size: var(--text-display);
   line-height: 1.05;
   font-weight: 500;
   letter-spacing: 0;
   margin: 0 0 var(--space-6);
-  color: var(--dark-blue);
+  color: var(--dark-blue-ink);
   text-wrap: balance;
 }
 .hero__inner .lead {
   margin: 0 auto var(--space-2);
   max-width: 720px;
+  /* Darker than the muted body grey: hero leads sit on a photograph, not on a
+     flat surface, so they need the display ink to stay readable. */
+  color: var(--dark-blue-ink);
 }
 
-/* A flat navy overlay keeps solid white copy at AA contrast even over the
-   brightest parts of each hero photograph. */
-.hero--produkte::after,
-.hero--services::after,
-.hero--team::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: rgba(9,24,54,.6);
-  pointer-events: none;
-}
-.hero--produkte,
-.hero--services,
-.hero--team {
-  color: #fff;
-}
-.hero--produkte .hero__title,
-.hero--services .hero__title,
-.hero--team .hero__title,
-.hero--produkte .lifecycle-path,
-.hero--services .lifecycle-path,
-.hero--team .lifecycle-path,
-.hero--produkte .lifecycle-path__arrow,
-.hero--services .lifecycle-path__arrow,
-.hero--team .lifecycle-path__arrow { color: #fff; }
-.hero--produkte .lead,
-.hero--services .lead,
-.hero--team .lead { color: #fff; }
+/* The photographs run bare — no darkening overlay, so each hero declares the
+   ink its own photograph can carry via `hero.ink` in front matter. Light photos
+   (Produkte's pale concrete wall, Team's white studio sweep) need nothing: they
+   inherit the homepage's dark-blue ink. Only a dark photo opts into white. */
+.hero--on-dark,
+.hero--on-dark .hero__title,
+.hero--on-dark .lead,
+.hero--on-dark .lifecycle-path,
+.hero--on-dark .lifecycle-path__arrow { color: #fff; }
 
-/* White pill badge with the "sub" hands-on line (Produkte/Services/Team) */
+/* Pill badge with the "sub" hands-on line (Produkte/Services/Team).
+   Always white, whichever ink the photograph carries: the pill is its own
+   surface, so it reads as one element site-wide instead of inverting per page. */
 .hero__badge {
   display: inline-flex; align-items: center;
   background: var(--bg-white); color: var(--bright-blue-text);
@@ -404,12 +355,18 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   background: var(--accent-yellow);
   border: 1px solid rgba(255, 255, 255, .18);
   color: var(--dark-blue);
-  border-radius: 80px;
+  border-radius: var(--radius-pill);
   font-size: var(--text-eyebrow);
   font-weight: 500;
   line-height: 1.1;
   text-align: left;
   white-space: normal;
+  text-decoration: none;
+  transition: transform .18s ease;
+}
+/* Lift only — the system is flat, so nothing here casts a shadow. */
+.hero-stage-pill:hover {
+  transform: translateY(-2px);
 }
 .hero-stage-pill__icon {
   display: inline-flex; align-items: center; justify-content: center;
@@ -424,6 +381,12 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .hero-stage-pill__icon svg {
   width: 16px;
   height: 16px;
+}
+
+/* Anchored service sections (linked from the homepage hero pills) clear the
+   fixed hero header when jumped to. */
+#architecture, #engineering, #assessments, #training {
+  scroll-margin-top: var(--header-h);
 }
 
 /* ---------- Accent helper for partial heading words ---------- */
@@ -458,8 +421,14 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   max-width: none;
   margin-bottom: clamp(30px, 3vw, 40px);
 }
+/* The page's statement heading. It borrows the hero's display step rather
+   than owning a size of its own — the Figma sets it above the hero title,
+   but a section heading outranking the page's h1 is a hierarchy this system
+   does not otherwise have, and Display is the tier the reference is reaching
+   for. */
 .home-why .display-xl {
   margin-bottom: 0;
+  font-size: var(--text-display);
   background: linear-gradient(90deg, var(--dark-blue), var(--bright-blue-text));
   background-clip: text;
   color: transparent;
@@ -487,17 +456,15 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   max-width: 18ch;
   margin: 0;
   color: #fff;
-  font-size: clamp(26px, 3vw, 36px);
+  font-size: var(--text-display-xs);
   font-weight: 400;
   line-height: 1.25;
 }
 .home-why .card--feature h3 strong { color: #fff; font-weight: 700; }
 .home-why .card:not(.card--feature) h3 {
-  margin-bottom: clamp(14px, 2vw, 18px);
-  font-size: clamp(18px, 2vw, 24px);
+  margin-bottom: var(--space-4);
 }
 .home-why .card:not(.card--feature) p {
-  font-size: clamp(14px, 1.5vw, 18px);
   line-height: 1.4;
 }
 .home-why .card:nth-child(3) {
@@ -536,20 +503,21 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   font-family: var(--font-sans); font-weight: 400;
 }
 
-/* ---------- Customer logo carousel (boxed tiles, JS-scrolled, arrows) ---------- */
+/* ---------- Customer logo carousel (boxed tiles, JS-scrolled) ---------- */
 
 .logo-carousel {
-  position: relative;
-  padding: var(--space-6) 56px;     /* leave room for the arrow buttons */
+  --logo-fade: 40px;    /* width of the edge fade band */
+  padding: var(--space-6) 0;
 }
 .logo-carousel__viewport {
   overflow: hidden;
   /* Vertical slack so the tile's translateY(-2px) hover lift and its
      top border aren't clipped by the overflow boundary. */
   padding: 6px 0;
-  /* Fade edges into the section background */
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+  /* Fade the strip out at its own edges. A fixed band, not a percentage,
+     so the fade stays at the edge on every viewport. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--logo-fade), #000 calc(100% - var(--logo-fade)), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 var(--logo-fade), #000 calc(100% - var(--logo-fade)), transparent 100%);
 }
 .logo-carousel__track {
   display: flex;
@@ -561,25 +529,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .logo-carousel__track { transition: none; }
 }
-
-.logo-carousel__nav {
-  position: absolute;
-  top: 50%; transform: translateY(-50%);
-  z-index: 2;
-  width: 44px; height: 44px; padding: 0;
-  border-radius: 9999px;
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  color: var(--bright-blue);
-  font-size: 20px; line-height: 1;
-  cursor: pointer;
-  display: inline-flex; align-items: center; justify-content: center;
-  transition: border-color .2s ease, color .2s ease, transform .1s ease;
-}
-.logo-carousel__nav:hover { border-color: var(--bright-blue); color: var(--dark-blue); }
-.logo-carousel__nav:active { transform: translateY(-50%) scale(.96); }
-.logo-carousel__nav--prev { left: 0; }
-.logo-carousel__nav--next { right: 0; }
 
 .logo-tile,
 .partner-logos__item {
@@ -692,7 +641,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   background: var(--accent-yellow-soft);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
-  border: 1px solid rgba(184,169,120,.3);
+  border: 1px solid rgba(232, 184, 60, .3);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -706,13 +655,16 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   bottom: -12px;
   width: clamp(64px, 7vw, 88px);
   aspect-ratio: 108 / 76;
-  color: rgb(184, 169, 120);
-  opacity: .28;
+  color: var(--accent-yellow);
+  opacity: .5;
 }
 .testimonial-side__mark svg { width: 100%; height: 100%; }
 .testimonial-side__quote {
-  margin: 0; font-style: normal; font-size: clamp(20px, 1.5vw, 28px); line-height: 1.45;
-  color: rgb(154, 145, 110); position: relative; z-index: 1;
+  margin: 0; font-style: normal; font-size: var(--text-title-lg); line-height: 1.45;
+  /* Warm ink to stay in the card's own family, but Honey Deep rather than the
+     washed-out grey-olive this used to be: on Honey Wash that only reached
+     2.7:1, where this clears AA at 5.04:1. */
+  color: var(--accent-yellow-deep); position: relative; z-index: 1;
 }
 .testimonial-side__quote::before { content: "“"; }
 .testimonial-side__quote::after { content: "”"; }
@@ -752,11 +704,17 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .lifecycle-rows__media {
   aspect-ratio: 16/10;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(5,128,196,.4) 0%, rgba(9,24,54,.85) 100%);
   background-size: cover; background-position: center;
+  /* The photo stops at the padding edge, so the translucent stroke reads the
+     same all the way round instead of picking up the photo underneath it. */
+  background-clip: padding-box;
   border: 1px solid var(--stroke-on-dark);
 }
-/* ---------- Glass challenges card ---------- */
+/* Sides alternate: on every second row the photo is placed after the copy.
+   `order` only reshuffles auto-placement, so the single-column layout below
+   760px — where the photo is hidden anyway — is unaffected. */
+.lifecycle-rows__row:nth-child(even) .lifecycle-rows__media { order: 1; }
+/* ---------- Challenges card on photo (flat item surfaces) ---------- */
 
 .challenges-glass {
   position: relative;
@@ -775,10 +733,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .challenges-glass__inner { position: relative; z-index: 1; }
 .challenges-glass__item {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--dark-blue-raised);
   border-radius: var(--radius-md);
   padding: var(--space-6);
 }
@@ -801,13 +756,10 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .challenges-glass__intro .lead { margin: 0; color: var(--text-on-dark); }
 .challenges-glass__stack { display: flex; flex-direction: column; gap: var(--space-3); }
 .challenges-glass__stack .challenges-glass__item { padding: 20px var(--space-6); }
-.challenges-glass__item--featured {
-  background: rgba(255,255,255,.94);
-  border-color: rgba(255,255,255,.94);
-}
+.challenges-glass__item--featured { background: var(--bg-white); }
 .challenges-glass__item--featured h3 { color: var(--dark-blue); }
 .challenges-glass__item--featured p { color: var(--fg-muted); }
-/* ---------- Next-step cross-link cards (dark gradient) ---------- */
+/* ---------- Next-step cross-link cards (flat dark surfaces) ---------- */
 
 .next-steps {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6);
@@ -825,7 +777,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .next-steps__card {
   display: flex; flex-direction: column; gap: var(--space-4);
   padding: var(--space-12) var(--space-8);
-  background: linear-gradient(160deg, var(--dark-blue) 0%, rgba(5,128,196,.55) 100%);
+  background: var(--dark-blue-raised);
   border: 1px solid rgba(255,255,255,.1);
   border-radius: var(--radius-lg);
   color: #fff;
@@ -834,19 +786,15 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   transition: transform .2s ease, border-color .2s ease;
   min-height: 260px;
 }
+/* Flat fills: both gradients ran between two near-identical values and read
+   as flat anyway, and the system builds depth from tone, not gradients. */
 .next-steps__card--gold {
-  background: linear-gradient(135deg, rgb(111,92,38), rgb(129,105,42));
+  background: var(--accent-yellow-deep);
   border-color: rgba(252,238,180,.35);
 }
 .next-steps__card--sage {
-  background: linear-gradient(135deg, rgb(52,104,61), rgb(65,117,70));
+  background: var(--accent-green-deep);
   border-color: rgba(228,240,210,.35);
-}
-.next-steps__card::after {
-  content: ""; position: absolute; right: -20%; top: -20%;
-  width: 240px; height: 240px;
-  background: radial-gradient(closest-side, rgba(255,255,255,.16), transparent 70%);
-  pointer-events: none;
 }
 .next-steps__card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.45); color: #fff; }
 .next-steps__eyebrow {
@@ -869,6 +817,10 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .next-steps__title { font-size: var(--text-title-lg); font-weight: 500; margin: 0; color: #fff; line-height: 1.25; letter-spacing: 0; text-wrap: balance; }
 .next-steps__desc { color: var(--text-on-dark); margin: 0; font-size: var(--text-sm); line-height: 1.55; }
+/* The warm fills are much lighter than the navy card, where 78% white clears
+   AA comfortably. On gold and sage it lands at 3.4:1, so these go full white. */
+.next-steps__card--gold .next-steps__desc,
+.next-steps__card--sage .next-steps__desc { color: #fff; }
 .next-steps__checklist {
   list-style: none; padding: 0; margin: var(--space-4) 0 0;
   display: flex; flex-direction: column; gap: 12px;
@@ -942,6 +894,19 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .team-member__avatar {
   width: 96px; height: 96px; border-radius: 9999px; object-fit: cover;
   background: var(--bg);
+}
+/* Monogram stand-in for members with no portrait. Flat Blue Ice disc with the
+   same hairline as every other edge — a placeholder should read quieter than a
+   real photograph, not louder, so no fill that out-contrasts the portraits. */
+.team-member__avatar--placeholder {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-ice);
+  border: 1px solid var(--border);
+  color: var(--bright-blue-text);
+  font-family: var(--font-ui);
+  font-size: var(--text-title-lg); font-weight: 700;
+  letter-spacing: 0.1em; text-indent: 0.1em; /* offset the trailing track */
+  text-transform: uppercase;
 }
 .team-member__body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .team-member__name { font-size: var(--text-title); font-weight: 500; color: var(--dark-blue); margin: 0; }
@@ -1017,25 +982,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .section--dark .icon-tile__title { color: #fff; }
 .section--dark .icon-tile__body { color: var(--text-on-dark); }
 
-/* Werte — 5 rows with photo + copy */
-.values-list { display: flex; flex-direction: column; gap: var(--space-4); max-width: 980px; margin-left: auto; margin-right: auto; }
-.values-list__row {
-  display: grid;
-  grid-template-columns: 200px 240px 1fr;
-  gap: var(--space-6);
-  align-items: center;
-  padding: var(--space-3) 0;
-  border-bottom: 1px solid var(--stroke-on-dark);
-}
-.values-list__row:last-child { border-bottom: 0; }
-.values-list__title { color: #fff; font-size: var(--text-title-lg); font-weight: 500; margin: 0; }
-.values-list__media {
-  aspect-ratio: 5/3;
-  border-radius: var(--radius-md);
-  background-size: cover; background-position: center;
-  background-color: rgba(5,128,196,.2);
-}
-.values-list__desc { color: var(--text-on-dark); font-size: var(--text-sm); margin: 0; line-height: 1.55; }
 /* ---------- Team page: community, contact CTA ---------- */
 
 .contact-cta {
@@ -1095,8 +1041,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .fit-block {
   margin-top: 20px;
   padding: var(--space-4) 20px;
-  background: rgba(154, 199, 132, .14);
-  border: 1px solid rgba(154, 199, 132, .35);
+  background: rgba(144, 202, 125, .14);
+  border: 1px solid rgba(144, 202, 125, .35);
   border-radius: var(--radius-md);
 }
 .fit-block__title {
@@ -1228,6 +1174,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .text-pill-row {
   display: flex; flex-wrap: wrap; gap: var(--space-3);
 }
+.text-pill-row--center { justify-content: center; }
 .text-pill {
   display: inline-flex; align-items: center;
   background: var(--bg-white); color: var(--dark-blue);
@@ -1363,12 +1310,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
    headings, surfaces and card themes one visual identity at every width. */
 .page-home .hero__title {
   font-weight: 400;
-  background: linear-gradient(180deg, var(--dark-blue), var(--dark-blue-soft));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--dark-blue);
 }
-.page-home .hero__inner .lead { color: var(--dark-blue-soft); }
 
 .home-testimonials {
   background:
@@ -1424,9 +1367,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
     var(--dark-blue);
 }
 .home-lifecycle .lifecycle-rows__title { font-weight: 400; }
-.home-lifecycle .lifecycle-rows__row {
-  --overlay-photo: linear-gradient(transparent, transparent);
-}
+/* Values photos take their height from the row rather than a fixed crop. */
+.team-values .lifecycle-rows__media { aspect-ratio: auto; }
 .home-lifecycle .icon-tile {
   background: var(--dark-blue-soft);
   border-color: transparent;
@@ -1490,17 +1432,46 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 @media (max-width: 760px) {
   .lifecycle-rows__row,
-  .values-list__row,
   .team-grid { grid-template-columns: 1fr; }
-  .lifecycle-rows__media,
-  .values-list__media { display: none; }
-  .values-list__row { gap: var(--space-3); }
+  .lifecycle-rows__media { display: none; }
+  /* With the photo gone the row has nothing left to lay out, so it becomes the
+     card itself — title and copy inside one box — and the tile goes flat. */
+  .lifecycle-rows__row {
+    gap: var(--space-3);
+    padding: var(--space-6);
+    border: 1px solid var(--stroke-on-dark);
+    border-radius: var(--radius-lg);
+    background: rgba(255,255,255,.04);
+  }
+  .home-lifecycle .lifecycle-rows__row {
+    background: var(--dark-blue-soft);
+    border-color: transparent;
+  }
+  /* `contents` drops the tile's own box and hands its icon and copy to the row
+     grid, so the icon can be ordered above the title. */
+  .lifecycle-rows .icon-tile {
+    display: contents;
+  }
+  .lifecycle-rows .icon-tile__icon {
+    order: -1;
+  }
   .next-steps,
   .next-steps--mosaic,
   .output-block__list { grid-template-columns: 1fr; }
   .next-steps--mosaic { grid-template-rows: auto; }
   .next-steps--mosaic .next-steps__card--primary { grid-row: auto; }
   .site-footer__grid { grid-template-columns: 1fr 1fr; }
+  /* Same treatment as `.team-mission__topo`: `cover` scales the artwork off
+     the intrinsic 1920x1145 box, so the narrower the phone the harder it
+     zooms — down here it leaves one near-empty corner of the map. `fill`
+     hands the whole hero box to the SVG instead, and the SVG's own
+     `xMidYMid slice` frames the taller viewBox the <picture> source asks for.
+     That viewBox is sized so the height binds below ~760px: the framing
+     matches `cover` exactly at the breakpoint and zooms *out* from there. */
+  .page-home .hero__media {
+    object-fit: fill;
+    object-position: center;
+  }
 }
 
 @media (max-width: 720px) {
@@ -1514,7 +1485,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 @media (max-width: 560px) {
   .why-grid { grid-template-columns: 1fr; }
-  .logo-tile { width: 180px; height: 90px; padding: 14px 24px; }
   .team-member { grid-template-columns: 80px 1fr; }
   .team-member__avatar { width: 80px; height: 80px; }
 }
@@ -1534,9 +1504,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .site-header__pill {
     padding-inline: var(--space-8);
   }
-  .site-header__brand img {
-    height: 58px;
-  }
   .site-header__right {
     gap: 64px;
   }
@@ -1553,26 +1520,17 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
     gap: 14px;
   }
 
-  .section__head h2 {
-    font-size: clamp(40px, 3vw, 56px);
-  }
-
   .hero__inner {
     max-width: 900px;
-  }
-  .hero__title {
-    font-size: clamp(60px, 5vw, 72px);
   }
   .page-home .hero__inner {
     max-width: 1100px;
   }
   .page-home .hero__title {
-    font-size: clamp(64px, 5vw, 88px);
     line-height: 1;
   }
   .page-home .hero__inner .lead {
     max-width: 900px;
-    font-size: clamp(18px, 1.3vw, 22px);
     line-height: 1.6;
   }
   .page-home .hero-stage-pills {
@@ -1589,10 +1547,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .home-why {
     padding-top: clamp(80px, 7vw, 112px);
   }
-  .home-why .display-xl {
-    font-size: clamp(64px, 6vw, 104px);
-  }
-
   .home-customers,
   .home-lifecycle,
   .home-challenges,
@@ -1614,33 +1568,35 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .home-testimonials .testimonial__quote {
     max-width: 760px;
     margin-inline: auto;
-    font-size: clamp(22px, 1.6vw, 30px);
   }
 
-  .home-lifecycle .lifecycle-rows {
+  .lifecycle-rows {
     max-width: 1200px;
     margin-inline: auto;
     gap: var(--space-12);
   }
-  .home-lifecycle .section__head {
-    max-width: 900px;
-  }
-  .home-lifecycle .lifecycle-rows__row {
+  .lifecycle-rows__row {
     grid-template-columns: minmax(180px, 0.8fr) 1fr 1fr;
   }
-  .home-lifecycle .lifecycle-rows__title {
-    font-size: clamp(30px, 2.5vw, 44px);
+  .lifecycle-rows__title {
+    font-size: var(--text-display-sm);
   }
+  .lifecycle-rows .icon-tile {
+    padding: var(--space-8);
+  }
+  .lifecycle-rows .icon-tile__body {
+    font-size: var(--text-body);
+  }
+  /* Home rows lead with an icon, so their copy hangs from the top. */
   .home-lifecycle .icon-tile {
     justify-content: flex-start;
-    padding: var(--space-8);
   }
   .home-lifecycle .icon-tile__icon {
     width: 56px;
     height: 56px;
   }
-  .home-lifecycle .icon-tile__body {
-    font-size: var(--text-body);
+  .home-lifecycle .section__head {
+    max-width: 900px;
   }
 
   .home-challenges .challenges-glass--split {
@@ -1649,10 +1605,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .home-challenges .challenges-glass__inner--split {
     grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
   }
-  .home-challenges .challenges-glass__intro h2 {
-    font-size: clamp(42px, 3.3vw, 60px);
-  }
-
   .home-partners .partner-logos {
     grid-template-columns: repeat(4, minmax(165px, 220px));
   }
@@ -1668,7 +1620,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
     padding: clamp(40px, 4vw, 64px);
   }
   .page-home .next-steps__title {
-    font-size: clamp(28px, 2.1vw, 40px);
+    font-size: var(--text-display-sm);
   }
 
   .products-own .col-narrow,
@@ -1704,22 +1656,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .team-working .section__head h2,
   .team-working .section__head .lead {
     margin: 0;
-  }
-  .team-values .values-list {
-    max-width: 1200px;
-  }
-  .team-values .values-list__row {
-    grid-template-columns: minmax(220px, 260px) minmax(280px, 360px) 1fr;
-  }
-  .team-values .values-list__media {
-    min-height: 120px;
-  }
-  .team-values .values-list__row:nth-child(even) .values-list__media {
-    grid-column: 3;
-  }
-  .team-values .values-list__row:nth-child(even) .values-list__desc {
-    grid-column: 2;
-    grid-row: 1;
   }
   .team-contact .contact-cta {
     max-width: 1200px;
@@ -1759,8 +1695,17 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   /* On touch devices both homepage carousels become native horizontal
      scrollers. Scroll snapping keeps each card aligned without taking swipe
      gestures away from the browser. */
+  /* Break out of the container gutter so the strip — and with it the edge
+     fade — runs to the page edges; the track keeps the gutter as padding so
+     the first tile still lines up with the section heading. */
   .home-customers .logo-carousel {
+    --logo-fade: 10px;
     padding: var(--space-4) 0 0;
+    margin-inline: calc(-1 * var(--gutter));
+  }
+  .home-customers .logo-carousel__viewport {
+    /* Snapped tiles land on the gutter, not under the edge fade. */
+    scroll-padding-inline: var(--gutter);
   }
   .home-customers .logo-carousel__viewport,
   .home-testimonials .testimonial-carousel__viewport {
@@ -1774,13 +1719,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .home-testimonials .testimonial-carousel__viewport::-webkit-scrollbar {
     display: none;
   }
-  .home-customers .logo-carousel__viewport {
-    padding: 6px 0;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
   .home-customers .logo-carousel__track {
     width: max-content;
+    padding-inline: var(--gutter);
     transform: none !important;
     transition: none;
     will-change: auto;
@@ -1791,7 +1732,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .home-customers .logo-tile[aria-hidden="true"] {
     display: none;
   }
-  .home-customers .logo-carousel__nav,
   .home-testimonials .testimonial-carousel__nav,
   .home-testimonials .testimonial-carousel__dots {
     display: none;
@@ -1817,28 +1757,21 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 
 @media (max-width: 999px) {
+  :root { --header-h: 64px; }
   .site-header {
-    min-height: 76px;
     padding: 0 20px;
   }
-  .site-header__pill {
-    min-height: 76px;
-  }
-  .site-header__bar {
-    min-height: 76px;
-  }
-  .site-header__brand img {
-    height: 42px;
+  .site-header__logo {
+    height: 38px;
   }
   .hero {
     min-height: clamp(520px, 68svh, 640px);
-    /* The hero header overlays the page on hero routes. Reserve its 76px
-       mobile height so tall hero copy cannot crowd the logo and menu. */
-    padding: 96px 0 48px;
+    padding: 48px 0;
   }
-  .hero__title {
-    font-size: clamp(38px, 9vw, 60px);
-  }
+  /* From tablet down the framed tiles shrink and sit closer together, so
+     several logos fit in the strip at once. */
+  .logo-tile { width: 110px; height: 58px; padding: 6px 8px; }
+  .logo-carousel__track { gap: var(--space-2); }
 }
 
 /* ---------- Markdown prose (legal pages) ---------- */
@@ -1880,8 +1813,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 @media print {
   .site-header,
-  .testimonial-carousel__dots, .testimonial-carousel__nav,
-  .logo-carousel__nav { display: none !important; }
+  .testimonial-carousel__dots,
+  .testimonial-carousel__nav { display: none !important; }
   body { background: #fff; color: #000; }
   .section--dark, .site-footer { background: #fff; color: #000; }
   a { color: #000; text-decoration: underline; }

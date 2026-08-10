@@ -3,7 +3,7 @@
 
 {{/* ---------- Hero (full-bleed rope-knot photo) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero hero--team">
+<section class="hero{{ if eq (.ink | default "light") "dark" }} hero--on-dark{{ end }}">
   <img class="hero__media" src="/images/hero/team-photo.webp" alt="" width="2400" height="1319" fetchpriority="high" aria-hidden="true">
   <div class="container">
     <div class="hero__inner">
@@ -32,7 +32,9 @@
       {{ end }}
 
       <div class="team-grid__members">
-      {{ range where hugo.Data.team "image" "ne" nil }}
+      {{ range hugo.Data.team }}
+      {{ $parts := split .name " " }}
+      {{ $initials := printf "%s%s" (substr (index $parts 0) 0 1) (substr (index $parts (sub (len $parts) 1)) 0 1) }}
       {{ if .linkedin }}
       <a class="card team-member" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
         <span class="team-member__linkedin" aria-hidden="true">
@@ -41,7 +43,11 @@
       {{ else }}
       <div class="card team-member team-member--no-link">
       {{ end }}
+        {{ if .image }}
         <img class="team-member__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="96" height="96">
+        {{ else }}
+        <span class="team-member__avatar team-member__avatar--placeholder" aria-hidden="true">{{ $initials }}</span>
+        {{ end }}
         <div class="team-member__body">
           <h3 class="team-member__name">{{ .name }}</h3>
           <p class="team-member__role">{{ if eq $lang "de" }}{{ .role_de }}{{ else }}{{ .role_en }}{{ end }}</p>
@@ -93,9 +99,13 @@
     <div class="icon-tile-grid">
       {{ $workingIcons := slice "communication" "sparring" "iterative-architecture" "assessment" "enablement" "documentation" }}
       {{ range $i, $card := .cards }}
-      <div class="icon-tile">
-        <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $workingIcons $i) "size" 22) }}</div>
+      {{/* Fall back rather than index past the end when a card is added. */}}
+      {{ $icon := "settings" }}
+      {{ if lt $i (len $workingIcons) }}{{ $icon = index $workingIcons $i }}{{ end }}
+      <div class="icon-tile icon-tile--stack">
+        <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" $icon "size" 22) }}</div>
         <h3 class="icon-tile__title">{{ $card.title }}</h3>
+        {{ with $card.body }}<p class="icon-tile__body">{{ . }}</p>{{ end }}
       </div>
       {{ end }}
     </div>
@@ -122,23 +132,17 @@
 </section>
 {{ end }}
 
-{{/* ---------- Werte (dark, 5 rows with photo + copy) ---------- */}}
+{{/* ---------- Werte (dark, 5 rows with photo + icon tile) ---------- */}}
 {{ with .Params.values }}
 <section class="section section--dark section--accent-green section--single-color-heading team-values">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
     </div>
-    <div class="values-list">
-      {{ $vimgs := slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg" "/images/section/ridge.jpg" }}
-      {{ range $i, $v := .items }}
-      <div class="values-list__row">
-        <h3 class="values-list__title">{{ $v.title }}</h3>
-        <div class="values-list__media" style="background-image: var(--overlay-photo), url('{{ index $vimgs $i }}');"></div>
-        <p class="values-list__desc">{{ $v.body }}</p>
-      </div>
-      {{ end }}
-    </div>
+    {{ partial "lifecycle-rows.html" (dict
+      "rows" .items
+      "images" (slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg" "/images/section/ridge.jpg")
+    ) }}
   </div>
 </section>
 {{ end }}
@@ -152,7 +156,7 @@
       <h2>{{ .title }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="text-pill-row" style="justify-content: center;">
+    <div class="text-pill-row text-pill-row--center">
       {{ range .tags }}
       <span class="text-pill">{{ . }}</span>
       {{ end }}

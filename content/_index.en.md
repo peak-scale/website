@@ -21,7 +21,7 @@ why:
   eyebrow: "Why Peak Scale"
   title: "Why Peak Scale?"
   items:
-    - title: "<strong>Peak for technical depth.</strong> Scale for platforms that grow with you."
+    - title: "<strong>Peak for technical depth.</strong><br>Scale for platforms that grow with you."
       body: ""
     - title: "Swiss-first context"
       body: "Experience in Swiss IT environments – familiar with the requirements of enterprises, public bodies, and regulated industries."

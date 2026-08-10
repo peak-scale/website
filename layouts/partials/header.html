@@ -1,11 +1,8 @@
-{{- $hasHero := ne .Params.hero nil -}}
-{{- $hasPhotoHero := and $hasHero (not .IsHome) -}}
-<header class="site-header{{ if $hasHero }} site-header--hero is-natural{{ end }}{{ if $hasPhotoHero }} site-header--photo{{ end }}"{{ if $hasHero }} data-scroll-header{{ end }}>
+<header class="site-header">
   <div class="site-header__pill">
     <div class="site-header__bar">
       <a class="site-header__brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Peak Scale">
-        <img class="site-header__logo site-header__logo--default" src="/images/peakscale-logo.svg" alt="Peak Scale" width="124" height="44">
-        <img class="site-header__logo site-header__logo--contrast" src="/images/peakscale-logo-dark.svg" alt="" width="124" height="44" aria-hidden="true">
+        <img class="site-header__logo" src="/images/peakscale-logo.svg" alt="Peak Scale" width="124" height="44">
       </a>
 
       <div class="site-header__right">

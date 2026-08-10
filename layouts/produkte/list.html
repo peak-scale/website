@@ -3,8 +3,8 @@
 
 {{/* ---------- Hero (full-bleed climbing-wall photo) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero hero--produkte">
-  <img class="hero__media" src="/images/hero/produkte-photo.webp" alt="" width="2400" height="1592" fetchpriority="high" aria-hidden="true">
+<section class="hero{{ if eq (.ink | default "light") "dark" }} hero--on-dark{{ end }}">
+  <img class="hero__media hero__media--top" src="/images/hero/produkte-photo.webp" alt="" width="2400" height="1592" fetchpriority="high" aria-hidden="true">
   <div class="container">
     <div class="hero__inner">
       <h1 class="hero__title">{{ .title }}</h1>

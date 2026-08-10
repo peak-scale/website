@@ -1,6 +1,6 @@
 ---
 title: Team
-description: "The engineering team behind Peak Scale – six specialists from Bern, with open-source DNA and a focus on cloud-native platforms."
+description: "The engineering team behind Peak Scale – eight specialists from Bern, with open-source DNA and a focus on cloud-native platforms."
 aliases:
   - /about/
   - /contact/

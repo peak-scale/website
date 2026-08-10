@@ -4,7 +4,13 @@
 {{/* ---------- Hero (topo texture bg, lead, yellow stage-pill row) ---------- */}}
 {{ with .Params.hero }}
 <section class="hero">
-  <img class="hero__media" src="/images/topo/hero-topo.svg" alt="" width="1920" height="1145" fetchpriority="high" aria-hidden="true">
+  {{/* Narrow viewports get a zoomed-out window into the same artwork (see
+       `.hero__media` in site.css) so the contours stay legible instead of
+       cropping to a near-empty corner. */}}
+  <picture>
+    <source media="(max-width: 760px)" srcset="/images/topo/hero-topo.svg#svgView(viewBox(202,-272,1516,1688))">
+    <img class="hero__media" src="/images/topo/hero-topo.svg" alt="" width="1920" height="1145" fetchpriority="high" aria-hidden="true">
+  </picture>
   <div class="container">
     <div class="hero__inner">
       <h1 class="hero__title">{{ .title }}</h1>
@@ -13,10 +19,12 @@
       {{ $stages := . }}
       {{ $icons := slice "stage-cloud" "stage-assessments" "stage-platform" "stage-training" }}
       {{ $order := slice 0 2 1 3 }}
-      <div class="hero-stage-pills" aria-hidden="true">
+      {{ $anchors := slice "architecture" "engineering" "assessments" "training" }}
+      {{ $servicesURL := "" }}{{ with site.GetPage "/services" }}{{ $servicesURL = .RelPermalink }}{{ end }}
+      <div class="hero-stage-pills">
         {{ range $i, $stageIndex := $order }}
         {{ $stage := index $stages $stageIndex }}
-        <span class="hero-stage-pill"><span class="hero-stage-pill__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 16) }}</span>{{ $stage.name }}</span>
+        <a class="hero-stage-pill" href="{{ $servicesURL }}#{{ index $anchors $stageIndex }}"><span class="hero-stage-pill__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 16) }}</span>{{ $stage.name }}</a>
         {{ end }}
       </div>
       {{ end }}
@@ -109,28 +117,11 @@
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="lifecycle-rows">
-      {{ $images := slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg" -}}
-      {{ $icons := slice "cloud" "platform" "assessment" "training" -}}
-      {{ range $i, $c := .cards }}
-      <div class="lifecycle-rows__row">
-        <h3 class="lifecycle-rows__title">{{ $c.title }}</h3>
-        {{ if eq (mod $i 2) 0 -}}
-        <div class="lifecycle-rows__media" style="background-image: var(--overlay-photo), url('{{ index $images $i }}');"></div>
-        <div class="icon-tile icon-tile--stack">
-          <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
-          <p class="icon-tile__body">{{ $c.desc }}</p>
-        </div>
-        {{- else -}}
-        <div class="icon-tile icon-tile--stack">
-          <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
-          <p class="icon-tile__body">{{ $c.desc }}</p>
-        </div>
-        <div class="lifecycle-rows__media" style="background-image: var(--overlay-photo), url('{{ index $images $i }}');"></div>
-        {{- end }}
-      </div>
-      {{ end }}
-    </div>
+    {{ partial "lifecycle-rows.html" (dict
+      "rows" .cards
+      "images" (slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg")
+      "icons" (slice "cloud" "platform" "assessment" "training")
+    ) }}
   </div>
 </section>
 {{ end }}

@@ -25,6 +25,7 @@
     --bright-blue-text: rgb(5, 117, 180);     /* accessible small text / button background */
     --bright-blue-deep: rgb(6, 97, 153);      /* accessible gradient endpoint behind light text */
     --dark-blue-soft: rgb(21, 36, 64);
+    --dark-blue-ink: rgb(9, 24, 55);          /* Figma display ink — the near-black navy of the logo's dark half */
     --dark-blue-raised: rgb(49, 62, 87);
     --footer-bg: rgb(7, 19, 44);
 
@@ -46,6 +47,11 @@
     --accent-yellow-soft: rgb(252, 238, 180); /* pale wash */
     --accent-green: rgb(144, 202, 125);       /* Figma title green */
     --accent-green-soft: rgb(228, 240, 210);  /* pale wash */
+    /* Deep shades of the two warm accents. The only place either colour
+       fills a surface: the gold and sage cross-link cards, which carry
+       white type and so need the accent taken well below its mark value. */
+    --accent-yellow-deep: rgb(120, 98, 40);
+    --accent-green-deep: rgb(58, 110, 65);
     --check-green: rgb(144, 202, 125);        /* Figma green check icons */
 
     /* Photo overlay — subtle navy → blue wash applied above section
@@ -103,11 +109,18 @@
     --font-ui: 'Inter', system-ui, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-    /* 7-step type scale. Display sizes scale fluidly; the rest are fixed.
-       Pull-quote / lifecycle stage / prose h2 collapse into title-lg. */
-    --text-display:    clamp(40px, 5.6vw, 72px);  /* hero only */
-    --text-display-sm: clamp(28px, 3.4vw, 48px);  /* section headings */
-    --text-title-lg:   22px;                       /* feature cards, pull quote */
+    /* 8-step type scale. Display sizes scale fluidly; the rest are fixed.
+       Pull-quote / lifecycle stage / prose h2 collapse into title-lg.
+
+       The three fluid slopes are chosen so every one of them reaches its
+       maximum at exactly 1440px (72/1440 = 5vw, 48/1440 = 3.3333vw,
+       36/1440 = 2.5vw). Below their floors nothing moves, above 1440 nothing
+       moves, and in between the three grow in step instead of each crossing
+       over at its own width — the scale behaves as one system at every size. */
+    --text-display:    clamp(40px, 5vw, 72px);       /* hero only */
+    --text-display-sm: clamp(28px, 3.3333vw, 48px);  /* section headings */
+    --text-display-xs: clamp(26px, 2.5vw, 36px);     /* feature-card anchor tile */
+    --text-title-lg:   22px;                       /* pull quote, lifecycle stage */
     --text-title:      18px;                       /* all card h3 */
     --text-body:       16px;                       /* body, hero lead, lead */
     --text-sm:         14px;                       /* descriptions, captions */
@@ -135,6 +148,8 @@
     --space-6: 24px;
     --space-8: 32px;
     --space-12: 48px;
+    /* Page gutter — the inline padding every .container uses. */
+    --gutter: clamp(20px, 4vw, 40px);
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 8px;

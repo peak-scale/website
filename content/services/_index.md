@@ -4,6 +4,8 @@ description: "Architekturberatung, Platform Engineering, Assessments und Trainin
 aliases:
   - /angebot/
 hero:
+  # The alpine dusk photograph is dark; the hero copy and nav flip to white ink.
+  ink: dark
   title: "Professional Services, die überzeugen"
   lead: "Wir begleiten Sie von technischer Orientierung und Architektur bis zur Umsetzung – damit Cloud-Native-Plattformen stabil, sicher und langfristig betreibbar sind."
   sub: "Hands-on entlang klarer Etappen mit iterativen Feedback-Zyklen"

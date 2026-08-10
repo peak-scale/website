@@ -21,7 +21,7 @@ why:
   eyebrow: "Warum Peak Scale"
   title: "Warum Peak Scale?"
   items:
-    - title: "<strong>Peak steht für technische Tiefe.</strong> Scale für Plattformen, die mitwachsen."
+    - title: "<strong>Peak steht für technische Tiefe.</strong><br>Scale für Plattformen, die mitwachsen."
       body: ""
     - title: "Swiss-first Kontext"
       body: "Erfahrung in Schweizer IT-Umgebungen – vertraut mit typischen Anforderungen von Unternehmen, Behörden und regulierten Branchen."
