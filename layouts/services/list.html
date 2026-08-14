@@ -89,7 +89,7 @@
         {{ end }}
       </div>
       <div class="service-stack">
-        {{ with index hugo.Data.testimonials 1 }}
+        {{ with index hugo.Data.testimonials 2 }}
         <figure class="testimonial-side">
           <span class="testimonial-side__mark" aria-hidden="true">{{ partial "icon.html" (dict "name" "quote" "size" 108) }}</span>
           <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
@@ -168,7 +168,7 @@
       {{ end }}
     </div>
     <div class="col-narrow--md">
-      {{ with index hugo.Data.testimonials 2 }}
+      {{ with index hugo.Data.testimonials 3 }}
       <figure class="testimonial-side">
         <span class="testimonial-side__mark" aria-hidden="true">{{ partial "icon.html" (dict "name" "quote" "size" 108) }}</span>
         <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
