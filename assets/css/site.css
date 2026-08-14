@@ -544,6 +544,10 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .logo-tile:hover img,
 .partner-logos__item:hover img { filter: none; opacity: 1; }
+.logo-tile img[src*="odc-noord"] {
+  filter: grayscale(1) invert(1);
+}
+.logo-tile:hover img[src*="odc-noord"] { filter: invert(1); }
 
 /* ---------- Partner logos (4 plain tiles, large logo) ---------- */
 

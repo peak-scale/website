@@ -10,6 +10,12 @@
 - name: Bund
   image: /images/customers/bund.svg
   href: https://admin.ch
+- name: Kanton Bern
+  image: /images/customers/kanton-bern.svg
+  href: https://www.be.ch
+- name: Kanton Basel-Stadt
+  image: /images/customers/kanton-basel-stadt.svg
+  href: https://www.bs.ch
 - name: ETH
   image: /images/customers/eth.svg
   href: https://ethz.ch
@@ -19,12 +25,21 @@
 - name: FHNW
   image: /images/customers/fhnw.svg
   href: https://www.fhnw.ch
-- name: Gelan
-  image: /images/customers/gelan.png
-  href: https://gelan.ch
+- name: Securitas
+  image: /images/customers/securitas.svg
+  href: https://www.securitas.ch
+- name: Five Informatik
+  image: /images/customers/five-informatik.svg
+  href: https://www.fiveinformatik.ch/de
+- name: ACE
+  image: /images/customers/ace.png
+  href: https://ace.ch
 - name: Mobiliar
   image: /images/customers/mobiliar.svg
   href: https://mobiliar.ch
 - name: PostFinance
   image: /images/customers/postfinance.svg
   href: https://postfinance.ch
+- name: ODC-Noord
+  image: /images/customers/odc-noord.svg
+  href: https://www.odc-noord.nl
