@@ -7,7 +7,7 @@ hero:
   # The alpine dusk photograph is dark; the hero copy and nav flip to white ink.
   ink: dark
   title: "Professional Services, die überzeugen"
-  lead: "Wir begleiten Sie von technischer Orientierung und Architektur bis zur Umsetzung – damit Cloud-Native-Plattformen stabil, sicher und langfristig betreibbar sind."
+  lead: "Wir begleiten dich von technischer Orientierung und Architektur bis zur Umsetzung – damit Cloud-Native-Plattformen stabil, sicher und langfristig betreibbar sind."
   sub: "Hands-on entlang klarer Etappen mit iterativen Feedback-Zyklen"
 lifecycle_strip:
   eyebrow: "Lebenszyklus"
@@ -46,7 +46,7 @@ architecture:
 engineering:
   eyebrow: "Platform Engineering"
   title: "Engineering"
-  lead: "Wir arbeiten direkt mit Ihrem Team am Design, Aufbau und Betrieb moderner Cloud-Native-Komponenten – mit Fokus auf Automatisierung, Sicherheit und reproduzierbare Abläufe."
+  lead: "Wir arbeiten direkt mit deinem Team am Design, Aufbau und Betrieb moderner Cloud-Native-Komponenten – mit Fokus auf Automatisierung, Sicherheit und reproduzierbare Abläufe."
   subhead: "Technologien & Themenfelder"
   categories:
     - title: "Container & Plattformen"
@@ -68,7 +68,7 @@ assessments:
       body: "Bewertung bestehender Plattformen hinsichtlich Skalierung, Betrieb, Sicherheit und Weiterentwicklung."
     - title: "Cloud Native Maturity Assessment"
       body: "Transparenter Überblick über den aktuellen Reifegrad – mit konkreten Massnahmen zur Verbesserung."
-  output_title: "Sie erhalten immer:"
+  output_title: "Das erhältst du immer:"
   output_items:
     - "Executive Summary für Entscheider"
     - "Technische Details für Engineers"
@@ -77,7 +77,7 @@ assessments:
 training:
   eyebrow: "Training & Enablement"
   title: "Training & Enablement"
-  lead: "Wissenstransfer, der im Alltag hilft – praxisnah, realistisch und auf Ihr Team und Ihre Umgebung abgestimmt."
+  lead: "Wissenstransfer, der im Alltag hilft – praxisnah, realistisch und auf dein Team und deine Umgebung abgestimmt."
   cards:
     - title: "Workshops"
       body: "Kurze, fokussierte Sessions zu Cloud-Architektur, GitOps oder Kubernetes."

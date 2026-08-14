@@ -13,7 +13,7 @@ team_block:
   eyebrow: "Unser Team"
   title: "Unser Team"
   lead: "Wir sind Engineers, Architekten und Plattform-Spezialisten mit unterschiedlichen Schwerpunkten – verbunden durch eine gemeinsame Haltung. Plattformen müssen nachvollziehbar, automatisiert und im Alltag tragfähig sein."
-  cta: "Folgen Sie uns auf LinkedIn"
+  cta: "Folge uns auf LinkedIn"
 members:
   eyebrow: "Mitglieder"
   title: "Wer dahintersteht"
@@ -83,7 +83,7 @@ community:
 contact_block:
   eyebrow: "Kontakt"
   title: "Mit uns arbeiten"
-  lead: "Wenn Sie Peak Scale näher kennenlernen möchten, geben wir gerne Einblick in Arbeitsweise, Entscheidungslogik und typische Vorgehensmodelle – unverbindlich, ohne klassischen Sales-Prozess."
+  lead: "Wenn du Peak Scale näher kennenlernen möchtest, geben wir gerne Einblick in Arbeitsweise, Entscheidungslogik und typische Vorgehensmodelle – unverbindlich, ohne klassischen Sales-Prozess."
 next_steps:
   eyebrow: "Weitergehen"
   title: "Nächste Etappe"

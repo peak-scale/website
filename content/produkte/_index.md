@@ -41,7 +41,7 @@ own:
 partners:
   eyebrow: "Technologiepartner & Integration"
   title: "Technologiepartner & Integration"
-  lead: "Mit ausgewählten Technologiepartnern integrieren wir zentrale Plattformbausteine in Ihre Architektur – tragfähig im Alltag, von der Entscheidung bis zum stabilen Betrieb."
+  lead: "Mit ausgewählten Technologiepartnern integrieren wir zentrale Plattformbausteine in deine Architektur – tragfähig im Alltag, von der Entscheidung bis zum stabilen Betrieb."
   cards:
     - title: "Sidero Labs"
       role: "Talos Linux · Omni Platform · Kubernetes Support"

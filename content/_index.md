@@ -45,7 +45,7 @@ lifecycle:
   lead: "Klare Orientierung, technische Exzellenz und pragmatische Umsetzung – entlang des gesamten Lebenszyklus."
   cards:
     - title: "Cloud Architecture"
-      desc: "Wir entwickeln und evaluieren Cloud-Architekturen, die sich weiterentwickeln können – pragmatisch, transparent und auf Ihre Umgebung abgestimmt."
+      desc: "Wir entwickeln und evaluieren Cloud-Architekturen, die sich weiterentwickeln können – pragmatisch, transparent und auf deine Umgebung abgestimmt."
     - title: "Platform Engineering"
       desc: "Wir unterstützen Teams beim Design, beim Aufbau und bei der Automatisierung moderner Cloud-Native-Plattformen und Workflows."
     - title: "Assessments"
