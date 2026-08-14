@@ -4,13 +4,11 @@ description: "Architecture advisory, platform engineering, assessments and train
 aliases:
   - /angebot/
 hero:
-  eyebrow: "Strategy → Architecture → Engineering → Operations"
+  # The alpine dusk photograph is dark; the hero copy and nav flip to white ink.
+  ink: dark
   title: "Professional services that hold up"
   lead: "We support you from technical orientation and architecture all the way to delivery – so cloud-native platforms stay stable, secure, and operable for the long run."
   sub: "Hands-on along clear stages with iterative feedback cycles"
-  cta_primary: "Get in touch"
-  cta_secondary: "See products"
-  cta_secondary_href: "/produkte/"
 lifecycle_strip:
   eyebrow: "Lifecycle"
   title: "Four stages – one route"
@@ -26,7 +24,7 @@ lifecycle_strip:
       sub: "Stable operations & lifecycle"
 architecture:
   eyebrow: "Architecture"
-  title: "Cloud & <span class=\"accent\">architecture</span>"
+  title: "Cloud & architecture"
   lead: "When requirements shift, the architecture has to grow with them. We create the decision basis and structures that hold beyond the first roadmap."
   cards:
     - title: "Orientation & architecture advisory"
@@ -61,7 +59,7 @@ engineering:
       items: ["Kubernetes security", "Policy as Code", "Monitoring & observability", "Logging & tracing"]
 assessments:
   eyebrow: "Assessments"
-  title: "<span class=\"accent\">Assessments</span>"
+  title: "Assessments"
   lead: "Independent analyses with clear recommendations – as a decision basis before larger changes or for taking stock."
   cards:
     - title: "Kubernetes Security Assessment"
@@ -91,7 +89,7 @@ testimonial:
   eyebrow: "Voices from projects"
 next_steps:
   eyebrow: "Continue"
-  title: "Next <span class=\"accent\">stage</span>"
+  title: "Next stage"
   cards:
     - eyebrow: "Products"
       title: "Our own solutions and enterprise support for core platform building blocks"

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang }}">
 {{ partial "head.html" . }}
-<body>
+<body class="page-{{ if .IsHome }}home{{ else }}{{ .Section }}{{ end }}">
   <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
   {{ partial "header.html" . }}
-  {{ partial "mobile-menu.html" . }}
   <main id="main">
     {{ block "main" . }}{{ end }}
   </main>
-  {{ partial "contact-floating.html" . }}
   {{ partial "footer.html" . }}
   {{ with resources.Get "js/peakscale.js" | js.Build (dict "minify" true) | fingerprint }}
   <script defer src="{{ .RelPermalink }}"></script>

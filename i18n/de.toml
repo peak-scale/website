@@ -1,44 +1,11 @@
 [skip_to_content]
 other = "Zum Inhalt springen"
 
-[contact]
-other = "Kontakt"
-
-[contact_aria]
-other = "Kontakt aufnehmen"
-
-[contact_open_email]
-other = "E-Mail an Peak Scale schreiben"
-
-[contact_modal_title]
-other = "Kontakt"
-
-[contact_modal_lead]
-other = "Direkter E-Mail-Kontakt – schnelle Antwort."
-
-[contact_label_direct]
-other = "Direkt"
-
-[contact_label_address]
-other = "Adresse"
-
-[menu]
-other = "Menü"
-
 [menu_open]
 other = "Menü öffnen"
 
-[menu_close]
-other = "Menü schliessen"
-
 [lang_switch]
 other = "Sprache wechseln"
-
-[next_step_title]
-other = "Nächste Etappe"
-
-[next_step_lead]
-other = "Wohin Sie als Nächstes weitergehen können."
 
 [footer_menu]
 other = "Menü"
@@ -46,11 +13,5 @@ other = "Menü"
 [footer_legal]
 other = "Rechtliches"
 
-[footer_contact]
-other = "Kontakt"
-
 [focus_areas_label]
 other = "Schwerpunkte"
-
-[copyright]
-other = "© {{ .Year }} Peak Scale"

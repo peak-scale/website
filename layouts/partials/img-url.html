@@ -1,0 +1,22 @@
+{{/* Returns the URL of a WebP-encoded, width-capped copy of a raster source —
+     the background-image counterpart to `img.html`, where there is no srcset to
+     hand the browser and one sensibly sized file is the whole optimisation.
+     Unprocessable paths (SVG, anything still in `static/`) are returned as-is.
+
+     dict: src, width (max px, default 1600), quality (default 78) */}}
+{{- $src := .src -}}
+{{- $width := .width | default 1600 -}}
+{{- $quality := .quality | default 78 -}}
+{{- $res := "" -}}
+{{- if not (strings.HasSuffix $src ".svg") -}}
+  {{- $res = resources.Get (strings.TrimPrefix "/" $src) -}}
+{{- end -}}
+{{- if $res -}}
+  {{- if gt $res.Width $width -}}
+    {{- ($res.Resize (printf "%dx webp q%d" $width $quality)).RelPermalink -}}
+  {{- else -}}
+    {{- ($res.Resize (printf "%dx webp q%d" $res.Width $quality)).RelPermalink -}}
+  {{- end -}}
+{{- else -}}
+  {{- $src -}}
+{{- end -}}

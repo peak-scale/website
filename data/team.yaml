@@ -30,14 +30,6 @@
   focus_de: "Kubernetes Operators • Policy as Code • Multi-Tenancy • Automatisierung"
   focus_en: "Kubernetes operators • Policy as code • Multi-tenancy • Automation"
 
-- name: Nicola Lüthi
-  image: /images/team/nicolaluethi.png
-  linkedin: https://www.linkedin.com/in/nicola-l%C3%BCthi-895045252/
-  role_de: DevOps & Platform Engineer
-  role_en: DevOps & Platform Engineer
-  focus_de: "Kubernetes-Plattformen • CI/CD & GitOps • Observability • Multi-Cloud"
-  focus_en: "Kubernetes platforms • CI/CD & GitOps • Observability • Multi-cloud"
-
 - name: Luca Kündig
   linkedin: https://www.linkedin.com/in/luca-k%C3%BCndig-b2700211a/
   role_de: Senior Cloud Native & DevOps Architect

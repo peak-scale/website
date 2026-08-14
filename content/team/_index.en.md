@@ -1,17 +1,13 @@
 ---
 title: Team
-description: "The engineering team behind Peak Scale – six specialists from Bern, with open-source DNA and a focus on cloud-native platforms."
+description: "The engineering team behind Peak Scale – eight specialists from Bern, with open-source DNA and a focus on cloud-native platforms."
 aliases:
   - /about/
   - /contact/
 hero:
-  eyebrow: "Behind Peak Scale"
-  title: "The engineering team behind Peak Scale"
+  title: "The team behind<br>Peak Scale"
   lead: "We are a specialised engineering and architecture team for cloud native platforms – pragmatic, technically grounded, and close to operational reality."
   sub: "Hands-on – directly with the experts who also think about operations"
-  cta_primary: "Get in touch"
-  cta_secondary: "See services"
-  cta_secondary_href: "/services/"
 team_block:
   eyebrow: "Our team"
   title: "Our team"
@@ -22,9 +18,9 @@ members:
   title: "Who is behind it"
   notice: "Note: Roles can change (architect – engineer; senior maintainer; tech)."
 mission:
-  eyebrow: "Our mission"
-  title: "Our <span class=\"accent\">mission</span>"
-  lead: "We help IT departments build stable, secure, and future-ready platforms. At the centre are pragmatic decisions, technical depth, and architectures that can evolve over years – independent of individual vendors or products."
+  title: "Our mission"
+  lead: "We help IT departments build stable, secure, and future-ready platforms."
+  body: "At the centre are pragmatic decisions, technical depth, and architectures that can evolve over years – independent of individual vendors or products."
   tags:
     - "Clear goals"
     - "Traceable decisions"
@@ -32,7 +28,7 @@ mission:
     - "Joint delivery with the customer team"
 how_we_work:
   eyebrow: "How we work"
-  title: "Our way of <span class=\"accent\">working</span>"
+  title: "Our way of working"
   lead: "We work closely with our customers' engineering and architecture teams – as technical partners in everyday project work. Short paths, clear sparring, and steps that hold up in operations and scale."
   cards:
     - title: "Short communication paths"
@@ -52,15 +48,16 @@ why_cloud_native:
   title: "Why cloud native?"
   lead: "Cloud native is not a trend for us, it's the dependable basis of modern platforms – open, automated, and load-bearing for the long run."
   pills:
-    - "Scale and flexibility"
-    - "Security and transparency"
-    - "Extensible, long-lived platforms"
-    - "Automation and speed"
-    - "Portability and openness"
+    - title: "Scale and flexibility"
+    - title: "Security and transparency"
+    - title: "Extensible, long-lived platforms"
+      featured: true
+    - title: "Automation and speed"
+    - title: "Portability and openness"
   footnote: "We deliberately rely on open standards and established open-source technologies – without proprietary lock-in."
 values:
   eyebrow: "Our values"
-  title: "Our <span class=\"accent\">values</span>"
+  title: "Our values"
   items:
     - title: "Pragmatism"
       body: "We prefer solutions that work – over those that only look good on paper."
@@ -88,7 +85,7 @@ contact_block:
   lead: "If you'd like to get to know Peak Scale, we're happy to give you a look at how we work, decide, and approach typical engagements – informally, with no classic sales process."
 next_steps:
   eyebrow: "Continue"
-  title: "Next <span class=\"accent\">stage</span>"
+  title: "Next stage"
   cards:
     - eyebrow: "Services"
       title: "Advisory, engineering, assessments and enablement for platform teams"

@@ -1,0 +1,59 @@
+{{/* Resolves a site-relative image path to a set of WebP renditions and returns
+     a dict — the shared core behind `img.html` (which renders an <img>) and the
+     hero preload in `head.html` (which needs the same srcset on a <link>, or the
+     browser fetches one file for the preload and a different one for the tag).
+
+     dict in:  src, widths (slice of px), quality, qualitySteps,
+               crop (optional Hugo crop specification applied before resizing)
+     dict out: processed (bool), src (largest rendition), srcset, width, height
+     For an SVG or anything not under `assets/`, `processed` is false and `src`
+     is handed back unchanged so callers can fall through to the plain path. */}}
+{{- $src := .src -}}
+{{- $widths := .widths | default (slice 640 960 1280 1920) -}}
+{{- $quality := .quality | default 78 -}}
+{{- $crop := .crop -}}
+{{/* Optional quality ramp: a slice of [maxWidth, quality] pairs, lowest first.
+     A rendition takes the quality of the first pair whose maxWidth covers it.
+     Compression artifacts are a function of how densely the rendition maps onto
+     the screen, not of its size: the small widths land on phones at ~2 device
+     pixels per CSS pixel and hide a low setting completely, while the wide ones
+     land near 1:1 on a desktop monitor where the same setting is plainly
+     visible. One flat number therefore either wastes bytes on phones or
+     smudges the desktop hero. */}}
+{{- $ramp := .qualitySteps -}}
+
+{{- $res := "" -}}
+{{- if not (strings.HasSuffix $src ".svg") -}}
+  {{- $res = resources.Get (strings.TrimPrefix "/" $src) -}}
+{{- end -}}
+{{- if and $res $crop -}}
+  {{- $res = $res.Crop $crop -}}
+{{- end -}}
+
+{{- $out := dict "processed" false "src" $src -}}
+{{- if $res -}}
+  {{/* Never upscale: drop any requested width beyond the source's own, and if
+       that leaves nothing, re-encode at the source's native width. */}}
+  {{- $usable := slice -}}
+  {{- range $widths -}}
+    {{- if le . $res.Width -}}{{- $usable = $usable | append . -}}{{- end -}}
+  {{- end -}}
+  {{- if not $usable -}}{{- $usable = slice $res.Width -}}{{- end -}}
+
+  {{- $srcset := slice -}}
+  {{- $largest := "" -}}
+  {{- range $w := $usable -}}
+    {{- $q := $quality -}}
+    {{- $matched := false -}}
+    {{- range $ramp -}}
+      {{- if and (not $matched) (le $w (index . 0)) -}}
+        {{- $q = index . 1 -}}{{- $matched = true -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $img := $res.Resize (printf "%dx webp q%d" $w $q) -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $img.Width) -}}
+    {{- $largest = $img -}}
+  {{- end -}}
+  {{- $out = dict "processed" true "src" $largest.RelPermalink "srcset" (delimit $srcset ", ") "width" $res.Width "height" $res.Height -}}
+{{- end -}}
+{{- return $out -}}

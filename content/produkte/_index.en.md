@@ -2,13 +2,9 @@
 title: Products
 description: "Our own solutions and selected technology partners for cloud-native platforms – from multi-tenancy to enterprise support."
 hero:
-  eyebrow: "Solutions built hands-on"
   title: "Platforms that work"
   lead: "We deliver our own solutions and professional enterprise support for selected cloud native technologies – focused on stability, security and reliable platform operations."
   sub: "Hands-on for products, enterprise support and platform operations"
-  cta_primary: "Get in touch"
-  cta_secondary: "See services"
-  cta_secondary_href: "/services/"
 own:
   eyebrow: "Our own solutions & products"
   title: "Our own solutions & products"
@@ -85,7 +81,7 @@ partners:
         - "Platform automation"
 journey:
   eyebrow: "From decision to operations"
-  title: "From decision to <span class=\"accent\">operations</span>"
+  title: "From decision to operations"
   lead: "We accompany platform teams across the entire lifecycle – from the decision and architecture through implementation to stable operations and controlled evolution."
   cards:
     - num: "01"
@@ -99,7 +95,7 @@ journey:
       desc: "Stable operations, lifecycle, enterprise support, controlled evolution."
 next_steps:
   eyebrow: "Continue"
-  title: "Next <span class=\"accent\">stage</span>"
+  title: "Next stage"
   cards:
     - eyebrow: "Services"
       title: "Advisory, engineering, assessments and enablement for platform teams"

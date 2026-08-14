@@ -2,13 +2,8 @@
 title: Peak Scale
 description: "Cloud Native Consulting & Platform Engineering aus Bern. Hands-on Partner für Strategie, Architektur, Engineering und Betrieb moderner Cloud-Plattformen."
 hero:
-  eyebrow: "Hands-on entlang des gesamten Lebenszyklus"
-  title: "Cloud-Transformationen, die gelingen"
+  title: "Orientierung für anspruchsvolle Cloud-Transformationen."
   lead: "Wir begleiten Kunden von der Strategie und Architektur bis zur Umsetzung – technisch fundiert, praxisnah und auf ihre Bedürfnisse abgestimmt."
-  sub: "Hands-on für funktionierende Plattformen – on-prem und in den Public Clouds"
-  cta_primary: "Services ansehen"
-  cta_primary_href: "/services/"
-  cta_secondary: "Kontakt aufnehmen"
 mountain:
   eyebrow: "Vom Basecamp zum Gipfel"
   title: "Vier Etappen, ein Team."
@@ -26,33 +21,27 @@ why:
   eyebrow: "Warum Peak Scale"
   title: "Warum Peak Scale?"
   items:
-    - title: "<strong>Peak steht für technische Tiefe.</strong> Scale für Plattformen, die mitwachsen."
+    - title: "<strong>Peak steht für technische Tiefe.</strong><br>Scale für Plattformen, die mitwachsen."
       body: ""
-      image: "/images/section/topo-abstract.jpg"
     - title: "Swiss-first Kontext"
       body: "Erfahrung in Schweizer IT-Umgebungen – vertraut mit typischen Anforderungen von Unternehmen, Behörden und regulierten Branchen."
-      icon: "building"
     - title: "Hands-on Zusammenarbeit"
       body: "Direkt mit Engineering- und Architekturteams – kollaborativ, technisch, ohne unnötige Beratungslayer."
-      icon: "users"
     - title: "Security & Wartbarkeit"
       body: "Realistische Risikobewertung und konkrete Massnahmen – damit Plattformen sicher bleiben und langfristig betreibbar sind."
-      icon: "shield"
     - title: "Enablement statt Abhängigkeit"
       body: "Wissenstransfer, Dokumentation und Training – damit Teams nachhaltig selbstständig weiterarbeiten."
-      icon: "graduation"
     - title: "Spezialisiertes Team"
-      body: "Kein Full-Service-Bauchladen – ein fokussiertes Team mit tiefem Cloud-Native-Know-how."
-      icon: "spark"
+      body: "Ein fokussiertes Team mit tiefem Cloud-Native-Know-how und klarer Spezialisierung."
 customers:
   eyebrow: "Unsere Kunden"
-  title: "Unsere <span class=\"accent\">Kunden</span>"
+  title: "Unsere Kunden"
   lead: "Eine Auswahl unserer Kunden, die wir in Architektur-, Engineering- oder Assessment-Projekten begleitet haben."
 testimonial:
-  eyebrow: "Stimmen aus <span class=\"accent\">Projekten</span>"
+  eyebrow: "Stimmen aus Projekten"
 lifecycle:
   eyebrow: "Was IT-Teams gewinnen"
-  title: "Was <span class=\"accent\">IT-Teams</span> dadurch <span class=\"accent\">gewinnen</span>"
+  title: "Was IT-Teams dadurch gewinnen"
   lead: "Klare Orientierung, technische Exzellenz und pragmatische Umsetzung – entlang des gesamten Lebenszyklus."
   cards:
     - title: "Cloud Architecture"
@@ -84,7 +73,7 @@ partners:
   lead: "Wir arbeiten mit führenden Cloud Native Anbietern zusammen."
 next_steps:
   eyebrow: "Weitergehen"
-  title: "Nächste <span class=\"accent\">Etappe</span>"
+  title: "Nächste Etappe"
   cards:
     - eyebrow: "Services"
       title: "Leistungsspektrum & Kernbereiche"

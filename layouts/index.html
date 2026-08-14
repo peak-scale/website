@@ -1,28 +1,33 @@
 {{ define "main" }}
 {{- $lang := .Site.Language.Lang -}}
 
-{{/* ---------- Hero (centered, photo below) ---------- */}}
+{{/* ---------- Hero (topo texture bg, lead, yellow stage-pill row) ---------- */}}
 {{ with .Params.hero }}
 <section class="hero">
+  {{/* Narrow viewports get a zoomed-out window into the same artwork (see
+       `.hero__media` in site.css) so the contours stay legible instead of
+       cropping to a near-empty corner. */}}
+  <picture>
+    <source media="(max-width: 760px)" srcset="/images/topo/hero-topo.svg#svgView(viewBox(202,-272,1516,1688))">
+    <img class="hero__media" src="/images/topo/hero-topo.svg" alt="" width="1920" height="1145" fetchpriority="high" aria-hidden="true">
+  </picture>
   <div class="container">
     <div class="hero__inner">
       <h1 class="hero__title">{{ .title }}</h1>
-      <p class="hero__lead">{{ .lead }}</p>
-      <div class="hero__kicker">{{ .sub }}</div>
-      <div class="hero__ctas">
-        <a class="btn btn--primary" href="{{ .cta_primary_href }}">{{ .cta_primary }} {{ partial "icon.html" (dict "name" "arrow-up-right" "size" 14) }}</a>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="hero-photo" style="background-image: url('/images/hero/home-mountain.jpg'); background-color: #efe7c8;">
-      <div class="hero-photo__tags" aria-hidden="true">
-        {{ with $.Params.mountain.stages }}
-        {{ range $i, $s := . }}
-        <span class="hero-photo__tag hero-photo__tag--{{ add $i 1 }}">{{ $s.name }}</span>
-        {{ end }}
+      <p class="lead">{{ .lead }}</p>
+      {{ with $.Params.mountain.stages }}
+      {{ $stages := . }}
+      {{ $icons := slice "stage-cloud" "stage-assessments" "stage-platform" "stage-training" }}
+      {{ $order := slice 0 2 1 3 }}
+      {{ $anchors := slice "architecture" "engineering" "assessments" "training" }}
+      {{ $servicesURL := "" }}{{ with site.GetPage "/services" }}{{ $servicesURL = .RelPermalink }}{{ end }}
+      <div class="hero-stage-pills">
+        {{ range $i, $stageIndex := $order }}
+        {{ $stage := index $stages $stageIndex }}
+        <a class="hero-stage-pill" href="{{ $servicesURL }}#{{ index $anchors $stageIndex }}"><span class="hero-stage-pill__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 16) }}</span>{{ $stage.name }}</a>
         {{ end }}
       </div>
+      {{ end }}
     </div>
   </div>
 </section>
@@ -30,7 +35,7 @@
 
 {{/* ---------- Why Peak Scale (centered display headline, featured card 1, icons on rest) ---------- */}}
 {{ with .Params.why }}
-<section class="section">
+<section class="section home-why">
   <div class="container">
     <div class="section__head">
       <h2 class="display-xl">{{ .title | safeHTML }}</h2>
@@ -40,13 +45,14 @@
     {{ $first := index $items 0 }}
     {{ $rest := after 1 $items }}
     <div class="why-grid">
-      <div class="card card--feature"{{ with $first.image }} style="--feature-image: url('{{ . }}');"{{ end }}>
+      <div class="card card--feature">
         <h3>{{ $first.title | safeHTML }}</h3>
         {{ with $first.body }}<p>{{ . }}</p>{{ end }}
       </div>
-      {{ range $rest }}
+      {{ $whyIcons := slice "building-briefcase" "users-settings" "wallet-lock" "folder-settings" "users-focus" }}
+      {{ range $i, $item := $rest }}
       <div class="card">
-        <span class="card__icon">{{ partial "icon.html" (dict "name" (default "compass" .icon) "size" 32) }}</span>
+        <span class="card__icon">{{ partial "icon.html" (dict "name" (index $whyIcons $i) "size" 32) }}</span>
         <h3>{{ .title }}</h3>
         <p>{{ .body }}</p>
       </div>
@@ -58,24 +64,22 @@
 
 {{/* ---------- Customers logo strip ---------- */}}
 {{ with .Params.customers }}
-<section class="section section--alt">
+<section class="section section--alt home-customers">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="logo-carousel" data-logo-carousel aria-label="Kunden">
-      <button class="logo-carousel__nav logo-carousel__nav--prev" type="button" data-logo-prev aria-label="{{ if eq $lang "de" }}Zurück{{ else }}Previous{{ end }}">{{ partial "icon.html" (dict "name" "chevron-left" "size" 20) }}</button>
       <div class="logo-carousel__viewport">
         <div class="logo-carousel__track" data-logo-track>
           {{ range hugo.Data.customers }}
           <a class="logo-tile" href="{{ .href }}" rel="noopener" aria-label="{{ .name }}">
-            <img src="{{ .image }}" alt="{{ .name }}" loading="lazy">
+            {{ partial "img.html" (dict "src" .image "alt" .name "widths" (slice 160 320) "sizes" "160px" "loading" "lazy" "decoding" "async") }}
           </a>
           {{ end }}
         </div>
       </div>
-      <button class="logo-carousel__nav logo-carousel__nav--next" type="button" data-logo-next aria-label="{{ if eq $lang "de" }}Weiter{{ else }}Next{{ end }}">{{ partial "icon.html" (dict "name" "chevron-right" "size" 20) }}</button>
     </div>
   </div>
 </section>
@@ -83,16 +87,15 @@
 
 {{/* ---------- Testimonials carousel (centered with chevrons) ---------- */}}
 {{ with .Params.testimonial }}
-<section class="section">
+<section class="section home-testimonials">
   <div class="container">
     <div class="section__head">
       <h2>{{ .eyebrow | safeHTML }}</h2>
     </div>
     <div class="testimonial-carousel" data-carousel>
-      <div class="testimonial-carousel__bg" aria-hidden="true"></div>
-      <button class="testimonial-carousel__nav testimonial-carousel__nav--prev" type="button" data-prev aria-label="Previous">{{ partial "icon.html" (dict "name" "chevron-left" "size" 24) }}</button>
-      <button class="testimonial-carousel__nav testimonial-carousel__nav--next" type="button" data-next aria-label="Next">{{ partial "icon.html" (dict "name" "chevron-right" "size" 24) }}</button>
       <div class="testimonial-carousel__viewport">
+        <button class="testimonial-carousel__nav testimonial-carousel__nav--prev" type="button" data-prev aria-label="Previous">{{ partial "icon.html" (dict "name" "chevron-left" "size" 24) }}</button>
+        <button class="testimonial-carousel__nav testimonial-carousel__nav--next" type="button" data-next aria-label="Next">{{ partial "icon.html" (dict "name" "chevron-right" "size" 24) }}</button>
         {{ range hugo.Data.testimonials }}
         <figure class="testimonial" data-slide>
           <blockquote class="testimonial__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
@@ -108,44 +111,27 @@
 
 {{/* ---------- What IT teams gain (dark, 4 horizontal rows) ---------- */}}
 {{ with .Params.lifecycle }}
-<section class="section section--dark">
+<section class="section section--dark section--accent-green home-lifecycle">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="lifecycle-rows">
-      {{ $images := slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg" -}}
-      {{ $icons := slice "compass" "code" "clipboard" "graduation" -}}
-      {{ range $i, $c := .cards }}
-      <div class="lifecycle-rows__row">
-        <h3 class="lifecycle-rows__title">{{ $c.title }}</h3>
-        {{ if eq (mod $i 2) 0 -}}
-        <div class="lifecycle-rows__media" style="background-image: var(--overlay-photo), url('{{ index $images $i }}');"></div>
-        <div class="icon-tile icon-tile--stack">
-          <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
-          <p class="icon-tile__body">{{ $c.desc }}</p>
-        </div>
-        {{- else -}}
-        <div class="icon-tile icon-tile--stack">
-          <div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 24) }}</div>
-          <p class="icon-tile__body">{{ $c.desc }}</p>
-        </div>
-        <div class="lifecycle-rows__media" style="background-image: var(--overlay-photo), url('{{ index $images $i }}');"></div>
-        {{- end }}
-      </div>
-      {{ end }}
-    </div>
+    {{ partial "lifecycle-rows.html" (dict
+      "rows" .cards
+      "images" (slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg")
+      "icons" (slice "cloud" "platform" "assessment" "training")
+    ) }}
   </div>
 </section>
 {{ end }}
 
 {{/* ---------- Challenges glass card on photo (left intro + right card list) ---------- */}}
 {{ with .Params.challenges }}
-<section class="section">
+<section class="section home-challenges">
   <div class="container">
     <div class="challenges-glass challenges-glass--split">
-      <div class="challenges-glass__bg" {{ with .bg }}style="background-image: linear-gradient(135deg, rgba(95,115,55,.7) 0%, rgba(210,200,100,.55) 100%), url('{{ . }}');"{{ end }}></div>
+      <div class="challenges-glass__bg" {{ with .bg }}style="--challenges-bg: url('{{ partial "img-url.html" (dict "src" . "width" 1600 "quality" 68) }}');"{{ end }}></div>
       <div class="challenges-glass__inner challenges-glass__inner--split">
         <div class="challenges-glass__intro">
           <h2>{{ .title }}</h2>
@@ -167,7 +153,7 @@
 
 {{/* ---------- Partner logos ---------- */}}
 {{ with .Params.partners }}
-<section class="section section--alt">
+<section class="section section--alt home-partners">
   <div class="container">
     <div class="section__head">
       <h2>{{ .title }}</h2>
@@ -176,7 +162,7 @@
     <div class="partner-logos">
       {{ range hugo.Data.partners }}
       <a class="partner-logos__item" href="{{ .href }}" rel="noopener">
-        <img src="{{ .image }}" alt="{{ .name }}" loading="lazy">
+        {{ partial "img.html" (dict "src" .image "alt" .name "widths" (slice 160 320) "sizes" "160px" "loading" "lazy" "decoding" "async") }}
       </a>
       {{ end }}
     </div>

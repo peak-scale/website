@@ -1,18 +1,14 @@
 ---
 title: Team
-description: "Das Engineering-Team hinter Peak Scale – sechs Spezialisten aus Bern, mit Open-Source-DNA und Fokus auf Cloud-Native-Plattformen."
+description: "Das Engineering-Team hinter Peak Scale – acht Spezialisten aus Bern, mit Open-Source-DNA und Fokus auf Cloud-Native-Plattformen."
 aliases:
   - /about/
   - /ueber-uns/
   - /contact/
 hero:
-  eyebrow: "Hinter Peak Scale"
-  title: "Das Engineering-Team hinter Peak Scale"
+  title: "Das Team hinter<br>Peak Scale"
   lead: "Wir sind ein spezialisiertes Engineering- und Architekturteam für Cloud Native Plattformen – pragmatisch, technisch fundiert und nah an der Betriebsrealität."
   sub: "Hands-on – direkt mit den Experten, die auch den Betrieb mitdenken"
-  cta_primary: "Kontakt aufnehmen"
-  cta_secondary: "Services ansehen"
-  cta_secondary_href: "/services/"
 team_block:
   eyebrow: "Unser Team"
   title: "Unser Team"
@@ -23,9 +19,9 @@ members:
   title: "Wer dahintersteht"
   notice: "Hinweis: Rollen können wechseln (Architekt – Engineer; Senior Marketing; Tech)."
 mission:
-  eyebrow: "Unsere Mission"
-  title: "Unsere <span class=\"accent\">Mission</span>"
-  lead: "Wir unterstützen IT-Abteilungen dabei, stabile, sichere und zukunftsfähige Plattformen aufzubauen. Im Zentrum stehen pragmatische Entscheidungen, technische Tiefe und Architekturen, die sich über Jahre weiterentwickeln können – unabhängig von einzelnen Herstellern oder Produkten."
+  title: "Unsere Mission"
+  lead: "Wir unterstützen IT-Abteilungen dabei, stabile, sichere und zukunftsfähige Plattformen aufzubauen."
+  body: "Im Zentrum stehen pragmatische Entscheidungen, technische Tiefe und Architekturen, die sich über Jahre weiterentwickeln können – unabhängig von einzelnen Herstellern oder Produkten."
   tags:
     - "Klare Ziele"
     - "Nachvollziehbare Entscheide"
@@ -33,7 +29,7 @@ mission:
     - "Gemeinsame Umsetzung mit dem Kundenteam"
 how_we_work:
   eyebrow: "So arbeiten wir"
-  title: "Unsere Arbeits<span class=\"accent\">weise</span>"
+  title: "Unsere Arbeitsweise"
   lead: "Wir arbeiten eng mit den Engineering- und Architekturteams unserer Kunden zusammen – als technische Partner im Projektalltag. Kurze Wege, klares Sparring und Schritte, die im Betrieb tragen und mitwachsen."
   cards:
     - title: "Kurze Kommunikationswege"
@@ -53,15 +49,16 @@ why_cloud_native:
   title: "Warum Cloud Native?"
   lead: "Cloud Native ist für uns kein Trend, sondern die belastbare Grundlage moderner Plattformen – offen, automatisiert und langfristig tragfähig."
   pills:
-    - "Skalierung und Flexibilität"
-    - "Sicherheit und Transparenz"
-    - "Erweiterbare, langlebige Plattformen"
-    - "Automatisierung und Geschwindigkeit"
-    - "Portabilität und Offenheit"
+    - title: "Skalierung und Flexibilität"
+    - title: "Sicherheit und Transparenz"
+    - title: "Erweiterbare, langlebige Plattformen"
+      featured: true
+    - title: "Automatisierung und Geschwindigkeit"
+    - title: "Portabilität und Offenheit"
   footnote: "Wir setzen bewusst auf offene Standards und etablierte Open-Source-Technologien – ohne proprietären Lock-in."
 values:
   eyebrow: "Unsere Werte"
-  title: "Unsere <span class=\"accent\">Werte</span>"
+  title: "Unsere Werte"
   items:
     - title: "Pragmatismus"
       body: "Wir bevorzugen Lösungen, die funktionieren – nicht solche, die nur auf dem Papier gut aussehen."
@@ -89,7 +86,7 @@ contact_block:
   lead: "Wenn Sie Peak Scale näher kennenlernen möchten, geben wir gerne Einblick in Arbeitsweise, Entscheidungslogik und typische Vorgehensmodelle – unverbindlich, ohne klassischen Sales-Prozess."
 next_steps:
   eyebrow: "Weitergehen"
-  title: "Nächste <span class=\"accent\">Etappe</span>"
+  title: "Nächste Etappe"
   cards:
     - eyebrow: "Services"
       title: "Beratung, Engineering, Assessments und Enablement für Plattform-Teams"

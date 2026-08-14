@@ -22,7 +22,7 @@
         {{ with $c.desc }}<p class="next-steps__desc">{{ . }}</p>{{ end }}
         {{ with $c.checklist }}
         <ul class="next-steps__checklist">
-          {{ range . }}<li><span class="next-steps__check" aria-hidden="true">✓</span>{{ . }}</li>{{ end }}
+          {{ range . }}<li><span class="next-steps__check" aria-hidden="true">{{ partial "icon.html" (dict "name" "check-outline" "size" 32) }}</span>{{ . }}</li>{{ end }}
         </ul>
         {{ end }}
         <span class="next-steps__cta">

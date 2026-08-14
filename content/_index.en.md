@@ -2,13 +2,8 @@
 title: Peak Scale
 description: "Cloud Native consulting and platform engineering from Bern. Hands-on partner for strategy, architecture, engineering, and operations of modern cloud platforms."
 hero:
-  eyebrow: "Hands-on across the full lifecycle"
-  title: "Cloud transformations that succeed"
+  title: "Orientation for demanding cloud transformations."
   lead: "We support you from strategy and architecture all the way to delivery – technically grounded, hands-on, and shaped to your context."
-  sub: "Hands-on for platforms that work – on-prem and across the public clouds"
-  cta_primary: "See services"
-  cta_primary_href: "/services/"
-  cta_secondary: "Get in touch"
 mountain:
   eyebrow: "From basecamp to summit"
   title: "Four stages, one team."
@@ -26,9 +21,8 @@ why:
   eyebrow: "Why Peak Scale"
   title: "Why Peak Scale?"
   items:
-    - title: "<strong>Peak for technical depth.</strong> Scale for platforms that grow with you."
+    - title: "<strong>Peak for technical depth.</strong><br>Scale for platforms that grow with you."
       body: ""
-      image: "/images/section/topo-abstract.jpg"
     - title: "Swiss-first context"
       body: "Experience in Swiss IT environments – familiar with the requirements of enterprises, public bodies, and regulated industries."
     - title: "Hands-on collaboration"
@@ -41,13 +35,13 @@ why:
       body: "No full-service generalist shop – a focused team with deep cloud-native expertise."
 customers:
   eyebrow: "Our customers"
-  title: "Our <span class=\"accent\">customers</span>"
+  title: "Our customers"
   lead: "A selection of customers we've supported on architecture, engineering, or assessment projects."
 testimonial:
-  eyebrow: "Voices from <span class=\"accent\">projects</span>"
+  eyebrow: "Voices from projects"
 lifecycle:
   eyebrow: "What IT teams gain"
-  title: "What <span class=\"accent\">IT teams</span> stand to <span class=\"accent\">gain</span>"
+  title: "What IT teams stand to gain"
   lead: "Clear orientation, technical excellence, and pragmatic delivery – across the full lifecycle."
   cards:
     - title: "Cloud Architecture"
@@ -79,7 +73,7 @@ partners:
   lead: "We work with leading cloud-native vendors."
 next_steps:
   eyebrow: "Continue"
-  title: "Next <span class=\"accent\">stage</span>"
+  title: "Next stage"
   cards:
     - eyebrow: "Services"
       title: "Scope of work & core areas"

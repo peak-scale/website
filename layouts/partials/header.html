@@ -1,25 +1,43 @@
 <header class="site-header">
   <div class="site-header__pill">
-    <a class="site-header__brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Peak Scale">
-      <img src="/images/peakscale-logo.svg" alt="Peak Scale" width="124" height="44">
-    </a>
+    <div class="site-header__bar">
+      <a class="site-header__brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Peak Scale">
+        <img class="site-header__logo" src="/images/peakscale-logo.svg" alt="Peak Scale" width="124" height="44">
+      </a>
 
-    <nav class="site-header__nav" aria-label="Main">
-      {{ range $i, $item := .Site.Menus.main -}}
-      {{ if gt $i 0 }}<span class="dot-square" aria-hidden="true"></span>{{ end }}
-      {{- $active := or ($.IsMenuCurrent "main" $item) ($.HasMenuCurrent "main" $item) -}}
-      <a href="{{ $item.URL | relLangURL }}" {{ if $active }}class="is-active" aria-current="page"{{ end }}>{{ $item.Name }}</a>
-      {{- end }}
-    </nav>
+      <div class="site-header__right">
+        <nav class="site-header__nav" aria-label="Main">
+          {{ range $i, $item := .Site.Menus.main -}}
+          {{ if gt $i 0 }}<span class="nav-sep" aria-hidden="true">{{ partial "icon.html" (dict "name" "trail-marker" "size" 12) }}</span>{{ end }}
+          {{- $active := or ($.IsMenuCurrent "main" $item) ($.HasMenuCurrent "main" $item) -}}
+          <a href="{{ $item.URL | relLangURL }}" {{ if $active }}class="is-active" aria-current="page"{{ end }}>{{ $item.Name }}</a>
+          {{- end }}
+        </nav>
 
-    <div class="site-header__actions">
-      <div class="lang-switch" aria-label="{{ i18n "lang_switch" }}">
-        {{ partial "lang-switch.html" . }}
+        <div class="site-header__actions">
+          <div class="lang-switch" aria-label="{{ i18n "lang_switch" }}">
+            {{ partial "lang-switch.html" . }}
+          </div>
+
+          <button class="site-header__menu-toggle" type="button" aria-label="{{ i18n "menu_open" }}" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
       </div>
+    </div>
 
-      <button class="site-header__menu-toggle" type="button" aria-label="{{ i18n "menu_open" }}" data-menu-toggle>
-        {{ partial "icon.html" "menu" }}
-      </button>
+    <div class="site-header__drawer" id="mobile-menu" data-menu>
+      <div class="site-header__drawer-inner">
+        <ul class="site-header__menu reset">
+          {{ range .Site.Menus.main -}}
+          {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) -}}
+          <li><a href="{{ .URL | relLangURL }}" {{ if $active }}class="is-active"{{ end }}>{{ .Name }}</a></li>
+          {{- end }}
+        </ul>
+        <div class="lang-switch" aria-label="{{ i18n "lang_switch" }}">
+          {{ partial "lang-switch.html" . }}
+        </div>
+      </div>
     </div>
   </div>
 </header>
