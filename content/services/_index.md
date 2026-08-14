@@ -36,7 +36,7 @@ architecture:
         - "Skalierung, Security, Governance"
         - "Aufbau von Landing Zones und Plattformkomponenten"
     - title: "Solution Architecture & Reviews"
-      body: "Wir analysieren und challengen bestehende Lösungen – mit Fokus auf technische Machbarkeit, Sicherheit und Weiterentwicklung."
+      body: "Wir analysieren und hinterfragen bestehende Lösungen – mit Fokus auf technische Machbarkeit, Sicherheit und Weiterentwicklung."
       eyebrow: "Output"
       items:
         - "Risikoanalyse"
@@ -68,7 +68,7 @@ assessments:
       body: "Bewertung bestehender Plattformen hinsichtlich Skalierung, Betrieb, Sicherheit und Weiterentwicklung."
     - title: "Cloud Native Maturity Assessment"
       body: "Transparenter Überblick über den aktuellen Reifegrad – mit konkreten Massnahmen zur Verbesserung."
-  output_title: "Output immer:"
+  output_title: "Sie erhalten immer:"
   output_items:
     - "Executive Summary für Entscheider"
     - "Technische Details für Engineers"
@@ -77,7 +77,7 @@ assessments:
 training:
   eyebrow: "Training & Enablement"
   title: "Training & Enablement"
-  lead: "Wissenstransfer, der im Alltag hilft – praxisnah, realistisch und auf Ihr Team und ihre Umgebung abgestimmt."
+  lead: "Wissenstransfer, der im Alltag hilft – praxisnah, realistisch und auf Ihr Team und Ihre Umgebung abgestimmt."
   cards:
     - title: "Workshops"
       body: "Kurze, fokussierte Sessions zu Cloud-Architektur, GitOps oder Kubernetes."

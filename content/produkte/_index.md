@@ -10,14 +10,14 @@ own:
   title: "Eigene Lösungen & Produkte"
   cards:
     - title: "Cloud Native Multi-Tenancy"
-      body: "Mandantentrennung auf Kubernetes – von Tenancy-Modell und Governance bis zur automatisierten Tenant-Onboarding. Tragfähig im Alltag und sauber betreibbar."
+      body: "Mandantentrennung auf Kubernetes – vom Tenancy-Modell und der Governance bis zum automatisierten Tenant-Onboarding. Tragfähig im Alltag und sauber betreibbar."
       eyebrow: "Was wir liefern"
       items:
         - "Tenancy-Blueprint (Namespace-Modell, Isolationsebenen, Verantwortlichkeiten)"
         - "Quotas & Governance (RBAC/Policies, Network Policies, Quotas/Limitranges, Standards)"
         - "Tenant-Onboarding & Self-Service (Vorlagen, Automatisierung, GitOps-fähige Abläufe)"
         - "Plattform-Integration (CI/CD & GitOps-Anbindung, Controls, Auditmechanik)"
-        - "Hardening & Betriebsmodell (Standardprozesse Updates, Observability-Basics, Dokumentation)"
+        - "Hardening & Betriebsmodell (Standardprozesse für Updates, Observability-Basics, Dokumentation)"
       fit_title: "Geeignet für:"
       fit_items:
         - "SaaS-Plattformen (Mandanten pro Kunde/Organisation)"
@@ -57,7 +57,7 @@ partners:
       body: "Wir unterstützen Design, Einführung und Betrieb von Capsule – inklusive Enterprise Support für den produktiven Plattformbetrieb."
       themes_title: "Typische Themen"
       themes:
-        - "Multi-Tenancy Einführung"
+        - "Einführung von Multi-Tenancy"
         - "Governance & Policies"
         - "Mandantentrennung"
         - "Integration in bestehende Plattformen"

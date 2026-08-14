@@ -2,7 +2,7 @@
 title: Peak Scale
 description: "Cloud Native Consulting & Platform Engineering aus Bern. Hands-on Partner für Strategie, Architektur, Engineering und Betrieb moderner Cloud-Plattformen."
 hero:
-  title: "Orientierung für anspruchsvolle Cloud-Transformationen."
+  title: "Orientierung für anspruchsvolle Cloud-Transformationen"
   lead: "Wir begleiten Kunden von der Strategie und Architektur bis zur Umsetzung – technisch fundiert, praxisnah und auf ihre Bedürfnisse abgestimmt."
 mountain:
   eyebrow: "Vom Basecamp zum Gipfel"
@@ -47,7 +47,7 @@ lifecycle:
     - title: "Cloud Architecture"
       desc: "Wir entwickeln und evaluieren Cloud-Architekturen, die sich weiterentwickeln können – pragmatisch, transparent und auf Ihre Umgebung abgestimmt."
     - title: "Platform Engineering"
-      desc: "Wir unterstützen Teams beim Design, beim Aufbau und bei der Automatisierung moderner Cloud Native Plattformen und Workflows."
+      desc: "Wir unterstützen Teams beim Design, beim Aufbau und bei der Automatisierung moderner Cloud-Native-Plattformen und Workflows."
     - title: "Assessments"
       desc: "Fundierte Beurteilungen von bestehenden Lösungen: Architektur, Kubernetes, Security, Prozesse, GitOps und CI/CD."
     - title: "Training & Enablement"
@@ -65,12 +65,12 @@ challenges:
       featured: true
     - title: "Einführung von Multi-Tenancy"
       body: "Mandantentrennung mit Capsule und Kubernetes – inklusive kommerziellem Support und Betriebsmodellen."
-    - title: "Cloud Native Kompetenz im Team"
+    - title: "Cloud-Native-Kompetenz im Team"
       body: "Wir bauen Wissen auf, das im Team bleibt – durch Pair-Engineering, Workshops und Dokumentation."
 partners:
   eyebrow: "Technologiepartner"
   title: "Technologiepartner"
-  lead: "Wir arbeiten mit führenden Cloud Native Anbietern zusammen."
+  lead: "Wir arbeiten mit führenden Cloud-Native-Anbietern zusammen."
 next_steps:
   eyebrow: "Weitergehen"
   title: "Nächste Etappe"

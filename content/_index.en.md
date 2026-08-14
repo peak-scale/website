@@ -2,7 +2,7 @@
 title: Peak Scale
 description: "Cloud Native consulting and platform engineering from Bern. Hands-on partner for strategy, architecture, engineering, and operations of modern cloud platforms."
 hero:
-  title: "Orientation for demanding cloud transformations."
+  title: "Orientation for demanding cloud transformations"
   lead: "We support you from strategy and architecture all the way to delivery – technically grounded, hands-on, and shaped to your context."
 mountain:
   eyebrow: "From basecamp to summit"

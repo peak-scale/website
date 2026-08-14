@@ -6,7 +6,7 @@ enableRobotsTXT = true
 disableKinds = ["taxonomy", "term"]
 
 [taxonomies]
-# Intentionally empty — no tags/categories on a marketing site.
+# Intentionally empty – no tags/categories on a marketing site.
 
 [params]
 # Wide (side-extended 3:1) hero renditions; shared by img.html and the head.html preload.

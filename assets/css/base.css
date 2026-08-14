@@ -8,7 +8,7 @@
      Bright blue  #0580c4   rgb(5, 128, 196)   → --bright-blue
      White        #ffffff                      → --bg-white
 
-   Everything else is supportive palette — keeps the page readable and
+   Everything else is supportive palette – keeps the page readable and
    gives cards their lift, but is not part of the brand identity. Use
    sparingly.
    ===================================================================== */
@@ -25,7 +25,7 @@
     --bright-blue-text: rgb(5, 117, 180);     /* accessible small text / button background */
     --bright-blue-deep: rgb(6, 97, 153);      /* accessible gradient endpoint behind light text */
     --dark-blue-soft: rgb(21, 36, 64);
-    --dark-blue-ink: rgb(9, 24, 55);          /* Figma display ink — the near-black navy of the logo's dark half */
+    --dark-blue-ink: rgb(9, 24, 55);          /* Figma display ink – the near-black navy of the logo's dark half */
     --dark-blue-raised: rgb(49, 62, 87);
     --footer-bg: rgb(7, 19, 44);
 
@@ -58,7 +58,7 @@
     --accent-green-deep: rgb(58, 110, 65);
     --check-green: rgb(144, 202, 125);        /* Figma green check icons */
 
-    /* Photo overlay — subtle navy → blue wash applied above section
+    /* Photo overlay – subtle navy → blue wash applied above section
        background-images so the photo stays readable. Used inline in
        templates as the first layer of `background-image`. */
     --overlay-photo: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2));
@@ -66,8 +66,8 @@
     /* Hero photo tints. Each section hero in the Figma file carries a flat
        colour wash over its photograph, read straight out of `canvas.fig`
        (the frame's fill stack: page fill, image, then this paint). Services
-       is a linear gradient there — rgb(5,128,196) stepping a=.50 → .60 under
-       a 70% layer opacity, i.e. 35% at the left edge to 42% at the right —
+       is a linear gradient there – rgb(5,128,196) stepping a=.50 → .60 under
+       a 70% layer opacity, i.e. 35% at the left edge to 42% at the right –
        flattened here to its midpoint, since a wash that reads as uniform is
        the intent and a ramp only fights the copy that sits on it.
        Produkte's yellow is its own colour, not `--accent-yellow`: the tint
@@ -80,7 +80,7 @@
 
 /* ---------- Typography ----------
 
-   Self-hosted variable fonts — DM Sans (display/body) and Inter (UI).
+   Self-hosted variable fonts – DM Sans (display/body) and Inter (UI).
    Subsetted by Google Fonts to latin + latin-ext, the only coverage this
    German/English site needs. Files live in `static/fonts/`. Self-hosting
    replaces the former Google Fonts `@import`: no third-party requests
@@ -131,13 +131,13 @@
 
        Each display size ramps across exactly one window: floor at 390px (a
        phone), maximum at 1200px, flat outside it. The three therefore start
-       and finish together — the scale behaves as one system at every width.
+       and finish together – the scale behaves as one system at every width.
 
        1200 rather than 1440 is the top anchor because the ramp used to end at
        the widest common laptop, so nearly every real desktop caught the
        headline mid-descent: at 1280 the hero read 64px, at 1100 only 55px,
        against a 72px design. Ending at 1200 gives the full size to every
-       desktop and shifts the whole ramp up by ~13px without steepening it —
+       desktop and shifts the whole ramp up by ~13px without steepening it –
        a 768px tablet now gets 51px where it got 38px.
 
        The `rem` term is what does the shifting: a pure `Nvw` line is pinned to
@@ -179,7 +179,7 @@
     --space-6: 24px;
     --space-8: 32px;
     --space-12: 48px;
-    /* Page gutter — the inline padding every .container uses. */
+    /* Page gutter – the inline padding every .container uses. */
     --gutter: clamp(20px, 4vw, 40px);
     --radius-sm: 4px;
     --radius-md: 8px;

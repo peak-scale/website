@@ -52,7 +52,7 @@
         <figure class="testimonial-side">
           <span class="testimonial-side__mark" aria-hidden="true">{{ partial "icon.html" (dict "name" "quote" "size" 108) }}</span>
           <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ or .quote_services_de .quote_de }}{{ else }}{{ or .quote_services_en .quote_en }}{{ end }}</blockquote>
-          <figcaption class="testimonial-side__cite">{{ if eq $lang "de" }}– {{ .author_de }}{{ else }}— {{ .author_en }}{{ end }}</figcaption>
+          <figcaption class="testimonial-side__cite">– {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
         </figure>
         {{ end }}
         <div class="tag-arbeitsweise">
@@ -93,7 +93,7 @@
         <figure class="testimonial-side">
           <span class="testimonial-side__mark" aria-hidden="true">{{ partial "icon.html" (dict "name" "quote" "size" 108) }}</span>
           <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
-          <figcaption class="testimonial-side__cite">{{ if eq $lang "de" }}– {{ .author_de }}{{ else }}— {{ .author_en }}{{ end }}</figcaption>
+          <figcaption class="testimonial-side__cite">– {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
         </figure>
         {{ end }}
         <div class="tag-arbeitsweise">
@@ -172,7 +172,7 @@
       <figure class="testimonial-side">
         <span class="testimonial-side__mark" aria-hidden="true">{{ partial "icon.html" (dict "name" "quote" "size" 108) }}</span>
         <blockquote class="testimonial-side__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
-        <figcaption class="testimonial-side__cite">{{ if eq $lang "de" }}– {{ .author_de }}{{ else }}— {{ .author_en }}{{ end }}</figcaption>
+        <figcaption class="testimonial-side__cite">– {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
       </figure>
       {{ end }}
     </div>

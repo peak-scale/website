@@ -7,17 +7,17 @@ aliases:
   - /contact/
 hero:
   title: "Das Team hinter<br>Peak Scale"
-  lead: "Wir sind ein spezialisiertes Engineering- und Architekturteam für Cloud Native Plattformen – pragmatisch, technisch fundiert und nah an der Betriebsrealität."
+  lead: "Wir sind ein spezialisiertes Engineering- und Architekturteam für Cloud-Native-Plattformen – pragmatisch, technisch fundiert und nah an der Betriebsrealität."
   sub: "Hands-on – direkt mit den Experten, die auch den Betrieb mitdenken"
 team_block:
   eyebrow: "Unser Team"
   title: "Unser Team"
   lead: "Wir sind Engineers, Architekten und Plattform-Spezialisten mit unterschiedlichen Schwerpunkten – verbunden durch eine gemeinsame Haltung. Plattformen müssen nachvollziehbar, automatisiert und im Alltag tragfähig sein."
-  cta: "Folge uns auf LinkedIn"
+  cta: "Folgen Sie uns auf LinkedIn"
 members:
   eyebrow: "Mitglieder"
   title: "Wer dahintersteht"
-  notice: "Hinweis: Rollen können wechseln (Architekt – Engineer; Senior Marketing; Tech)."
+  notice: "Hinweis: Rollen können sich ändern."
 mission:
   title: "Unsere Mission"
   lead: "Wir unterstützen IT-Abteilungen dabei, stabile, sichere und zukunftsfähige Plattformen aufzubauen."
@@ -35,7 +35,7 @@ how_we_work:
     - title: "Kurze Kommunikationswege"
       body: "Direkt zwischen Engineers – ohne Übersetzungslayer, mit kurzen Reaktionszeiten."
     - title: "Ehrliches technisches Sparring"
-      body: "Wir challengen Annahmen offen, bevor sie zu Plattformrealität werden."
+      body: "Wir hinterfragen Annahmen offen, bevor sie zu Plattformrealität werden."
     - title: "Iterative Architekturentwicklung"
       body: "Architektur entsteht in kleinen, überprüfbaren Schritten – nicht als grosser Wurf."
     - title: "Evidenzbasierte Entscheidungen"
@@ -69,7 +69,7 @@ values:
     - title: "Offenheit"
       body: "Wir teilen Wissen, sprechen Probleme klar an und empfehlen, was wirklich sinnvoll ist."
     - title: "Community"
-      body: "Wir engagieren uns aktiv im Cloud Native Ökosystem (der Schweiz)."
+      body: "Wir engagieren uns aktiv im Cloud-Native-Ökosystem in der Schweiz."
 community:
   eyebrow: "Community-Engagement"
   title: "Engagement in der Community"

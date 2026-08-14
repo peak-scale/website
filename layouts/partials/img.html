@@ -28,7 +28,7 @@
 {{- $height := cond $set.processed $set.height .height -}}
 
 {{/* SVGs are served as-is, so Hugo never measures them and the tag would ship
-     unsized. Recover the aspect ratio from the root viewBox instead — enough for
+     unsized. Recover the aspect ratio from the root viewBox instead – enough for
      the browser to reserve the box, which is all the attributes are for here. */}}
 {{- if and (not $set.processed) (not $width) (strings.HasSuffix .src ".svg") -}}
   {{- $path := printf "static%s" .src -}}

@@ -70,7 +70,7 @@
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="logo-carousel" data-logo-carousel aria-label="Kunden">
+    <div class="logo-carousel" data-logo-carousel aria-label="{{ if eq $lang "de" }}Kunden{{ else }}Customers{{ end }}">
       <div class="logo-carousel__viewport">
         <div class="logo-carousel__track" data-logo-track>
           {{ range hugo.Data.customers }}
@@ -94,16 +94,16 @@
     </div>
     <div class="testimonial-carousel" data-carousel>
       <div class="testimonial-carousel__viewport">
-        <button class="testimonial-carousel__nav testimonial-carousel__nav--prev" type="button" data-prev aria-label="Previous">{{ partial "icon.html" (dict "name" "chevron-left" "size" 24) }}</button>
-        <button class="testimonial-carousel__nav testimonial-carousel__nav--next" type="button" data-next aria-label="Next">{{ partial "icon.html" (dict "name" "chevron-right" "size" 24) }}</button>
+        <button class="testimonial-carousel__nav testimonial-carousel__nav--prev" type="button" data-prev aria-label="{{ if eq $lang "de" }}Vorheriges Testimonial{{ else }}Previous testimonial{{ end }}">{{ partial "icon.html" (dict "name" "chevron-left" "size" 24) }}</button>
+        <button class="testimonial-carousel__nav testimonial-carousel__nav--next" type="button" data-next aria-label="{{ if eq $lang "de" }}Nächstes Testimonial{{ else }}Next testimonial{{ end }}">{{ partial "icon.html" (dict "name" "chevron-right" "size" 24) }}</button>
         {{ range hugo.Data.testimonials }}
         <figure class="testimonial" data-slide>
           <blockquote class="testimonial__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
-          <figcaption class="testimonial__cite">{{ if eq $lang "de" }}– {{ .author_de }}{{ else }}— {{ .author_en }}{{ end }}</figcaption>
+          <figcaption class="testimonial__cite">– {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
         </figure>
         {{ end }}
       </div>
-      <div class="testimonial-carousel__dots" data-dots aria-label="Pagination"></div>
+      <div class="testimonial-carousel__dots" data-dots aria-label="{{ if eq $lang "de" }}Testimonial-Navigation{{ else }}Testimonial navigation{{ end }}"></div>
     </div>
   </div>
 </section>

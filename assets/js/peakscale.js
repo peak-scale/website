@@ -1,4 +1,4 @@
-/* Peak Scale — minimal client JS.
+/* Peak Scale – minimal client JS.
    Header state, mobile menu toggle, testimonial carousel (chevrons + dots). */
 
 (function () {
@@ -170,7 +170,7 @@
 
     // On touch devices the CSS turns the viewport into a native horizontal
     // scroller (swipeable, scroll-snapped) and pins the transform to none.
-    // There the auto-advance has to move scrollLeft instead — otherwise it
+    // There the auto-advance has to move scrollLeft instead – otherwise it
     // writes a transform nothing renders and the strip sits still.
     const coarse = window.matchMedia('(hover: none) and (pointer: coarse)');
     function nativeScroll() { return !!viewport && coarse.matches; }
@@ -185,7 +185,7 @@
     originals.forEach(function (t) { track.appendChild(t); });   // re-order
 
     // 2. Append a single clone of the (shuffled) set so the track is
-    //    twice the width of one copy — this is what makes the wrap-around
+    //    twice the width of one copy – this is what makes the wrap-around
     //    invisible: when we slide past the end of the originals, the
     //    second copy is already in view, and we instantly snap the
     //    transform back by one set-width without the user noticing.
@@ -205,7 +205,7 @@
       const gap = parseFloat(getComputedStyle(track).gap) || 0;
       return tile.getBoundingClientRect().width + gap;
     }
-    // Distance from the first original tile to its clone — i.e. the width of
+    // Distance from the first original tile to its clone – i.e. the width of
     // exactly one copy of the set, gap included. Measured rather than derived
     // from scrollWidth so track padding (added in the touch layout) can't
     // skew it.
@@ -286,7 +286,7 @@
       if (!nativeScroll()) freezeAtRendered();
     }
     // A tap on a phone fires mouseenter without a matching mouseleave, which
-    // would stop the strip for good — hover only pauses where hover exists.
+    // would stop the strip for good – hover only pauses where hover exists.
     carousel.addEventListener('mouseenter', function () { if (!nativeScroll()) stop(); });
     carousel.addEventListener('mouseleave', function () { if (!nativeScroll()) start(); });
     carousel.addEventListener('focusin', stop);

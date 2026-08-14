@@ -60,7 +60,7 @@
   {{ if $set.processed -}}
     {{- $original := partial "hero-original-set.html" (dict "src" . "widths" site.Params.heroOriginalWidths) -}}
   {{/* html/template treats the unrecognised `imagesrcset` as a plain URL and
-       percent-escapes the separating spaces, which breaks the candidate list —
+       percent-escapes the separating spaces, which breaks the candidate list –
        so the attribute is assembled and marked safe by hand. */}}
   {{- if $original.processed }}
   <link rel="preload" {{ printf "imagesrcset=%q" $original.srcset | safeHTMLAttr }} imagesizes="{{ site.Params.heroOriginalSizes }}" media="{{ site.Params.heroOriginalMedia }}" as="image" type="{{ $heroType }}" fetchpriority="high">

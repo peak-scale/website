@@ -1,4 +1,4 @@
-/* Peak Scale — site styles. base.css is concatenated ahead of this file. */
+/* Peak Scale – site styles. base.css is concatenated ahead of this file. */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -333,7 +333,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .hero--on-dark .lifecycle-path,
 .hero--on-dark .lifecycle-path__arrow { color: #fff; }
 
-/* Pill badge — always white, its own surface, whatever ink the hero carries. */
+/* Pill badge – always white, its own surface, whatever ink the hero carries. */
 .hero__badge {
   display: inline-flex; align-items: center;
   background: var(--bg-white); color: var(--bright-blue-text);
@@ -414,7 +414,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   max-width: none;
   margin-bottom: clamp(30px, 3vw, 40px);
 }
-/* Statement heading — borrows the hero's display step rather than owning a size. */
+/* Statement heading – borrows the hero's display step rather than owning a size. */
 .home-why .display-xl {
   margin-bottom: 0;
   font-size: var(--text-display);
@@ -574,6 +574,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .testimonial__quote::before { content: "“"; }
 .testimonial__quote::after { content: "”"; }
+:lang(de) .testimonial__quote::before { content: "«"; }
+:lang(de) .testimonial__quote::after { content: "»"; }
 .section--dark .testimonial__quote { color: #fff; }
 .testimonial__cite { margin-top: 24px; font-size: var(--text-sm); color: var(--fg-muted); }
 .section--dark .testimonial__cite { color: var(--text-on-dark); }
@@ -643,8 +645,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .testimonial-side__quote::before { content: "“"; }
 .testimonial-side__quote::after { content: "”"; }
-:lang(de) .testimonial-side__quote::before { content: "„"; }
-:lang(de) .testimonial-side__quote::after { content: "“"; }
+:lang(de) .testimonial-side__quote::before { content: "«"; }
+:lang(de) .testimonial-side__quote::after { content: "»"; }
 .testimonial-side__cite {
   position: relative;
   z-index: 1;
@@ -758,7 +760,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   transition: border-color .2s ease;
   min-height: 260px;
 }
-/* Flat fills — the system builds depth from tone, not gradients. */
+/* Flat fills – the system builds depth from tone, not gradients. */
 .next-steps__card--gold {
   background: var(--accent-yellow-deep);
   border-color: rgba(252,238,180,.35);
@@ -867,7 +869,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   width: 96px; height: 96px; border-radius: 9999px; object-fit: cover;
   background: var(--bg);
 }
-/* Monogram stand-in for members with no portrait — quiet flat disc. */
+/* Monogram stand-in for members with no portrait – quiet flat disc. */
 .team-member__avatar--placeholder {
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--bg-ice);
@@ -1091,7 +1093,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .checklist--grid-2 > li { min-width: 0; overflow-wrap: break-word; }
 .checklist--on-dark { color: #fff; font-size: var(--text-sm); line-height: 1.5; }
 
-/* Numbered step (centered, dark section) — used in produkte journey. */
+/* Numbered step (centered, dark section) – used in produkte journey. */
 .numbered-step {
   display: flex; flex-direction: column; align-items: center;
   text-align: center; gap: var(--space-3);
@@ -1135,7 +1137,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .section--topo > .container { position: relative; z-index: 1; }
 
-/* Plain text pill — neutral white rounded-full tag, no icon. */
+/* Plain text pill – neutral white rounded-full tag, no icon. */
 .text-pill-row {
   display: flex; flex-wrap: wrap; gap: var(--space-3);
 }
@@ -1175,9 +1177,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   z-index: 0;
 }
 .team-mission > .container { position: relative; z-index: 1; }
-/* A peer section, not a hero — stays on the shared type scale. */
+/* A peer section, not a hero – stays on the shared type scale. */
 .team-mission .mission-split { gap: clamp(var(--space-8), 5vw, 60px); }
-/* Warum Cloud Native — full-width stacked bars, one highlighted green. */
+/* Warum Cloud Native – full-width stacked bars, one highlighted green. */
 .stat-bars {
   display: flex; flex-direction: column; gap: var(--space-3);
   max-width: 880px; margin: 0 auto;
@@ -1270,7 +1272,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 /* ---------- Viewport-independent page presentation ---------- */
 
-/* Width-independent page treatments — one visual identity at every width. */
+/* Width-independent page treatments – one visual identity at every width. */
 .page-home .hero__title {
   font-weight: 400;
   color: var(--dark-blue);
@@ -1311,8 +1313,10 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .home-testimonials .testimonial__quote {
   font-style: normal;
 }
-.home-testimonials .testimonial__quote::before,
-.home-testimonials .testimonial__quote::after { content: '"'; }
+.home-testimonials .testimonial__quote::before { content: "“"; }
+.home-testimonials .testimonial__quote::after { content: "”"; }
+:lang(de) .home-testimonials .testimonial__quote::before { content: "«"; }
+:lang(de) .home-testimonials .testimonial__quote::after { content: "»"; }
 .home-testimonials .testimonial-carousel__dots button.is-active::before {
   width: 8px;
   border-radius: 9999px;
@@ -1699,7 +1703,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .home-testimonials .testimonial-carousel__nav {
     display: none;
   }
-  /* Dots stay — the only cue for position while swiping. */
+  /* Dots stay – the only cue for position while swiping. */
   .home-testimonials .testimonial-carousel__dots {
     margin-top: var(--space-3);
   }
