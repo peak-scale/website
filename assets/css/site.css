@@ -32,10 +32,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .section {
   padding: clamp(72px, 7vw, 132px) 0;
 }
-/* A white surface closes with a hairline — the white bands here, and the
-   header and hero further down this file. Bands on the page background draw
-   none: the change of surface already is the boundary, and a rule on the top
-   edge as well would fence every band in instead of separating them. */
+/* White surfaces close with a hairline; page-background bands need none. */
 .section--alt {
   background: var(--bg-white);
   border-bottom: 1px solid var(--border-faint);
@@ -79,9 +76,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .section--dark .section__icon {
   background: rgba(255,255,255,.08); color: var(--accent-on-dark);
 }
-/* Yellow variant for the Services page's 4 core service-line headers
-   (Cloud & Architektur, Engineering, Assessments, Training & Enablement) —
-   matches the yellow used for the homepage hero's stage pills. */
+/* Yellow variant for the Services page's core service-line headers. */
 .section__icon--accent {
   background: rgba(232,184,60,.16); color: var(--accent-yellow);
 }
@@ -100,14 +95,11 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 /* ---------- Header ---------- */
 
-/* One source for the bar height: the header itself, its inner rows, and the
-   scroll-margin that keeps anchored sections clear of it. */
+/* Single source for the bar height (header, inner rows, anchor scroll-margin). */
 :root { --header-h: 88px; }
 
-/* The bar is solid white on every route — one nav treatment site-wide.
-   `sticky` (not `fixed`) keeps it in flow, so hiding and revealing it on scroll
-   never shifts the document underneath. JS drives --header-offset by the scroll
-   delta, which reads as a header that simply scrolls away and comes back. */
+/* sticky (not fixed) keeps the bar in flow; JS drives --header-offset to
+   hide/reveal it on scroll without shifting the document. */
 .site-header {
   position: sticky;
   top: 0;
@@ -142,7 +134,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   flex-shrink: 0;
 }
 .site-header__brand:hover { color: var(--dark-blue); }
-/* One logo everywhere — the bar is always white, so the brand colors hold. */
 .site-header__logo {
   height: 48px; width: auto; display: block;
 }
@@ -247,24 +238,26 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 .hero {
   position: relative;
-  /* Sized to sit under the sticky header: ~88px shorter than the full-bleed
-     values, so header + hero still fill the intended share of the viewport. */
-  min-height: clamp(470px, 58svh, 670px);
+  /* Width-led band matching the Figma's 0.6-of-width drawing; svh keeps it
+     tracking short windows. 80svh cap leaves the next section's edge showing;
+     floor/max are the phone floor and the artwork's own height. */
+  --hero-band: clamp(360px, min(38vw + 34svh, 80svh), 1145px);
+  min-height: var(--hero-band);
   margin-top: 0;
   padding: clamp(48px, 6vw, 80px) 0;
+  /* Lift the copy gradually as horizontal room grows, matching the band's
+     own continuous scaling. */
+  padding-bottom: calc(
+    clamp(48px, 6vw, 80px) +
+    clamp(0px, calc(17vw - 129.2px), 100px)
+  );
   text-align: center;
   overflow: hidden;
   display: flex;
   align-items: center;
-  /* Same hairline the `.section--alt` bands use, so the header, the hero and
-     the section bands are all separated by one rule. */
   border-bottom: 1px solid var(--border-faint);
 }
-/* The hero visual is a real image so the browser can discover and prioritise
-   it directly from the HTML while retaining background-size: cover behavior. */
-/* Where a <picture> wraps it (home, to swap the SVG viewBox per breakpoint) it
-   is a pure plumbing element — keep it out of the hero's flex flow so it can
-   never show up as a zero-width flex item beside the container. */
+/* `display: contents` keeps the wrapping <picture> out of the hero's flex flow. */
 .hero > picture { display: contents; }
 .hero__media {
   position: absolute;
@@ -278,23 +271,23 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   pointer-events: none;
   z-index: 0;
 }
-/* Pans a hero photo up so the copy sits on its calmer upper half. Produkte's
-   wall needs it: without the overlay, centred framing puts the lead straight
-   over the hand and the hold's shadow, where no flat ink clears AA. */
+/* Pans the photo up so the copy sits on its calmer upper half (Produkte). */
 .hero__media--top {
   object-position: center 10%;
-}
-.hero__media.is-parallax {
-  /* The hero starts at the top of the document, so its upper edge has already
-     scrolled out of view before this downward offset can expose it. */
-  transform: translate3d(0, var(--hero-parallax-offset, 0px), 0);
-  will-change: transform;
 }
 .page-home .hero {
   background: var(--bg-ice);
 }
 .page-home .hero__media {
   object-position: right center;
+}
+/* Zoom + pan the original Team photo to keep the knot clear of the copy;
+   gated on the same aspect ratio that selects it. */
+@media {{ site.Params.heroOriginalMedia }} {
+  .page-team .hero__media {
+    height: 112%;
+    object-position: 35% center;
+  }
 }
 .hero__inner, .hero > .container { position: relative; z-index: 1; }
 .hero__inner {
@@ -313,24 +306,34 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .hero__inner .lead {
   margin: 0 auto var(--space-2);
   max-width: 720px;
-  /* Darker than the muted body grey: hero leads sit on a photograph, not on a
-     flat surface, so they need the display ink to stay readable. */
+  /* Display ink, not muted grey: hero leads sit on a photograph. */
   color: var(--dark-blue-ink);
 }
+/* Narrower lead keeps Team's copy clear of the rope descending into it. */
+.page-team .hero__inner .lead { max-width: 470px; }
 
-/* The photographs run bare — no darkening overlay, so each hero declares the
-   ink its own photograph can carry via `hero.ink` in front matter. Light photos
-   (Produkte's pale concrete wall, Team's white studio sweep) need nothing: they
-   inherit the homepage's dark-blue ink. Only a dark photo opts into white. */
+/* Flat colour wash per section, layered between photo and copy (shared z-index
+   0; paint order puts ::after above the photo, below the z-index:1 container). */
+.hero--tint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.page-services .hero--tint::after { background: var(--hero-tint-services); }
+.page-produkte .hero--tint::after { background: var(--hero-tint-produkte); }
+.page-team .hero--tint::after     { background: var(--hero-tint-team); }
+
+/* Ink per hero is declared via `hero.ink` in front matter; only Services opts
+   into white. */
 .hero--on-dark,
 .hero--on-dark .hero__title,
 .hero--on-dark .lead,
 .hero--on-dark .lifecycle-path,
 .hero--on-dark .lifecycle-path__arrow { color: #fff; }
 
-/* Pill badge with the "sub" hands-on line (Produkte/Services/Team).
-   Always white, whichever ink the photograph carries: the pill is its own
-   surface, so it reads as one element site-wide instead of inverting per page. */
+/* Pill badge — always white, its own surface, whatever ink the hero carries. */
 .hero__badge {
   display: inline-flex; align-items: center;
   background: var(--bg-white); color: var(--bright-blue-text);
@@ -340,8 +343,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   margin-top: var(--space-2);
 }
 
-/* Homepage: static row of yellow stage pills under the lead — replaces the
-   old floating tags over a below-hero photo. */
+/* Homepage: static row of yellow stage pills under the lead. */
 .hero-stage-pills {
   display: flex; flex-wrap: wrap; justify-content: center;
   gap: var(--space-3);
@@ -378,16 +380,13 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   height: 16px;
 }
 
-/* Anchored service sections (linked from the homepage hero pills) clear the
-   fixed hero header when jumped to. */
+/* Anchored service sections clear the sticky header when jumped to. */
 #architecture, #engineering, #assessments, #training {
   scroll-margin-top: var(--header-h);
 }
 
-/* ---------- Section heading accent ----------
-   Headings carry one colour, never two: a colour switch mid-sentence splits
-   the line into two things to read. The accent lives on the whole heading
-   where a section wants one. */
+/* ---------- Section heading accent ---------- */
+/* One colour per heading; the accent applies to the whole heading. */
 .section--accent-green { --section-heading-accent: var(--accent-green); }
 .section--accent-green .section__head h2 {
   color: var(--section-heading-accent);
@@ -415,11 +414,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   max-width: none;
   margin-bottom: clamp(30px, 3vw, 40px);
 }
-/* The page's statement heading. It borrows the hero's display step rather
-   than owning a size of its own — the Figma sets it above the hero title,
-   but a section heading outranking the page's h1 is a hierarchy this system
-   does not otherwise have, and Display is the tier the reference is reaching
-   for. */
+/* Statement heading — borrows the hero's display step rather than owning a size. */
 .home-why .display-xl {
   margin-bottom: 0;
   font-size: var(--text-display);
@@ -502,11 +497,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .logo-carousel__viewport {
   overflow: hidden;
-  /* Vertical slack so the tile's top and bottom borders aren't clipped
-     by the overflow boundary. */
+  /* Vertical slack so tile borders aren't clipped by the overflow boundary. */
   padding: 6px 0;
-  /* Fade the strip out at its own edges. A fixed band, not a percentage,
-     so the fade stays at the edge on every viewport. */
+  /* Fixed-width edge fade (not a percentage) so it stays at the edge everywhere. */
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--logo-fade), #000 calc(100% - var(--logo-fade)), transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0, #000 var(--logo-fade), #000 calc(100% - var(--logo-fade)), transparent 100%);
 }
@@ -526,10 +519,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   flex: 0 0 auto;
   display: inline-flex; align-items: center; justify-content: center;
   width: 220px; height: 110px;
-  /* Generous, even padding on all sides — this is the visible
-     "border" around every logo. Each logo then fills the full
-     interior so the surrounding whitespace is consistent regardless
-     of the logo's aspect ratio. */
+  /* Even padding = the visible frame; each logo fills the interior so
+     surrounding whitespace stays consistent across aspect ratios. */
   padding: 18px 32px;
   background: var(--bg-white);
   border: 1px solid var(--border);
@@ -540,10 +531,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .partner-logos__item:hover {
   border-color: var(--bright-blue);
 }
-/* Each img fills the entire tile interior; object-fit: contain then
-   scales the SVG to the largest size that fits, so portrait marks
-   (BFH) and landscape marks (Mobiliar) both reach an edge of the
-   interior box. */
+/* object-fit: contain scales each mark to fit, so portrait and landscape
+   logos both reach an edge of the interior. */
 .logo-tile img,
 .partner-logos__item img {
   width: 100%;
@@ -558,9 +547,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 
 /* ---------- Partner logos (4 plain tiles, large logo) ---------- */
 
-/* Partner logos: same tile treatment as the customer logo strip but as a
-   static centered grid (no carousel). Uniform 220×110 white cards so each
-   logo's surrounding whitespace is consistent regardless of aspect ratio. */
+/* Partner logos: same tile treatment as the customer strip, static grid. */
 .partner-logos {
   display: grid;
   grid-template-columns: repeat(4, 220px);
@@ -651,9 +638,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .testimonial-side__mark svg { width: 100%; height: 100%; }
 .testimonial-side__quote {
   margin: 0; font-style: normal; font-size: var(--text-title-lg); line-height: 1.45;
-  /* Warm ink to stay in the card's own family, but Honey Deep rather than the
-     washed-out grey-olive this used to be: on Honey Wash that only reached
-     2.7:1, where this clears AA at 5.04:1. */
+  /* Honey Deep for AA on the honey wash (5.04:1). */
   color: var(--accent-yellow-deep); position: relative; z-index: 1;
 }
 .testimonial-side__quote::before { content: "“"; }
@@ -695,14 +680,11 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   aspect-ratio: 16/10;
   border-radius: var(--radius-lg);
   background-size: cover; background-position: center;
-  /* The photo stops at the padding edge, so the translucent stroke reads the
-     same all the way round instead of picking up the photo underneath it. */
+  /* Clip to padding-box so the translucent stroke doesn't sit over the photo. */
   background-clip: padding-box;
   border: 1px solid var(--stroke-on-dark);
 }
-/* Sides alternate: on every second row the photo is placed after the copy.
-   `order` only reshuffles auto-placement, so the single-column layout below
-   760px — where the photo is hidden anyway — is unaffected. */
+/* Alternate sides: photo after copy on every second row. */
 .lifecycle-rows__row:nth-child(even) .lifecycle-rows__media { order: 1; }
 /* ---------- Challenges card on photo (flat item surfaces) ---------- */
 
@@ -776,8 +758,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   transition: border-color .2s ease;
   min-height: 260px;
 }
-/* Flat fills: both gradients ran between two near-identical values and read
-   as flat anyway, and the system builds depth from tone, not gradients. */
+/* Flat fills — the system builds depth from tone, not gradients. */
 .next-steps__card--gold {
   background: var(--accent-yellow-deep);
   border-color: rgba(252,238,180,.35);
@@ -787,28 +768,29 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   border-color: rgba(228,240,210,.35);
 }
 .next-steps__card:hover { border-color: rgba(255,255,255,.45); color: #fff; }
+/* Chip and CTA share a darkening veil so pale text clears AA (>6:1) on every
+   card fill; the hairline border still carries the chip's edge. */
 .next-steps__eyebrow {
   display: inline-block;
   font-family: var(--font-ui); font-size: var(--text-eyebrow); font-weight: 700;
   letter-spacing: var(--tracking-eyebrow); text-transform: uppercase;
   color: var(--accent-on-dark);
-  background: rgba(122,192,232,.12);
+  background: var(--veil-recede);
   padding: 4px 12px; border-radius: var(--radius-sm);
   align-self: flex-start;
   border: 1px solid rgba(122,192,232,.3);
 }
 .next-steps__card--gold .next-steps__eyebrow {
-  color: var(--accent-yellow-soft); background: rgba(252,238,180,.18);
+  color: var(--accent-yellow-soft);
   border-color: rgba(252,238,180,.45);
 }
 .next-steps__card--sage .next-steps__eyebrow {
-  color: var(--accent-green-soft); background: rgba(228,240,210,.18);
+  color: var(--accent-green-soft);
   border-color: rgba(228,240,210,.45);
 }
 .next-steps__title { font-size: var(--text-title-lg); font-weight: 500; margin: 0; color: #fff; line-height: 1.25; letter-spacing: 0; text-wrap: balance; }
 .next-steps__desc { color: var(--text-on-dark); margin: 0; font-size: var(--text-sm); line-height: 1.55; }
-/* The warm fills are much lighter than the navy card, where 78% white clears
-   AA comfortably. On gold and sage it lands at 3.4:1, so these go full white. */
+/* Full white on the light gold/sage fills, where 78% white would miss AA. */
 .next-steps__card--gold .next-steps__desc,
 .next-steps__card--sage .next-steps__desc { color: #fff; }
 .next-steps__checklist {
@@ -830,9 +812,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .next-steps__cta {
   margin-top: auto; align-self: flex-start;
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,.12); color: #fff;
+  background: var(--veil-recede); color: #fff;
   padding: 10px 18px; border-radius: var(--radius-pill);
-  border: 1px solid rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.28);
   font-size: var(--text-eyebrow); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.06em;
 }
@@ -842,7 +824,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .next-steps__card--gold .next-steps__cta svg { background: var(--accent-yellow); }
 .next-steps__card--sage .next-steps__cta svg { background: var(--accent-green); }
-.next-steps__card:hover .next-steps__cta { background: rgba(255,255,255,.2); }
+.next-steps__card:hover .next-steps__cta { background: rgba(7,19,44,.34); }
 
 /* ---------- Team grid + member cards ---------- */
 
@@ -885,9 +867,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   width: 96px; height: 96px; border-radius: 9999px; object-fit: cover;
   background: var(--bg);
 }
-/* Monogram stand-in for members with no portrait. Flat Blue Ice disc with the
-   same hairline as every other edge — a placeholder should read quieter than a
-   real photograph, not louder, so no fill that out-contrasts the portraits. */
+/* Monogram stand-in for members with no portrait — quiet flat disc. */
 .team-member__avatar--placeholder {
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--bg-ice);
@@ -929,11 +909,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .team-member:hover .team-member__linkedin { color: var(--dark-blue); }
 
-/* ---------- Icon tile (shared: icon + title, optional body) ----------
-   Used by home (lifecycle rows), team (how-we-work, why-cloud-native),
-   services (assessment cards). Light by default; flips dark inside
-   `.section--dark`. `--stack` puts the icon above the text; `--feature`
-   highlights the tile with the accent-green fill. */
+/* ---------- Icon tile (shared: icon + title, optional body) ---------- */
+/* Light by default; flips dark inside `.section--dark`. `--stack` stacks the
+   icon above the text. */
 .icon-tile {
   display: flex; align-items: center; gap: var(--space-4);
   padding: var(--space-4) var(--space-6);
@@ -1128,9 +1106,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .numbered-step h3 { color: #fff; font-size: var(--text-title); font-weight: 500; margin: 0; }
 .numbered-step p { color: var(--text-on-dark); font-size: var(--text-sm); line-height: 1.55; margin: 0; }
 
-/* 2-col grid for icon tiles. Used by how-we-work, mission.
-   `grid-auto-rows: 1fr` keeps every tile the same height even when
-   titles wrap to two lines. */
+/* 2-col icon-tile grid; `grid-auto-rows: 1fr` equalises tile heights. */
 .icon-tile-grid {
   display: grid; grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 1fr;
@@ -1145,9 +1121,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   letter-spacing: var(--tracking-eyebrow); text-transform: uppercase;
 }
 
-/* Subtle topographic contour background for light sections that need one
-   (e.g. Team's "Unsere Mission" split). Same motif as the hero, dark-blue
-   colorway since it sits on the icy page background. */
+/* Subtle topographic contour background for light sections. */
 .section--topo {
   position: relative;
   overflow: hidden;
@@ -1161,8 +1135,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .section--topo > .container { position: relative; z-index: 1; }
 
-/* Plain text pill — neutral white rounded-full tag, no icon. Used by Team's
-   "Unsere Mission" and "Engagement in der Community" sections. */
+/* Plain text pill — neutral white rounded-full tag, no icon. */
 .text-pill-row {
   display: flex; flex-wrap: wrap; gap: var(--space-3);
 }
@@ -1202,8 +1175,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   z-index: 0;
 }
 .team-mission > .container { position: relative; z-index: 1; }
-/* Heading, lead and pills all stay on the shared type scale — this section is a
-   peer of "Unsere Arbeitsweise", not a hero. */
+/* A peer section, not a hero — stays on the shared type scale. */
 .team-mission .mission-split { gap: clamp(var(--space-8), 5vw, 60px); }
 /* Warum Cloud Native — full-width stacked bars, one highlighted green. */
 .stat-bars {
@@ -1292,14 +1264,13 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   font-size: var(--text-eyebrow); color: rgba(255,255,255,.45); position: relative;
   flex-wrap: wrap;
 }
-.site-footer__bottom a { color: rgba(255,255,255,.6); }
+/* Underlined: colour alone isn't a link cue inside a run of text. */
+.site-footer__bottom a { color: rgba(255,255,255,.6); text-decoration: underline; text-underline-offset: 3px; }
 .site-footer__bottom a:hover { color: #fff; }
 
 /* ---------- Viewport-independent page presentation ---------- */
 
-/* These treatments used to live in the desktop composition query even
-   though they do not depend on available space. Keeping them here gives
-   headings, surfaces and card themes one visual identity at every width. */
+/* Width-independent page treatments — one visual identity at every width. */
 .page-home .hero__title {
   font-weight: 400;
   color: var(--dark-blue);
@@ -1308,7 +1279,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 .home-testimonials {
   background:
     linear-gradient(rgba(229,246,255,.68), rgba(229,246,255,.56)) center / cover no-repeat,
-    url('/images/section/testimonial-bg.jpg') left 42% / 1600px auto no-repeat;
+    url('{{ partial "img-url.html" (dict "src" "/images/section/testimonial-bg.jpg" "width" 1600 "quality" 68) }}') left 42% / 1600px auto no-repeat;
   padding-block: clamp(40px, 4vw, 64px);
 }
 .home-testimonials .section__head { margin-bottom: var(--space-4); }
@@ -1426,8 +1397,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .lifecycle-rows__row,
   .team-grid { grid-template-columns: 1fr; }
   .lifecycle-rows__media { display: none; }
-  /* With the photo gone the row has nothing left to lay out, so it becomes the
-     card itself — title and copy inside one box — and the tile goes flat. */
+  /* Photo gone: the row becomes the card itself and the tile goes flat. */
   .lifecycle-rows__row {
     gap: var(--space-3);
     padding: var(--space-6);
@@ -1439,8 +1409,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
     background: var(--dark-blue-soft);
     border-color: transparent;
   }
-  /* `contents` drops the tile's own box and hands its icon and copy to the row
-     grid, so the icon can be ordered above the title. */
+  /* `contents` hands the tile's icon and copy to the row grid so the icon
+     can be ordered above the title. */
   .lifecycle-rows .icon-tile {
     display: contents;
   }
@@ -1453,13 +1423,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .next-steps--mosaic { grid-template-rows: auto; }
   .next-steps--mosaic .next-steps__card--primary { grid-row: auto; }
   .site-footer__grid { grid-template-columns: 1fr 1fr; }
-  /* Same treatment as `.team-mission__topo`: `cover` scales the artwork off
-     the intrinsic 1920x1145 box, so the narrower the phone the harder it
-     zooms — down here it leaves one near-empty corner of the map. `fill`
-     hands the whole hero box to the SVG instead, and the SVG's own
-     `xMidYMid slice` frames the taller viewBox the <picture> source asks for.
-     That viewBox is sized so the height binds below ~760px: the framing
-     matches `cover` exactly at the breakpoint and zooms *out* from there. */
+  /* `fill` hands the whole hero box to the SVG (its own `xMidYMid slice`
+     frames the taller <picture> viewBox) instead of over-zooming like `cover`. */
   .page-home .hero__media {
     object-fit: fill;
     object-position: center;
@@ -1470,9 +1435,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .icon-tile-grid { grid-template-columns: 1fr; }
 }
 
-/* The homepage's four stage pills wrap to three ragged rows on a phone at
-   their full size; trimming the padding and the icon fits them two per row.
-   The hero band they sit in is shortened alongside them, further down. */
+/* Trim padding and icon so the stage pills fit two per row on a phone. */
 @media (max-width: 680px) {
   .hero-stage-pills {
     gap: var(--space-2);
@@ -1700,12 +1663,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 
 @media (hover: none) and (pointer: coarse) {
-  /* On touch devices both homepage carousels become native horizontal
-     scrollers. Scroll snapping keeps each card aligned without taking swipe
-     gestures away from the browser. */
-  /* Break out of the container gutter so the strip — and with it the edge
-     fade — runs to the page edges; the track keeps the gutter as padding so
-     the first tile still lines up with the section heading. */
+  /* On touch, both carousels become native snap scrollers. The strip breaks
+     out of the gutter (track re-pads it) so the fade runs to the page edges. */
   .home-customers .logo-carousel {
     --logo-fade: 10px;
     padding: var(--space-4) 0 0;
@@ -1737,13 +1696,10 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .home-customers .logo-tile {
     scroll-snap-align: start;
   }
-  /* The cloned second copy stays in the flow here too: it is what lets the
-     auto-scroll (and a swipe past the end) wrap around invisibly. */
   .home-testimonials .testimonial-carousel__nav {
     display: none;
   }
-  /* The dots stay: swiping is the control, but they are the only cue for how
-     many quotes there are and where in the strip you currently sit. */
+  /* Dots stay — the only cue for position while swiping. */
   .home-testimonials .testimonial-carousel__dots {
     margin-top: var(--space-3);
   }
@@ -1751,9 +1707,7 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .home-testimonials .testimonial-carousel {
     max-width: none;
   }
-  /* No padding or gap on the scroller: each slide is exactly one viewport
-     wide, so a snapped quote fills the strip and no sliver of its neighbours
-     shows at rest. Breathing room lives inside the slide instead. */
+  /* No gap: each slide is one viewport wide, so neighbours never peek at rest. */
   .home-testimonials .testimonial-carousel__viewport {
     display: flex;
     align-items: stretch;
@@ -1779,31 +1733,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   .site-header__logo {
     height: 38px;
   }
-  /* No `min-height` here on purpose: this block used to raise the hero to
-     clamp(520px, 68svh, 640px), a higher floor *and* a steeper slope than the
-     desktop ramp, so every viewport shorter than ~920px got a hero taller than
-     the same page showed on a laptop — the band grew as the screen shrank.
-     Tablet now follows the one ramp on `.hero`; only the padding tightens. */
-  .hero {
-    padding: 48px 0;
-  }
-  /* From tablet down the framed tiles shrink and sit closer together, so
-     several logos fit in the strip at once. */
+  /* Tablet down: smaller, tighter tiles so several logos fit at once. */
   .logo-tile { width: 110px; height: 58px; padding: 6px 8px; }
   .logo-carousel__track { gap: var(--space-2); }
-}
-
-/* Phones undo the band growth above. 68svh suits a tablet, where the hero is
-   still wide enough to need the height; on a 390px screen it made the hero
-   574px under a 64px header — three quarters of the viewport, and on Team a
-   268px-tall block of copy floating in ~300px of spare photo. Sized to end
-   inside the first screen so the section below shows its top edge. Must stay
-   after the ≤999px block: same specificity, so source order decides. */
-@media (max-width: 680px) {
-  .hero {
-    min-height: clamp(320px, 46svh, 440px);
-    padding: var(--space-8) 0;
-  }
 }
 
 /* ---------- Markdown prose (legal pages) ---------- */
@@ -1829,10 +1761,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 /* ---------- Reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__media.is-parallax {
-    transform: none;
-    will-change: auto;
-  }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

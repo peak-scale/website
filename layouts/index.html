@@ -75,7 +75,7 @@
         <div class="logo-carousel__track" data-logo-track>
           {{ range hugo.Data.customers }}
           <a class="logo-tile" href="{{ .href }}" rel="noopener" aria-label="{{ .name }}">
-            <img src="{{ .image }}" alt="{{ .name }}" loading="lazy">
+            {{ partial "img.html" (dict "src" .image "alt" .name "widths" (slice 160 320) "sizes" "160px" "loading" "lazy" "decoding" "async") }}
           </a>
           {{ end }}
         </div>
@@ -131,7 +131,7 @@
 <section class="section home-challenges">
   <div class="container">
     <div class="challenges-glass challenges-glass--split">
-      <div class="challenges-glass__bg" {{ with .bg }}style="--challenges-bg: url('{{ . }}');"{{ end }}></div>
+      <div class="challenges-glass__bg" {{ with .bg }}style="--challenges-bg: url('{{ partial "img-url.html" (dict "src" . "width" 1600 "quality" 68) }}');"{{ end }}></div>
       <div class="challenges-glass__inner challenges-glass__inner--split">
         <div class="challenges-glass__intro">
           <h2>{{ .title }}</h2>
@@ -162,7 +162,7 @@
     <div class="partner-logos">
       {{ range hugo.Data.partners }}
       <a class="partner-logos__item" href="{{ .href }}" rel="noopener">
-        <img src="{{ .image }}" alt="{{ .name }}" loading="lazy">
+        {{ partial "img.html" (dict "src" .image "alt" .name "widths" (slice 160 320) "sizes" "160px" "loading" "lazy" "decoding" "async") }}
       </a>
       {{ end }}
     </div>

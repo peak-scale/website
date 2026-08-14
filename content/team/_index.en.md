@@ -5,7 +5,7 @@ aliases:
   - /about/
   - /contact/
 hero:
-  title: "The team behind Peak Scale"
+  title: "The team behind<br>Peak Scale"
   lead: "We are a specialised engineering and architecture team for cloud native platforms – pragmatic, technically grounded, and close to operational reality."
   sub: "Hands-on – directly with the experts who also think about operations"
 team_block:

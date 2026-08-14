@@ -8,7 +8,7 @@
   {{ range $i, $row := .rows }}
   <div class="lifecycle-rows__row">
     <h3 class="lifecycle-rows__title">{{ $row.title }}</h3>
-    <div class="lifecycle-rows__media" style="background-image: url('{{ index $images (mod $i (len $images)) }}');"></div>
+    <div class="lifecycle-rows__media" style="background-image: url('{{ partial "img-url.html" (dict "src" (index $images (mod $i (len $images))) "width" 1200) }}');"></div>
     <div class="icon-tile icon-tile--stack">
       {{ with $icons }}<div class="icon-tile__icon">{{ partial "icon.html" (dict "name" (index . (mod $i (len .))) "size" 24) }}</div>{{ end }}
       <p class="icon-tile__body">{{ $row.desc | default $row.body }}</p>

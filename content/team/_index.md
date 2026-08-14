@@ -6,7 +6,7 @@ aliases:
   - /ueber-uns/
   - /contact/
 hero:
-  title: "Das Team hinter Peak Scale"
+  title: "Das Team hinter<br>Peak Scale"
   lead: "Wir sind ein spezialisiertes Engineering- und Architekturteam für Cloud Native Plattformen – pragmatisch, technisch fundiert und nah an der Betriebsrealität."
   sub: "Hands-on – direkt mit den Experten, die auch den Betrieb mitdenken"
 team_block:

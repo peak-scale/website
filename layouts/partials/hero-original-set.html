@@ -1,0 +1,17 @@
+{{/* Return a responsive srcset from the original photograph associated with a
+     side-extended desktop hero.
+
+     Page-specific framing belongs here so preloads and <picture> sources can
+     never drift apart. */}}
+{{- $originalSrc := printf "%s.jpg" (strings.TrimSuffix "-wide.png" .src) -}}
+{{- $crop := "" -}}
+{{- if strings.HasSuffix $originalSrc "/produkte-photo.jpg" -}}
+  {{- $crop = site.Params.productHeroOriginalCrop -}}
+{{- end -}}
+{{- return partial "img-set.html" (dict
+  "src" $originalSrc
+  "widths" .widths
+  "quality" site.Params.heroQuality
+  "qualitySteps" site.Params.heroOriginalQualitySteps
+  "crop" $crop
+) -}}

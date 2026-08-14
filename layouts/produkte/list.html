@@ -3,8 +3,8 @@
 
 {{/* ---------- Hero (full-bleed climbing-wall photo) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero{{ if eq (.ink | default "light") "dark" }} hero--on-dark{{ end }}">
-  <img class="hero__media hero__media--top" src="/images/hero/produkte-photo.webp" alt="" width="2400" height="1592" fetchpriority="high" aria-hidden="true">
+<section class="hero hero--tint{{ if eq (.ink | default "light") "dark" }} hero--on-dark{{ end }}">
+  {{ partial "hero-img.html" (dict "src" "/images/hero/produkte-photo-wide.png" "class" "hero__media hero__media--top") }}
   <div class="container">
     <div class="hero__inner">
       <h1 class="hero__title">{{ .title }}</h1>
@@ -63,7 +63,7 @@
       {{ $card := . }}
       <div class="card partner-card">
         {{ with index $partnerImages $card.title }}
-        <img class="partner-card__logo" src="{{ . }}" alt="{{ $card.title }}" loading="lazy">
+        {{ partial "img.html" (dict "src" . "alt" $card.title "class" "partner-card__logo" "loading" "lazy" "decoding" "async") }}
         {{ end }}
         {{ with $card.role }}<div class="eyebrow partner-card__role">{{ . }}</div>{{ end }}
         <p>{{ $card.body }}</p>
@@ -88,7 +88,7 @@
       <h2>{{ .title | safeHTML }}</h2>
       <p class="lead">{{ .lead }}</p>
     </div>
-    <div class="journey-banner" style="background-image: var(--overlay-photo), url('/images/section/challenges.jpg');"></div>
+    <div class="journey-banner" style="background-image: var(--overlay-photo), url('{{ partial "img-url.html" (dict "src" "/images/section/challenges.jpg" "width" 1600) }}');"></div>
     <div class="grid grid--3 col-narrow">
       {{ range $i, $c := .cards }}
       <div class="numbered-step">

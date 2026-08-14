@@ -3,11 +3,13 @@
 
 {{/* ---------- Hero (full-bleed rope-knot photo) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero{{ if eq (.ink | default "light") "dark" }} hero--on-dark{{ end }}">
-  <img class="hero__media" src="/images/hero/team-photo.webp" alt="" width="2400" height="1319" fetchpriority="high" aria-hidden="true">
+<section class="hero hero--tint{{ if eq (.ink | default "light") "dark" }} hero--on-dark{{ end }}">
+  {{ partial "hero-img.html" (dict "src" "/images/hero/team-photo-wide.png" "class" "hero__media") }}
   <div class="container">
     <div class="hero__inner">
-      <h1 class="hero__title">{{ .title }}</h1>
+      {{/* safeHTML so the title can carry the Figma file's line break; it is
+           author-controlled front matter and feeds no meta tag. */}}
+      <h1 class="hero__title">{{ .title | safeHTML }}</h1>
       <p class="lead">{{ .lead }}</p>
       {{ with .sub }}<span class="hero__badge">{{ . }}</span>{{ end }}
     </div>
@@ -36,15 +38,20 @@
       {{ $parts := split .name " " }}
       {{ $initials := printf "%s%s" (substr (index $parts 0) 0 1) (substr (index $parts (sub (len $parts) 1)) 0 1) }}
       {{ if .linkedin }}
-      <a class="card team-member" href="{{ .linkedin }}" rel="noopener" aria-label="LinkedIn {{ if eq $lang "de" }}–{{ else }}—{{ end }} {{ .name }}">
-        <span class="team-member__linkedin" aria-hidden="true">
+      {{/* No aria-label: one would override the card's own text and leave the
+           accessible name not matching what is on screen (WCAG 2.5.3). The
+           destination is announced by the hidden word next to the mark. */}}
+      <a class="card team-member" href="{{ .linkedin }}" rel="noopener">
+        <span class="team-member__linkedin">
           {{ partial "icon.html" (dict "name" "linkedin" "size" 24) }}
+          <span class="visually-hidden">LinkedIn</span>
         </span>
       {{ else }}
       <div class="card team-member team-member--no-link">
       {{ end }}
         {{ if .image }}
-        <img class="team-member__avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy" width="96" height="96">
+        {{/* Decorative: the name it would repeat sits right beside it. */}}
+        {{ partial "img.html" (dict "src" .image "alt" "" "class" "team-member__avatar" "widths" (slice 96 192) "sizes" "96px" "loading" "lazy" "decoding" "async" "width" 96 "height" 96) }}
         {{ else }}
         <span class="team-member__avatar team-member__avatar--placeholder" aria-hidden="true">{{ $initials }}</span>
         {{ end }}

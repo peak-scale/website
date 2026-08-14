@@ -3,8 +3,8 @@
 
 {{/* ---------- Hero (full-bleed mountaineer photo, lifecycle path between) ---------- */}}
 {{ with .Params.hero }}
-<section class="hero{{ if eq (.ink | default "light") "dark" }} hero--on-dark{{ end }}">
-  <img class="hero__media" src="/images/hero/services-photo.webp" alt="" width="2400" height="1600" fetchpriority="high" aria-hidden="true">
+<section class="hero hero--tint{{ if eq (.ink | default "light") "dark" }} hero--on-dark{{ end }}">
+  {{ partial "hero-img.html" (dict "src" "/images/hero/services-photo-wide.png" "class" "hero__media") }}
   <div class="container">
     <div class="hero__inner">
       <h1 class="hero__title">{{ .title }}</h1>
@@ -136,7 +136,7 @@
       {{ end }}
     </div>
     <div class="challenges-glass">
-      <div class="challenges-glass__bg" style="--challenges-bg: url('/images/section/mountaineers.jpg');"></div>
+      <div class="challenges-glass__bg" style="--challenges-bg: url('{{ partial "img-url.html" (dict "src" "/images/section/mountaineers.jpg" "width" 1200 "quality" 68) }}');"></div>
       <div class="challenges-glass__inner output-block">
         <div class="eyebrow output-block__title">{{ .output_title }}</div>
         <ul class="checklist checklist--on-dark output-block__list">

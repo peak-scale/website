@@ -39,22 +39,45 @@
 
   {{- $heroImage := "" -}}
   {{- $heroType := "image/webp" -}}
+  {{- $heroSizes := "100vw" -}}
   {{- if .IsHome -}}
     {{- $heroImage = "/images/topo/hero-topo.svg" -}}
     {{- $heroType = "image/svg+xml" -}}
   {{- else if eq .Section "services" -}}
-    {{- $heroImage = "/images/hero/services-photo.webp" -}}
+    {{- $heroImage = "/images/hero/services-photo-wide.png" -}}
+    {{- $heroSizes = site.Params.wideHeroSizes -}}
   {{- else if eq .Section "produkte" -}}
-    {{- $heroImage = "/images/hero/produkte-photo.webp" -}}
+    {{- $heroImage = "/images/hero/produkte-photo-wide.png" -}}
+    {{- $heroSizes = site.Params.wideHeroSizes -}}
   {{- else if eq .Section "team" -}}
-    {{- $heroImage = "/images/hero/team-photo.webp" -}}
+    {{- $heroImage = "/images/hero/team-photo-wide.png" -}}
+    {{- $heroSizes = site.Params.wideHeroSizes -}}
   {{- end -}}
-  {{- with $heroImage }}
-  <link rel="preload" href="{{ . }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+  {{- with $heroImage -}}
+    {{/* imagesrcset/imagesizes must mirror the hero <img> exactly, or the
+         browser preloads one rendition and then fetches another. */}}
+    {{- $set := partial "img-set.html" (dict "src" . "widths" site.Params.heroWidths "quality" site.Params.heroQuality "qualitySteps" site.Params.heroQualitySteps) }}
+  {{ if $set.processed -}}
+    {{- $original := partial "hero-original-set.html" (dict "src" . "widths" site.Params.heroOriginalWidths) -}}
+  {{/* html/template treats the unrecognised `imagesrcset` as a plain URL and
+       percent-escapes the separating spaces, which breaks the candidate list —
+       so the attribute is assembled and marked safe by hand. */}}
+  {{- if $original.processed }}
+  <link rel="preload" {{ printf "imagesrcset=%q" $original.srcset | safeHTMLAttr }} imagesizes="{{ site.Params.heroOriginalSizes }}" media="{{ site.Params.heroOriginalMedia }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+  <link rel="preload" {{ printf "imagesrcset=%q" $set.srcset | safeHTMLAttr }} imagesizes="{{ $heroSizes }}" media="{{ site.Params.heroDesktopMedia }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+    {{- else }}
+  <link rel="preload" {{ printf "imagesrcset=%q" $set.srcset | safeHTMLAttr }} imagesizes="{{ $heroSizes }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+    {{- end }}
+  {{- else -}}
+  <link rel="preload" href="{{ $set.src }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+  {{- end }}
   {{- end }}
 
   {{- $base := resources.Get "css/base.css" -}}
-  {{- $site := resources.Get "css/site.css" -}}
+  {{/* site.css goes through the template engine so its background-image URLs can
+       point at Hugo-processed renditions (see `img-url.html`) rather than the
+       full-size originals. */}}
+  {{- $site := resources.Get "css/site.css" | resources.ExecuteAsTemplate "css/site.built.css" . -}}
   {{- $css := slice $base $site | resources.Concat "css/peakscale.css" | minify | fingerprint -}}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 

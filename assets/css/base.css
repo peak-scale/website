@@ -41,6 +41,10 @@
     --stroke-on-dark: rgba(255, 255, 255, .16);
     --text-on-dark: rgba(255, 255, 255, .78);
     --accent-on-dark: rgb(122, 192, 232);     /* lighter blue for eyebrows / meta */
+    /* Veil for chips and pills that sit on a coloured card fill. It darkens
+       rather than lightens, so pale type keeps its contrast on the mid-tone
+       gold and sage surfaces as well as on navy. */
+    --veil-recede: rgba(7, 19, 44, .22);
 
     /* Accents (small dosage: checkmarks, tags, status, illustration details) */
     --accent-yellow: rgb(232, 184, 60);       /* warm honey / amber */
@@ -58,6 +62,19 @@
        background-images so the photo stays readable. Used inline in
        templates as the first layer of `background-image`. */
     --overlay-photo: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2));
+
+    /* Hero photo tints. Each section hero in the Figma file carries a flat
+       colour wash over its photograph, read straight out of `canvas.fig`
+       (the frame's fill stack: page fill, image, then this paint). Services
+       is a linear gradient there — rgb(5,128,196) stepping a=.50 → .60 under
+       a 70% layer opacity, i.e. 35% at the left edge to 42% at the right —
+       flattened here to its midpoint, since a wash that reads as uniform is
+       the intent and a ramp only fights the copy that sits on it.
+       Produkte's yellow is its own colour, not `--accent-yellow`: the tint
+       needs the saturation to survive at 35% over grey concrete. */
+    --hero-tint-services: rgba(5, 128, 196, .385);  /* fig: 70% × a .50→.60 */
+    --hero-tint-produkte: rgba(240, 205, 5, .35);   /* fig: solid @ 35% */
+    --hero-tint-team: rgba(144, 202, 125, .30);     /* fig: solid @ 30% */
 
 }
 
@@ -112,19 +129,28 @@
     /* 8-step type scale. Display sizes scale fluidly; the rest are fixed.
        Pull-quote / lifecycle stage / prose h2 collapse into title-lg.
 
-       The three fluid slopes are chosen so every one of them reaches its
-       maximum at exactly 1440px (72/1440 = 5vw, 48/1440 = 3.3333vw,
-       36/1440 = 2.5vw). Below their floors nothing moves, above 1440 nothing
-       moves, and in between the three grow in step instead of each crossing
-       over at its own width — the scale behaves as one system at every size.
+       Each display size ramps across exactly one window: floor at 390px (a
+       phone), maximum at 1200px, flat outside it. The three therefore start
+       and finish together — the scale behaves as one system at every width.
+
+       1200 rather than 1440 is the top anchor because the ramp used to end at
+       the widest common laptop, so nearly every real desktop caught the
+       headline mid-descent: at 1280 the hero read 64px, at 1100 only 55px,
+       against a 72px design. Ending at 1200 gives the full size to every
+       desktop and shifts the whole ramp up by ~13px without steepening it —
+       a 768px tablet now gets 51px where it got 38px.
+
+       The `rem` term is what does the shifting: a pure `Nvw` line is pinned to
+       the origin, so the only way to reach the maximum sooner is to make it
+       steeper. Splitting it into a fixed part plus a slope decouples the two,
+       and as a bonus the type still responds to the reader's own font size.
 
        The floors are set for a 390px phone, not for the tablet width where
        the slope happens to arrive: at 40px the German hero headline took four
-       lines and dominated the viewport. Lowering them also lets the headings
-       start growing from phone width instead of standing still to ~800px. */
-    --text-display:    clamp(32px, 5vw, 72px);       /* hero only */
-    --text-display-sm: clamp(24px, 3.3333vw, 48px);  /* section headings */
-    --text-display-xs: clamp(22px, 2.5vw, 36px);     /* feature-card anchor tile */
+       lines and dominated the viewport. */
+    --text-display:    clamp(32px, 0.8rem  + 4.94vw, 72px);  /* hero only */
+    --text-display-sm: clamp(24px, 0.78rem + 2.96vw, 48px);  /* section headings */
+    --text-display-xs: clamp(22px, 0.95rem + 1.73vw, 36px);  /* feature-card anchor tile */
     --text-title-lg:   22px;                       /* pull quote, lifecycle stage */
     --text-title:      18px;                       /* all card h3 */
     --text-body:       16px;                       /* body, hero lead, lead */
@@ -321,3 +347,15 @@ a.card:hover,
     opacity: 0.7;
 }
 .nav-sep svg { display: block; }
+
+/* Text only assistive tech reads. Used where an icon carries the meaning and a
+   word is needed to name it, without that word taking up layout. */
+.visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}

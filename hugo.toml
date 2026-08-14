@@ -9,6 +9,23 @@ disableKinds = ["taxonomy", "term"]
 # Intentionally empty — no tags/categories on a marketing site.
 
 [params]
+# Wide (side-extended 3:1) hero renditions; shared by img.html and the head.html preload.
+heroWidths = [640, 828, 1280, 1600, 1920, 2400, 3200, 3840]
+# Original (non-outpainted) photo, served on portrait/narrow boxes by aspect ratio.
+heroOriginalWidths = [480, 640, 828, 960, 1280, 1600, 1920, 2400]
+heroOriginalMedia = "(max-aspect-ratio: 3/2)"
+heroOriginalSizes = "max(100vw, min(calc(57vw + 51svh), 120svh))"
+heroDesktopMedia = "(min-aspect-ratio: 1501/1000)"
+heroOriginalQualitySteps = [[828, 66], [2400, 74]]
+# Products only: crop the original to match the wide hero's vertical framing.
+productHeroOriginalCrop = "4096x2048 Top"
+# 3:1 heroes in taller boxes: cover scales off height, so 100vw understates width.
+# Keep in sync with the hero height ramp in CSS.
+wideHeroSizes = "max(100vw, clamp(1410px, 174svh, 2010px))"
+# WebP quality by rendition width [maxWidth, quality]: q86 above 1280 where
+# wide renditions paint near 1:1; lower steps stay lean on dense displays.
+heroQualitySteps = [[828, 66], [1280, 74], [4000, 86]]
+heroQuality = 74
 contactEmail = "welcome@peakscale.ch"
 companyName = "Peak Scale GmbH"
 companyAddress = "Ryffligässchen 5"

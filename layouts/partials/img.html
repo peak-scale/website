@@ -1,0 +1,48 @@
+{{/* Responsive image tag. Re-encodes a raster source from `assets/` to WebP at
+     each requested width and emits a srcset, so a phone never downloads the
+     2400px original. Anything Hugo cannot process (SVGs, files still living in
+     `static/`) falls through to the plain path untouched.
+
+     dict:
+       src           site-relative path, e.g. "/images/hero/team-photo.jpg"
+       alt           required (pass "" for decorative images)
+       widths        pixel widths for the srcset; widths larger than the source
+                     are skipped, so an over-eager list is harmless
+       sizes         the sizes attribute (default "100vw")
+       class, loading, fetchpriority, decoding, quality, ariaHidden
+       width/height  intrinsic size for the unprocessed fallback path only;
+                     processed images take theirs from the source file
+     Intrinsic dimensions are always set on processed images so the browser can
+     reserve the box before the bytes arrive. */}}
+{{/* qualitySteps must be forwarded: head.html builds the preload from img-set
+     directly, so dropping it here would give the tag and the preload different
+     renditions and make the browser fetch both. */}}
+{{- $set := partial "img-set.html" (dict "src" .src "widths" .widths "quality" .quality "qualitySteps" .qualitySteps) -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class -}}
+{{- $loading := .loading -}}
+{{- $priority := .fetchpriority -}}
+{{- $decoding := .decoding -}}
+{{- $hidden := .ariaHidden -}}
+{{- $width := cond $set.processed $set.width .width -}}
+{{- $height := cond $set.processed $set.height .height -}}
+
+{{/* SVGs are served as-is, so Hugo never measures them and the tag would ship
+     unsized. Recover the aspect ratio from the root viewBox instead — enough for
+     the browser to reserve the box, which is all the attributes are for here. */}}
+{{- if and (not $set.processed) (not $width) (strings.HasSuffix .src ".svg") -}}
+  {{- $path := printf "static%s" .src -}}
+  {{- if fileExists $path -}}
+    {{- with index (findRE `viewBox="[^"]*"` (readFile $path) 1) 0 -}}
+      {{- $box := . | replaceRE `viewBox="|"` "" | replaceRE `[,\s]+` " " | strings.TrimSpace -}}
+      {{- $parts := split $box " " -}}
+      {{/* viewBox units are often fractional; width/height attributes must be
+           integers or the browser discards them. */}}
+      {{- if eq (len $parts) 4 -}}
+        {{- $width = int (math.Round (float (index $parts 2))) -}}
+        {{- $height = int (math.Round (float (index $parts 3))) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<img{{ with $class }} class="{{ . }}"{{ end }} src="{{ $set.src }}"{{ if $set.processed }} srcset="{{ $set.srcset }}" sizes="{{ .sizes | default "100vw" }}"{{ end }}{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }} alt="{{ $alt }}"{{ with $loading }} loading="{{ . }}"{{ end }}{{ with $priority }} fetchpriority="{{ . }}"{{ end }}{{ with $decoding }} decoding="{{ . }}"{{ end }}{{ if $hidden }} aria-hidden="true"{{ end }}>
