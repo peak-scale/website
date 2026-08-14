@@ -14,28 +14,28 @@
   {{- $ogImage := absURL (or .Params.image .Site.Params.ogImage) -}}
   {{- $ogImageWidth := 500 -}}
   {{- $ogImageHeight := 500 -}}
-  {{- $ogImageType := "image/png" -}}
-  {{- $ogHero := "" -}}
+  {{- $ogImageLanguageSuffix := "" -}}
+  {{- if eq .Site.Language.Lang "en" -}}{{- $ogImageLanguageSuffix = "-en" -}}{{- end -}}
   {{- if .IsHome -}}
-    {{- $ogImage = absURL "/images/og/home.png" -}}
-    {{- $ogImageWidth = 1200 -}}
-    {{- $ogImageHeight = 630 -}}
+    {{- $ogImage = absURL (printf "/images/og/home%s.jpg" $ogImageLanguageSuffix) -}}
+    {{- $ogImageWidth = 2400 -}}
+    {{- $ogImageHeight = 1260 -}}
   {{- else if eq .Section "services" -}}
-    {{- $ogHero = "/images/hero/services-photo-wide.png" -}}
+    {{- $ogImage = absURL (printf "/images/og/services%s.jpg" $ogImageLanguageSuffix) -}}
+    {{- $ogImageWidth = 2400 -}}
+    {{- $ogImageHeight = 1260 -}}
   {{- else if eq .Section "produkte" -}}
-    {{- $ogHero = "/images/hero/produkte-photo-wide.png" -}}
+    {{- $ogImage = absURL (printf "/images/og/produkte%s.jpg" $ogImageLanguageSuffix) -}}
+    {{- $ogImageWidth = 2400 -}}
+    {{- $ogImageHeight = 1260 -}}
   {{- else if eq .Section "team" -}}
-    {{- $ogHero = "/images/hero/team-photo-wide.png" -}}
+    {{- $ogImage = absURL (printf "/images/og/team%s.jpg" $ogImageLanguageSuffix) -}}
+    {{- $ogImageWidth = 2400 -}}
+    {{- $ogImageHeight = 1260 -}}
   {{- end -}}
-  {{- with $ogHero -}}
-    {{- with resources.Get (strings.TrimPrefix "/" .) -}}
-      {{- $og := .Fill "1200x630 smart jpg q85" -}}
-      {{- $ogImage = $og.Permalink -}}
-      {{- $ogImageWidth = $og.Width -}}
-      {{- $ogImageHeight = $og.Height -}}
-      {{- $ogImageType = "image/jpeg" -}}
-    {{- end -}}
-  {{- end -}}
+  {{- /* Derived, not hardcoded: the section cards are JPEG, the site-wide
+         fallback (`ogImage` in hugo.toml) is a PNG. */ -}}
+  {{- $ogImageType := cond (strings.HasSuffix $ogImage ".png") "image/png" "image/jpeg" -}}
   {{- $ogLocale := "en_GB" -}}
   {{- if eq .Site.Language.Lang "de" -}}{{- $ogLocale = "de_CH" -}}{{- end -}}
 
