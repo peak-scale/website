@@ -2,7 +2,7 @@
   image: /images/team/mathiasherzog.png
   linkedin: https://www.linkedin.com/in/mathias-herzog-888a6788/
   role_de: Cloud Architect & Consultant, Gründer
-  role_en: Cloud Architect & Consultant, Co-Founder
+  role_en: Cloud Architect & Consultant, Co-founder
   focus_de: "Cloud-Native-Architektur • Platform Engineering • Schulung & Beratung • Automatisierung"
   focus_en: "Cloud native architecture • Platform engineering • Training & consulting • Automation"
 
@@ -10,7 +10,7 @@
   image: /images/team/johanngyger.png
   linkedin: https://www.linkedin.com/in/johanngyger/
   role_de: Cloud Architect & Consultant, Gründer
-  role_en: Cloud Architect & Consultant, Co-Founder
+  role_en: Cloud Architect & Consultant, Co-founder
   focus_de: "Software-Architektur • Cloud Native • GitOps & Security • Community"
   focus_en: "Software architecture • Cloud native • GitOps & security • Community"
 
@@ -40,8 +40,8 @@
 - name: Philipp Grogg
   image: /images/team/philippgrogg.png
   linkedin: https://www.linkedin.com/in/philipp-grogg-1a369012b/
-  role_de: Senior Software Engineer (Contractor)
-  role_en: Senior Software Engineer (Contractor)
+  role_de: Cloud Architect & Platform Engineer (Contractor)
+  role_en: Cloud Architect & Platform Engineer (Contractor)
   focus_de: "CI/CD • DevOps • Software-Architektur • Supply Chain Security"
   focus_en: "CI/CD • DevOps • Software architecture • Supply chain security"
 
