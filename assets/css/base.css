@@ -126,7 +126,7 @@
     --font-ui: 'Inter', system-ui, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-    /* 8-step type scale. Display sizes scale fluidly; the rest are fixed.
+    /* 8-token type scale. Display sizes scale fluidly; the rest are fixed.
        Pull-quote / lifecycle stage / prose h2 collapse into title-lg.
 
        Each display size ramps across exactly one window: floor at 390px (a
@@ -155,7 +155,7 @@
     --text-title:      18px;                       /* all card h3 */
     --text-body:       16px;                       /* body, hero lead, lead */
     --text-sm:         14px;                       /* descriptions, captions */
-    --text-eyebrow:    12px;                       /* uppercase labels, nav, micro */
+    --text-eyebrow:    14px;                       /* uppercase labels, nav, micro */
 
     --w-regular: 400;
     --w-medium: 500;
@@ -260,7 +260,7 @@ p, .body {
 
 .mono, code, kbd, samp, pre {
     font-family: var(--font-mono);
-    font-size: .9em;
+    font-size: max(.9em, 14px);
 }
 
 a {
