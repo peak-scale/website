@@ -1,5 +1,176 @@
 {{ define "main" }}
+{{- $lang := .Site.Language.Lang -}}
 
-  {{ partial "section-hero.html" . }}
+{{/* ---------- Hero (topo texture bg, lead, yellow stage-pill row) ---------- */}}
+{{ with .Params.hero }}
+<section class="hero">
+  {{/* Narrow viewports get a zoomed-out window into the same artwork (see
+       `.hero__media` in site.css) so the contours stay legible instead of
+       cropping to a near-empty corner. */}}
+  <picture>
+    <source media="(max-width: 760px)" srcset="/images/topo/hero-topo.svg#svgView(viewBox(202,-272,1516,1688))">
+    <img class="hero__media" src="/images/topo/hero-topo.svg" alt="" width="1920" height="1145" fetchpriority="high" aria-hidden="true">
+  </picture>
+  <div class="container">
+    <div class="hero__inner">
+      <h1 class="hero__title">{{ .title }}</h1>
+      <p class="lead">{{ .lead }}</p>
+      {{ with $.Params.mountain.stages }}
+      {{ $stages := . }}
+      {{ $icons := slice "stage-cloud" "stage-assessments" "stage-platform" "stage-training" }}
+      {{ $order := slice 0 2 1 3 }}
+      {{ $anchors := slice "architecture" "engineering" "assessments" "training" }}
+      {{ $servicesURL := "" }}{{ with site.GetPage "/services" }}{{ $servicesURL = .RelPermalink }}{{ end }}
+      <div class="hero-stage-pills">
+        {{ range $i, $stageIndex := $order }}
+        {{ $stage := index $stages $stageIndex }}
+        <a class="hero-stage-pill" href="{{ $servicesURL }}#{{ index $anchors $stageIndex }}"><span class="hero-stage-pill__icon">{{ partial "icon.html" (dict "name" (index $icons $i) "size" 16) }}</span>{{ $stage.name }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Why Peak Scale (centered display headline, featured card 1, icons on rest) ---------- */}}
+{{ with .Params.why }}
+<section class="section home-why">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="display-xl">{{ .title | safeHTML }}</h2>
+      {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
+    </div>
+    {{ $items := .items }}
+    {{ $first := index $items 0 }}
+    {{ $rest := after 1 $items }}
+    <div class="why-grid">
+      <div class="card card--feature">
+        <h3>{{ $first.title | safeHTML }}</h3>
+        {{ with $first.body }}<p>{{ . }}</p>{{ end }}
+      </div>
+      {{ $whyIcons := slice "building-briefcase" "users-settings" "wallet-lock" "folder-settings" "users-focus" }}
+      {{ range $i, $item := $rest }}
+      <div class="card">
+        <span class="card__icon">{{ partial "icon.html" (dict "name" (index $whyIcons $i) "size" 32) }}</span>
+        <h3>{{ .title }}</h3>
+        <p>{{ .body }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Customers logo strip ---------- */}}
+{{ with .Params.customers }}
+<section class="section section--alt home-customers">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title | safeHTML }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    <div class="logo-carousel" data-logo-carousel aria-label="{{ if eq $lang "de" }}Kunden{{ else }}Customers{{ end }}">
+      <div class="logo-carousel__viewport">
+        <div class="logo-carousel__track" data-logo-track>
+          {{ range hugo.Data.customers }}
+          <a class="logo-tile" href="{{ .href }}" rel="noopener" aria-label="{{ .name }}">
+            {{ partial "img.html" (dict "src" .image "alt" .name "widths" (slice 160 320) "sizes" "160px" "loading" "lazy" "decoding" "async") }}
+          </a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Testimonials carousel (centered with chevrons) ---------- */}}
+{{ with .Params.testimonial }}
+<section class="section home-testimonials">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .eyebrow | safeHTML }}</h2>
+    </div>
+    <div class="testimonial-carousel" data-carousel>
+      <div class="testimonial-carousel__viewport">
+        <button class="testimonial-carousel__nav testimonial-carousel__nav--prev" type="button" data-prev aria-label="{{ if eq $lang "de" }}Vorheriges Testimonial{{ else }}Previous testimonial{{ end }}">{{ partial "icon.html" (dict "name" "chevron-left" "size" 24) }}</button>
+        <button class="testimonial-carousel__nav testimonial-carousel__nav--next" type="button" data-next aria-label="{{ if eq $lang "de" }}Nächstes Testimonial{{ else }}Next testimonial{{ end }}">{{ partial "icon.html" (dict "name" "chevron-right" "size" 24) }}</button>
+        {{ range hugo.Data.testimonials }}
+        <figure class="testimonial" data-slide>
+          <blockquote class="testimonial__quote">{{ if eq $lang "de" }}{{ .quote_de }}{{ else }}{{ .quote_en }}{{ end }}</blockquote>
+          <figcaption class="testimonial__cite">– {{ if eq $lang "de" }}{{ .author_de }}{{ else }}{{ .author_en }}{{ end }}</figcaption>
+        </figure>
+        {{ end }}
+      </div>
+      <div class="testimonial-carousel__dots" data-dots aria-label="{{ if eq $lang "de" }}Testimonial-Navigation{{ else }}Testimonial navigation{{ end }}"></div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- What IT teams gain (dark, 4 horizontal rows) ---------- */}}
+{{ with .Params.lifecycle }}
+<section class="section section--dark section--accent-green home-lifecycle">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title | safeHTML }}</h2>
+      <p class="lead">{{ .lead }}</p>
+    </div>
+    {{ partial "lifecycle-rows.html" (dict
+      "rows" .cards
+      "images" (slice "/images/section/cloud-architecture.jpg" "/images/section/platform-engineering.jpg" "/images/section/assessments.jpg" "/images/section/training.jpg")
+      "icons" (slice "cloud" "platform" "assessment" "training")
+    ) }}
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Challenges glass card on photo (left intro + right card list) ---------- */}}
+{{ with .Params.challenges }}
+<section class="section home-challenges">
+  <div class="container">
+    <div class="challenges-glass challenges-glass--split">
+      <div class="challenges-glass__bg" {{ with .bg }}style="--challenges-bg: url('{{ partial "img-url.html" (dict "src" . "width" 1600 "quality" 68) }}');"{{ end }}></div>
+      <div class="challenges-glass__inner challenges-glass__inner--split">
+        <div class="challenges-glass__intro">
+          <h2>{{ .title }}</h2>
+          <p class="lead">{{ .lead }}</p>
+        </div>
+        <div class="challenges-glass__stack">
+          {{ range .items }}
+          <div class="challenges-glass__item{{ if .featured }} challenges-glass__item--featured{{ end }}">
+            <h3>{{ .title }}</h3>
+            <p>{{ .body }}</p>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Partner logos ---------- */}}
+{{ with .Params.partners }}
+<section class="section section--alt home-partners">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ .title }}</h2>
+      {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
+    </div>
+    <div class="partner-logos">
+      {{ range hugo.Data.partners }}
+      <a class="partner-logos__item" href="{{ .href }}" rel="noopener">
+        {{ partial "img.html" (dict "src" .image "alt" .name "widths" (slice 160 320) "sizes" "160px" "loading" "lazy" "decoding" "async") }}
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Next steps (3 cards: 1 large navy + 2 small gold/sage gradients) ---------- */}}
+{{ with .Params.next_steps }}{{ partial "next-steps.html" . }}{{ end }}
 
 {{ end }}

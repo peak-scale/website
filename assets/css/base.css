@@ -1,0 +1,361 @@
+/* =====================================================================
+   BRAND IDENTITY
+
+   Three brand colors, defined by the logo
+   (`static/images/peakscale-logo*.svg`):
+
+     Dark blue    #26344c   rgb(38, 52, 76)    → --dark-blue
+     Bright blue  #0580c4   rgb(5, 128, 196)   → --bright-blue
+     White        #ffffff                      → --bg-white
+
+   Everything else is supportive palette – keeps the page readable and
+   gives cards their lift, but is not part of the brand identity. Use
+   sparingly.
+   ===================================================================== */
+
+:root {
+    /* Page surfaces */
+    --bg: rgb(240, 248, 251);                 /* icy blue-white page bg */
+    --bg-white: rgb(255, 255, 255);           /* [BRAND] white */
+    --bg-ice: rgb(229, 246, 255);             /* stronger section tint */
+
+    /* Brand blues */
+    --dark-blue: rgb(38, 52, 76);             /* [BRAND] display, dark surfaces, hover ink */
+    --bright-blue: rgb(5, 128, 196);          /* [BRAND] decorative accents and large display color */
+    --bright-blue-text: rgb(5, 117, 180);     /* accessible small text / button background */
+    --bright-blue-deep: rgb(6, 97, 153);      /* accessible gradient endpoint behind light text */
+    --dark-blue-soft: rgb(21, 36, 64);
+    --dark-blue-ink: rgb(9, 24, 55);          /* Figma display ink – the near-black navy of the logo's dark half */
+    --dark-blue-raised: rgb(49, 62, 87);
+    --footer-bg: rgb(7, 19, 44);
+
+    /* Supporting greys */
+    --fg-muted: rgb(81, 87, 99);              /* body copy */
+    --fg-subtle: rgb(165, 171, 183);          /* meta */
+
+    /* Hairlines */
+    --border: rgb(208, 214, 227);
+    --border-faint: rgba(208, 214, 227, .5);
+
+    /* Dark sections */
+    --stroke-on-dark: rgba(255, 255, 255, .16);
+    --text-on-dark: rgba(255, 255, 255, .78);
+    --accent-on-dark: rgb(122, 192, 232);     /* lighter blue for eyebrows / meta */
+    /* Veil for chips and pills that sit on a coloured card fill. It darkens
+       rather than lightens, so pale type keeps its contrast on the mid-tone
+       gold and sage surfaces as well as on navy. */
+    --veil-recede: rgba(7, 19, 44, .22);
+
+    /* Accents (small dosage: checkmarks, tags, status, illustration details) */
+    --accent-yellow: rgb(232, 184, 60);       /* warm honey / amber */
+    --accent-yellow-soft: rgb(252, 238, 180); /* pale wash */
+    --accent-green: rgb(144, 202, 125);       /* Figma title green */
+    --accent-green-soft: rgb(228, 240, 210);  /* pale wash */
+    /* Deep shades of the two warm accents. The only place either colour
+       fills a surface: the gold and sage cross-link cards, which carry
+       white type and so need the accent taken well below its mark value. */
+    --accent-yellow-deep: rgb(120, 98, 40);
+    --accent-green-deep: rgb(58, 110, 65);
+    --check-green: rgb(144, 202, 125);        /* Figma green check icons */
+
+    /* Photo overlay – subtle navy → blue wash applied above section
+       background-images so the photo stays readable. Used inline in
+       templates as the first layer of `background-image`. */
+    --overlay-photo: linear-gradient(135deg, rgba(7,19,44,.4), rgba(5,128,196,.2));
+
+    /* Hero photo tints. Each section hero in the Figma file carries a flat
+       colour wash over its photograph, read straight out of `canvas.fig`
+       (the frame's fill stack: page fill, image, then this paint). Services
+       is a linear gradient there – rgb(5,128,196) stepping a=.50 → .60 under
+       a 70% layer opacity, i.e. 35% at the left edge to 42% at the right –
+       flattened here to its midpoint, since a wash that reads as uniform is
+       the intent and a ramp only fights the copy that sits on it.
+       Produkte's yellow is its own colour, not `--accent-yellow`: the tint
+       needs the saturation to survive at 35% over grey concrete. */
+    --hero-tint-services: rgba(5, 128, 196, .385);  /* fig: 70% × a .50→.60 */
+    --hero-tint-produkte: rgba(240, 205, 5, .35);   /* fig: solid @ 35% */
+    --hero-tint-team: rgba(144, 202, 125, .30);     /* fig: solid @ 30% */
+
+}
+
+/* ---------- Typography ----------
+
+   Self-hosted variable fonts – DM Sans (display/body) and Inter (UI).
+   Subsetted by Google Fonts to latin + latin-ext, the only coverage this
+   German/English site needs. Files live in `static/fonts/`. Self-hosting
+   replaces the former Google Fonts `@import`: no third-party requests
+   (privacy / no CDN dependency) and no flash of unstyled text when the
+   font CDN is slow or blocked. Each file is one variable font, so a
+   single `@font-face` per subset covers the whole weight range. */
+@font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 100 1000;
+    font-display: swap;
+    src: url('/fonts/dm-sans-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 100 1000;
+    font-display: swap;
+    src: url('/fonts/dm-sans-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/inter-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+    --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    /* 8-token type scale. Display sizes scale fluidly; the rest are fixed.
+       Pull-quote / lifecycle stage / prose h2 collapse into title-lg.
+
+       Each display size ramps across exactly one window: floor at 390px (a
+       phone), maximum at 1200px, flat outside it. The three therefore start
+       and finish together – the scale behaves as one system at every width.
+
+       1200 rather than 1440 is the top anchor because the ramp used to end at
+       the widest common laptop, so nearly every real desktop caught the
+       headline mid-descent: at 1280 the hero read 64px, at 1100 only 55px,
+       against a 72px design. Ending at 1200 gives the full size to every
+       desktop and shifts the whole ramp up by ~13px without steepening it –
+       a 768px tablet now gets 51px where it got 38px.
+
+       The `rem` term is what does the shifting: a pure `Nvw` line is pinned to
+       the origin, so the only way to reach the maximum sooner is to make it
+       steeper. Splitting it into a fixed part plus a slope decouples the two,
+       and as a bonus the type still responds to the reader's own font size.
+
+       The floors are set for a 390px phone, not for the tablet width where
+       the slope happens to arrive: at 40px the German hero headline took four
+       lines and dominated the viewport. */
+    --text-display:    clamp(32px, 0.8rem  + 4.94vw, 72px);  /* hero only */
+    --text-display-sm: clamp(24px, 0.78rem + 2.96vw, 48px);  /* section headings */
+    --text-display-xs: clamp(22px, 0.95rem + 1.73vw, 36px);  /* feature-card anchor tile */
+    --text-title-lg:   22px;                       /* pull quote, lifecycle stage */
+    --text-title:      18px;                       /* all card h3 */
+    --text-body:       16px;                       /* body, hero lead, lead */
+    --text-sm:         14px;                       /* descriptions, captions */
+    --text-eyebrow:    14px;                       /* uppercase labels, nav, micro */
+
+    --w-regular: 400;
+    --w-medium: 500;
+    --w-bold: 700;
+
+    --leading-display: 1.1;
+    --leading-tight: 1.2;
+    --leading-snug: 1.4;
+    --leading-normal: 1.6;
+
+    --tracking-tight: 0;
+    --tracking-eyebrow: 0.1em;
+}
+
+/* ---------- Spacing, radius ---------- */
+
+:root {
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+    /* Page gutter – the inline padding every .container uses. */
+    --gutter: clamp(20px, 4vw, 40px);
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 8px;
+    --radius-pill: 60px;
+}
+
+/* ---------- Element styles ---------- */
+
+html, body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--leading-normal);
+    color: var(--dark-blue);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .h1 {
+    font-family: var(--font-sans);
+    font-size: var(--text-display);
+    font-weight: var(--w-medium);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-tight);
+    color: var(--dark-blue);
+    margin: 0 0 var(--space-6);
+    text-wrap: balance;
+}
+
+h2, .h2, .display-xl {
+    font-size: var(--text-display-sm);
+    font-weight: var(--w-medium);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--space-6);
+    text-wrap: balance;
+}
+
+h3, .h3 {
+    font-size: var(--text-title);
+    font-weight: var(--w-medium);
+    line-height: var(--leading-tight);
+    margin: 0 0 var(--space-4);
+}
+
+h4, .h4 {
+    font-size: var(--text-title-lg);
+    font-weight: var(--w-medium);
+    line-height: var(--leading-tight);
+    margin: 0 0 var(--space-3);
+}
+
+.lead {
+    font-size: var(--text-body);
+    font-weight: var(--w-regular);
+    line-height: var(--leading-normal);
+    color: var(--fg-muted);
+}
+
+p, .body {
+    font-size: var(--text-body);
+    line-height: var(--leading-snug);
+    color: var(--fg-muted);
+    margin: 0 0 var(--space-4);
+    text-wrap: pretty;
+}
+
+.eyebrow {
+    font-family: var(--font-ui);
+    font-size: var(--text-eyebrow);
+    font-weight: var(--w-bold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--bright-blue-text);
+    display: inline-block;
+}
+
+.mono, code, kbd, samp, pre {
+    font-family: var(--font-mono);
+    font-size: max(.9em, 14px);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color .18s ease, opacity .18s ease;
+}
+
+a:hover {
+    color: var(--bright-blue-text);
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: var(--space-12) 0;
+}
+
+/* ---------- Re-usable element classes ---------- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--w-medium);
+    line-height: 1;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .1s ease;
+    white-space: nowrap;
+}
+
+.btn:active {
+    transform: scale(.98);
+}
+
+.btn--primary {
+    background: var(--bright-blue-text);
+    color: var(--bg-white);
+}
+
+.btn--primary:hover {
+    background: color-mix(in srgb, var(--bright-blue) 82%, black);
+    color: var(--bg-white);
+}
+
+.btn--inverse {
+    background: var(--bg-white);
+    color: var(--bright-blue-text);
+    border-color: var(--bg-white);
+}
+
+.btn--inverse:hover {
+    background: var(--bg);
+}
+
+.card {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    transition: border-color .2s ease;
+}
+
+a.card {
+    color: inherit;
+    text-decoration: none;
+}
+
+a.card:hover,
+.card:has(a):hover {
+    border-color: var(--bright-blue);
+}
+
+.nav-sep {
+    display: inline-flex;
+    align-items: center;
+    color: var(--bright-blue);
+    opacity: 0.7;
+}
+.nav-sep svg { display: block; }
+
+/* Text only assistive tech reads. Used where an icon carries the meaning and a
+   word is needed to name it, without that word taking up layout. */
+.visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}

@@ -3,3 +3,14 @@
 /public/
 .DS_Store
 .direnv
+.claude
+.idea
+/relaunch/
+/CLAUDE.md
+/AGENTS.md
+/PRODUCT.md
+/DESIGN.md
+/.impeccable/
+figma
+/tools/
+/tmp/

@@ -1,0 +1,21 @@
+{{/* Art-directed hero image. Portrait/narrow displays use the original
+     photograph; wide displays use its side-extended 3:1 counterpart.
+
+     Keep these inputs and the preload construction in head.html in sync. */}}
+{{- $original := partial "hero-original-set.html" (dict "src" .src "widths" site.Params.heroOriginalWidths) -}}
+<picture>
+  {{- if $original.processed }}
+  <source media="{{ site.Params.heroOriginalMedia }}" srcset="{{ $original.srcset }}" sizes="{{ site.Params.heroOriginalSizes }}">
+  {{- end }}
+  {{ partial "img.html" (dict
+    "src" .src
+    "alt" (.alt | default "")
+    "class" .class
+    "widths" site.Params.heroWidths
+    "quality" site.Params.heroQuality
+    "qualitySteps" site.Params.heroQualitySteps
+    "sizes" site.Params.wideHeroSizes
+    "fetchpriority" "high"
+    "ariaHidden" true
+  ) }}
+</picture>

@@ -1,0 +1,131 @@
+#!/nix/store/v8llyqw71lygr2llhmcc8ya5bdlzq45v-bash-5.3p9/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+export PATH="/nix/store/z0ddzd81dfmh1bf113zdmyj91vvyrjyc-bubblewrap-0.11.2/bin:/nix/store/cp7wjv1pl4wapfk48svvizxd089v9h0a-coreutils-9.11/bin:/nix/store/1k2lblqlj39azh6wn1sffa2869vrg3mr-git-2.54.0/bin:/nix/store/p48bl1kiw42fakak404srawmlr730b7j-gnugrep-3.12/bin:/nix/store/3v7kqg55hx4awhy5hdckniypbgqbqfmx-systemd-261/bin:$PATH"
+
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+sandbox_root="$(mktemp -d -t claude-bwrap.XXXXXX)"
+sandbox_home="$sandbox_root/home/lbischof"
+config_source="$HOME/.claude"
+ca_bundle="/nix/store/8pzhla2fz926ir6kjlgqnfrz34bjsjl0-nss-cacert-3.125/etc/ssl/certs/ca-bundle.crt"
+ca_cert_dir="/nix/store/8pzhla2fz926ir6kjlgqnfrz34bjsjl0-nss-cacert-3.125/etc/ssl/certs"
+nix_daemon_socket_dir="/nix/var/nix/daemon-socket"
+
+cleanup() {
+  rm -rf "$sandbox_root"
+}
+trap cleanup EXIT
+
+mkdir -p "$sandbox_home"
+
+
+declare -a bwrap_args=(
+  --die-with-parent
+  --unshare-all
+  --share-net
+  --proc /proc
+  --dev /dev
+  --tmpfs /tmp
+  --tmpfs /run
+  --dir /run/user/1000
+  --dir /bin
+  --dir /usr
+  --dir /usr/bin
+  --dir /etc
+  --dir /home
+  --ro-bind /bin/sh /bin/sh
+  --ro-bind /usr/bin/env /usr/bin/env
+  --ro-bind /nix/store /nix/store
+  --ro-bind /run/current-system/sw /run/current-system/sw
+  --ro-bind /etc/static /etc/static
+  --ro-bind /etc/profiles /etc/profiles
+  --ro-bind /etc/resolv.conf /etc/resolv.conf
+  --ro-bind /etc/hosts /etc/hosts
+  --ro-bind /etc/nsswitch.conf /etc/nsswitch.conf
+  --ro-bind /etc/passwd /etc/passwd
+  --ro-bind /etc/group /etc/group
+  --ro-bind "$ca_cert_dir" /etc/ssl/certs
+  --bind "$sandbox_home" "$HOME"
+  --bind "$repo_root" "$repo_root"
+  --chdir "$repo_root"
+  --setenv HOME "$HOME"
+  --setenv USER "lbischof"
+  --setenv PATH "$PATH"
+  --setenv SSL_CERT_FILE "$ca_bundle"
+  --setenv NIX_SSL_CERT_FILE "$ca_bundle"
+  --setenv NIX_REMOTE daemon
+)
+
+ro_bind_existing() {
+  if [ -e "$1" ]; then
+    bwrap_args+=(--ro-bind "$1" "$1")
+  fi
+}
+
+ro_bind_existing "$HOME/.nix-profile"
+ro_bind_existing "$HOME/.local/state/nix/profiles"
+
+ro_bind_existing "$HOME/.config/jj/config.toml"
+
+# Allow sandboxed tools to use the host Nix daemon without exposing the DB.
+if [ -S "$nix_daemon_socket_dir/socket" ]; then
+  bwrap_args+=(--bind "$nix_daemon_socket_dir" "$nix_daemon_socket_dir")
+fi
+
+if [ -d "$config_source" ]; then
+  bwrap_args+=(--bind "$config_source" "$HOME/.claude")
+fi
+
+if [ -d "$HOME/.agents" ]; then
+  bwrap_args+=(--bind "$HOME/.agents" "$HOME/.agents")
+fi
+
+if [ -r "/home/lbischof/.ssh/id_ed25519_github.com_lorenzbischof_signing" ]; then
+  bwrap_args+=(
+    --ro-bind "/home/lbischof/.ssh/id_ed25519_github.com_lorenzbischof_signing" "/home/lbischof/.ssh/id_ed25519_github.com_lorenzbischof_signing"
+    --ro-bind "/home/lbischof/.ssh/id_ed25519_github.com_lorenzbischof_signing.pub" "/home/lbischof/.ssh/id_ed25519_github.com_lorenzbischof_signing.pub"
+  )
+fi
+
+if [ -f "$HOME/.claude.json" ]; then
+  bwrap_args+=(--bind "$HOME/.claude.json" "$HOME/.claude.json")
+fi
+
+nix_config="experimental-features = nix-command flakes"
+
+github_token_file="/run/agenix/github-token"
+if [ -r "$github_token_file" ]; then
+  nix_config="$nix_config
+  $(cat "$github_token_file")"
+  github_token="$(grep -oP '(?<=github\.com=)\S+' "$github_token_file" || true)"
+  bwrap_args+=(
+    --setenv GH_TOKEN "$github_token"
+    --setenv GITHUB_TOKEN "$github_token"
+  )
+fi
+
+bwrap_args+=(--setenv NIX_CONFIG "$nix_config")
+
+# Allow the AI wrappers to launch local test VMs from inside bubblewrap.
+if [ -e /dev/kvm ]; then
+  bwrap_args+=(--dev-bind /dev/kvm /dev/kvm)
+fi
+
+if [ -d /dev/dri ]; then
+  bwrap_args+=(--dev-bind /dev/dri /dev/dri)
+fi
+
+if [ -d /run/opengl-driver ]; then
+  bwrap_args+=(--bind /run/opengl-driver /run/opengl-driver)
+fi
+
+exec systemd-inhibit \
+  --what=sleep \
+  --mode=block \
+  --why="AI sandbox session" \
+  bwrap "${bwrap_args[@]}" -- claude --dangerously-skip-permissions --settings '{"feedbackSurveyRate":0,"preferredNotifChannel":"terminal_bell","prefersReducedMotion":true,"sandbox":{"enabled":false},"spinnerTipsEnabled":false,"spinnerVerbs":{"mode":"replace","verbs":["Working"]}}' "$@"
+

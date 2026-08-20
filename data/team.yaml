@@ -1,0 +1,53 @@
+- name: Mathias Herzog
+  image: /images/team/mathiasherzog.png
+  linkedin: https://www.linkedin.com/in/mathias-herzog-888a6788/
+  role_de: Cloud Architect & Consultant, Gründer
+  role_en: Cloud Architect & Consultant, Co-founder
+  focus_de: "Cloud-Native-Architektur • Platform Engineering • Schulung & Beratung • Automatisierung"
+  focus_en: "Cloud native architecture • Platform engineering • Training & consulting • Automation"
+
+- name: Johann Gyger
+  image: /images/team/johanngyger.png
+  linkedin: https://www.linkedin.com/in/johanngyger/
+  role_de: Cloud Architect & Consultant, Gründer
+  role_en: Cloud Architect & Consultant, Co-founder
+  focus_de: "Software-Architektur • Cloud Native • GitOps & Security • Community"
+  focus_en: "Software architecture • Cloud native • GitOps & security • Community"
+
+- name: Oliver Bähler
+  image: /images/team/oliverbaehler.png
+  linkedin: https://www.linkedin.com/in/oliver-b%C3%A4hler-8b182b175/
+  role_de: Cloud Native Engineer & Architect
+  role_en: Cloud Native Engineer & Architect
+  focus_de: "Multi-Tenant Kubernetes • GitOps & IaC • Zero Trust • Open Source (Capsule)"
+  focus_en: "Multi-tenant Kubernetes • GitOps & IaC • Zero trust • Open source (Capsule)"
+
+- name: Lorenz Bischof
+  image: /images/team/lorenzbischof.png
+  linkedin: https://www.linkedin.com/in/lorenz-bischof/
+  role_de: Senior Cloud Engineer
+  role_en: Senior Cloud Engineer
+  focus_de: "Kubernetes Operators • Policy as Code • Multi-Tenancy • Automatisierung"
+  focus_en: "Kubernetes operators • Policy as code • Multi-tenancy • Automation"
+
+- name: Luca Kündig
+  linkedin: https://www.linkedin.com/in/luca-k%C3%BCndig-b2700211a/
+  role_de: Senior Cloud Native & DevOps Architect
+  role_en: Senior Cloud Native & DevOps Architect
+  focus_de: "Kubernetes-Architektur • Observability • GitOps • Infrastructure as Code"
+  focus_en: "Kubernetes architecture • Observability • GitOps • Infrastructure as code"
+
+- name: Philipp Grogg
+  image: /images/team/philippgrogg.png
+  linkedin: https://www.linkedin.com/in/philipp-grogg-1a369012b/
+  role_de: Cloud Architect & Platform Engineer (Contractor)
+  role_en: Cloud Architect & Platform Engineer (Contractor)
+  focus_de: "CI/CD • DevOps • Software-Architektur • Supply Chain Security"
+  focus_en: "CI/CD • DevOps • Software architecture • Supply chain security"
+
+- name: Kevin Klopfenstein
+  linkedin: https://www.linkedin.com/in/kevin-klopfenstein-6838b5103/
+  role_de: Cloud Network Engineer (Contractor)
+  role_en: Cloud Network Engineer (Contractor)
+  focus_de: "Netzwerkarchitektur • Kubernetes Networking • Data Platforms • Multi-Cloud"
+  focus_en: "Network architecture • Kubernetes networking • Data platforms • Multi-cloud"

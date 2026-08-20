@@ -1,36 +1,18 @@
-
 {{ define "main" }}
-
-<div class="container">
-  <div class="row">
-    <div class="col col-12">
-      <div class="page__info">
-        <h1 class="page__title">Page not found</h1>
-      </div>
-    </div>
+<section class="section section--alt">
+  <div class="container" style="text-align:center;">
+    <span class="eyebrow">404</span>
+    <h1 class="display-xl" style="margin: 24px 0;">{{ if eq .Site.Language.Lang "de" }}Seite nicht gefunden{{ else }}Page not found{{ end }}</h1>
+    <p class="lead" style="max-width: 520px; margin: 0 auto 32px;">
+      {{ if eq .Site.Language.Lang "de" -}}
+      Die angeforderte Seite existiert nicht oder wurde verschoben.
+      {{- else -}}
+      The page you requested doesn't exist or was moved.
+      {{- end }}
+    </p>
+    <a class="btn btn--primary" href="{{ .Site.Home.RelPermalink }}">
+      {{ if eq .Site.Language.Lang "de" }}Zur Startseite{{ else }}Back home{{ end }}
+    </a>
   </div>
-</div>
-
-<!-- begin page -->
-<div class="container">
-  <article class="page">
-    <div class="page__content">
-      <div class="container">
-        <div class="row">
-          <div class="col col-12">
-            <div class="error">
-              <h2 class="error__title">404</h2>
-              <p class="error__text">The requested page could not be found.</p>
-              <a class="button" href="/">Back to homepage</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </article>
-</div>
-<!-- end page -->
-
-{{ partial "section-subscribe.html" . }}
-
+</section>
 {{ end }}

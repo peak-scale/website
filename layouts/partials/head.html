@@ -1,55 +1,162 @@
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  {{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
+  {{- $desc := cond .IsHome .Site.Params.description (or .Description .Summary .Site.Params.description) -}}
+  {{- $ogTitle := $title -}}
+  {{- $ogDescription := $desc -}}
+  {{- with .Params.hero -}}
+    {{- with .title -}}{{- $ogTitle = . | plainify | replaceRE "\\s+" " " -}}{{- end -}}
+    {{- with .lead -}}{{- $ogDescription = . | plainify -}}{{- end -}}
+  {{- end -}}
+  {{- $ogImage := absURL (or .Params.image .Site.Params.ogImage) -}}
+  {{- $ogImageWidth := 500 -}}
+  {{- $ogImageHeight := 500 -}}
+  {{- $ogImageLanguageSuffix := "" -}}
+  {{- if eq .Site.Language.Lang "en" -}}{{- $ogImageLanguageSuffix = "-en" -}}{{- end -}}
+  {{- if .IsHome -}}
+    {{- $ogImage = absURL (printf "/images/og/home%s.jpg" $ogImageLanguageSuffix) -}}
+    {{- $ogImageWidth = 2400 -}}
+    {{- $ogImageHeight = 1260 -}}
+  {{- else if eq .Section "services" -}}
+    {{- $ogImage = absURL (printf "/images/og/services%s.jpg" $ogImageLanguageSuffix) -}}
+    {{- $ogImageWidth = 2400 -}}
+    {{- $ogImageHeight = 1260 -}}
+  {{- else if eq .Section "produkte" -}}
+    {{- $ogImage = absURL (printf "/images/og/produkte%s.jpg" $ogImageLanguageSuffix) -}}
+    {{- $ogImageWidth = 2400 -}}
+    {{- $ogImageHeight = 1260 -}}
+  {{- else if eq .Section "team" -}}
+    {{- $ogImage = absURL (printf "/images/og/team%s.jpg" $ogImageLanguageSuffix) -}}
+    {{- $ogImageWidth = 2400 -}}
+    {{- $ogImageHeight = 1260 -}}
+  {{- end -}}
+  {{- /* Derived, not hardcoded: the section cards are JPEG, the site-wide
+         fallback (`ogImage` in hugo.toml) is a PNG. */ -}}
+  {{- $ogImageType := cond (strings.HasSuffix $ogImage ".png") "image/png" "image/jpeg" -}}
+  {{- $ogLocale := "en_GB" -}}
+  {{- if eq .Site.Language.Lang "de" -}}{{- $ogLocale = "de_CH" -}}{{- end -}}
+
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $desc }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  {{ range .Translations -}}
+  <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+  {{ end -}}
+  <link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="{{ .Permalink }}">
+  <link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
-  <link rel="canonical" href="{{ .Permalink }}" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/website.manifest">
 
-  <title>{{ if not .IsHome }}{{ humanize .Title }} | {{ end }}{{ .Site.Title }}</title>
-  <meta name="description" content="{{if .IsHome}}{{ .Site.Params.description }}{{else}}{{ .Description }}{{end}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ $ogTitle }}">
+  <meta property="og:description" content="{{ $ogDescription }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ $ogImage }}">
+  <meta property="og:image:secure_url" content="{{ $ogImage }}">
+  <meta property="og:image:type" content="{{ $ogImageType }}">
+  <meta property="og:image:width" content="{{ $ogImageWidth }}">
+  <meta property="og:image:height" content="{{ $ogImageHeight }}">
+  <meta property="og:image:alt" content="{{ $ogTitle }}">
+  <meta property="og:locale" content="{{ $ogLocale }}">
 
-  {{ with .OutputFormats.Get "rss" -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end }}
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}">
-  <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
-  <meta name="twitter:image" content="{{ if .Params.image }}{{ .Params.image }}{{ else }}{{ .Site.Params.imageSocial }}{{ end }}">
+  <meta name="twitter:title" content="{{ $ogTitle }}">
+  <meta name="twitter:description" content="{{ $ogDescription }}">
+  <meta name="twitter:image" content="{{ $ogImage }}">
+  <meta name="twitter:image:alt" content="{{ $ogTitle }}">
 
-  <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}">
-  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
-  <meta property="og:image" content="{{ if .Params.image }}{{ .Params.image }}{{ else }}{{ .Site.Params.imageSocial }}{{ end }}">
+  <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  {{- $heroImage := "" -}}
+  {{- $heroType := "image/webp" -}}
+  {{- $heroSizes := "100vw" -}}
+  {{- if .IsHome -}}
+    {{- $heroImage = "/images/topo/hero-topo.svg" -}}
+    {{- $heroType = "image/svg+xml" -}}
+  {{- else if eq .Section "services" -}}
+    {{- $heroImage = "/images/hero/services-photo-wide.png" -}}
+    {{- $heroSizes = site.Params.wideHeroSizes -}}
+  {{- else if eq .Section "produkte" -}}
+    {{- $heroImage = "/images/hero/produkte-photo-wide.png" -}}
+    {{- $heroSizes = site.Params.wideHeroSizes -}}
+  {{- else if eq .Section "team" -}}
+    {{- $heroImage = "/images/hero/team-photo-wide.png" -}}
+    {{- $heroSizes = site.Params.wideHeroSizes -}}
+  {{- end -}}
+  {{- with $heroImage -}}
+    {{/* imagesrcset/imagesizes must mirror the hero <img> exactly, or the
+         browser preloads one rendition and then fetches another. */}}
+    {{- $set := partial "img-set.html" (dict "src" . "widths" site.Params.heroWidths "quality" site.Params.heroQuality "qualitySteps" site.Params.heroQualitySteps) }}
+  {{ if $set.processed -}}
+    {{- $original := partial "hero-original-set.html" (dict "src" . "widths" site.Params.heroOriginalWidths) -}}
+  {{/* html/template treats the unrecognised `imagesrcset` as a plain URL and
+       percent-escapes the separating spaces, which breaks the candidate list –
+       so the attribute is assembled and marked safe by hand. */}}
+  {{- if $original.processed }}
+  <link rel="preload" {{ printf "imagesrcset=%q" $original.srcset | safeHTMLAttr }} imagesizes="{{ site.Params.heroOriginalSizes }}" media="{{ site.Params.heroOriginalMedia }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+  <link rel="preload" {{ printf "imagesrcset=%q" $set.srcset | safeHTMLAttr }} imagesizes="{{ $heroSizes }}" media="{{ site.Params.heroDesktopMedia }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+    {{- else }}
+  <link rel="preload" {{ printf "imagesrcset=%q" $set.srcset | safeHTMLAttr }} imagesizes="{{ $heroSizes }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+    {{- end }}
+  {{- else -}}
+  <link rel="preload" href="{{ $set.src }}" as="image" type="{{ $heroType }}" fetchpriority="high">
+  {{- end }}
+  {{- end }}
 
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" as="style">
+  {{- $base := resources.Get "css/base.css" -}}
+  {{/* site.css goes through the template engine so its background-image URLs can
+       point at Hugo-processed renditions (see `img-url.html`) rather than the
+       full-size originals. */}}
+  {{- $site := resources.Get "css/site.css" | resources.ExecuteAsTemplate "css/site.built.css" . -}}
+  {{- $css := slice $base $site | resources.Concat "css/peakscale.css" | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <script>
-    // Set default theme
-    if (!localStorage.getItem("theme")) {
-      localStorage.setItem("theme", "dark")
-    }
-
-    // Init dark theme
-    if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.setAttribute("dark", "");
-      document.documentElement.classList.add('dark-mode');
-    }
-  </script>
-
-  {{ partial "plausible_head.html" . }}
-
-  <!-- CSS -->
-  {{ with resources.Get "sass/main.scss" | toCSS | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ with .Site.Params.plausible }}
+  {{ if .enable }}
+  <script defer data-domain="{{ .domain }}" src="https://plausible.io/js/script.js"></script>
+  {{ end }}
   {{ end }}
 
+  <meta name="theme-color" content="#0580c4">
+
+  {{/* JSON-LD: Organization on every page; Article-like cross-link on subpages */}}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Peak Scale GmbH",
+    "url": "{{ .Site.BaseURL }}",
+    "logo": "{{ absURL "/images/peakscale-logo-square.png" }}",
+    "email": "{{ .Site.Params.contactEmail }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ .Site.Params.companyAddress }}",
+      "addressLocality": "Bern",
+      "postalCode": "3011",
+      "addressCountry": "CH"
+    },
+    "sameAs": [
+      "{{ .Site.Params.linkedin }}"
+    ]
+  }
+  </script>
+  {{ if .IsHome }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Peak Scale",
+    "url": "{{ .Site.BaseURL }}",
+    "inLanguage": ["de-CH", "en"]
+  }
+  </script>
+  {{ end }}
 </head>

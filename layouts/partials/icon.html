@@ -1,5 +1,12 @@
-{{ $svg := resources.Get (print "ionicons/" . ".svg") }}
-{{ $class := print . "-icon" }}
-<span class="inline-svg {{ $class }}">
-  {{- $svg.Content | safeHTML }}
-</span>
+{{- $name := . -}}
+{{- $size := 24 -}}
+{{- if reflect.IsMap . -}}
+  {{- $name = .name -}}
+  {{- $size = .size | default 24 -}}
+{{- end -}}
+{{- with resources.Get (printf "icons/%s.svg" $name) -}}
+  {{- $svg := .Content -}}
+  {{- $svg = replaceRE ` width="\d+"` (printf ` width="%d"` $size) $svg 1 -}}
+  {{- $svg = replaceRE ` height="\d+"` (printf ` height="%d"` $size) $svg 1 -}}
+  {{- $svg | safeHTML -}}
+{{- end -}}

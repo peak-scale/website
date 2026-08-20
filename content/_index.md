@@ -1,0 +1,93 @@
+---
+title: Peak Scale
+description: "Cloud Native Consulting & Platform Engineering aus Bern. Hands-on Partner für Strategie, Architektur, Engineering und Betrieb moderner Cloud-Plattformen."
+hero:
+  title: "Orientierung für anspruchsvolle Cloud-Transformationen"
+  lead: "Wir begleiten Kunden von der Strategie und Architektur bis zur Umsetzung – technisch fundiert, praxisnah und auf ihre Bedürfnisse abgestimmt."
+mountain:
+  eyebrow: "Vom Basecamp zum Gipfel"
+  title: "Vier Etappen, ein Team."
+  lead: "Architektur als höchste Stufe, getragen von Engineering, Assessments und Enablement."
+  stages:
+    - name: "Cloud Architecture"
+      sub: "Tragfähige Zielarchitektur, Entscheidungsgrundlagen, Migrationspfade."
+    - name: "Platform Engineering"
+      sub: "Hands-on Aufbau und Automatisierung – Kubernetes, GitOps, Security."
+    - name: "Assessments"
+      sub: "Fundierte Beurteilungen bestehender Lösungen mit konkreten Empfehlungen."
+    - name: "Training & Enablement"
+      sub: "Workshops und tiefe Trainings, damit Teams selbstständig weiterarbeiten."
+why:
+  eyebrow: "Warum Peak Scale"
+  title: "Warum Peak Scale?"
+  items:
+    - title: "<strong>Peak steht für technische Tiefe.</strong><br>Scale für Plattformen, die mitwachsen."
+      body: ""
+    - title: "Swiss-first Kontext"
+      body: "Erfahrung in Schweizer IT-Umgebungen – vertraut mit typischen Anforderungen von Unternehmen, Behörden und regulierten Branchen."
+    - title: "Hands-on Zusammenarbeit"
+      body: "Direkt mit Engineering- und Architekturteams – kollaborativ, technisch, ohne unnötige Beratungslayer."
+    - title: "Security & Wartbarkeit"
+      body: "Realistische Risikobewertung und konkrete Massnahmen – damit Plattformen sicher bleiben und langfristig betreibbar sind."
+    - title: "Enablement statt Abhängigkeit"
+      body: "Wissenstransfer, Dokumentation und Training – damit Teams nachhaltig selbstständig weiterarbeiten."
+    - title: "Spezialisiertes Team"
+      body: "Ein fokussiertes Team mit tiefem Cloud-Native-Know-how und klarer Spezialisierung."
+customers:
+  eyebrow: "Unsere Kunden"
+  title: "Unsere Kunden"
+  lead: "Eine Auswahl unserer Kunden, die wir in Architektur-, Engineering- oder Assessment-Projekten begleitet haben."
+testimonial:
+  eyebrow: "Stimmen aus Projekten"
+lifecycle:
+  eyebrow: "Was IT-Teams gewinnen"
+  title: "Was IT-Teams dadurch gewinnen"
+  lead: "Klare Orientierung, technische Exzellenz und pragmatische Umsetzung – entlang des gesamten Lebenszyklus."
+  cards:
+    - title: "Cloud Architecture"
+      desc: "Wir entwickeln und evaluieren Cloud-Architekturen, die sich weiterentwickeln können – pragmatisch, transparent und auf deine Umgebung abgestimmt."
+    - title: "Platform Engineering"
+      desc: "Wir unterstützen Teams beim Design, beim Aufbau und bei der Automatisierung moderner Cloud-Native-Plattformen und Workflows."
+    - title: "Assessments"
+      desc: "Fundierte Beurteilungen von bestehenden Lösungen: Architektur, Kubernetes, Security, Prozesse, GitOps und CI/CD."
+    - title: "Training & Enablement"
+      desc: "Wir geben Wissen weiter – in kompakten Workshops oder tiefen technischen Trainings für Engineers und Architekten."
+challenges:
+  eyebrow: "Typische Herausforderungen"
+  title: "Typische Herausforderungen, die wir lösen"
+  lead: "Typische Etappen in Cloud-Transformationen – aus realen Projekten."
+  bg: "/images/section/challenges.jpg"
+  items:
+    - title: "Aufbau moderner CI/CD- und GitOps-Prozesse"
+      body: "Automatisierte Deployments, überprüfbare Supply Chain Security und reproduzierbare Plattformen mit Argo CD, Flux & SLSA."
+    - title: "Modernisierung bestehender Infrastruktur"
+      body: "Migration von Legacy-Umgebungen in skalierbare und sichere Cloud-Plattformen – mit klarer Roadmap und pragmatischen Entscheidungen."
+      featured: true
+    - title: "Einführung von Multi-Tenancy"
+      body: "Mandantentrennung mit Capsule und Kubernetes – inklusive kommerziellem Support und Betriebsmodellen."
+    - title: "Cloud-Native-Kompetenz im Team"
+      body: "Wir bauen Wissen auf, das im Team bleibt – durch Pair-Engineering, Workshops und Dokumentation."
+partners:
+  eyebrow: "Technologiepartner"
+  title: "Technologiepartner"
+  lead: "Wir arbeiten mit führenden Cloud-Native-Anbietern zusammen."
+next_steps:
+  eyebrow: "Weitergehen"
+  title: "Nächste Etappe"
+  cards:
+    - eyebrow: "Services"
+      title: "Leistungsspektrum & Kernbereiche"
+      desc: ""
+      href: "/services/"
+      checklist: ["Cloud & Architektur", "Platform Engineering", "Assessments"]
+    - eyebrow: "Produkte"
+      title: "Eigene Lösungen & Enterprise Support"
+      desc: ""
+      href: "/produkte/"
+      variant: "gold"
+    - eyebrow: "Team"
+      title: "Wer Peak Scale ist und wie wir arbeiten"
+      desc: ""
+      href: "/team/"
+      variant: "sage"
+---
