@@ -915,6 +915,32 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 .team-member:hover .team-member__linkedin { color: var(--dark-blue); }
 
+.team-member--recruitment {
+    border-color: var(--accent-green);
+}
+.team-member--recruitment .team-member__avatar--placeholder {
+    background: var(--accent-green-soft);
+    border-color: var(--accent-green);
+    color: var(--dark-blue);
+}
+.team-member__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-3) var(--space-6);
+    margin-top: var(--space-3);
+}
+.team-member__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.team-member__arrow {
+    color: var(--bright-blue-text);
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
 /* ---------- Icon tile (shared: icon + title, optional body) ---------- */
 /* Light by default; flips dark inside `.section--dark`. `--stack` stacks the
    icon above the text. */

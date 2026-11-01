@@ -68,6 +68,28 @@
         </div>
       {{ if .linkedin }}</a>{{ else }}</div>{{ end }}
       {{ end }}
+      {{ with .Params.recruitment }}
+      <div class="card team-member team-member--recruitment">
+        <span class="team-member__avatar team-member__avatar--placeholder" aria-hidden="true">?</span>
+        <div class="team-member__body">
+          <h3 class="team-member__name">{{ .name }}</h3>
+          <p class="team-member__role">{{ .role }}</p>
+        </div>
+        <div class="team-member__focus">
+          <p class="team-member__focus-text">{{ .lead }}</p>
+          <div class="team-member__actions">
+            <a class="team-member__cta" href="{{ $.Site.Params.linkedinJobs }}" rel="noopener">
+              <span class="team-member__arrow" aria-hidden="true">{{ partial "icon.html" (dict "name" "arrow-up-right" "size" 18) }}</span>
+              {{ .jobs_cta }}
+            </a>
+            <a class="team-member__cta" href="mailto:{{ $.Site.Params.jobsEmail }}">
+              <span class="team-member__arrow" aria-hidden="true">{{ partial "icon.html" (dict "name" "arrow-up-right" "size" 18) }}</span>
+              {{ $.Site.Params.jobsEmail }}
+            </a>
+          </div>
+        </div>
+      </div>
+      {{ end }}
       </div>
     </div>
   </div>
