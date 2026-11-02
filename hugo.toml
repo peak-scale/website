@@ -27,10 +27,12 @@ wideHeroSizes = "max(100vw, clamp(1410px, 174svh, 2010px))"
 heroQualitySteps = [[828, 66], [1280, 74], [4000, 86]]
 heroQuality = 74
 contactEmail = "welcome@peakscale.ch"
+jobsEmail = "jobs@peakscale.ch"
 companyName = "Peak Scale GmbH"
 companyAddress = "Ryffligässchen 5"
 companyCity = "CH-3011 Bern"
 linkedin = "https://www.linkedin.com/company/peakscale/"
+linkedinJobs = "https://www.linkedin.com/company/peakscale/jobs/"
 ogImage = "/images/peakscale-logo-square.png"
 description = "Cloud Native Consulting & Platform Engineering aus Bern. Hands-on Partner für Strategie, Architektur, Engineering und Betrieb moderner Cloud-Plattformen."
 
