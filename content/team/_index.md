@@ -18,6 +18,11 @@ members:
   eyebrow: "Mitglieder"
   title: "Wer dahintersteht"
   notice: "Hinweis: Rollen können sich ändern."
+recruitment:
+  name: "Du?"
+  role: "Dein Platz bei Peak Scale"
+  lead: "Du begeisterst dich für Cloud Native und möchtest mit uns etwas bewegen? Prüfe unsere offenen Positionen oder bewirb dich spontan bei uns. Wir freuen uns darauf, dich kennenzulernen."
+  jobs_cta: "Jobs auf LinkedIn"
 mission:
   title: "Unsere Mission"
   lead: "Wir unterstützen IT-Abteilungen dabei, stabile, sichere und zukunftsfähige Plattformen aufzubauen."
