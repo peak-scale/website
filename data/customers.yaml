@@ -43,3 +43,6 @@
 - name: ODC-Noord
   image: /images/customers/odc-noord.svg
   href: https://www.odc-noord.nl
+- name: DGFiP
+  image: /images/customers/dgfip.svg
+  href: https://www.economie.gouv.fr/dgfip
