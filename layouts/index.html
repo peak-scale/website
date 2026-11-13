@@ -71,14 +71,21 @@
       <p class="lead">{{ .lead }}</p>
     </div>
     <div class="logo-carousel" data-logo-carousel aria-label="{{ if eq $lang "de" }}Kunden{{ else }}Customers{{ end }}">
-      <div class="logo-carousel__viewport">
-        <div class="logo-carousel__track" data-logo-track>
-          {{ range hugo.Data.customers }}
-          <a class="logo-tile" href="{{ .href }}" rel="noopener" aria-label="{{ .name }}">
-            {{ partial "img.html" (dict "src" .image "alt" .name "widths" (slice 160 320) "sizes" "160px" "loading" "lazy" "decoding" "async") }}
-          </a>
-          {{ end }}
+      {{/* The frame exists only to anchor the arrows: they can't live in the
+           viewport, whose edge mask would fade them out, and centring them on
+           .logo-carousel would drift with its asymmetric desktop padding. */}}
+      <div class="logo-carousel__frame">
+        <button class="logo-carousel__nav logo-carousel__nav--prev" type="button" data-logo-prev aria-label="{{ if eq $lang "de" }}Vorherige Kunden{{ else }}Previous customers{{ end }}">{{ partial "icon.html" (dict "name" "chevron-left" "size" 24) }}</button>
+        <div class="logo-carousel__viewport">
+          <div class="logo-carousel__track" data-logo-track>
+            {{ range hugo.Data.customers }}
+            <a class="logo-tile" href="{{ .href }}" rel="noopener" aria-label="{{ .name }}">
+              {{ partial "img.html" (dict "src" .image "alt" .name "widths" (slice 160 320) "sizes" "160px" "loading" "lazy" "decoding" "async") }}
+            </a>
+            {{ end }}
+          </div>
         </div>
+        <button class="logo-carousel__nav logo-carousel__nav--next" type="button" data-logo-next aria-label="{{ if eq $lang "de" }}Nächste Kunden{{ else }}Next customers{{ end }}">{{ partial "icon.html" (dict "name" "chevron-right" "size" 24) }}</button>
       </div>
     </div>
   </div>

@@ -492,27 +492,66 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 /* ---------- Customer logo carousel (boxed tiles, JS-scrolled) ---------- */
 
 .logo-carousel {
-  --logo-fade: 40px;    /* width of the edge fade band */
+  --logo-fade: 72px;    /* width of the edge fade band; clears the arrows */
   padding: var(--space-6) 0;
 }
+/* A native snap scroller on every device, so touch swipes, trackpad swipes
+   and shift+wheel work without JS; peakscale.js adds the arrows, mouse drag
+   and the auto-advance on top, all through scrollLeft. */
 .logo-carousel__viewport {
-  overflow: hidden;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
   /* Vertical slack so tile borders aren't clipped by the overflow boundary. */
   padding: 6px 0;
   /* Fixed-width edge fade (not a percentage) so it stays at the edge everywhere. */
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--logo-fade), #000 calc(100% - var(--logo-fade)), transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0, #000 var(--logo-fade), #000 calc(100% - var(--logo-fade)), transparent 100%);
 }
+.logo-carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+/* While a mouse drags the strip, snapping would fight every pointermove;
+   it comes back on release and settles the strip on the nearest tile. */
+.logo-carousel__viewport.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+}
+.logo-carousel__viewport.is-dragging .logo-tile {
+  cursor: grabbing;
+}
 .logo-carousel__track {
   display: flex;
+  width: max-content;
   gap: var(--space-4);
-  transform: translateX(0);
-  transition: transform .5s ease;
-  will-change: transform;
 }
-@media (prefers-reduced-motion: reduce) {
-  .logo-carousel__track { transition: none; }
+/* Arrows sit over the faded strip edges (--logo-fade is wide enough to
+   clear them). Same look as the testimonial chevrons. */
+.logo-carousel__frame {
+  position: relative;
 }
+.logo-carousel__nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px; border-radius: 9999px;
+  background: var(--bg-white); border: 2px solid var(--bright-blue-text);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--bright-blue-text); cursor: pointer; padding: 0;
+  z-index: 2;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .1s ease;
+}
+.logo-carousel__nav svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: .7px;
+  stroke-linejoin: round;
+}
+.logo-carousel__nav:hover { background: var(--bright-blue-text); color: #fff; }
+.logo-carousel__nav:active { transform: translateY(-50%) scale(.96); }
+.logo-carousel__nav--prev { left: 14px; }
+.logo-carousel__nav--next { right: 14px; }
 
 .logo-tile,
 .partner-logos__item {
@@ -526,6 +565,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   transition: border-color .2s ease;
+}
+.logo-tile {
+  scroll-snap-align: start;
 }
 .logo-tile:hover,
 .partner-logos__item:hover {
@@ -1697,8 +1739,9 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 }
 
 @media (hover: none) and (pointer: coarse) {
-  /* On touch, both carousels become native snap scrollers. The strip breaks
-     out of the gutter (track re-pads it) so the fade runs to the page edges. */
+  /* On touch the testimonials become a native snap scroller too (the logo
+     strip is one everywhere). The logo strip breaks out of the gutter
+     (track re-pads it) so the fade runs to the page edges. */
   .home-customers .logo-carousel {
     --logo-fade: 10px;
     padding: var(--space-4) 0 0;
@@ -1708,7 +1751,6 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
     /* Snapped tiles land on the gutter, not under the edge fade. */
     scroll-padding-inline: var(--gutter);
   }
-  .home-customers .logo-carousel__viewport,
   .home-testimonials .testimonial-carousel__viewport {
     overflow-x: auto;
     overscroll-behavior-inline: contain;
@@ -1716,19 +1758,16 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
-  .home-customers .logo-carousel__viewport::-webkit-scrollbar,
   .home-testimonials .testimonial-carousel__viewport::-webkit-scrollbar {
     display: none;
   }
   .home-customers .logo-carousel__track {
-    width: max-content;
     padding-inline: var(--gutter);
-    transform: none !important;
-    transition: none;
-    will-change: auto;
   }
-  .home-customers .logo-tile {
-    scroll-snap-align: start;
+  /* Swiping replaces the arrows here, as with the testimonials; the 10px
+     fade couldn't clear them anyway. */
+  .home-customers .logo-carousel__nav {
+    display: none;
   }
   .home-testimonials .testimonial-carousel__nav {
     display: none;
@@ -1808,7 +1847,8 @@ ul.reset, ol.reset { list-style: none; padding: 0; margin: 0; }
 @media print {
   .site-header,
   .testimonial-carousel__dots,
-  .testimonial-carousel__nav { display: none !important; }
+  .testimonial-carousel__nav,
+  .logo-carousel__nav { display: none !important; }
   body { background: #fff; color: #000; }
   .section--dark, .site-footer { background: #fff; color: #000; }
   a { color: #000; text-decoration: underline; }

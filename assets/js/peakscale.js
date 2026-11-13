@@ -1,5 +1,6 @@
 /* Peak Scale – minimal client JS.
-   Header state, mobile menu toggle, testimonial carousel (chevrons + dots). */
+   Header state, mobile menu toggle, testimonial carousel (chevrons + dots),
+   customer logo strip (arrows, drag, auto-advance). */
 
 (function () {
   'use strict';
@@ -160,20 +161,17 @@
     swipe.addEventListener('change', applyMode);
   });
 
-  // ---------- Logo carousel (shuffled, infinite, transform-based) ----------
+  // ---------- Logo carousel (shuffled, infinite, native scroll) ----------
+  // The viewport is a native snap scroller on every device (see site.css),
+  // so touch and trackpad swipes need no JS. This adds the endless wrap,
+  // the arrows, mouse drag and an auto-advance, all driven through
+  // scrollLeft.
   document.querySelectorAll('[data-logo-carousel]').forEach(function (carousel) {
     const track = carousel.querySelector('[data-logo-track]');
     const viewport = carousel.querySelector('.logo-carousel__viewport');
     const prev = carousel.querySelector('[data-logo-prev]');
     const next = carousel.querySelector('[data-logo-next]');
-    if (!track) return;
-
-    // On touch devices the CSS turns the viewport into a native horizontal
-    // scroller (swipeable, scroll-snapped) and pins the transform to none.
-    // There the auto-advance has to move scrollLeft instead – otherwise it
-    // writes a transform nothing renders and the strip sits still.
-    const coarse = window.matchMedia('(hover: none) and (pointer: coarse)');
-    function nativeScroll() { return !!viewport && coarse.matches; }
+    if (!track || !viewport) return;
 
     // 1. Shuffle the source tiles in place (Fisher-Yates) so each visit
     //    sees customers in a different order.
@@ -186,9 +184,8 @@
 
     // 2. Append a single clone of the (shuffled) set so the track is
     //    twice the width of one copy – this is what makes the wrap-around
-    //    invisible: when we slide past the end of the originals, the
-    //    second copy is already in view, and we instantly snap the
-    //    transform back by one set-width without the user noticing.
+    //    invisible: the two copies are identical, so scrollLeft w and 0
+    //    show the same thing and we can jump between them unnoticed.
     Array.from(track.children).forEach(function (tile) {
       const clone = tile.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
@@ -196,8 +193,8 @@
       track.appendChild(clone);
     });
 
-    let offset = 0;
     const count = originals.length;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function tileStep() {
       const tile = track.querySelector('.logo-tile');
@@ -215,105 +212,111 @@
       if (!first || !firstClone) return track.scrollWidth / 2;
       return firstClone.offsetLeft - first.offsetLeft;
     }
-    function apply() { track.style.transform = 'translateX(-' + offset + 'px)'; }
 
-    // Set transform with no transition (used for the invisible wrap-snap).
-    function snap(target) {
-      track.style.transition = 'none';
-      offset = target;
-      apply();
-      void track.offsetWidth;            // flush
-      track.style.transition = '';
-    }
-    // Halt any in-flight transition by snapping to the currently-rendered
-    // position. Otherwise on hover/click the track keeps sliding for up
-    // to .5s and tiles slip out from under the cursor.
-    function freezeAtRendered() {
-      const m = new DOMMatrixReadOnly(getComputedStyle(track).transform);
-      snap(-m.m41);
-    }
-    function nudge(dir) {
-      const step = tileStep();
-      // Going backwards from the start: invisibly jump forward by one
-      // set-width to the mirror position on the second copy, then animate
-      // backward from there. Looks like a normal leftward slide.
-      if (dir < 0 && offset - step < 0) snap(offset + setWidth());
-      offset += dir * step;
-      apply();
-    }
-
-    // After every animated step, if we've slid past the first copy,
-    // snap back by one set-width. The two copies are identical at the
-    // boundary, so the snap is invisible.
-    track.addEventListener('transitionend', function () {
-      if (offset >= setWidth()) snap(offset - setWidth());
-    });
-
-    if (prev) prev.addEventListener('click', function () { freezeAtRendered(); nudge(-1); });
-    if (next) next.addEventListener('click', function () { freezeAtRendered(); nudge(1); });
-
-    // Native-scroll equivalent of the transform wrap: the two copies are
-    // identical, so scrollLeft w and 0 show the same thing. Jumping either
-    // way keeps the strip endless in both directions. Only ever called when
-    // no scroll is in flight, so it can't cut off a swipe's momentum.
+    // Jumping by one set-width either way keeps the strip endless in both
+    // directions. Only ever called when no scroll is in flight, so it can't
+    // cut off a swipe's momentum. The resting range is (0, w]: the jump up
+    // from 0 lands exactly on w, so wrapping back must need strictly more
+    // than w, or each jump's scroll event would trigger the other one.
     function wrapScroll() {
       const w = setWidth();
       if (w <= 0) return;
-      if (viewport.scrollLeft >= w) viewport.scrollLeft -= w;
+      if (viewport.scrollLeft > w) viewport.scrollLeft -= w;
       else if (viewport.scrollLeft <= 0) viewport.scrollLeft += w;
     }
 
-    function advance() {
-      if (nativeScroll()) {
-        const w = setWidth();
-        if (w > 0 && viewport.scrollLeft >= w) viewport.scrollLeft -= w;
-        viewport.scrollBy({ left: tileStep(), behavior: reduced ? 'auto' : 'smooth' });
-      } else {
-        nudge(1);
-      }
+    // One tile forward (1) or back (-1), for the arrows and the auto-advance.
+    // If the step would run off either end of the track, first jump
+    // invisibly to the mirror position on the other copy.
+    function step(dir) {
+      const w = setWidth();
+      const s = tileStep();
+      if (w > 0 && dir > 0 && viewport.scrollLeft >= w) viewport.scrollLeft -= w;
+      if (w > 0 && dir < 0 && viewport.scrollLeft - s < 0) viewport.scrollLeft += w;
+      viewport.scrollBy({ left: dir * s, behavior: reduced ? 'auto' : 'smooth' });
     }
 
-    // Auto-advance, paused on hover / focus / touch / reduced motion.
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prev) prev.addEventListener('click', function () { step(-1); });
+    if (next) next.addEventListener('click', function () { step(1); });
+
+    // Auto-advance, paused on hover / focus / touch / drag / reduced motion.
     let timer = null;
     let resumeTimer = null;
     function start() {
       clearTimeout(resumeTimer);
-      if (!timer && !reduced) timer = setInterval(advance, 3500);
+      if (!timer && !reduced) timer = setInterval(function () { step(1); }, 3500);
     }
     function stop() {
       if (timer) { clearInterval(timer); timer = null; }
-      if (!nativeScroll()) freezeAtRendered();
     }
-    // A tap on a phone fires mouseenter without a matching mouseleave, which
-    // would stop the strip for good – hover only pauses where hover exists.
-    carousel.addEventListener('mouseenter', function () { if (!nativeScroll()) stop(); });
-    carousel.addEventListener('mouseleave', function () { if (!nativeScroll()) start(); });
+    function resumeSoon() {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(start, 2500);
+    }
+    // Pointer events rather than mouseenter/leave: a tap on a phone fires
+    // mouseenter without a matching mouseleave, which would stop the strip
+    // for good. Hover only pauses for pointers that can actually hover.
+    carousel.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') stop(); });
+    carousel.addEventListener('pointerleave', function (e) { if (e.pointerType !== 'touch') start(); });
     carousel.addEventListener('focusin', stop);
     carousel.addEventListener('focusout', start);
 
-    if (viewport) {
-      // Hand the strip over to the user while they swipe, then take it back
-      // once they've been idle for a moment.
-      let idle = null;
-      function resumeSoon() {
-        clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(start, 2500);
-      }
-      viewport.addEventListener('touchstart', stop, { passive: true });
-      viewport.addEventListener('touchend', resumeSoon, { passive: true });
-      viewport.addEventListener('touchcancel', resumeSoon, { passive: true });
-      viewport.addEventListener('scroll', function () {
-        clearTimeout(idle);
-        idle = setTimeout(function () { if (nativeScroll()) wrapScroll(); }, 200);
-      }, { passive: true });
-    }
+    // Hand the strip over to the user while they swipe, then take it back
+    // once they've been idle for a moment.
+    viewport.addEventListener('touchstart', stop, { passive: true });
+    viewport.addEventListener('touchend', resumeSoon, { passive: true });
+    viewport.addEventListener('touchcancel', resumeSoon, { passive: true });
 
-    // Re-clamp on resize so we never end up beyond the new set-width.
-    window.addEventListener('resize', function () {
-      const w = setWidth();
-      if (w > 0 && offset >= w) { offset -= w; apply(); }
+    // Mouse drag. Touch and trackpads scroll natively, but a mouse wheel only
+    // scrolls vertically, so mouse users get grab-and-drag. The 5px threshold
+    // keeps a plain click on a tile working as a link.
+    let drag = null;
+    let suppressClick = false;
+    viewport.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      drag = { id: e.pointerId, x: e.clientX, left: viewport.scrollLeft, moved: false };
     });
+    viewport.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      const dx = e.clientX - drag.x;
+      if (!drag.moved) {
+        if (Math.abs(dx) < 5) return;
+        drag.moved = true;
+        viewport.setPointerCapture(e.pointerId);
+        viewport.classList.add('is-dragging');
+      }
+      // Wrap mid-drag by shifting the drag origin one set-width, so the
+      // strip stays endless under the cursor in both directions.
+      const w = setWidth();
+      let target = drag.left - dx;
+      if (w > 0 && target < 0) { drag.left += w; target += w; }
+      else if (w > 0 && target > w) { drag.left -= w; target -= w; }
+      viewport.scrollLeft = target;
+    });
+    function endDrag(e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      if (drag.moved) {
+        viewport.classList.remove('is-dragging');
+        // The release would otherwise click whatever tile is under it.
+        suppressClick = true;
+        setTimeout(function () { suppressClick = false; }, 0);
+      }
+      drag = null;
+    }
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('click', function (e) {
+      if (suppressClick) { e.preventDefault(); e.stopPropagation(); }
+    }, true);
+    // Links and images are natively draggable; that would hijack the gesture.
+    viewport.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+    let idle = null;
+    viewport.addEventListener('scroll', function () {
+      clearTimeout(idle);
+      idle = setTimeout(function () { if (!drag) wrapScroll(); }, 200);
+    }, { passive: true });
+
     start();
   });
 })();
