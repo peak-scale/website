@@ -4,7 +4,7 @@ Hugo source for [peakscale.ch](https://peakscale.ch/).
 
 ## Requirements
 
-- Hugo extended `0.161.1`, pinned in `.hugo-version`
+- Hugo extended `0.169.0`, pinned in `.hugo-version`
 - SVGO, optional for SVG optimisation
 
 ## Nix
