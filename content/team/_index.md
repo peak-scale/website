@@ -22,7 +22,7 @@ recruitment:
   name: "Du?"
   role: "Dein Platz bei Peak Scale"
   lead: "Du begeisterst dich für Cloud Native und möchtest mit uns etwas bewegen? Prüfe unsere offenen Positionen oder bewirb dich spontan bei uns. Wir freuen uns darauf, dich kennenzulernen."
-  jobs_cta: "Jobs auf LinkedIn"
+  jobs_cta: "Offene Positionen"
 mission:
   title: "Unsere Mission"
   lead: "Wir unterstützen IT-Abteilungen dabei, stabile, sichere und zukunftsfähige Plattformen aufzubauen."

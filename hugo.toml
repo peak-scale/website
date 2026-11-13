@@ -32,7 +32,7 @@ companyName = "Peak Scale GmbH"
 companyAddress = "Ryffligässchen 5"
 companyCity = "CH-3011 Bern"
 linkedin = "https://www.linkedin.com/company/peakscale/"
-linkedinJobs = "https://www.linkedin.com/company/peakscale/jobs/"
+jobsUrl = "https://drive.google.com/drive/folders/1uT1NjJhfaB8gBqOM1B27SRK-nHDAeCSG"
 ogImage = "/images/peakscale-logo-square.png"
 description = "Cloud Native Consulting & Platform Engineering aus Bern. Hands-on Partner für Strategie, Architektur, Engineering und Betrieb moderner Cloud-Plattformen."
 
